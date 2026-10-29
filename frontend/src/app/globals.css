@@ -1,0 +1,161 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+/* `html.lenis { height: auto }` plus the overflow hooks SmoothScrollProvider relies on. */
+@import "lenis/dist/lenis.css";
+
+/*
+ * Charcoal & Ivory theme, imported from `frontend/charcoal-ivory-theme/`. That folder is the
+ * single source of truth for colour, radius, shadow and motion: change a value there, not
+ * here. This file only maps its variables onto Tailwind utilities.
+ *
+ * Only the token file is imported. The theme's `typography.css` (and `tailwind/theme.css`,
+ * which pulls it in) styles bare `body`, `h1`–`h3` and `a:hover` outside any cascade layer,
+ * and unlayered rules beat every Tailwind utility: each heading would turn into 60px
+ * uppercase display type and every link would underline on hover. The theme's display font
+ * is loaded through `next/font/local` in `app/layout.tsx` instead.
+ *
+ * Light by default, dark on request: next-themes puts `light` or `dark` on <html>, and `dark`
+ * selects the token file's `.dark` block. With either class present, the OS setting never
+ * decides; the token file's `prefers-color-scheme` fallback only fills in for a missing one.
+ */
+@import "../../charcoal-ivory-theme/styles/tokens.css";
+
+/* The theme's README, preview page and component CSS are reference material, not app
+   markup: keep Tailwind from generating utilities for the class names they mention. */
+@source not "../../charcoal-ivory-theme";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Mirrors charcoal-ivory-theme/tailwind/theme.css, plus the shadcn/ui extras. */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Raw brand anchors and warm neutral scale: `bg-charcoal`, `text-ivory`, `border-sand-800`. */
+  --color-charcoal: var(--brand-charcoal);
+  --color-ivory: var(--brand-ivory);
+  --color-sand-50: var(--sand-50);
+  --color-sand-100: var(--sand-100);
+  --color-sand-200: var(--sand-200);
+  --color-sand-300: var(--sand-300);
+  --color-sand-400: var(--sand-400);
+  --color-sand-500: var(--sand-500);
+  --color-sand-600: var(--sand-600);
+  --color-sand-700: var(--sand-700);
+  --color-sand-800: var(--sand-800);
+  --color-sand-900: var(--sand-900);
+  --color-sand-950: var(--sand-950);
+
+  /* Soft, warm-tinted charcoal shadows. */
+  --shadow-xs: var(--shadow-xs);
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+  --shadow-xl: var(--shadow-xl);
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-playfair, serif);
+  /* Brigends Expanded is a demo build: digits and symbols render a watermark. Keep it to
+     alphabetic text (the wordmark, word-only headings); numbers stay in `font-sans`. */
+  --font-display: var(--font-brigends), "Arial Narrow", system-ui, sans-serif;
+
+  /* shadcn/ui derives its radii from one base; `--radius` itself comes from the theme. */
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+}
+
+/* shadcn/ui tokens the theme does not define (charts, the admin sidebar). */
+:root {
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+}
+
+/*
+ * Theme switch reveal. ThemeToggle sets `data-theme-transition` on <html> and starts a view
+ * transition: the browser freezes the old page as an image, applies the new theme, and the
+ * live new page shows through a circle that grows from the viewport's bottom-left corner
+ * until it covers the screen. A percentage radius is measured against the diagonal / sqrt(2),
+ * so 141.5% (just over sqrt(2) x 100%) reaches the far, top-right corner. Browsers without
+ * view transitions, and visitors who ask for reduced motion, switch instantly instead.
+ */
+:root[data-theme-transition]::view-transition-old(root),
+:root[data-theme-transition]::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+:root[data-theme-transition]::view-transition-new(root) {
+  animation: theme-reveal 900ms cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+
+@keyframes theme-reveal {
+  from {
+    clip-path: circle(0% at 0% 100%);
+  }
+  to {
+    clip-path: circle(141.5% at 0% 100%);
+  }
+}

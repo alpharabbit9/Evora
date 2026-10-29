@@ -1,0 +1,245 @@
+/* ============================================================================
+   CHARCOAL & IVORY — UI Components
+   ----------------------------------------------------------------------------
+   Framework-agnostic component classes, modelled on the storefront mockup:
+   pill buttons, soft rounded cards, circular category chips, product cards
+   with strikethrough pricing, pill badges, rounded inputs.
+
+   Every value references a token from tokens.css — change a token, every
+   component updates. Use these as-is, or copy them into your component lib.
+   ============================================================================ */
+
+/* ---------------------------------------------------------------- Layout -- */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+}
+
+.section-title {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+.section-title h2 { font-size: var(--text-3xl); }
+
+.divider { height: 1px; background: var(--border); border: 0; }
+
+/* ---------------------------------------------------------------- Button -- */
+.btn {
+  --btn-bg: var(--primary);
+  --btn-fg: var(--primary-foreground);
+  --btn-bg-hover: var(--primary-hover);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  line-height: 1;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-full);     /* pill, as in the mockup */
+  border: 1px solid transparent;
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  transition: background var(--duration) var(--ease-out),
+              color var(--duration) var(--ease-out),
+              border-color var(--duration) var(--ease-out),
+              transform var(--duration-fast) var(--ease-out),
+              box-shadow var(--duration) var(--ease-out);
+}
+.btn:hover { background: var(--btn-bg-hover); }
+.btn:active { transform: translateY(1px); }
+.btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(--ring);
+}
+.btn:disabled { opacity: 0.5; pointer-events: none; }
+
+/* Variants */
+.btn-primary   { } /* default */
+.btn-secondary {
+  --btn-bg: var(--secondary);
+  --btn-fg: var(--secondary-foreground);
+  --btn-bg-hover: var(--secondary-hover);
+}
+.btn-outline {
+  --btn-bg: transparent;
+  --btn-fg: var(--foreground);
+  --btn-bg-hover: var(--secondary);
+  border-color: var(--border);
+}
+.btn-ghost {
+  --btn-bg: transparent;
+  --btn-fg: var(--foreground);
+  --btn-bg-hover: var(--secondary);
+}
+.btn-destructive {
+  --btn-bg: var(--destructive);
+  --btn-fg: var(--destructive-foreground);
+  --btn-bg-hover: var(--destructive-hover);
+}
+.btn-link {
+  --btn-bg: transparent;
+  --btn-fg: var(--foreground);
+  padding: 0;
+  border-radius: 0;
+}
+.btn-link:hover { background: transparent; text-decoration: underline; text-underline-offset: 3px; }
+
+/* Sizes */
+.btn-sm { padding: 0.5rem 1rem;   font-size: var(--text-xs); }
+.btn-lg { padding: 0.95rem 2rem;  font-size: var(--text-base); }
+.btn-icon { padding: 0.7rem; aspect-ratio: 1; border-radius: var(--radius-full); }
+.btn-block { display: flex; width: 100%; }
+
+/* -------------------------------------------------------------- Card --- */
+.card {
+  background: var(--card);
+  color: var(--card-foreground);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+.card-pad { padding: var(--space-6); }
+.card-hover {
+  transition: box-shadow var(--duration) var(--ease-out),
+              transform var(--duration) var(--ease-out);
+}
+.card-hover:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+
+/* Promo / feature card (the "Spring Sale" blocks) */
+.promo {
+  border-radius: var(--radius-xl);
+  padding: var(--space-10);
+  background: var(--secondary);
+  color: var(--secondary-foreground);
+}
+.promo-dark { background: var(--primary); color: var(--primary-foreground); }
+
+/* ------------------------------------------------------ Product card --- */
+.product { background: transparent; border: 0; box-shadow: none; }
+.product-media {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  border-radius: var(--radius-lg);
+  background: var(--muted);
+  overflow: hidden;
+}
+.product-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.product-title {
+  margin-top: var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--foreground);
+}
+.price { display: inline-flex; align-items: baseline; gap: var(--space-2); margin-top: 0.15rem; }
+.price-now { font-size: var(--text-base); font-weight: var(--weight-bold); color: var(--foreground); }
+.price-old { font-size: var(--text-sm); color: var(--muted-foreground); text-decoration: line-through; }
+
+/* Rating stars */
+.rating { display: inline-flex; align-items: center; gap: 0.15rem; color: var(--sand-500); font-size: var(--text-xs); }
+.rating .is-on { color: var(--foreground); }
+
+/* ------------------------------------------------------------- Badge --- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  line-height: 1;
+  padding: 0.4rem 0.7rem;
+  border-radius: var(--radius-full);
+  background: var(--secondary);
+  color: var(--secondary-foreground);
+}
+.badge-solid   { background: var(--primary); color: var(--primary-foreground); }
+.badge-outline { background: transparent; border: 1px solid var(--border); color: var(--foreground); }
+.badge-sale    { background: var(--destructive); color: var(--destructive-foreground); }
+
+/* Feature badge w/ icon ("Free Shipping", "Secure Payment") */
+.feature {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--foreground);
+  font-size: var(--text-sm);
+}
+.feature .feature-icon {
+  display: grid;
+  place-items: center;
+  width: 2.5rem; height: 2.5rem;
+  border-radius: var(--radius-full);
+  background: var(--secondary);
+  color: var(--foreground);
+  flex: none;
+}
+.feature small { color: var(--muted-foreground); display: block; }
+
+/* --------------------------------------------------- Category chip --- */
+.chip {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  cursor: pointer;
+  color: var(--foreground);
+  font-size: var(--text-sm);
+}
+.chip-circle {
+  display: grid;
+  place-items: center;
+  width: 4.25rem; height: 4.25rem;
+  border-radius: var(--radius-full);
+  background: var(--card);
+  border: 1px solid var(--border);
+  transition: border-color var(--duration) var(--ease-out),
+              background var(--duration) var(--ease-out),
+              transform var(--duration) var(--ease-out);
+}
+.chip:hover .chip-circle { border-color: var(--foreground); transform: translateY(-2px); }
+.chip.is-active .chip-circle { background: var(--primary); color: var(--primary-foreground); border-color: var(--primary); }
+
+/* -------------------------------------------------------------- Input --- */
+.input {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--foreground);
+  background: var(--card);
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-md);
+  transition: border-color var(--duration) var(--ease-out),
+              box-shadow var(--duration) var(--ease-out);
+}
+.input::placeholder { color: var(--muted-foreground); }
+.input:focus-visible {
+  outline: none;
+  border-color: var(--ring);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 18%, transparent);
+}
+.input-pill { border-radius: var(--radius-full); padding-inline: 1.25rem; }
+
+.field { display: flex; flex-direction: column; gap: var(--space-2); }
+.label { font-size: var(--text-sm); font-weight: var(--weight-medium); color: var(--foreground); }
+.hint  { font-size: var(--text-xs); color: var(--muted-foreground); }
+
+/* Inline input + button group (newsletter signup) */
+.input-group { display: flex; gap: var(--space-2); }
+.input-group .input { flex: 1; }
+
+/* ------------------------------------------------------------- Misc ----- */
+.tag-row { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.muted-text { color: var(--muted-foreground); }
+.on-image { color: var(--on-image); }
+.overlay { position: absolute; inset: 0; background: var(--overlay); }

@@ -1,0 +1,841 @@
+// CommerceCore — Prisma schema
+//
+// Scope: identity (Better Auth) + the commerce domain model from docs/database-design.md.
+// This file defines TABLES AND CONSTRAINTS ONLY. No checkout, payment, refund, pricing or
+// reservation behavior exists yet — those land in M5/M6/M7/M8.
+//
+// Deliberately absent, with reasons:
+//   InventoryReservation  — ADR 0004 is still Proposed; `stockQuantity` means ON-HAND until it lands.
+//   Review, WishlistItem  — PRD §4 marks them optional/unaccepted; uniqueness rules undefined.
+//   Notification          — OutboxEvent covers durable async work; a second table has no demonstrated need.
+//   StoreSettings         — shipping/tax/store policy is unresolved (PRD §9); M10.
+//
+// Money: integer MINOR UNITS (`*Minor Int`), never float, never Decimal. One store currency,
+// persisted on Order/Payment/Refund for historical correctness (docs/database-design.md §7).
+// Int caps at 2,147,483,647 minor units (~21.4M major). Move to BigInt before that is credible.
+//
+// Constraints Prisma cannot express — CHECKs, partial unique indexes, normalization guards —
+// are hand-written in the migration SQL. Each model lists its own below so the schema and the
+// SQL cannot drift silently. NEVER run `prisma db push` on this project: it bypasses migration
+// history and would silently drop every one of them.
+//
+// Prisma 7 note: the connection URL lives in prisma.config.ts (for migrate) and reaches
+// PrismaClient through the @prisma/adapter-pg driver adapter at runtime, not in this file.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ---------------------------------------------------------------------------
+// Identity (Better Auth)
+//
+// The field list below was generated from Better Auth 1.7.12's own `getAuthTables()`
+// output for this project's auth config — do not drift from it by hand.
+//
+// The @@map to plural tables and @map to snake_case columns are safe: the Prisma adapter
+// resolves models through Prisma Client accessors (prisma.user, prisma.session, ...), never
+// SQL names. Better Auth lowercases email on create, lookup and update, so the plain @unique
+// below is sufficient; a CHECK in migration 0001 turns that convention into an invariant.
+// ---------------------------------------------------------------------------
+
+/// Privilege ladder, least privilege first. SUPERADMIN exists so that GRANTING a role is
+/// not itself an ADMIN-level operation (PRD §4 FR-05 "least privilege"): an ADMIN runs the
+/// store, a SUPERADMIN decides who is an ADMIN. The ordering here is not authoritative —
+/// `src/http/guards.ts` owns the one comparison that ranks these.
+enum UserRole {
+  CUSTOMER
+  ADMIN
+  SUPERADMIN
+}
+
+enum UserStatus {
+  ACTIVE
+  SUSPENDED
+}
+
+/// Identity. Credential hashing lives in Account.password, managed by Better Auth.
+/// `role`/`status` are server-owned: Better Auth declares them `input: false`, so a
+/// registration or profile payload cannot set them (PRD §3 least privilege).
+/// CHECK: email = lower(email).
+model User {
+  id            String     @id @default(cuid())
+  name          String
+  email         String     @unique
+  emailVerified Boolean    @default(false) @map("email_verified")
+  image         String?
+  role          UserRole   @default(CUSTOMER)
+  status        UserStatus @default(ACTIVE)
+  createdAt     DateTime   @default(now()) @map("created_at")
+  updatedAt     DateTime   @updatedAt @map("updated_at")
+
+  sessions Session[]
+  accounts Account[]
+
+  addresses          Address[]
+  carts              Cart[]
+  orders             Order[]
+  orderStatusChanges OrderStatusHistory[]
+  refundRequests     Refund[]
+  inventoryMovements InventoryMovement[]
+  couponRedemptions  CouponRedemption[]
+  auditLogs          AuditLog[]
+
+  @@map("users")
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  expiresAt DateTime @map("expires_at")
+  token     String   @unique
+  ipAddress String?  @map("ip_address")
+  userAgent String?  @map("user_agent")
+  userId    String   @map("user_id")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([expiresAt])
+  @@map("sessions")
+}
+
+model Account {
+  id                    String    @id @default(cuid())
+  accountId             String    @map("account_id")
+  providerId            String    @map("provider_id")
+  userId                String    @map("user_id")
+  accessToken           String?   @map("access_token")
+  refreshToken          String?   @map("refresh_token")
+  idToken               String?   @map("id_token")
+  accessTokenExpiresAt  DateTime? @map("access_token_expires_at")
+  refreshTokenExpiresAt DateTime? @map("refresh_token_expires_at")
+  scope                 String?
+  password              String?
+  createdAt             DateTime  @default(now()) @map("created_at")
+  updatedAt             DateTime  @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([providerId, accountId])
+  @@index([userId])
+  @@map("accounts")
+}
+
+model Verification {
+  id         String   @id @default(cuid())
+  identifier String
+  value      String
+  expiresAt  DateTime @map("expires_at")
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+
+  @@index([identifier])
+  @@index([expiresAt])
+  @@map("verifications")
+}
+
+// ---------------------------------------------------------------------------
+// Customer data
+// ---------------------------------------------------------------------------
+
+/// Saved address. Orders snapshot shipping details, so editing or deleting an address never
+/// rewrites history — there is deliberately no Order -> Address foreign key.
+/// CHECK: country_code = upper(country_code) and char_length = 2.
+/// Partial unique index: at most one default address per user.
+model Address {
+  id            String   @id @default(cuid())
+  userId        String   @map("user_id")
+  label         String?
+  recipientName String   @map("recipient_name")
+  phone         String?
+  line1         String
+  line2         String?
+  city          String
+  state         String?
+  postalCode    String   @map("postal_code")
+  countryCode   String   @map("country_code") @db.Char(2)
+  isDefault     Boolean  @default(false) @map("is_default")
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("addresses")
+}
+
+// ---------------------------------------------------------------------------
+// Catalog
+// ---------------------------------------------------------------------------
+
+enum ProductStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+enum ProductVariantStatus {
+  ACTIVE
+  INACTIVE
+  ARCHIVED
+}
+
+/// Who a product is cut for. A column rather than a category subtree, so "men's footwear" is
+/// one indexed filter and categories are not duplicated per gender (ADR 0011).
+enum ProductGender {
+  MEN
+  WOMEN
+  UNISEX
+}
+
+/// Where a variant's price came from. SYNTHETIC marks a development/demo price the catalog
+/// importer generated; checkout must still treat `priceMinor` as the price (ADR 0011).
+enum PriceSource {
+  MANUAL
+  SOURCE
+  SYNTHETIC
+}
+
+/// Taxonomy. Postgres cannot prevent a deep parent cycle without a trigger, so the CHECK
+/// below only blocks self-parenting and the catalog service caps nesting depth.
+/// CHECK: parent_id <> id, sort_order >= 0.
+model Category {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  description String?
+  parentId    String?  @map("parent_id")
+  isActive    Boolean  @default(true) @map("is_active")
+  sortOrder   Int      @default(0) @map("sort_order")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  parent   Category?  @relation("CategoryParent", fields: [parentId], references: [id], onDelete: Restrict)
+  children Category[] @relation("CategoryParent")
+  products Product[]
+
+  @@index([parentId])
+  @@index([isActive])
+  @@map("categories")
+}
+
+/// Catalog content. Price and stock belong to the variant, so every product carries at least
+/// one variant (a "default" one when there are no options) — not expressible as a constraint,
+/// enforced by the catalog service.
+///
+/// `source*` fields are import provenance (ADR 0011): the (provider, external id) pair is the
+/// importer's idempotency key, and `sourceContentHash` lets a rerun detect an admin's edit.
+/// They are internal and never returned by public endpoints.
+/// CHECK: status <> 'PUBLISHED' OR published_at IS NOT NULL;
+/// source_provider and source_external_id both NULL or both non-blank.
+model Product {
+  id                String         @id @default(cuid())
+  name              String
+  slug              String         @unique
+  description       String?
+  brand             String?
+  categoryId        String         @map("category_id")
+  gender            ProductGender?
+  status            ProductStatus  @default(DRAFT)
+  publishedAt       DateTime?      @map("published_at")
+  /// Storefront front-runner position: 1 is listed first, NULL is not featured (ADR 0013).
+  /// CHECK: NULL or > 0.
+  featuredRank      Int?           @map("featured_rank")
+  sourceProvider    String?        @map("source_provider")
+  sourceExternalId  String?        @map("source_external_id")
+  sourceUrl         String?        @map("source_url")
+  sourceContentHash String?        @map("source_content_hash")
+  createdAt         DateTime       @default(now()) @map("created_at")
+  updatedAt         DateTime       @updatedAt @map("updated_at")
+
+  category       Category         @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  variants       ProductVariant[]
+  images         ProductImage[]
+  orderItems     OrderItem[]
+  couponProducts CouponProduct[]
+
+  @@unique([sourceProvider, sourceExternalId])
+  @@index([categoryId])
+  @@index([status, publishedAt(sort: Desc)])
+  @@index([brand])
+  @@index([gender, status])
+  @@index([featuredRank])
+  @@map("products")
+}
+
+/// The purchasable unit. `options` holds the selected option values; `optionKey` is their
+/// canonical serialization, unique per product, so one combination cannot be created twice.
+/// `stockQuantity` is ON-HAND stock (see the reservation note at the top of this file).
+/// CHECK: price_minor >= 0, compare_at_price_minor >= 0, stock_quantity >= 0,
+/// low_stock_threshold >= 0, weight_grams > 0, char_length(sku) > 0, char_length(option_key) > 0.
+model ProductVariant {
+  id                  String               @id @default(cuid())
+  productId           String               @map("product_id")
+  sku                 String               @unique
+  optionKey           String               @default("default") @map("option_key")
+  options             Json                 @default("{}")
+  priceMinor          Int                  @map("price_minor")
+  priceSource         PriceSource          @default(MANUAL) @map("price_source")
+  compareAtPriceMinor Int?                 @map("compare_at_price_minor")
+  stockQuantity       Int                  @default(0) @map("stock_quantity")
+  lowStockThreshold   Int                  @default(0) @map("low_stock_threshold")
+  weightGrams         Int?                 @map("weight_grams")
+  status              ProductVariantStatus @default(ACTIVE)
+  createdAt           DateTime             @default(now()) @map("created_at")
+  updatedAt           DateTime             @updatedAt @map("updated_at")
+
+  product            Product             @relation(fields: [productId], references: [id], onDelete: Cascade)
+  images             ProductImage[]
+  cartItems          CartItem[]
+  orderItems         OrderItem[]
+  inventoryMovements InventoryMovement[]
+
+  @@unique([productId, optionKey])
+  @@index([productId])
+  @@index([status])
+  @@map("product_variants")
+}
+
+/// Image metadata only; binaries live in object storage under `objectKey`.
+/// `altText` is NOT optional — PRD §5 requires accessible alternatives.
+/// No unique on (product_id, sort_order): reordering would need deferrable constraints.
+/// CHECK: sort_order >= 0, char_length(alt_text) > 0, byte_size > 0, width_px > 0, height_px > 0.
+model ProductImage {
+  id          String   @id @default(cuid())
+  productId   String   @map("product_id")
+  variantId   String?  @map("variant_id")
+  objectKey   String   @unique @map("object_key")
+  altText     String   @map("alt_text")
+  sortOrder   Int      @default(0) @map("sort_order")
+  widthPx     Int?     @map("width_px")
+  heightPx    Int?     @map("height_px")
+  byteSize    Int?     @map("byte_size")
+  contentType String?  @map("content_type")
+  /// Provenance of a dataset image (ADR 0011). Internal; not a URL to serve.
+  sourceUrl   String?  @map("source_url")
+  attribution String?
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  product Product         @relation(fields: [productId], references: [id], onDelete: Cascade)
+  variant ProductVariant? @relation(fields: [variantId], references: [id], onDelete: SetNull)
+
+  @@index([productId, sortOrder])
+  @@index([variantId])
+  @@map("product_images")
+}
+
+// ---------------------------------------------------------------------------
+// Cart
+// ---------------------------------------------------------------------------
+
+enum CartStatus {
+  ACTIVE
+  CONVERTED
+  ABANDONED
+  EXPIRED
+}
+
+/// A cart is owned by exactly one of: a user, or a high-entropy guest token. Only the token
+/// HASH is stored — the token itself is a bearer secret and never persisted in clear text
+/// (docs/database-design.md §4).
+/// CHECK: exactly one of user_id / guest_token_hash is set.
+/// Partial unique index: at most one ACTIVE cart per user, and per guest token.
+model Cart {
+  id             String     @id @default(cuid())
+  userId         String?    @map("user_id")
+  guestTokenHash String?    @unique @map("guest_token_hash")
+  status         CartStatus @default(ACTIVE)
+  expiresAt      DateTime?  @map("expires_at")
+  createdAt      DateTime   @default(now()) @map("created_at")
+  updatedAt      DateTime   @updatedAt @map("updated_at")
+
+  user  User?      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  items CartItem[]
+
+  @@index([userId])
+  @@index([status, expiresAt])
+  @@map("carts")
+}
+
+/// Cart quantities are advisory; checkout revalidates price and stock (PRD §6 rule 4).
+/// The DB only guarantees a sane range — the real per-order cap is a service policy.
+/// CHECK: quantity BETWEEN 1 AND 999.
+model CartItem {
+  id        String   @id @default(cuid())
+  cartId    String   @map("cart_id")
+  variantId String   @map("variant_id")
+  quantity  Int
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  cart    Cart           @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  variant ProductVariant @relation(fields: [variantId], references: [id], onDelete: Restrict)
+
+  @@unique([cartId, variantId])
+  @@index([variantId])
+  @@map("cart_items")
+}
+
+// ---------------------------------------------------------------------------
+// Coupons
+// ---------------------------------------------------------------------------
+
+enum CouponType {
+  PERCENT
+  FIXED
+}
+
+/// Percentages are stored as integer BASIS POINTS (1000 = 10.00%) so no money or rate is
+/// ever a float. `usedCount` exists because a global usage limit cannot be enforced by a
+/// unique constraint: the pricing service claims a redemption with a conditional
+///   UPDATE coupons SET used_count = used_count + 1 WHERE id = $1 AND (usage_limit IS NULL
+///   OR used_count < usage_limit)
+/// exactly like the stock claim in architecture.md §8. That logic is M5, not this phase.
+/// CHECK: code = upper(code); exactly one of percent_bps / value_minor set per type; FIXED
+/// requires a currency; percent_bps BETWEEN 1 AND 10000; money and limits non-negative;
+/// used_count <= usage_limit; ends_at > starts_at.
+model Coupon {
+  id                   String     @id @default(cuid())
+  code                 String     @unique
+  type                 CouponType
+  percentBps           Int?       @map("percent_bps")
+  valueMinor           Int?       @map("value_minor")
+  currency             String?    @db.Char(3)
+  minimumSpendMinor    Int?       @map("minimum_spend_minor")
+  maxDiscountMinor     Int?       @map("max_discount_minor")
+  startsAt             DateTime?  @map("starts_at")
+  endsAt               DateTime?  @map("ends_at")
+  usageLimit           Int?       @map("usage_limit")
+  perUserLimit         Int?       @map("per_user_limit")
+  usedCount            Int        @default(0) @map("used_count")
+  isActive             Boolean    @default(true) @map("is_active")
+  appliesToAllProducts Boolean    @default(true) @map("applies_to_all_products")
+  createdAt            DateTime   @default(now()) @map("created_at")
+  updatedAt            DateTime   @updatedAt @map("updated_at")
+
+  products    CouponProduct[]
+  redemptions CouponRedemption[]
+  orders      Order[]
+
+  @@index([isActive, endsAt])
+  @@map("coupons")
+}
+
+/// Eligible-product allow-list, used only when `appliesToAllProducts` is false.
+model CouponProduct {
+  couponId  String @map("coupon_id")
+  productId String @map("product_id")
+
+  coupon  Coupon  @relation(fields: [couponId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@id([couponId, productId])
+  @@index([productId])
+  @@map("coupon_products")
+}
+
+// ---------------------------------------------------------------------------
+// Orders
+// ---------------------------------------------------------------------------
+
+enum OrderStatus {
+  PENDING_PAYMENT
+  CONFIRMED
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+  PAYMENT_FAILED
+}
+
+/// Order-level payment summary. Distinct from Payment.status, which tracks one attempt
+/// against one provider. COD gets its own states (API_SPEC.md §9).
+enum OrderPaymentStatus {
+  UNPAID
+  PENDING
+  PAID
+  PARTIALLY_REFUNDED
+  REFUNDED
+  FAILED
+  COD_PENDING
+  COD_COLLECTED
+}
+
+enum PaymentMethod {
+  COD
+  ONLINE
+}
+
+/// `userId` is nullable for guest checkout and uses onDelete: Restrict — a user with orders
+/// cannot be deleted, because the financial record must survive (docs/database-design.md §1,
+/// §8). Account closure is therefore anonymization, not deletion; the policy is still open.
+///
+/// Guest orders are reachable only through `guestAccessTokenHash`, never through the public
+/// `orderNumber` alone (API_SPEC.md §6) — `orderNumber` must be generated non-sequentially so
+/// it leaks neither volume nor another customer's order.
+///
+/// `idempotencyKey`/`requestFingerprint` are the inbound checkout-replay pair from
+/// docs/database-design.md §4. They only help once an order row exists; replaying a request
+/// that failed BEFORE commit needs a separate request table, which is an M6 decision.
+///
+/// CHECK: all money >= 0; total = subtotal - discount + shipping + tax; discount <= subtotal;
+/// user_id or guest_access_token_hash present; currency upper-case and 3 chars;
+/// coupon_id implies coupon_code_snapshot; idempotency_key and request_fingerprint set together.
+model Order {
+  id                   String             @id @default(cuid())
+  orderNumber          String             @unique @map("order_number")
+  userId               String?            @map("user_id")
+  guestAccessTokenHash String?            @unique @map("guest_access_token_hash")
+  status               OrderStatus        @default(PENDING_PAYMENT)
+  paymentStatus        OrderPaymentStatus @default(UNPAID) @map("payment_status")
+  paymentMethod        PaymentMethod      @map("payment_method")
+
+  currency      String @db.Char(3)
+  subtotalMinor Int    @map("subtotal_minor")
+  discountMinor Int    @default(0) @map("discount_minor")
+  shippingMinor Int    @default(0) @map("shipping_minor")
+  taxMinor      Int    @default(0) @map("tax_minor")
+  totalMinor    Int    @map("total_minor")
+
+  couponId           String? @map("coupon_id")
+  couponCodeSnapshot String? @map("coupon_code_snapshot")
+
+  contactEmail String  @map("contact_email")
+  contactPhone String? @map("contact_phone")
+
+  shipRecipientName String  @map("ship_recipient_name")
+  shipLine1         String  @map("ship_line1")
+  shipLine2         String? @map("ship_line2")
+  shipCity          String  @map("ship_city")
+  shipState         String? @map("ship_state")
+  shipPostalCode    String  @map("ship_postal_code")
+  shipCountryCode   String  @map("ship_country_code") @db.Char(2)
+  shippingMethod    String? @map("shipping_method")
+
+  idempotencyKey     String? @unique @map("idempotency_key")
+  requestFingerprint String? @map("request_fingerprint")
+
+  placedAt  DateTime @default(now()) @map("placed_at")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  user               User?                @relation(fields: [userId], references: [id], onDelete: Restrict)
+  coupon             Coupon?              @relation(fields: [couponId], references: [id], onDelete: Restrict)
+  items              OrderItem[]
+  statusHistory      OrderStatusHistory[]
+  payments           Payment[]
+  refunds            Refund[]
+  couponRedemptions  CouponRedemption[]
+  inventoryMovements InventoryMovement[]
+
+  @@index([userId, createdAt(sort: Desc)])
+  @@index([status, createdAt(sort: Desc)])
+  @@index([paymentStatus])
+  @@index([couponId])
+  @@map("orders")
+}
+
+/// Immutable purchase-time snapshot — no `updatedAt`, because nothing here may ever be
+/// rewritten (PRD §6 rule 9). The product/variant references are nullable with
+/// onDelete: SetNull so a hard delete can never cascade into order history; production
+/// policy is archive, not delete. Currency is the order's; it is not duplicated per line.
+/// CHECK: quantity > 0; money >= 0; line_total = unit_price * quantity - line_discount +
+/// line_tax; line_discount <= unit_price * quantity; snapshot name and SKU non-empty.
+model OrderItem {
+  id        String  @id @default(cuid())
+  orderId   String  @map("order_id")
+  productId String? @map("product_id")
+  variantId String? @map("variant_id")
+
+  productNameSnapshot    String @map("product_name_snapshot")
+  skuSnapshot            String @map("sku_snapshot")
+  variantOptionsSnapshot Json?  @map("variant_options_snapshot")
+  unitPriceMinor         Int    @map("unit_price_minor")
+  quantity               Int
+  lineDiscountMinor      Int    @default(0) @map("line_discount_minor")
+  lineTaxMinor           Int    @default(0) @map("line_tax_minor")
+  lineTotalMinor         Int    @map("line_total_minor")
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  order   Order           @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product Product?        @relation(fields: [productId], references: [id], onDelete: SetNull)
+  variant ProductVariant? @relation(fields: [variantId], references: [id], onDelete: SetNull)
+
+  @@index([orderId])
+  @@index([productId])
+  @@index([variantId])
+  @@map("order_items")
+}
+
+/// Every lifecycle transition, with who caused it. Append-only.
+/// CHECK: from_status <> to_status; an actor user or is_system must be present.
+model OrderStatusHistory {
+  id          String       @id @default(cuid())
+  orderId     String       @map("order_id")
+  fromStatus  OrderStatus? @map("from_status")
+  toStatus    OrderStatus  @map("to_status")
+  actorUserId String?      @map("actor_user_id")
+  isSystem    Boolean      @default(false) @map("is_system")
+  reason      String?
+  createdAt   DateTime     @default(now()) @map("created_at")
+
+  order Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  actor User? @relation(fields: [actorUserId], references: [id], onDelete: SetNull)
+
+  @@index([orderId, createdAt])
+  @@index([actorUserId])
+  @@map("order_status_history")
+}
+
+/// One redemption row per coupon use. Unique (coupon_id, order_id) stops the same order
+/// consuming a coupon twice; a per-user limit above 1 is a counted service rule, which the
+/// (coupon_id, user_id) index supports. Guest redemptions have no user to count against —
+/// that gap depends on the unresolved guest-checkout policy (PRD §9).
+/// CHECK: discount_minor > 0.
+model CouponRedemption {
+  id            String   @id @default(cuid())
+  couponId      String   @map("coupon_id")
+  orderId       String   @map("order_id")
+  userId        String?  @map("user_id")
+  discountMinor Int      @map("discount_minor")
+  createdAt     DateTime @default(now()) @map("created_at")
+
+  coupon Coupon @relation(fields: [couponId], references: [id], onDelete: Restrict)
+  order  Order  @relation(fields: [orderId], references: [id], onDelete: Restrict)
+  user   User?  @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@unique([couponId, orderId])
+  @@index([couponId, userId])
+  @@index([orderId])
+  @@map("coupon_redemptions")
+}
+
+// ---------------------------------------------------------------------------
+// Payments
+// ---------------------------------------------------------------------------
+
+enum PaymentStatus {
+  PENDING
+  PROCESSING
+  SUCCEEDED
+  FAILED
+  CANCELLED
+  PARTIALLY_REFUNDED
+  REFUNDED
+}
+
+enum RefundStatus {
+  PENDING
+  SUCCEEDED
+  FAILED
+}
+
+enum WebhookProcessingStatus {
+  RECEIVED
+  PROCESSED
+  IGNORED_DUPLICATE
+  FAILED
+}
+
+/// One payment attempt against one provider. `amountMinor`/`currency` are the EXPECTED
+/// values, persisted so a webhook can be checked against them before anything is marked
+/// paid (docs/database-design.md §7). No PAN, CVV or raw provider payload is ever stored;
+/// `safeMetadata` holds redacted fields only.
+/// CHECK: amount_minor >= 0; currency upper-case and 3 chars; provider non-empty.
+model Payment {
+  id                 String        @id @default(cuid())
+  orderId            String        @map("order_id")
+  provider           String
+  providerPaymentRef String?       @map("provider_payment_ref")
+  method             PaymentMethod
+  status             PaymentStatus @default(PENDING)
+  amountMinor        Int           @map("amount_minor")
+  currency           String        @db.Char(3)
+  idempotencyKey     String?       @map("idempotency_key")
+  failureCode        String?       @map("failure_code")
+  safeMetadata       Json?         @map("safe_metadata")
+  authorizedAt       DateTime?     @map("authorized_at")
+  capturedAt         DateTime?     @map("captured_at")
+  createdAt          DateTime      @default(now()) @map("created_at")
+  updatedAt          DateTime      @updatedAt @map("updated_at")
+
+  order   Order    @relation(fields: [orderId], references: [id], onDelete: Restrict)
+  refunds Refund[]
+
+  @@unique([provider, providerPaymentRef])
+  @@unique([provider, idempotencyKey])
+  @@index([orderId])
+  @@index([status])
+  @@map("payments")
+}
+
+/// `idempotencyKey` is required and unique: it is the only thing standing between a retried
+/// refund request and a duplicate provider refund (PRD §7).
+/// CHECK: amount_minor > 0; currency upper-case and 3 chars.
+model Refund {
+  id                String       @id @default(cuid())
+  paymentId         String       @map("payment_id")
+  orderId           String       @map("order_id")
+  amountMinor       Int          @map("amount_minor")
+  currency          String       @db.Char(3)
+  status            RefundStatus @default(PENDING)
+  providerRefundRef String?      @map("provider_refund_ref")
+  idempotencyKey    String       @unique @map("idempotency_key")
+  requestedByUserId String?      @map("requested_by_user_id")
+  reason            String?
+  createdAt         DateTime     @default(now()) @map("created_at")
+  updatedAt         DateTime     @updatedAt @map("updated_at")
+
+  payment     Payment @relation(fields: [paymentId], references: [id], onDelete: Restrict)
+  order       Order   @relation(fields: [orderId], references: [id], onDelete: Restrict)
+  requestedBy User?   @relation(fields: [requestedByUserId], references: [id], onDelete: SetNull)
+
+  @@unique([paymentId, providerRefundRef])
+  @@index([paymentId])
+  @@index([orderId])
+  @@index([status])
+  @@map("refunds")
+}
+
+/// Provider event ledger. The unique (provider, event_id) IS the deduplication mechanism
+/// (ADR 0003): insert first, and a duplicate becomes a constraint violation instead of a
+/// repeated side effect. Only a payload HASH and redacted metadata are kept.
+/// CHECK: attempt_count >= 0; status 'PROCESSED' requires processed_at.
+model WebhookEvent {
+  id           String                  @id @default(cuid())
+  provider     String
+  eventId      String                  @map("event_id")
+  eventType    String                  @map("event_type")
+  status       WebhookProcessingStatus @default(RECEIVED)
+  payloadHash  String                  @map("payload_hash")
+  safeMetadata Json?                   @map("safe_metadata")
+  attemptCount Int                     @default(0) @map("attempt_count")
+  lastError    String?                 @map("last_error")
+  receivedAt   DateTime                @default(now()) @map("received_at")
+  processedAt  DateTime?               @map("processed_at")
+
+  @@unique([provider, eventId])
+  @@index([status, receivedAt])
+  @@index([eventType])
+  @@map("webhook_events")
+}
+
+// ---------------------------------------------------------------------------
+// Inventory
+// ---------------------------------------------------------------------------
+
+enum InventoryMovementReason {
+  ORDER_PLACED
+  ORDER_CANCELLED
+  REFUND_RESTOCK
+  ADMIN_ADJUSTMENT
+  IMPORT_CORRECTION
+  DAMAGE
+  RETURN
+}
+
+/// Append-only stock ledger. `delta` is signed (negative for a sale) and `resultingQuantity`
+/// records the balance after the move, so the ledger can be reconciled against
+/// product_variants.stock_quantity without replaying from zero. Every balance change must
+/// write one of these in the SAME transaction as the update (docs/database-design.md §4) —
+/// that write path is M4.
+/// CHECK: delta <> 0; resulting_quantity >= 0; an actor user or a reason that is a system
+/// reason must be present.
+model InventoryMovement {
+  id                String                  @id @default(cuid())
+  variantId         String                  @map("variant_id")
+  delta             Int
+  resultingQuantity Int                     @map("resulting_quantity")
+  reason            InventoryMovementReason
+  actorUserId       String?                 @map("actor_user_id")
+  orderId           String?                 @map("order_id")
+  note              String?
+  createdAt         DateTime                @default(now()) @map("created_at")
+
+  variant ProductVariant @relation(fields: [variantId], references: [id], onDelete: Restrict)
+  actor   User?          @relation(fields: [actorUserId], references: [id], onDelete: SetNull)
+  order   Order?         @relation(fields: [orderId], references: [id], onDelete: SetNull)
+
+  @@index([variantId, createdAt(sort: Desc)])
+  @@index([orderId])
+  @@index([reason])
+  @@map("inventory_movements")
+}
+
+// ---------------------------------------------------------------------------
+// Operations: durable async work and audit
+// ---------------------------------------------------------------------------
+
+enum OutboxEventType {
+  ORDER_RECEIPT
+  SHIPPING_UPDATE
+  LOW_STOCK_ALERT
+  /// Better Auth hands us a verification/reset URL; delivery goes through this outbox so an
+  /// email provider outage cannot break sign-up or password reset. The sending worker is M9.
+  EMAIL_VERIFICATION
+  PASSWORD_RESET
+}
+
+enum OutboxStatus {
+  PENDING
+  PROCESSING
+  SENT
+  FAILED
+  DEAD
+}
+
+/// Durable outbox. A row is inserted inside the business transaction; a worker sends it
+/// afterwards, so an email provider outage can never invalidate a committed order
+/// (PRD §7, architecture.md §11). `dedupeKey` is the stable job identity that makes a
+/// retried send idempotent. The worker itself is M9.
+/// CHECK: attempt_count >= 0; status 'SENT' requires processed_at.
+model OutboxEvent {
+  id            String          @id @default(cuid())
+  eventType     OutboxEventType @map("event_type")
+  status        OutboxStatus    @default(PENDING)
+  dedupeKey     String          @unique @map("dedupe_key")
+  payload       Json
+  attemptCount  Int             @default(0) @map("attempt_count")
+  nextAttemptAt DateTime        @default(now()) @map("next_attempt_at")
+  lastError     String?         @map("last_error")
+  processedAt   DateTime?       @map("processed_at")
+  createdAt     DateTime        @default(now()) @map("created_at")
+  updatedAt     DateTime        @updatedAt @map("updated_at")
+
+  @@index([status, nextAttemptAt])
+  @@map("outbox_events")
+}
+
+/// Audit trail for sensitive admin actions (PRD §6 rule 8). `beforeData`/`afterData` must be
+/// redacted by the caller — no secrets, tokens or unnecessary personal data (CLAUDE.md).
+/// `action` is a free-form stable string rather than an enum so a new audited operation does
+/// not require a migration.
+/// CHECK: an actor user or is_system must be present; action and entity_type non-empty.
+model AuditLog {
+  id          String    @id @default(cuid())
+  actorUserId String?   @map("actor_user_id")
+  actorRole   UserRole? @map("actor_role")
+  isSystem    Boolean   @default(false) @map("is_system")
+  action      String
+  entityType  String    @map("entity_type")
+  entityId    String?   @map("entity_id")
+  beforeData  Json?     @map("before_data")
+  afterData   Json?     @map("after_data")
+  ipAddress   String?   @map("ip_address")
+  requestId   String?   @map("request_id")
+  createdAt   DateTime  @default(now()) @map("created_at")
+
+  actor User? @relation(fields: [actorUserId], references: [id], onDelete: SetNull)
+
+  @@index([entityType, entityId])
+  @@index([actorUserId, createdAt(sort: Desc)])
+  @@index([action, createdAt(sort: Desc)])
+  @@map("audit_logs")
+}

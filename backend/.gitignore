@@ -1,0 +1,11 @@
+node_modules/
+dist/
+coverage/
+.env
+.env.*
+!.env.example
+*.log
+src/generated/
+
+# Catalog importer cache, reports and dev media (filesystem storage driver)
+.data/

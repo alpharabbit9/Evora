@@ -1,0 +1,91 @@
+/* ============================================================================
+   CHARCOAL & IVORY — Tailwind v4 theme
+   ----------------------------------------------------------------------------
+   For a Tailwind v4 project. In your app's globals.css:
+
+       @import "tailwindcss";
+       @import "../theme/tailwind/theme.css";
+       @import "../theme/styles/components.css";   // optional component classes
+
+   `@import "tailwindcss"` MUST stay the first line of your globals.css.
+   This file registers the palette, fonts, radii and shadows as real Tailwind
+   tokens, so you get utilities like:
+       bg-background  text-foreground  bg-primary  text-muted-foreground
+       border-border  ring-ring  bg-sand-200  font-display  rounded-lg
+       shadow-md  dark:bg-card
+   ============================================================================ */
+
+/* Core tokens + @font-face + type scale */
+@import "../styles/tokens.css";
+@import "../styles/typography.css";
+
+/* Enable class-based dark mode:  <html class="dark"> (works with next-themes) */
+@custom-variant dark (&:is(.dark *));
+
+/* --- Semantic colors: reference the live CSS vars so they flip in dark ---- */
+@theme inline {
+  --color-background:             var(--background);
+  --color-foreground:             var(--foreground);
+  --color-card:                   var(--card);
+  --color-card-foreground:        var(--card-foreground);
+  --color-popover:                var(--popover);
+  --color-popover-foreground:     var(--popover-foreground);
+  --color-primary:                var(--primary);
+  --color-primary-foreground:     var(--primary-foreground);
+  --color-secondary:              var(--secondary);
+  --color-secondary-foreground:   var(--secondary-foreground);
+  --color-muted:                  var(--muted);
+  --color-muted-foreground:       var(--muted-foreground);
+  --color-accent:                 var(--accent);
+  --color-accent-foreground:      var(--accent-foreground);
+  --color-destructive:            var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success:                var(--success);
+  --color-success-foreground:     var(--success-foreground);
+  --color-border:                 var(--border);
+  --color-input:                  var(--input);
+  --color-ring:                   var(--ring);
+
+  /* Fonts — generates font-sans / font-display / font-mono */
+  --font-sans:    var(--font-body);
+  --font-display: var(--font-display);
+  --font-mono:    var(--font-mono);
+
+  /* Radius — generates rounded-sm … rounded-2xl */
+  --radius-sm:  var(--radius-sm);
+  --radius-md:  var(--radius-md);
+  --radius-lg:  var(--radius-lg);
+  --radius-xl:  var(--radius-xl);
+  --radius-2xl: var(--radius-2xl);
+
+  /* Shadows — generates shadow-xs … shadow-xl */
+  --shadow-xs: var(--shadow-xs);
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+  --shadow-xl: var(--shadow-xl);
+}
+
+/* --- Raw brand + neutral scale: static colors (same in light & dark) ------ */
+@theme {
+  --color-charcoal: #2a2529;
+  --color-ivory:    #f3f0e7;
+
+  --color-sand-50:  #faf8f3;
+  --color-sand-100: #f3f0e7;
+  --color-sand-200: #e8e3d7;
+  --color-sand-300: #dad3c4;
+  --color-sand-400: #c3baa8;
+  --color-sand-500: #9c9484;
+  --color-sand-600: #6e665a;
+  --color-sand-700: #524b42;
+  --color-sand-800: #38322c;
+  --color-sand-900: #2a2529;
+  --color-sand-950: #1a171a;
+}
+
+/* Sensible default base layer (optional — Tailwind's preflight stays on) */
+@layer base {
+  body { background-color: var(--background); color: var(--foreground); }
+  * { border-color: var(--border); }
+}

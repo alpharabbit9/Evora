@@ -1,0 +1,184 @@
+/* ============================================================================
+   CHARCOAL & IVORY — Design Tokens (framework-agnostic core)
+   ----------------------------------------------------------------------------
+   Pure CSS custom properties. No framework required.
+   Works in any project: plain CSS, React, Next.js, Vue, Svelte, etc.
+
+   Dark mode: add class="dark" to <html> or <body> (works with next-themes).
+   An optional system-preference fallback is at the bottom of this file.
+   ============================================================================ */
+
+:root {
+  /* --- Brand ------------------------------------------------------------- */
+  --brand-charcoal: #2a2529;
+  --brand-ivory:    #f3f0e7;
+
+  /* --- Warm neutral scale ------------------------------------------------ */
+  --sand-50:  #faf8f3;
+  --sand-100: #f3f0e7;
+  --sand-200: #e8e3d7;
+  --sand-300: #dad3c4;
+  --sand-400: #c3baa8;
+  --sand-500: #9c9484;
+  --sand-600: #6e665a;
+  --sand-700: #524b42;
+  --sand-800: #38322c;
+  --sand-900: #2a2529;
+  --sand-950: #1a171a;
+
+  /* --- Semantic tokens (LIGHT) ------------------------------------------- */
+  --background:            var(--sand-100);   /* #f3f0e7 page background   */
+  --foreground:            var(--sand-900);   /* #2a2529 primary text      */
+
+  --card:                  #fbfaf5;           /* surfaces that lift        */
+  --card-foreground:       var(--sand-900);
+  --popover:               #fbfaf5;
+  --popover-foreground:    var(--sand-900);
+
+  --primary:               var(--sand-900);   /* dark buttons / emphasis   */
+  --primary-foreground:    var(--sand-100);
+  --primary-hover:         #1f1b1e;
+
+  --secondary:             var(--sand-200);   /* quiet fills / taupe cards */
+  --secondary-foreground:  var(--sand-900);
+  --secondary-hover:       #ded8ca;
+
+  --muted:                 var(--sand-200);
+  --muted-foreground:      var(--sand-600);   /* AA 4.97:1 on background    */
+
+  --accent:                var(--sand-300);
+  --accent-foreground:     var(--sand-900);
+
+  --destructive:           #b24a32;
+  --destructive-foreground:var(--sand-100);
+  --destructive-hover:     #9d4029;
+
+  --success:               #4f7a52;
+  --success-foreground:    var(--sand-50);
+
+  --border:                #ded6c7;
+  --input:                 #ded6c7;           /* input border              */
+  --ring:                  var(--sand-900);   /* focus ring                */
+
+  /* On-image / overlay helpers */
+  --overlay:               rgb(26 23 26 / 0.45);
+  --on-image:              var(--sand-50);
+
+  /* --- Radius ------------------------------------------------------------ */
+  --radius-xs:   0.25rem;  /*  4px */
+  --radius-sm:   0.5rem;   /*  8px */
+  --radius-md:   0.75rem;  /* 12px  (base)              */
+  --radius-lg:   1rem;     /* 16px  cards               */
+  --radius-xl:   1.5rem;   /* 24px  large cards / modals*/
+  --radius-2xl:  2rem;     /* 32px                      */
+  --radius-full: 9999px;   /* pills, avatars, chips     */
+  --radius:      var(--radius-md);
+
+  /* --- Shadows (soft, warm-tinted charcoal) ------------------------------ */
+  --shadow-xs: 0 1px 2px 0 rgb(42 37 41 / 0.04);
+  --shadow-sm: 0 1px 3px 0 rgb(42 37 41 / 0.06), 0 1px 2px -1px rgb(42 37 41 / 0.06);
+  --shadow-md: 0 4px 12px -2px rgb(42 37 41 / 0.08), 0 2px 6px -2px rgb(42 37 41 / 0.06);
+  --shadow-lg: 0 12px 28px -6px rgb(42 37 41 / 0.12), 0 6px 12px -6px rgb(42 37 41 / 0.08);
+  --shadow-xl: 0 24px 48px -12px rgb(42 37 41 / 0.18);
+
+  /* --- Spacing (4px base — handy for the framework-agnostic components) --- */
+  --space-1: 0.25rem;  --space-2: 0.5rem;  --space-3: 0.75rem;
+  --space-4: 1rem;     --space-5: 1.25rem; --space-6: 1.5rem;
+  --space-8: 2rem;     --space-10: 2.5rem; --space-12: 3rem;
+  --space-16: 4rem;    --space-20: 5rem;   --space-24: 6rem;
+
+  /* --- Layout ------------------------------------------------------------ */
+  --container-max: 1200px;
+  --container-pad: 1.25rem;
+
+  /* --- Motion ------------------------------------------------------------ */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 120ms;
+  --duration:      200ms;
+  --duration-slow: 320ms;
+
+  /* --- Z-index ----------------------------------------------------------- */
+  --z-dropdown: 1000;
+  --z-sticky:   1100;
+  --z-overlay:  1200;
+  --z-modal:    1300;
+  --z-toast:    1400;
+
+  color-scheme: light;
+}
+
+/* ============================================================================
+   Semantic tokens (DARK) — toggled with .dark on <html>/<body>
+   ============================================================================ */
+.dark {
+  --background:            var(--sand-950);
+  --foreground:            var(--sand-100);
+
+  --card:                  var(--sand-900);
+  --card-foreground:       var(--sand-100);
+  --popover:               var(--sand-900);
+  --popover-foreground:    var(--sand-100);
+
+  --primary:               var(--sand-100);   /* light buttons on dark     */
+  --primary-foreground:    var(--sand-900);
+  --primary-hover:         #e7e2d4;
+
+  --secondary:             var(--sand-800);
+  --secondary-foreground:  var(--sand-100);
+  --secondary-hover:       #443d35;
+
+  --muted:                 var(--sand-800);
+  --muted-foreground:      var(--sand-400);
+
+  --accent:                var(--sand-700);
+  --accent-foreground:     var(--sand-100);
+
+  --destructive:           #d9664b;
+  --destructive-foreground:var(--sand-950);
+  --destructive-hover:     #e07659;
+
+  --success:               #7aa37c;
+  --success-foreground:    var(--sand-950);
+
+  --border:                var(--sand-800);
+  --input:                 var(--sand-800);
+  --ring:                  var(--sand-400);
+
+  --overlay:               rgb(0 0 0 / 0.6);
+  --on-image:              var(--sand-50);
+
+  color-scheme: dark;
+}
+
+/* Optional: follow the OS setting when no .dark class / data-theme is set.
+   Delete this block if you drive theming purely with the .dark class. */
+@media (prefers-color-scheme: dark) {
+  :root:not(.light):not([data-theme="light"]) {
+    --background: var(--sand-950);
+    --foreground: var(--sand-100);
+    --card: var(--sand-900);
+    --card-foreground: var(--sand-100);
+    --popover: var(--sand-900);
+    --popover-foreground: var(--sand-100);
+    --primary: var(--sand-100);
+    --primary-foreground: var(--sand-900);
+    --primary-hover: #e7e2d4;
+    --secondary: var(--sand-800);
+    --secondary-foreground: var(--sand-100);
+    --secondary-hover: #443d35;
+    --muted: var(--sand-800);
+    --muted-foreground: var(--sand-400);
+    --accent: var(--sand-700);
+    --accent-foreground: var(--sand-100);
+    --destructive: #d9664b;
+    --destructive-foreground: var(--sand-950);
+    --destructive-hover: #e07659;
+    --success: #7aa37c;
+    --success-foreground: var(--sand-950);
+    --border: var(--sand-800);
+    --input: var(--sand-800);
+    --ring: var(--sand-400);
+    --overlay: rgb(0 0 0 / 0.6);
+    color-scheme: dark;
+  }
+}

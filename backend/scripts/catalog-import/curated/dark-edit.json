@@ -1,0 +1,695 @@
+{
+  "$comment": "The Dark Edit — a SYNTHETIC, hand-written 40-piece front-runner collection (docs/fashion-catalog-setup.md §14). Names, descriptions, sizes and the EVORA house brand are invented for the demo store; photos are Unsplash photos under the Unsplash License, credited per item. Prices and stock are synthetic (priceSource = SYNTHETIC). `rank` is the storefront's featured order: 1 is shown first.",
+  "brand": "EVORA",
+  "sizeSets": {
+    "men": ["S", "M", "L", "XL", "XXL"],
+    "women": ["XS", "S", "M", "L", "XL"],
+    "unisex": ["XS", "S", "M", "L", "XL", "XXL"],
+    "menBoots": ["UK6", "UK7", "UK8", "UK9", "UK10", "UK11"],
+    "womenBoots": ["UK3", "UK4", "UK5", "UK6", "UK7"],
+    "unisexBoots": ["UK4", "UK5", "UK6", "UK7", "UK8", "UK9", "UK10", "UK11"],
+    "waist": ["28", "30", "32", "34", "36"]
+  },
+  "products": [
+    {
+      "id": "DE001",
+      "rank": 1,
+      "name": "Rider Leather Biker Jacket",
+      "category": "jackets",
+      "gender": "MEN",
+      "colour": "Black",
+      "sizes": "men",
+      "description": "The cornerstone of the edit. A classic biker cut in supple black leather with an asymmetric front zip, snap-down lapels, zipped cuffs and a belted hem.",
+      "photo": {
+        "id": "1551028719-00167b16eac5",
+        "page": "black-leather-zip-up-jacket-on-white-textile-nsRBbE6-YLs",
+        "photographer": "Lea Øchel",
+        "profile": "lealea_leaa",
+        "alt": "Black leather biker jacket with silver zips laid flat on white linen"
+      }
+    },
+    {
+      "id": "DE002",
+      "rank": 2,
+      "name": "Engineer Buckle Boots",
+      "category": "boots",
+      "gender": "MEN",
+      "colour": "Black",
+      "sizes": "menBoots",
+      "description": "Pull-on engineer boots in polished black leather with a strap and buckle at the shaft and instep, contrast welt stitching and a stacked heel.",
+      "photo": {
+        "id": "1725387023639-28e9a42a83b1",
+        "page": "a-pair-of-black-boots-sitting-on-top-of-a-tiled-floor-peFn0aRWqXw",
+        "photographer": "Anthony Massaro",
+        "profile": "tamassaro",
+        "alt": "Pair of black leather engineer boots with buckle straps on a stone floor"
+      }
+    },
+    {
+      "id": "DE003",
+      "rank": 3,
+      "name": "Single-Breasted Black Blazer",
+      "category": "blazers",
+      "gender": "MEN",
+      "colour": "Black",
+      "sizes": "men",
+      "description": "A two-button blazer with notch lapels, flap pockets and a clean, structured shoulder. Wear it with the matching trousers or over a black tee.",
+      "photo": {
+        "id": "1592343516109-362f7bd871aa",
+        "page": "black-suit-jacket-on-white-plastic-clothes-hanger-VsCBt8j-qg4",
+        "photographer": "Victoria Priessnitz",
+        "profile": "victoriapriessnitz",
+        "alt": "Black single-breasted blazer on a hanger against weathered wood"
+      }
+    },
+    {
+      "id": "DE004",
+      "rank": 4,
+      "name": "Studio Zip Hoodie",
+      "category": "hoodies",
+      "gender": "UNISEX",
+      "colour": "Black",
+      "sizes": "unisex",
+      "description": "A heavyweight black zip hoodie with a lined hood, kangaroo pockets and ribbed cuffs. Cut straight and slightly long for layering under outerwear.",
+      "photo": {
+        "id": "1590759483822-b2fee5aa6bd3",
+        "page": "man-in-black-zip-up-hoodie-and-black-pants-NXZFzJwE6Sg",
+        "photographer": "Minimalism",
+        "profile": "minimalism_brand",
+        "alt": "Model in a black zip hoodie and black trousers against a white studio wall"
+      }
+    },
+    {
+      "id": "DE005",
+      "rank": 5,
+      "name": "Cropped Moto Leather Jacket",
+      "category": "jackets",
+      "gender": "WOMEN",
+      "colour": "Black",
+      "sizes": "women",
+      "description": "A cropped motorcycle jacket in black leather with a diagonal zip, notched collar and zipped cuffs. Sits at the waist to pair with high-rise trousers.",
+      "photo": {
+        "id": "1594803617043-2a5a0829fcd9",
+        "page": "woman-in-black-leather-jacket-standing-beside-black-metal-fence-0XsKjui66Co",
+        "photographer": "Fabian Albert",
+        "profile": "fabiraw",
+        "alt": "Woman in a cropped black leather moto jacket beside a black metal fence"
+      }
+    },
+    {
+      "id": "DE006",
+      "rank": 6,
+      "name": "Leather Trench Coat",
+      "category": "coats",
+      "gender": "WOMEN",
+      "colour": "Black",
+      "sizes": "women",
+      "description": "A full-length trench in glossy black leather with wide lapels, a tie belt and a back vent that opens as you walk.",
+      "photo": {
+        "id": "1779153249600-bd78849b5c02",
+        "page": "stylish-woman-in-black-coat-posing-in-a-columned-corridor-4Zwp8O3Zmos",
+        "photographer": "ola szkolda",
+        "profile": "olaszkolda",
+        "alt": "Woman in a long black leather trench coat in a white columned corridor"
+      }
+    },
+    {
+      "id": "DE007",
+      "rank": 7,
+      "name": "Nylon Bomber Jacket",
+      "category": "jackets",
+      "gender": "MEN",
+      "colour": "Black",
+      "sizes": "men",
+      "description": "The flight-jacket shape in matte black nylon: ribbed collar, cuffs and hem, a centre zip and a utility pocket on the sleeve.",
+      "photo": {
+        "id": "1602525582399-7ef5f604ff7e",
+        "page": "man-in-black-leather-jacket-standing-beside-wall-with-graffiti-wEcEOMYG2O4",
+        "photographer": "Norbert Buduczki",
+        "profile": "buduczki",
+        "alt": "Man in a black bomber jacket in front of a graffiti wall"
+      }
+    },
+    {
+      "id": "DE008",
+      "rank": 8,
+      "name": "Side-Zip Leather Ankle Boots",
+      "category": "boots",
+      "gender": "UNISEX",
+      "colour": "Black",
+      "sizes": "unisexBoots",
+      "description": "Sleek ankle boots in black leather with twin side zips, a rounded toe and a low block heel.",
+      "photo": {
+        "id": "1605732440685-d0654d81aa30",
+        "page": "black-leather-boot-on-white-table-KKsB-eOAjVo",
+        "photographer": "mostafa mahmoudi",
+        "profile": "mostafa_mahmoudi24",
+        "alt": "Single black leather ankle boot with side zips on a white surface"
+      }
+    },
+    {
+      "id": "DE009",
+      "rank": 9,
+      "name": "Oversized Tailored Blazer",
+      "category": "blazers",
+      "gender": "WOMEN",
+      "colour": "Black",
+      "sizes": "women",
+      "description": "A long, relaxed blazer with strong shoulders and a single button. Belt it over a dress or wear it open over denim.",
+      "photo": {
+        "id": "1779400202227-140d6b48a473",
+        "page": "young-woman-in-black-blazer-leaning-against-a-white-wall-R66eqTPfwVY",
+        "photographer": "ola szkolda",
+        "profile": "olaszkolda",
+        "alt": "Woman in an oversized black blazer leaning against a white wall"
+      }
+    },
+    {
+      "id": "DE010",
+      "rank": 10,
+      "name": "Double-Breasted Overcoat",
+      "category": "coats",
+      "gender": "MEN",
+      "colour": "Black",
+      "sizes": "men",
+      "description": "A double-breasted overcoat with peak lapels and a knee-skimming length. Built to go over a blazer without pulling at the shoulders.",
+      "photo": {
+        "id": "1610903262047-a1da9ea98efa",
+        "page": "man-in-black-coat-standing-near-green-plant-H3Ubbh2ydeQ",
+        "photographer": "David Suarez",
+        "profile": "davidprspctive",
+        "alt": "Man in a black double-breasted overcoat in front of a green hedge"
+      }
+    },
+    {
+      "id": "DE011",
+      "rank": 11,
+      "name": "Shadow Pullover Hoodie",
+      "category": "hoodies",
+      "gender": "UNISEX",
+      "colour": "Black",
+      "sizes": "unisex",
+      "description": "An oversized pullover hoodie with a deep, structured hood and dropped shoulders. Brushed inside for warmth.",
+      "photo": {
+        "id": "1513789181297-6f2ec112c0bc",
+        "page": "person-in-black-hoodie-covering-face-E3NUmCScugo",
+        "photographer": "JC Gellidon",
+        "profile": "jcgellidon",
+        "alt": "Person in a black hoodie with the hood up against white blinds"
+      }
+    },
+    {
+      "id": "DE012",
+      "rank": 12,
+      "name": "Lace-Up Combat Boots",
+      "category": "boots",
+      "gender": "UNISEX",
+      "colour": "Black",
+      "sizes": "unisexBoots",
+      "description": "Eight-eyelet combat boots in black leather with a padded collar, speed hooks and a deep-lug rubber sole.",
+      "photo": {
+        "id": "1613673720017-56e42d90fee4",
+        "page": "black-leather-lace-up-boots-9WIgbViemds",
+        "photographer": "Rico Van de Voorde",
+        "profile": "ricovandevoorde",
+        "alt": "Pair of black lace-up combat boots on a stone step against a white wall"
+      }
+    },
+    {
+      "id": "DE013",
+      "rank": 13,
+      "name": "Asymmetric Zip Leather Jacket",
+      "category": "jackets",
+      "gender": "MEN",
+      "colour": "Black",
+      "sizes": "men",
+      "description": "A sharper take on the biker: black leather, an off-centre zip, wide notched lapels and zipped chest pockets.",
+      "photo": {
+        "id": "1521223890158-f9f7c3d5d504",
+        "page": "man-holding-his-leather-jacket-P0W27GRvyww",
+        "photographer": "Adrian Ordonez",
+        "profile": "adrianordonez",
+        "alt": "Close view of a man holding the lapels of a black leather jacket"
+      }
+    },
+    {
+      "id": "DE014",
+      "rank": 14,
+      "name": "Satin Bomber Jacket",
+      "category": "jackets",
+      "gender": "MEN",
+      "colour": "Black",
+      "sizes": "men",
+      "description": "A lightweight bomber in black satin with a soft sheen, ribbed trims and slanted side pockets.",
+      "photo": {
+        "id": "1590789188781-4c90c12f0f0b",
+        "page": "man-in-black-jacket-and-black-pants-sitting-on-sidewalk-during-daytime-uSeDC-59j5w",
+        "photographer": "Felea Emanuel",
+        "profile": "felea",
+        "alt": "Man in a black satin bomber jacket posing on a city street"
+      }
+    },
+    {
+      "id": "DE015",
+      "rank": 15,
+      "name": "Longline Belted Blazer",
+      "category": "blazers",
+      "gender": "WOMEN",
+      "colour": "Black",
+      "sizes": "women",
+      "description": "A double-breasted longline blazer cinched with a self belt. Long enough to wear on its own as a blazer dress.",
+      "photo": {
+        "id": "1784549759161-c400c85c7845",
+        "page": "a-woman-in-a-black-blazer-and-sunglasses-poses-G8-CviDl3no",
+        "photographer": "Reza Roshan",
+        "profile": "rezamr2",
+        "alt": "Woman in a belted black longline blazer, sunglasses and black boots"
+      }
+    },
+    {
+      "id": "DE016",
+      "rank": 16,
+      "name": "Leather Chelsea Boots",
+      "category": "boots",
+      "gender": "MEN",
+      "colour": "Black",
+      "sizes": "menBoots",
+      "description": "Black leather Chelsea boots with elastic side gussets, a pull tab and a slim almond toe.",
+      "photo": {
+        "id": "1788478963160-1c38139e2932",
+        "page": "black-leather-boots-on-wooden-floor-abv1EdKdRnU",
+        "photographer": "Lachlan Rennie",
+        "profile": "rennielachlan",
+        "alt": "Pair of black leather Chelsea boots on a dark wooden floor"
+      }
+    },
+    {
+      "id": "DE017",
+      "rank": 17,
+      "name": "Oversized Pullover Hoodie",
+      "category": "hoodies",
+      "gender": "WOMEN",
+      "colour": "Black",
+      "sizes": "women",
+      "description": "A roomy black hoodie with a front pouch pocket and long sleeves that bunch at the wrist.",
+      "photo": {
+        "id": "1552663698-6233bc6ed58b",
+        "page": "shallow-focus-photo-of-black-pullover-hoodie-xjlOifZzxcY",
+        "photographer": "Pablo Soriano",
+        "profile": "el_sorian",
+        "alt": "Woman in an oversized black pullover hoodie by a window"
+      }
+    },
+    {
+      "id": "DE018",
+      "rank": 18,
+      "name": "Belted Trench Coat",
+      "category": "coats",
+      "gender": "WOMEN",
+      "colour": "Black",
+      "sizes": "women",
+      "description": "A black trench with a storm flap, buttoned cuffs and a tie belt. Falls just below the knee.",
+      "photo": {
+        "id": "1683642765591-2370edc15193",
+        "page": "a-woman-standing-in-front-of-a-black-wall-r0_ziVQJm4Y",
+        "photographer": "Mohammad Hossein Mirzagol",
+        "profile": "mirza_graphy",
+        "alt": "Woman in a black belted trench coat walking past a dark stone wall"
+      }
+    },
+    {
+      "id": "DE019",
+      "rank": 19,
+      "name": "Quilted Shoulder Leather Jacket",
+      "category": "jackets",
+      "gender": "MEN",
+      "colour": "Black",
+      "sizes": "men",
+      "description": "A racer-collar leather jacket with quilted shoulder panels and a straight zip front.",
+      "photo": {
+        "id": "1553591589-2e96ef7eca65",
+        "page": "man-wearing-black-full-zip-leather-jacket-photo-ZgOwzl9YQJU",
+        "photographer": "sobhan joodi",
+        "profile": "sbhnleo",
+        "alt": "Man in a black leather jacket with quilted shoulders outdoors in autumn"
+      }
+    },
+    {
+      "id": "DE020",
+      "rank": 20,
+      "name": "Shawl-Lapel Dinner Blazer",
+      "category": "blazers",
+      "gender": "MEN",
+      "colour": "Black",
+      "sizes": "men",
+      "description": "An evening blazer with a satin shawl lapel and a single-button front. Wear it with a black shirt, no tie.",
+      "photo": {
+        "id": "1617127365659-c47fa864d8bc",
+        "page": "man-in-black-suit-jacket-and-black-sunglasses-Uw3OfKz2J-0",
+        "photographer": "Mohamad Khosravi",
+        "profile": "mohamadkhosravi",
+        "alt": "Man in a black dinner blazer, black shirt and sunglasses"
+      }
+    },
+    {
+      "id": "DE021",
+      "rank": 21,
+      "name": "Sherpa-Collar Denim Jacket",
+      "category": "jackets",
+      "gender": "MEN",
+      "colour": "Black",
+      "sizes": "men",
+      "description": "A washed-black denim trucker jacket with a fleece collar, chest flap pockets and button cuffs.",
+      "photo": {
+        "id": "1549237511-bbe6a0979d6a",
+        "page": "man-wearing-black-denim-jacket-chn-__w4I3M",
+        "photographer": "Toa Heftiba",
+        "profile": "heftiba",
+        "alt": "Man in a black denim jacket with a fleece collar against a shutter"
+      }
+    },
+    {
+      "id": "DE022",
+      "rank": 22,
+      "name": "Slouch Knee Boots",
+      "category": "boots",
+      "gender": "WOMEN",
+      "colour": "Black",
+      "sizes": "womenBoots",
+      "description": "Knee-high black leather boots with a soft slouched shaft, pointed toe and a mid block heel.",
+      "photo": {
+        "id": "1763661300203-aa3e2702f510",
+        "page": "a-pair-of-black-leather-slouch-boots-tDHBHyAO-Hw",
+        "photographer": "Christine Zhang",
+        "profile": "christineezhaang",
+        "alt": "Pair of black leather slouch knee boots on a white background"
+      }
+    },
+    {
+      "id": "DE023",
+      "rank": 23,
+      "name": "Full-Zip Hoodie",
+      "category": "hoodies",
+      "gender": "MEN",
+      "colour": "Black",
+      "sizes": "men",
+      "description": "An everyday black zip hoodie in midweight loopback cotton, with a drawcord hood and side pockets.",
+      "photo": {
+        "id": "1787578994977-44deaae29ce2",
+        "page": "young-man-in-black-hoodie-hCvozWc2O-Q",
+        "photographer": "Daniel Cosmo",
+        "profile": "kuzminklk",
+        "alt": "Young man in a black full-zip hoodie with the hood up outdoors"
+      }
+    },
+    {
+      "id": "DE024",
+      "rank": 24,
+      "name": "Shearling-Collar Bomber",
+      "category": "jackets",
+      "gender": "MEN",
+      "colour": "Navy Blue",
+      "sizes": "men",
+      "description": "A padded bomber in deep navy with a fleece-lined collar, ribbed cuffs and hem, and zipped hand pockets.",
+      "photo": {
+        "id": "1624548140129-74786c5f1279",
+        "page": "blue-zip-up-hoodie-jacket-TcRaVI3LXds",
+        "photographer": "Bulbul Ahmed",
+        "profile": "bulbul252",
+        "alt": "Navy padded bomber jacket with a cream fleece collar on a grey background"
+      }
+    },
+    {
+      "id": "DE025",
+      "rank": 25,
+      "name": "Wool-Blend Car Coat",
+      "category": "coats",
+      "gender": "MEN",
+      "colour": "Black",
+      "sizes": "men",
+      "description": "A hip-length car coat with a stand collar and concealed placket. Short enough for the commute, warm enough for winter.",
+      "photo": {
+        "id": "1603994421711-6d1135bd62fe",
+        "page": "man-in-black-coat-standing-on-sidewalk-during-daytime-og5eHNNyy7k",
+        "photographer": "LittPro Inc",
+        "profile": "littpro",
+        "alt": "Man in a black wool car coat crossing a city street"
+      }
+    },
+    {
+      "id": "DE026",
+      "rank": 26,
+      "name": "Fitted Leather Racer Jacket",
+      "category": "jackets",
+      "gender": "WOMEN",
+      "colour": "Coffee Brown",
+      "sizes": "women",
+      "description": "A close-fitting racer jacket in dark brown leather with a snap stand collar, quilted shoulders and a straight zip.",
+      "photo": {
+        "id": "1602370463198-086436840055",
+        "page": "woman-in-black-leather-jacket-wearing-black-sunglasses-zzKT12IXGfA",
+        "photographer": "Ali Karimiboroujeni",
+        "profile": "alikarimibn",
+        "alt": "Woman in a fitted dark brown leather racer jacket and sunglasses"
+      }
+    },
+    {
+      "id": "DE027",
+      "rank": 27,
+      "name": "Heeled Leather Ankle Boots",
+      "category": "boots",
+      "gender": "WOMEN",
+      "colour": "Black",
+      "sizes": "womenBoots",
+      "description": "Polished black leather ankle boots on a slim stiletto heel, with an inside zip.",
+      "photo": {
+        "id": "1764590544650-ca51cd3eb207",
+        "page": "black-leather-boots-on-a-wooden-floor-pGpsf26GvXQ",
+        "photographer": "Raymond Petrik",
+        "profile": "raymondpetrik",
+        "alt": "Pair of black heeled leather ankle boots on a wooden floor"
+      }
+    },
+    {
+      "id": "DE028",
+      "rank": 28,
+      "name": "Charcoal Fleece Hoodie",
+      "category": "hoodies",
+      "gender": "MEN",
+      "colour": "Charcoal",
+      "sizes": "men",
+      "description": "A brushed-fleece pullover hoodie in charcoal with a kangaroo pocket. Pairs with the matching joggers.",
+      "photo": {
+        "id": "1677538537484-324385aff147",
+        "page": "a-man-in-a-black-hoodie-standing-in-a-parking-garage-KMwpYURfx6E",
+        "photographer": "Mohamed youssry",
+        "profile": "youssry99",
+        "alt": "Man in a charcoal fleece hoodie with the hood up in a parking garage"
+      }
+    },
+    {
+      "id": "DE029",
+      "rank": 29,
+      "name": "Fine-Knit Turtleneck",
+      "category": "knitwear",
+      "gender": "MEN",
+      "colour": "Black",
+      "sizes": "men",
+      "description": "A slim black turtleneck in fine-gauge knit. The layer that goes under every blazer and coat in the edit.",
+      "photo": {
+        "id": "1688685567139-70841b903f18",
+        "page": "a-man-in-a-black-sweater-and-plaid-pants-fuVUcX6tnag",
+        "photographer": "Luis Olmos",
+        "profile": "lolmos_01",
+        "alt": "Man in a black fine-knit turtleneck and checked trousers"
+      }
+    },
+    {
+      "id": "DE030",
+      "rank": 30,
+      "name": "Peak-Lapel Suit Blazer",
+      "category": "blazers",
+      "gender": "MEN",
+      "colour": "Black",
+      "sizes": "men",
+      "description": "A slim suit blazer with a pocket square slot and a nipped waist, cut to match a slim black trouser.",
+      "photo": {
+        "id": "1618886614638-80e3c103d31a",
+        "page": "man-in-black-suit-jacket-and-black-pants-standing-on-gray-concrete-floor-during-daytime-vS0Kya7E5V4",
+        "photographer": "Mohamad Khosravi",
+        "profile": "mohamadkhosravi",
+        "alt": "Man in a black suit blazer and trousers walking on a stone plaza"
+      }
+    },
+    {
+      "id": "DE031",
+      "rank": 31,
+      "name": "Zip-Pocket Bomber Jacket",
+      "category": "jackets",
+      "gender": "MEN",
+      "colour": "Black",
+      "sizes": "men",
+      "description": "A black bomber with a soft quilted lining, ribbed trims and zipped side pockets.",
+      "photo": {
+        "id": "1617064515669-db2063120a94",
+        "page": "man-in-black-zip-up-jacket-standing-near-brown-metal-railings-during-daytime-AOw3QoGfLow",
+        "photographer": "Nice M Nshuti",
+        "profile": "nietzsche99",
+        "alt": "Man in a black bomber jacket by a riverside railing"
+      }
+    },
+    {
+      "id": "DE032",
+      "rank": 32,
+      "name": "Longline Overcoat",
+      "category": "coats",
+      "gender": "MEN",
+      "colour": "Black",
+      "sizes": "men",
+      "description": "A long single-breasted overcoat that falls below the knee. Wear it over a turtleneck for an all-black look.",
+      "photo": {
+        "id": "1744812103771-711dcb74ea3f",
+        "page": "stylish-man-in-all-black-outfit-walks-down-the-street-R4pfg6YfPTM",
+        "photographer": "Vladimir Pankovec",
+        "profile": "aristarh",
+        "alt": "Man in a long black overcoat walking past a brick building"
+      }
+    },
+    {
+      "id": "DE033",
+      "rank": 33,
+      "name": "Lug-Sole Derby Boots",
+      "category": "boots",
+      "gender": "UNISEX",
+      "colour": "Black",
+      "sizes": "unisexBoots",
+      "description": "Lace-up derby boots in smooth black leather on a chunky lug sole.",
+      "photo": {
+        "id": "1762339107598-c3bf3036559f",
+        "page": "black-leather-boots-on-green-grass-mlDC6dmZ2M4",
+        "photographer": "T",
+        "profile": "tanyabarrow",
+        "alt": "Black leather lace-up boots with chunky soles on grass"
+      }
+    },
+    {
+      "id": "DE034",
+      "rank": 34,
+      "name": "Hooded Zip Jacket",
+      "category": "hoodies",
+      "gender": "MEN",
+      "colour": "Black",
+      "sizes": "men",
+      "description": "A technical zip hoodie in black with a scuba-style hood, chest pocket and thumbhole cuffs.",
+      "photo": {
+        "id": "1607807722648-2b1ecf58a104",
+        "page": "man-in-black-hoodie-wearing-black-knit-cap-DHGK0As0tcM",
+        "photographer": "Amirr Zolfaghari",
+        "profile": "amirrzolfaqari",
+        "alt": "Man in a black hooded zip jacket and cap on forest steps"
+      }
+    },
+    {
+      "id": "DE035",
+      "rank": 35,
+      "name": "Washed Leather Rider Jacket",
+      "category": "jackets",
+      "gender": "UNISEX",
+      "colour": "Black",
+      "sizes": "unisex",
+      "description": "A broken-in biker in washed black leather with a diagonal zip, snap lapels and snap-tab cuffs. Looks like you have owned it for years.",
+      "photo": {
+        "id": "1727515546577-f7d82a47b51d",
+        "page": "a-black-leather-jacket-laying-on-top-of-a-bed-YehJ089r0uY",
+        "photographer": "Anna Evans",
+        "profile": "anevans",
+        "alt": "Washed black leather biker jacket on a hanger laid over black fabric"
+      }
+    },
+    {
+      "id": "DE036",
+      "rank": 36,
+      "name": "Gloss Puffer Jacket",
+      "category": "jackets",
+      "gender": "MEN",
+      "colour": "Black",
+      "sizes": "men",
+      "description": "A high-shine black puffer with a stand collar, baffled panels and an elasticated hem.",
+      "photo": {
+        "id": "1769689387719-f11faac08cbe",
+        "page": "man-wearing-a-shiny-black-puffer-jacket-and-baseball-cap-ahej-5EjHgw",
+        "photographer": "Temuujin Purevjav",
+        "profile": "metujiiiiiiin",
+        "alt": "Man in a glossy black puffer jacket and cap against a white wall"
+      }
+    },
+    {
+      "id": "DE037",
+      "rank": 37,
+      "name": "Chunky Roll-Neck Sweater",
+      "category": "knitwear",
+      "gender": "WOMEN",
+      "colour": "Black",
+      "sizes": "women",
+      "description": "A heavy rib-knit roll-neck in black with long sleeves you can pull over your hands.",
+      "photo": {
+        "id": "1774897796159-b295bc2a587c",
+        "page": "woman-wearing-a-black-turtleneck-sweater-2a4NiXPIG9I",
+        "photographer": "Alex Larrondo",
+        "profile": "alexlarrondo",
+        "alt": "Woman in a chunky black roll-neck sweater holding the collar to her face"
+      }
+    },
+    {
+      "id": "DE038",
+      "rank": 38,
+      "name": "Tonal Hooded Sweatshirt",
+      "category": "hoodies",
+      "gender": "WOMEN",
+      "colour": "Black",
+      "sizes": "women",
+      "description": "A relaxed black hoodie with tonal stitching and a generous hood.",
+      "photo": {
+        "id": "1582221012985-e5d3bcfb5699",
+        "page": "woman-in-black-hoodie-standing-near-trees-during-daytime-dIecm-d-d-w",
+        "photographer": "Den Trushtin",
+        "profile": "dentrushtin",
+        "alt": "Woman in a black hoodie with the hood up among pine trees"
+      }
+    },
+    {
+      "id": "DE039",
+      "rank": 39,
+      "name": "Utility Cargo Trousers",
+      "category": "trousers",
+      "gender": "MEN",
+      "colour": "Black",
+      "sizes": "waist",
+      "description": "Tapered black cargo trousers with bellowed thigh pockets and a garment-washed finish.",
+      "photo": {
+        "id": "1548883354-7622d03aca27",
+        "page": "person-wearing-pants-d5GlpSOAzzg",
+        "photographer": "Kyle Loftus",
+        "profile": "kyleloftusstudios",
+        "alt": "Close view of black cargo trousers with thigh pockets"
+      }
+    },
+    {
+      "id": "DE040",
+      "rank": 40,
+      "name": "Evening Blazer",
+      "category": "blazers",
+      "gender": "MEN",
+      "colour": "Black",
+      "sizes": "men",
+      "description": "A soft-shouldered black blazer to wear over a turtleneck for evenings out.",
+      "photo": {
+        "id": "1620122830785-a18b43585b44",
+        "page": "man-in-black-suit-jacket-P43ZFLGgH38",
+        "photographer": "Yash mevawala",
+        "profile": "yash_mevawala",
+        "alt": "Man in a black blazer over a black turtleneck in low light"
+      }
+    }
+  ]
+}

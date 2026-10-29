@@ -1,0 +1,24 @@
+/* ============================================================================
+   CHARCOAL & IVORY — Theme entry (NON-Tailwind projects)
+   ----------------------------------------------------------------------------
+   Import this one file to get the whole theme in any project that does NOT
+   use Tailwind:
+
+       import "../theme/styles/index.css";     // JS/React
+       @import "../theme/styles/index.css";     // plain CSS
+
+   For a Tailwind v4 project, import  ../tailwind/theme.css  instead
+   (it pulls in tokens + typography and wires everything to utilities).
+   ============================================================================ */
+
+@import "./tokens.css";
+@import "./typography.css";
+@import "./components.css";
+
+/* Minimal, optional reset so the theme looks right out of the box.
+   Delete if your project already ships a reset / normalize. */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+html { -webkit-text-size-adjust: 100%; }
+img, picture, svg, video { display: block; max-width: 100%; }
+button, input, textarea, select { font: inherit; color: inherit; }
