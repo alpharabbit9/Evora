@@ -27,6 +27,9 @@ API refuses to start in production otherwise. Choose one:
    `NEXT_PUBLIC_API_URL` to the same value. `deploy/staging/Caddyfile` is the reference routing.
 2. **Sibling subdomains:** `https://shop.example.com` and `https://api.example.com`, with
    `AUTH_COOKIE_DOMAIN=example.com`.
+3. **Vercel, two `*.vercel.app` projects (ADR 0028):** a variant of (1) where the storefront itself
+   forwards `/api/*` to the API deployment (`API_PROXY_TARGET`). Step by step in
+   [vercel.md](vercel.md).
 
 Either way: TLS at the edge, HSTS set there, and the edge must pass `X-Forwarded-For` (the API trusts
 exactly one proxy hop, `trust proxy 1`; with more hops, rate limits see the proxy's address).

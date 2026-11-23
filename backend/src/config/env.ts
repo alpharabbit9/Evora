@@ -11,6 +11,31 @@ function optionalString() {
   );
 }
 
+/** Text a copied `.env.example` value still contains; a secret like that is publicly known. */
+const PLACEHOLDER = /replace|placeholder|changeme|example|your-secret/i;
+
+/** An optional shared secret: unset when empty, otherwise long and not a placeholder. */
+function optionalSecret(name: string, minLength: number) {
+  return z.preprocess(
+    (value) => (typeof value === 'string' && value.trim() === '' ? undefined : value),
+    z
+      .string()
+      .trim()
+      .min(minLength, `${name} must be at least ${minLength} characters`)
+      .refine(
+        (value) => !PLACEHOLDER.test(value),
+        `${name} is still a placeholder. Generate one with: openssl rand -base64 32`,
+      )
+      .optional(),
+  );
+}
+
+/**
+ * Vercel sets `VERCEL=1` in every build and function it runs (its system environment).
+ * `vercel dev` on a laptop sets it too, with `VERCEL_ENV=development`; that is not a deployment.
+ */
+const onVercel = process.env.VERCEL === '1' && process.env.VERCEL_ENV !== 'development';
+
 /**
  * Fail fast on boot rather than discovering a missing secret mid-request.
  * Secrets are read from the environment only; nothing here is logged.
@@ -30,7 +55,7 @@ const envSchema = z
       .string()
       .min(32, 'BETTER_AUTH_SECRET must be at least 32 characters')
       .refine(
-        (value) => !/replace|placeholder|changeme|example|your-secret/i.test(value),
+        (value) => !PLACEHOLDER.test(value),
         'BETTER_AUTH_SECRET is still a placeholder. Generate one with: openssl rand -base64 32',
       ),
     BETTER_AUTH_URL: z.url(),
@@ -178,8 +203,57 @@ const envSchema = z
       .min(60_000)
       .max(24 * 60 * 60 * 1000)
       .default(15 * 60 * 1000),
+
+    /**
+     * Serverless hosting (ADR 0028). A function cannot run the long-lived worker, so on Vercel the
+     * outbox is drained by a schedule, `GET /api/v1/internal/outbox/drain` with
+     * `Authorization: Bearer <CRON_SECRET>` (Vercel Cron sends exactly that), and by the API itself
+     * right after each successful write. Unset, the drain endpoint does not exist.
+     */
+    CRON_SECRET: optionalSecret('CRON_SECRET', 16),
+    /**
+     * Drain the outbox after each successful write, inside the same function invocation. On by
+     * default on Vercel, where nothing else would send a password-reset email within minutes; off
+     * elsewhere, where the worker process does it.
+     */
+    OUTBOX_DRAIN_AFTER_WRITES: z
+      .preprocess(
+        (value) =>
+          typeof value === 'string' && value.trim() !== ''
+            ? value.trim()
+            : onVercel
+              ? 'true'
+              : 'false',
+        z.enum(['true', 'false']),
+      )
+      .transform((value) => value === 'true'),
+    /**
+     * Shared with the storefront when it forwards `/api/*` here (ADR 0028). With it, the API
+     * believes the visitor address the storefront passes along, so rate limits and the
+     * assistant's guest allowance count each visitor, not the storefront's own address.
+     * Unset, that header is ignored.
+     */
+    API_PROXY_SECRET: optionalSecret('API_PROXY_SECRET', 32),
   })
   .superRefine((value, ctx) => {
+    if (onVercel && value.NODE_ENV !== 'production') {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['NODE_ENV'],
+        message: 'Set NODE_ENV=production in the Vercel project: development mode is never right there',
+      });
+    }
+
+    if (onVercel && !value.CRON_SECRET) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['CRON_SECRET'],
+        message:
+          'CRON_SECRET is required on Vercel: the scheduled outbox drain authenticates with it ' +
+          '(generate one with: openssl rand -base64 32)',
+      });
+    }
+
     if (value.GROQ_API_KEY && !value.GROQ_CHAT_MODEL) {
       ctx.addIssue({
         code: 'custom',

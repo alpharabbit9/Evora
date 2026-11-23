@@ -38,7 +38,9 @@
     "**/*.mts",
     ".next-e2e/dev/types/**/*.ts",
     ".next-verify/types/**/*.ts",
-    ".next-verify/dev/types/**/*.ts"
+    ".next-verify/dev/types/**/*.ts",
+    ".next-rehearsal/types/**/*.ts",
+    ".next-rehearsal/dev/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"

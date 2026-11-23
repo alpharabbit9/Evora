@@ -1,8 +1,8 @@
 import { env } from './config/env.js';
 import { logger } from './lib/logger.js';
 import { prisma } from './lib/prisma.js';
-import { ensureRecurringJobs } from './modules/jobs/outbox.store.js';
-import { runDueJobs, startWorker } from './modules/jobs/worker.js';
+import { drainDueJobs } from './modules/jobs/drain.js';
+import { startWorker } from './modules/jobs/worker.js';
 import { emailTransport } from './modules/notifications/transport.js';
 
 /**
@@ -17,16 +17,11 @@ import { emailTransport } from './modules/notifications/transport.js';
 const MAX_ONCE_BATCHES = 50;
 
 async function drainOnce(): Promise<void> {
-  const deps = { transport: emailTransport() };
-  await ensureRecurringJobs();
-
-  for (let batch = 0; batch < MAX_ONCE_BATCHES; batch += 1) {
-    const summary = await runDueJobs(deps);
-    logger.info(summary, 'Outbox batch finished');
-    if (summary.claimed < env.WORKER_BATCH_SIZE) return;
+  const summary = await drainDueJobs({ maxBatches: MAX_ONCE_BATCHES });
+  logger.info(summary, 'Outbox drain finished');
+  if (!summary.drained) {
+    logger.warn({ batches: MAX_ONCE_BATCHES }, 'Stopped draining with jobs still due; run again');
   }
-
-  logger.warn({ batches: MAX_ONCE_BATCHES }, 'Stopped draining with jobs still due; run again');
 }
 
 if (process.argv.includes('--once')) {

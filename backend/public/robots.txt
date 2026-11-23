@@ -1,0 +1,3 @@
+# The CommerceCore API. Nothing here is meant for search engines; the storefront is.
+User-agent: *
+Disallow: /

@@ -46,6 +46,14 @@ export function cookieTopologyProblem(topology: CookieTopology): string | null {
   const domain = topology.cookieDomain?.trim().replace(/^\./, '').toLowerCase();
 
   if (domain) {
+    // A public suffix: browsers refuse a cookie scoped to it, so sign-in would silently fail.
+    if (domain === 'vercel.app') {
+      return (
+        'AUTH_COOKIE_DOMAIN cannot be vercel.app: browsers refuse cookies for a public suffix. ' +
+        'Use a custom domain, or have the storefront forward /api (docs/runbooks/vercel.md)'
+      );
+    }
+
     if (!within(frontend.hostname, domain) || !within(api.hostname, domain)) {
       return (
         `AUTH_COOKIE_DOMAIN "${domain}" must contain both the storefront host ` +
@@ -56,10 +64,17 @@ export function cookieTopologyProblem(topology: CookieTopology): string | null {
   }
 
   if (frontend.hostname !== api.hostname) {
+    // Two `*.vercel.app` hosts can never share a cookie: vercel.app is a public suffix, so
+    // AUTH_COOKIE_DOMAIN cannot help there. The storefront forwards /api instead (ADR 0028).
+    const vercelHint = api.hostname.endsWith('.vercel.app')
+      ? '. On Vercel, set BETTER_AUTH_URL to the storefront URL and API_PROXY_TARGET on the ' +
+        'storefront to this API (docs/runbooks/vercel.md)'
+      : '';
     return (
       `The storefront (${frontend.hostname}) and the API (${api.hostname}) are on different ` +
       'hosts, so the storefront would never see the session cookie. Serve the API under the ' +
-      "storefront's host (path /api), or set AUTH_COOKIE_DOMAIN to their shared parent domain"
+      "storefront's host (path /api), or set AUTH_COOKIE_DOMAIN to their shared parent domain" +
+      vercelHint
     );
   }
 

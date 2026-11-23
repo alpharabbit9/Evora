@@ -1,0 +1,12 @@
+# Never upload local secrets, local data or build output with `vercel deploy` (ADR 0028).
+# Vercel builds dist/ itself and takes configuration only from the project's environment.
+.env
+.env.*
+!.env.example
+.data/
+dist/
+coverage/
+node_modules/
+evals/
+tests/
+*.log

@@ -42,6 +42,26 @@
       "port": 3000
     },
     {
+      "name": "backend-vercel-rehearsal",
+      "runtimeExecutable": "cmd",
+      "runtimeArgs": [
+        "/c",
+        "set PORT=4040&& set FRONTEND_ORIGIN=http://localhost:3040&& set BETTER_AUTH_URL=http://localhost:3040&& set MEDIA_PUBLIC_URL=http://localhost:4040/media&& set API_PROXY_SECRET=local-rehearsal-proxy-secret-0123456789abcdef&& set CRON_SECRET=local-rehearsal-cron-secret&& set OUTBOX_DRAIN_AFTER_WRITES=true&& npm --prefix backend run dev"
+      ],
+      "port": 4040,
+      "autoPort": false
+    },
+    {
+      "name": "frontend-vercel-rehearsal",
+      "runtimeExecutable": "cmd",
+      "runtimeArgs": [
+        "/c",
+        "set NEXT_DIST_DIR=.next-rehearsal&& set NEXT_PUBLIC_API_URL=http://localhost:3040&& set NEXT_PUBLIC_SITE_URL=http://localhost:3040&& set NEXT_PUBLIC_MEDIA_URL=http://localhost:4040/media&& set API_PROXY_TARGET=http://localhost:4040&& set API_PROXY_SECRET=local-rehearsal-proxy-secret-0123456789abcdef&& set VERCEL=1&& npm --prefix frontend run dev -- -p 3040"
+      ],
+      "port": 3040,
+      "autoPort": false
+    },
+    {
       "name": "fake-gateway",
       "runtimeExecutable": "npm",
       "runtimeArgs": [

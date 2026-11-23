@@ -4,10 +4,12 @@ import cors from 'cors';
 import express, { type Express } from 'express';
 import helmet from 'helmet';
 import { toNodeHandler } from 'better-auth/node';
+import { waitUntil } from '@vercel/functions';
 
 import { env } from './config/env.js';
 import { auth } from './lib/auth.js';
 import { filesystemMediaHandler } from './lib/media.js';
+import { forwardedClientIp } from './http/client-ip.js';
 import { errorHandler, notFoundHandler } from './http/error-handler.js';
 import { requireTrustedOrigin } from './http/origin.js';
 import {
@@ -19,7 +21,20 @@ import {
 import { REQUEST_ID_HEADER, requestContext } from './http/request-context.js';
 import { apiRouter } from './http/routes/index.js';
 import { healthRouter } from './http/routes/health.js';
+import { createOutboxCronRouter, drainAfterWrites } from './modules/jobs/cron.routes.js';
+import {
+  createDrainCoalescer,
+  drainDueJobs,
+  ensureRecurringJobsOnce,
+} from './modules/jobs/drain.js';
 import { paymentReturnRouter, paymentWebhookRouter } from './modules/payments/payments.routes.js';
+
+/**
+ * Time budgets for the serverless drains (ADR 0028), well inside Vercel's 300 s function limit:
+ * a job already started still gets its own handler timeout after the budget runs out.
+ */
+const SCHEDULED_DRAIN_BUDGET_MS = 60_000;
+const AFTER_WRITE_DRAIN_BUDGET_MS = 20_000;
 
 export const API_PREFIX = '/api/v1';
 
@@ -42,7 +57,23 @@ export function createApp(options: CreateAppOptions = {}): Express {
   app.set('trust proxy', 1);
   app.disable('x-powered-by');
 
+  // Before anything reads `req.ip`: the visitor address the storefront forwards, when it proves
+  // itself with API_PROXY_SECRET (ADR 0028). Without the secret, `req.ip` is left as it was.
+  app.use(forwardedClientIp(env.API_PROXY_SECRET));
+
   app.use(requestContext);
+
+  // Serverless: no worker process, so successful writes drain the outbox themselves (ADR 0028).
+  if (env.OUTBOX_DRAIN_AFTER_WRITES) {
+    const drain = createDrainCoalescer(() =>
+      drainDueJobs({
+        ensureRecurring: ensureRecurringJobsOnce,
+        maxBatches: 10,
+        budgetMs: AFTER_WRITE_DRAIN_BUDGET_MS,
+      }),
+    );
+    app.use(drainAfterWrites({ drain, waitUntil }));
+  }
 
   app.use(helmet());
   app.use(
@@ -70,6 +101,16 @@ export function createApp(options: CreateAppOptions = {}): Express {
   }
 
   app.use(API_PREFIX, healthRouter);
+
+  // The scheduled outbox drain (Vercel Cron). Answers 404 unless CRON_SECRET is set, and checks
+  // the bearer secret itself; no cookie, so no Origin check applies.
+  app.use(
+    `${API_PREFIX}/internal`,
+    createOutboxCronRouter({
+      secret: env.CRON_SECRET,
+      drain: () => drainDueJobs({ budgetMs: SCHEDULED_DRAIN_BUDGET_MS }),
+    }),
+  );
 
   // --- Better Auth subtree -------------------------------------------------------------
   /**

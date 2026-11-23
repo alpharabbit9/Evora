@@ -80,4 +80,33 @@ describe('cookie topology', () => {
       }),
     ).toBeNull();
   });
+
+  // ADR 0028: two Vercel deployments can only share the cookie through the storefront's proxy.
+  it('accepts the Vercel layout, where the API is reached through the storefront host', () => {
+    expect(
+      cookieTopologyProblem({
+        frontendOrigin: 'https://evora-shop.vercel.app',
+        authUrl: 'https://evora-shop.vercel.app',
+      }),
+    ).toBeNull();
+  });
+
+  it('names the Vercel fix when BETTER_AUTH_URL is the API deployment itself', () => {
+    expect(
+      cookieTopologyProblem({
+        frontendOrigin: 'https://evora-shop.vercel.app',
+        authUrl: 'https://evora-api.vercel.app',
+      }),
+    ).toMatch(/API_PROXY_TARGET/);
+  });
+
+  it('refuses vercel.app as a cookie domain, which browsers treat as a public suffix', () => {
+    expect(
+      cookieTopologyProblem({
+        frontendOrigin: 'https://evora-shop.vercel.app',
+        authUrl: 'https://evora-api.vercel.app',
+        cookieDomain: 'vercel.app',
+      }),
+    ).toMatch(/public suffix/);
+  });
 });

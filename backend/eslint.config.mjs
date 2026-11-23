@@ -30,6 +30,12 @@ export default tseslint.config(
     },
   },
   {
+    // Plain JavaScript outside tsconfig: the Vercel entry (which imports the compiled dist/) and
+    // the Vercel build script. Type-aware rules need a TypeScript project, so they are off here.
+    files: ['api/**/*.js', 'scripts/**/*.mjs'],
+    ...tseslint.configs.disableTypeChecked,
+  },
+  {
     files: ['**/*.test.ts', 'tests/**/*.ts'],
     rules: {
       // supertest response bodies are `any`; assertions are the point of the test.

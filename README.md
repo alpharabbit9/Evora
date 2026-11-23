@@ -4,6 +4,12 @@
 
 # CommerceCore
 
+<a href="https://youtu.be/TMwv6KvdtoM">
+  <img src="https://img.youtube.com/vi/TMwv6KvdtoM/maxresdefault.jpg" alt="Watch the CommerceCore video on YouTube" width="720" />
+</a>
+
+<sub>▶ <a href="https://youtu.be/TMwv6KvdtoM"><b>Watch the video on YouTube</b></a></sub>
+
 **A production-minded, single-store e-commerce platform — customer storefront, protected admin dashboard, payments, inventory and a shopping assistant, built end to end.**
 
 ![Next.js](https://img.shields.io/badge/Next.js-16-000000?logo=nextdotjs&logoColor=white)

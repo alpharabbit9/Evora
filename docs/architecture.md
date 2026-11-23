@@ -41,7 +41,7 @@ flowchart TD
 - **Persistence:** PostgreSQL source of truth; Prisma data access/migrations.
 - **Object storage:** image binaries; DB holds object key/URL, alt text and sort order.
 - **External providers:** payment and email. Webhooks verified; provider failures are recoverable. The shopping assistant adds Groq (chat) and, optionally, OpenAI (embeddings, fallback chat); without OpenAI it runs on Groq alone with full-text policy search. Their outage disables only the assistant (ADR 0025).
-- **Background work:** durable outbox/queue for email, low stock, reservation expiry and reconciliation. Avoid in-memory fire-and-forget in serverless deployments. Built as a separate worker process over `outbox_events` (ADR 0021).
+- **Background work:** durable outbox/queue for email, low stock, reservation expiry and reconciliation. Avoid in-memory fire-and-forget in serverless deployments. Built as a separate worker process over `outbox_events` (ADR 0021); on Vercel, where no process runs between requests, the same queue is drained after each successful write and by a scheduled, secret-protected endpoint (ADR 0028).
 - **Observability:** structured logs, error monitoring, metrics, health checks and alerts.
 
 ## 3. Why modular monolith

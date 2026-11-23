@@ -88,6 +88,15 @@ export async function drainDueJobs(options: DrainOptions = {}): Promise<DrainSum
   return { ...total, drained: false };
 }
 
+let recurringEnsured = false;
+
+/** `ensureRecurringJobs` once per process: three upserts are not worth repeating on every write. */
+export async function ensureRecurringJobsOnce(): Promise<void> {
+  if (recurringEnsured) return;
+  await ensureRecurringJobs();
+  recurringEnsured = true;
+}
+
 /**
  * Runs `drain` after a write, at most one at a time per process. A write that finishes while a
  * drain is running asks for one more pass instead of starting a second, because its job may have

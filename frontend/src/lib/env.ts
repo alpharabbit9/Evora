@@ -45,8 +45,14 @@ export const API_BASE_URL = `${publicEnv.NEXT_PUBLIC_API_URL}/api/v1`;
  * while the server can use the private network instead: `http://api:4000` in a container
  * network, for example. Server-only and optional: not `NEXT_PUBLIC_`, so it never reaches the
  * browser bundle, and unset it falls back to the public URL.
+ *
+ * On Vercel (ADR 0028) the API is a deployment of its own that `src/proxy.ts` forwards `/api` to
+ * (API_PROXY_TARGET). Server Components go to it directly rather than back through the proxy.
  */
-const internalApiUrl = typeof window === 'undefined' ? process.env.API_INTERNAL_URL : undefined;
+const internalApiUrl =
+  typeof window === 'undefined'
+    ? process.env.API_INTERNAL_URL || process.env.API_PROXY_TARGET || undefined
+    : undefined;
 
 export const SERVER_API_BASE_URL = internalApiUrl
   ? `${z.url().parse(internalApiUrl).replace(/\/$/, '')}/api/v1`
