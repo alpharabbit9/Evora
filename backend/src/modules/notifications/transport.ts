@@ -19,6 +19,11 @@ import { env, isProduction } from '../../config/env.js';
  *  - `smtp` hands the message to an SMTP relay. Every email provider under consideration accepts
  *    SMTP, so choosing one (PRD §9) is configuration, not code.
  *
+ * A third setting, `disabled`, is a deployment with no relay yet, said on purpose. It sends
+ * nothing and says so: every send fails permanently, so the job ends DEAD with the reason
+ * recorded rather than DONE as if delivered (no fake success). Nothing else breaks: email is
+ * already allowed to be down without invalidating an order or an account (invariant 9).
+ *
  * Delivery is at least once. The Message-ID is derived from the job's stable identity, so a
  * message sent twice (a worker that died after the relay accepted it but before it recorded
  * that) carries the same Message-ID, which mail clients use to collapse duplicates.
@@ -151,15 +156,43 @@ function filesystemTransport(root: string): EmailTransport {
   };
 }
 
+function disabledTransport(): EmailTransport {
+  return {
+    name: 'disabled',
+    send() {
+      // Permanent: retrying cannot help until someone configures a relay.
+      return Promise.reject(
+        new EmailDeliveryError(
+          'Email not sent: delivery is disabled (EMAIL_DRIVER=disabled)',
+          true,
+        ),
+      );
+    },
+  };
+}
+
+function configuredTransport(): EmailTransport {
+  switch (env.EMAIL_DRIVER) {
+    case 'smtp':
+      return smtpTransport();
+    case 'disabled':
+      return disabledTransport();
+    case 'filesystem':
+      return filesystemTransport(path.resolve(env.MAIL_ROOT));
+  }
+}
+
 let shared: EmailTransport | undefined;
 
 /** The configured transport, built once per process. */
 export function emailTransport(): EmailTransport {
-  shared ??=
-    env.EMAIL_DRIVER === 'smtp'
-      ? smtpTransport()
-      : filesystemTransport(path.resolve(env.MAIL_ROOT));
+  shared ??= configuredTransport();
   return shared;
+}
+
+/** For tests: the transport `EMAIL_DRIVER=disabled` selects. */
+export function createDisabledTransport(): EmailTransport {
+  return disabledTransport();
 }
 
 /** For tests and tools that need a mailbox in a directory of their own. */

@@ -288,7 +288,7 @@ product (404 if the child does not belong to the product in the URL).
 | POST | `/admin/products/:productId/archive` | **Implemented** | Archive product (idempotent) |
 | POST | `/admin/products/:productId/variants` | **Implemented** | Create variant (201); rejects duplicate `optionKey` or SKU (409) |
 | PATCH | `/admin/products/:productId/variants/:variantId` | **Implemented** | Update variant; regenerates `optionKey` if options change |
-| POST | `/admin/products/:productId/images` | **Implemented** | Create image metadata (201); validates `objectKey` format |
+| POST | `/admin/products/:productId/images` | **Implemented** | Create image metadata (201); validates `objectKey` format; 409 `CONFLICT` while `STORAGE_DRIVER=disabled` |
 | PATCH | `/admin/products/:productId/images/:imageId` | **Implemented** | Update image metadata |
 | DELETE | `/admin/products/:productId/images/:imageId` | **Implemented** | Delete image (204) |
 | GET | `/admin/categories` | **Implemented** | List categories (query: `q`, `includeInactive`, `page`, `pageSize`) |

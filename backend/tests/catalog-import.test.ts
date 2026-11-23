@@ -29,7 +29,11 @@ import {
 import { CATALOG_CATEGORIES, CATEGORY_CAPS, classify } from '../scripts/catalog-import/taxonomy.js';
 import type { SourceRow } from '../scripts/catalog-import/types.js';
 import { isZip, readZipEntry } from '../scripts/catalog-import/zip.js';
-import { assertObjectKey, createFilesystemStorage } from '../src/lib/storage.js';
+import {
+  assertObjectKey,
+  createDisabledStorage,
+  createFilesystemStorage,
+} from '../src/lib/storage.js';
 
 /** Unit tests for the catalog importer's pure stages; persistence is in tests/db. */
 
@@ -431,6 +435,19 @@ describe('filesystem storage', () => {
 
     expect(await storage.exists('catalog/x/1/1.jpg')).toBe(true);
     expect(await readFile(path.join(root, 'catalog', 'x', '1', '1.jpg'), 'utf8')).toBe('two');
+  });
+
+  it('refuses every write when storage is disabled, so nothing claims an image it lacks', async () => {
+    const storage = createDisabledStorage();
+
+    expect(storage.driver).toBe('disabled');
+    expect(await storage.exists('catalog/x/1/1.jpg')).toBe(false);
+    await expect(
+      storage.put('catalog/x/1/1.jpg', Buffer.from('one'), 'image/jpeg'),
+    ).rejects.toThrow(/STORAGE_DRIVER=disabled/);
+    await expect(storage.put('../escape', Buffer.from('x'), 'image/jpeg')).rejects.toThrow(
+      /Invalid object key/,
+    );
   });
 
   it('rejects keys that could escape the media root', () => {

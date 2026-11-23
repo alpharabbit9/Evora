@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest';
 
+import { isAppError } from '../src/http/errors.js';
 import { csvField, minorToDecimal, toCsv } from '../src/lib/csv.js';
+import { assertImageStorageEnabled } from '../src/modules/admin/admin-catalog.service.js';
 import { listDays, resolveRange, storeToday } from '../src/modules/analytics/date-range.js';
 import { couponState } from '../src/modules/coupons/coupons.service.js';
 import {
@@ -201,5 +203,28 @@ describe('store-day ranges', () => {
     const fallback = resolveRange({}, { now: NOW });
     expect(fallback.to).toBe('2026-11-11');
     expect(fallback.days).toBe(30);
+  });
+});
+
+describe('product images without a bucket', () => {
+  it('refuses to attach an image when storage is disabled, saying why', () => {
+    let caught: unknown;
+    try {
+      assertImageStorageEnabled('disabled');
+    } catch (error) {
+      caught = error;
+    }
+
+    expect(isAppError(caught)).toBe(true);
+    expect(caught).toMatchObject({
+      code: 'CONFLICT',
+      status: 409,
+      message: expect.stringMatching(/Image storage is not set up/),
+    });
+  });
+
+  it('allows it with a real store', () => {
+    expect(() => assertImageStorageEnabled('s3')).not.toThrow();
+    expect(() => assertImageStorageEnabled('filesystem')).not.toThrow();
   });
 });

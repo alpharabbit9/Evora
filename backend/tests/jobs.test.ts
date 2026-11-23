@@ -25,6 +25,7 @@ import {
 import {
   EmailDeliveryError,
   classifyMailerError,
+  createDisabledTransport,
   createFilesystemTransport,
   messageIdFor,
 } from '../src/modules/notifications/transport.js';
@@ -203,6 +204,35 @@ describe('email transport', () => {
     expect(messageIdFor('order-receipt:1')).toBe(messageIdFor('order-receipt:1'));
     expect(messageIdFor('order-receipt:1')).not.toBe(messageIdFor('order-receipt:2'));
     expect(messageIdFor('order-receipt:1')).toMatch(/^<[0-9a-f]{32}@[^>]+>$/);
+  });
+
+  it('fails every send permanently when email is disabled, never reporting a delivery', async () => {
+    const transport = createDisabledTransport();
+    const sent = transport.send({
+      to: ['buyer@example.test'],
+      subject: 'Order ORD-1 confirmed',
+      text: 'Thanks',
+      html: '<p>Thanks</p>',
+      idempotencyKey: 'order-receipt:1',
+    });
+
+    await expect(sent).rejects.toBeInstanceOf(EmailDeliveryError);
+    await expect(sent).rejects.toMatchObject({
+      permanent: true,
+      message: expect.stringMatching(/EMAIL_DRIVER=disabled/),
+    });
+    expect(transport.name).toBe('disabled');
+    // Permanent means a one-off email job goes straight to DEAD instead of retrying for hours.
+    expect(
+      decideFailure({
+        now: new Date('2026-11-10T10:00:00Z'),
+        recurringIntervalMs: 300_000,
+        random: () => 0,
+        eventType: 'PASSWORD_RESET',
+        attemptCount: 1,
+        permanent: true,
+      }).status,
+    ).toBe('DEAD');
   });
 
   it('writes one .eml file per job in development, overwriting a resend', async () => {

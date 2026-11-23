@@ -13,12 +13,14 @@ import { env } from '../config/env.js';
  *  - `s3` — any S3-compatible store (AWS S3, Cloudflare R2, MinIO). The production driver.
  *  - `filesystem` — writes under MEDIA_ROOT for local development without Docker. env.ts
  *    refuses it in production.
+ *  - `disabled` — a deployment without a bucket, on purpose: nothing exists and every write is
+ *    refused with a message naming the setting, so an import cannot report images it never kept.
  *
  * Writes are idempotent by key: putting the same key twice replaces the object, so a retried
  * import cannot create a second copy.
  */
 export interface ObjectStorage {
-  readonly driver: 'filesystem' | 's3';
+  readonly driver: 'filesystem' | 's3' | 'disabled';
   exists(key: string): Promise<boolean>;
   put(key: string, body: Buffer, contentType: string): Promise<void>;
 }
@@ -113,8 +115,32 @@ export function createS3Storage(config: S3StorageConfig): ObjectStorage {
   };
 }
 
+export const STORAGE_DISABLED_MESSAGE =
+  'Image storage is disabled (STORAGE_DRIVER=disabled); configure an S3 bucket to store images';
+
+export function createDisabledStorage(): ObjectStorage {
+  // The key check runs inside the promise, so a bad key rejects like every other driver's does.
+  return {
+    driver: 'disabled',
+    exists: (key) =>
+      Promise.resolve(key).then((checked) => {
+        assertObjectKey(checked);
+        return false;
+      }),
+    put: (key) =>
+      Promise.resolve(key).then((checked) => {
+        assertObjectKey(checked);
+        throw new Error(STORAGE_DISABLED_MESSAGE);
+      }),
+  };
+}
+
 /** The storage configured by the environment. */
 export function createConfiguredStorage(): ObjectStorage {
+  if (env.STORAGE_DRIVER === 'disabled') {
+    return createDisabledStorage();
+  }
+
   if (env.STORAGE_DRIVER === 's3') {
     // env.ts has already required these when the driver is s3.
     return createS3Storage({

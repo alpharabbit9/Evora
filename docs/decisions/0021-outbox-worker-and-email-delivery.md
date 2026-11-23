@@ -43,7 +43,11 @@ email outage never to invalidate an order (PRD §7, commerce invariant 9).
 6. **Transport through Nodemailer** (10.2.1, pinned). `EMAIL_DRIVER=filesystem` (the default, refused
    in production) writes each message as an `.eml` file under `MAIL_ROOT` and sends nothing;
    `EMAIL_DRIVER=smtp` sends through any SMTP relay, with STARTTLS required in production. Every
-   provider under consideration accepts SMTP, so choosing one is configuration. Recipients come from
+   provider under consideration accepts SMTP, so choosing one is configuration.
+   `EMAIL_DRIVER=disabled` (amendment, 2026-11-23) is the explicit "no relay yet" for a deployment:
+   accepted in production, it fails every send permanently, so the row ends DEAD with the reason in
+   `last_error` rather than SENT as if delivered. That is the email outage invariant 9 already
+   tolerates, chosen on purpose. Recipients come from
    the database at send time: the order's contact email, or for staff alerts `STAFF_ALERT_EMAILS`, else
    every active administrator (none → DEAD, not "sent to nobody").
 7. **Secrets in payloads:** a reset or verification link is replaced with `{ userId, scrubbed: true }`

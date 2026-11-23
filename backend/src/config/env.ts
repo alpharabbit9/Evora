@@ -90,9 +90,11 @@ const envSchema = z
     /**
      * Where product image binaries live (`src/lib/storage.ts`). `filesystem` writes under
      * MEDIA_ROOT and exists for local development only — production must use `s3`
-     * (any S3-compatible store: AWS S3, R2, MinIO).
+     * (any S3-compatible store: AWS S3, R2, MinIO) or say `disabled` on purpose. `disabled` runs
+     * the store without product images: no bucket, nothing served, and the admin cannot attach
+     * an image (it would point at a file that cannot exist).
      */
-    STORAGE_DRIVER: z.enum(['filesystem', 's3']).default('filesystem'),
+    STORAGE_DRIVER: z.enum(['filesystem', 's3', 'disabled']).default('filesystem'),
     MEDIA_ROOT: z.string().min(1).default('.data/media'),
 
     S3_ENDPOINT: z.string().optional(),
@@ -131,9 +133,11 @@ const envSchema = z
     /**
      * Email delivery (ADR 0021). `filesystem` writes each message as an `.eml` file under
      * MAIL_ROOT and sends nothing — development only, refused in production. `smtp` hands it to
-     * any SMTP relay; which provider sits behind it is still open (PRD §9).
+     * any SMTP relay; which provider sits behind it is still open (PRD §9). `disabled` is the
+     * explicit "no relay yet": every email job fails permanently (status DEAD, visible to staff)
+     * instead of pretending to send, and orders and accounts work as they do in an email outage.
      */
-    EMAIL_DRIVER: z.enum(['filesystem', 'smtp']).default('filesystem'),
+    EMAIL_DRIVER: z.enum(['filesystem', 'smtp', 'disabled']).default('filesystem'),
     MAIL_ROOT: z.string().min(1).default('.data/mail'),
     /** `Name <address>`; the address's domain also names the stable Message-ID. */
     EMAIL_FROM: z.string().min(3).default('CommerceCore <no-reply@commercecore.localhost>'),
@@ -313,7 +317,9 @@ const envSchema = z
       ctx.addIssue({
         code: 'custom',
         path: ['EMAIL_DRIVER'],
-        message: 'The filesystem email driver sends nothing; use smtp in production',
+        message:
+          'The filesystem email driver sends nothing; use smtp in production, or ' +
+          'EMAIL_DRIVER=disabled to run without email on purpose',
       });
     }
 
@@ -341,7 +347,12 @@ const envSchema = z
       });
     }
 
-    if (value.NODE_ENV === 'production' && /\.localhost>?$/.test(value.EMAIL_FROM.trim())) {
+    // No message leaves with EMAIL_DRIVER=disabled, so its sender address does not matter yet.
+    if (
+      value.NODE_ENV === 'production' &&
+      value.EMAIL_DRIVER !== 'disabled' &&
+      /\.localhost>?$/.test(value.EMAIL_FROM.trim())
+    ) {
       ctx.addIssue({
         code: 'custom',
         path: ['EMAIL_FROM'],
@@ -364,7 +375,9 @@ const envSchema = z
       ctx.addIssue({
         code: 'custom',
         path: ['STORAGE_DRIVER'],
-        message: 'The filesystem storage driver is for development only; use s3 in production',
+        message:
+          'The filesystem storage driver is for development only; use s3 in production, or ' +
+          'STORAGE_DRIVER=disabled to run without product images on purpose',
       });
     }
 

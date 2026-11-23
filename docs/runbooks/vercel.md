@@ -35,6 +35,11 @@ Production refuses to start without them (`backend/src/config/env.ts`):
 3. **An SMTP relay** for password-reset and order emails, with a sending domain you control
    (`EMAIL_FROM`). Any provider that speaks SMTP with STARTTLS or implicit TLS.
 
+Only the database is truly required to launch. Without a bucket or a relay yet, set
+`STORAGE_DRIVER=disabled` and/or `EMAIL_DRIVER=disabled` (ADR 0028 amendment): the API starts,
+products show no images (the admin is refused when attaching one), and emails are not sent (each
+job ends DEAD with the reason). Switch to `s3` / `smtp` later and redeploy; nothing else changes.
+
 ## 1. Create both projects
 
 Import the repository twice. **API project:** Root Directory `backend`; `backend/vercel.json` sets
@@ -58,8 +63,8 @@ those behind a Vercel login, so the storefront's proxy would get a login page in
 | `FRONTEND_ORIGIN` | `https://<storefront>.vercel.app` |
 | `CRON_SECRET` | `openssl rand -base64 32` |
 | `API_PROXY_SECRET` | `openssl rand -base64 32` (the storefront gets the same value) |
-| `STORAGE_DRIVER` | `s3`, plus `S3_ENDPOINT`, `S3_REGION`, `S3_BUCKET`, `S3_ACCESS_KEY_ID`, `S3_SECRET_ACCESS_KEY`, `MEDIA_PUBLIC_URL` |
-| `EMAIL_DRIVER` | `smtp`, plus `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE`, `SMTP_USER`, `SMTP_PASSWORD`, `EMAIL_FROM`, `STORE_NAME` |
+| `STORAGE_DRIVER` | `s3`, plus `S3_ENDPOINT`, `S3_REGION`, `S3_BUCKET`, `S3_ACCESS_KEY_ID`, `S3_SECRET_ACCESS_KEY`, `MEDIA_PUBLIC_URL`; or `disabled` until a bucket exists |
+| `EMAIL_DRIVER` | `smtp`, plus `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE`, `SMTP_USER`, `SMTP_PASSWORD`, `EMAIL_FROM`, `STORE_NAME`; or `disabled` until a relay exists |
 | optional | `GROQ_API_KEY` + `GROQ_CHAT_MODEL` (assistant), `SSLCOMMERZ_*` (online payment, sandbox only) |
 
 Leave `AUTH_COOKIE_DOMAIN` and `PAYMENT_CALLBACK_BASE_URL` unset: payment callbacks then go to the

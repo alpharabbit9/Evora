@@ -70,6 +70,13 @@ The storefront and the API are to be deployed as two Vercel projects, each with 
 - **`next.config` rewrites instead of `proxy.ts`:** they cannot add a per-request header, so the API
   could not tell visitors apart.
 
+## Amendment (2026-11-23): launching before a bucket and a relay exist
+The first deployment had a database (Neon) but no S3 bucket and no SMTP relay, and the API refused
+to boot. `STORAGE_DRIVER=disabled` and `EMAIL_DRIVER=disabled` now say "not yet" explicitly: the
+API starts, products carry no images and the admin is refused (409) when attaching one, and every
+email job ends DEAD with the reason recorded. Nothing pretends to work. Switching either to its real
+driver later is configuration only. The development drivers (`filesystem`) are still refused.
+
 ## Revisit when
 A custom domain is bought (move to sibling subdomains and drop the proxy); traffic needs more than
 a couple of instances (shared rate-limit store); or recurring jobs need more than 300 s.

@@ -543,11 +543,26 @@ export async function adminUpdateVariant(
 // Image CRUD
 // ---------------------------------------------------------------------------
 
+/**
+ * With STORAGE_DRIVER=disabled there is no bucket, so no file can exist behind a key: the new
+ * row would only be a broken image on the storefront. Refused with the reason instead.
+ */
+export function assertImageStorageEnabled(driver: typeof env.STORAGE_DRIVER): void {
+  if (driver === 'disabled') {
+    throw conflict(
+      'Image storage is not set up on this server yet, so images cannot be added. ' +
+        'Configure an S3 bucket (STORAGE_DRIVER=s3) first.',
+    );
+  }
+}
+
 export async function adminCreateImage(
   productId: string,
   body: AdminImageCreateBody,
   context: AdminActionContext,
 ) {
+  assertImageStorageEnabled(env.STORAGE_DRIVER);
+
   const product = await prisma.product.findUnique({
     where: { id: productId },
     select: { id: true },
