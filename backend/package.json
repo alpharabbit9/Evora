@@ -43,6 +43,7 @@
     "@aws-sdk/s3-request-presigner": "^3.1154.0",
     "@prisma/adapter-pg": "^7.10.1",
     "@prisma/client": "^7.10.1",
+    "@vercel/functions": "3.11.0",
     "better-auth": "^1.7.12",
     "compression": "^1.8.2",
     "cookie-parser": "^1.4.7",
