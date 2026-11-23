@@ -1,6 +1,9 @@
 #!/usr/bin/env node
 /**
- * The Vercel build (ADR 0028, docs/runbooks/vercel.md): `npm run vercel-build`.
+ * The Vercel build (ADR 0028, docs/runbooks/vercel.md): `npm run build:vercel`, which
+ * `vercel.json` names as the build command. Deliberately not called `vercel-build`: Vercel's Node
+ * builder runs a script of that name again for the function, which would build twice and migrate
+ * twice.
  *
  *   1. `prisma generate`: the client the API imports.
  *   2. `tsc -p tsconfig.build.json`: `dist/`, which `api/index.js` serves.
@@ -16,28 +19,34 @@
  * using the pooled DATABASE_URL.
  */
 import { spawnSync } from 'node:child_process';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-function run(command, args, env = process.env) {
-  const result = spawnSync(command, args, {
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+// The CLIs' own entry files, run with this Node: no npx, no shell, the same on Windows and Linux.
+const PRISMA = path.join(root, 'node_modules', 'prisma', 'build', 'index.js');
+const TSC = path.join(root, 'node_modules', 'typescript', 'bin', 'tsc');
+
+function run(script, args, env = process.env) {
+  const result = spawnSync(process.execPath, [script, ...args], {
+    cwd: root,
     stdio: 'inherit',
     env,
-    // npx is a .cmd shim on Windows; on Linux (where Vercel builds) no shell is involved.
-    shell: process.platform === 'win32',
   });
   if (result.status !== 0) {
     process.exit(result.status ?? 1);
   }
 }
 
-run('npx', ['prisma', 'generate']);
-run('npx', ['tsc', '-p', 'tsconfig.build.json']);
+run(PRISMA, ['generate']);
+run(TSC, ['-p', 'tsconfig.build.json']);
 
 const production = process.env.VERCEL_ENV === 'production';
 const skip = process.env.SKIP_DB_MIGRATIONS === 'true';
 
 if (production && !skip) {
   const direct = process.env.DIRECT_DATABASE_URL?.trim();
-  run('npx', ['prisma', 'migrate', 'deploy'], {
+  run(PRISMA, ['migrate', 'deploy'], {
     ...process.env,
     ...(direct ? { DATABASE_URL: direct } : {}),
   });

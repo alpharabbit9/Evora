@@ -42,6 +42,10 @@ the framework (Other), install and build commands, the rewrite and the cron, so 
 settings at their defaults. **Storefront project:** Root Directory `frontend`, framework Next.js.
 Note both production URLs: `https://<storefront>.vercel.app` and `https://<api>.vercel.app`.
 
+Use each project's **production domain** (Project → Settings → Domains), never a per-deployment URL
+such as `https://<api>-abc123-<team>.vercel.app`: Vercel's default Deployment Protection puts
+those behind a Vercel login, so the storefront's proxy would get a login page instead of the API.
+
 ## 2. API environment variables (Production)
 
 | Variable | Value |
@@ -59,7 +63,7 @@ Note both production URLs: `https://<storefront>.vercel.app` and `https://<api>.
 | optional | `GROQ_API_KEY` + `GROQ_CHAT_MODEL` (assistant), `SSLCOMMERZ_*` (online payment, sandbox only) |
 
 Leave `AUTH_COOKIE_DOMAIN` and `PAYMENT_CALLBACK_BASE_URL` unset: payment callbacks then go to the
-storefront's `/api`, which forwards them. Deploy. The build (`npm run vercel-build`) generates the
+storefront's `/api`, which forwards them. Deploy. The build (`npm run build:vercel`) generates the
 Prisma client, compiles `dist/`, then runs `prisma migrate deploy` (production builds only; a
 failed migration fails the build and the previous deployment keeps serving).
 

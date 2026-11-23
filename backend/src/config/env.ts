@@ -240,7 +240,8 @@ const envSchema = z
       ctx.addIssue({
         code: 'custom',
         path: ['NODE_ENV'],
-        message: 'Set NODE_ENV=production in the Vercel project: development mode is never right there',
+        message:
+          'Set NODE_ENV=production in the Vercel project: development mode is never right there',
       });
     }
 

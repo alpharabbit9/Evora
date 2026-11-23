@@ -29,7 +29,7 @@ The storefront and the API are to be deployed as two Vercel projects, each with 
    `FRONTEND_ORIGIN` and `BETTER_AUTH_URL` are both the storefront URL, which is the one-origin
    topology ADR 0024 prefers. Server Components call the API deployment directly.
 2. **The API is one Vercel Function** (`backend/api/index.js`) serving the compiled `dist/` that
-   `npm run vercel-build` produces with `tsc`, the same JavaScript as `node dist/server.js` and the
+   `npm run build:vercel` produces with `tsc`, the same JavaScript as `node dist/server.js` and the
    container image. Vercel never compiles the TypeScript itself, so `nodenext` imports and the
    Prisma client behave as they do locally. `vercel.json` rewrites every path to that function.
 3. **Migrations run in the production build**, after compilation, over `DIRECT_DATABASE_URL`.
