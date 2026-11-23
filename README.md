@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="docs/images/banner.jpg" alt="CommerceCore — a single-store e-commerce platform: storefront, admin dashboard, payments and orders, built end to end." width="100%" />
+
 
 # CommerceCore
 
