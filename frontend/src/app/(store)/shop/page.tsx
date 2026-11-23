@@ -13,6 +13,7 @@ export const metadata: Metadata = { title: 'Shop all', description: DESCRIPTION 
 export default function ShopPage() {
   return (
     <CollectionPage
+      collection="shop"
       eyebrow="The collection"
       title="Shop all"
       description={DESCRIPTION}

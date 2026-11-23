@@ -11,9 +11,10 @@ import { SAFE_METHODS } from './rate-limit.js';
  * Better Auth checks the request origin against `trustedOrigins` for the endpoints it
  * serves, but that protection stops at `/api/v1/auth`. Everything else — `PATCH /me`,
  * the address routes, the admin routes — is authenticated by the same cookie and needs
- * the same check, and in production that cookie is `SameSite=None` (ADR 0006), so the
- * browser will attach it to a cross-site request. Without this middleware a hostile page
- * could drive a state change on behalf of a signed-in user.
+ * the same check. The cookie is `SameSite=Lax` (ADR 0024), which keeps it off cross-site
+ * POSTs, but not off requests from a sibling subdomain (same-site, different origin) when
+ * AUTH_COOKIE_DOMAIN is set, nor off top-level GETs. This middleware is what makes a state
+ * change from anywhere but the storefront fail, whatever the browser's cookie rules allow.
  *
  * Why an Origin check rather than a synchroniser token: the session is a cookie, the
  * frontend is a separate origin, and browsers send `Origin` on every cross-origin request

@@ -1,0 +1,122 @@
+{
+  "$comment": "The home page's clothes-rail pieces (ADR 0027) as catalog products — a SYNTHETIC, hand-written set. Names, descriptions, sizes and the EVORA house brand are invented, each written to match its photos; prices and stock are synthetic (STORE_CURRENCY demo bands). `look` names the garment's two studio photos in curated/rail/photos/<look>-{front,side}.webp, rendered from the owner-supplied photos by frontend/scripts/recent-arrivals/make_cutouts.py. List order is rail order: the first is the newest. The frontend's arrivals-data.ts links each rail garment to the slug these produce (name + id); tests/rail.test.ts keeps the two in step.",
+  "brand": "EVORA",
+  "sizeSets": {
+    "men": ["S", "M", "L", "XL", "XXL"],
+    "unisex": ["XS", "S", "M", "L", "XL", "XXL"]
+  },
+  "products": [
+    {
+      "id": "RL001",
+      "look": "forest-green-bomber",
+      "name": "Forest Bomber",
+      "category": "jackets",
+      "gender": "UNISEX",
+      "colour": "Forest Green",
+      "sizes": "unisex",
+      "description": "The MA-1 flight bomber in a matte forest-green nylon shell over a light padded lining. A ribbed baseball collar, cuffs and hem keep the cold out; a full-length two-way zip, popper-flap hand pockets and the zipped utility pocket on the left sleeve keep it useful. Regular fit with room for a hoodie underneath. Shell 100% nylon; lining 100% polyester. Machine wash cold, hang to dry.",
+      "alt": {
+        "front": "Forest-green nylon bomber jacket with a ribbed collar and a zipped sleeve pocket, front view",
+        "side": "Forest-green nylon bomber jacket from the side, showing the zipped utility pocket on the sleeve"
+      }
+    },
+    {
+      "id": "RL002",
+      "look": "varsity-jacket",
+      "name": "Varsity Jacket",
+      "category": "jackets",
+      "gender": "MEN",
+      "colour": "Burgundy",
+      "sizes": "men",
+      "description": "A letterman jacket with a burgundy wool-blend body and black faux-leather sleeves. Snap-button front, striped rib-knit collar, cuffs and hem, leather-trimmed welt hand pockets and a felt-on-chenille R patch on the chest. Quilted satin lining. Body 70% wool, 30% polyamide; sleeves polyurethane. Dry clean only.",
+      "alt": {
+        "front": "Burgundy wool varsity jacket with black sleeves, striped trims and an R patch, front view",
+        "side": "Burgundy and black varsity jacket from the side, showing the striped cuff and hem"
+      }
+    },
+    {
+      "id": "RL003",
+      "look": "mustard-hoodie",
+      "name": "Fleece Hoodie",
+      "category": "hoodies",
+      "gender": "UNISEX",
+      "colour": "Mustard",
+      "sizes": "unisex",
+      "description": "A 380 gsm brushed-back fleece pullover in a warm mustard. Double-layer hood with flat drawcords and metal tips, a roomy kangaroo pocket, dropped shoulders and firm ribbed cuffs and hem. Relaxed fit; size down for a closer cut. 80% cotton, 20% polyester. Machine wash cold inside out.",
+      "alt": {
+        "front": "Mustard-yellow fleece pullover hoodie with drawcords and a kangaroo pocket, front view",
+        "side": "Mustard-yellow fleece hoodie from the side, showing the double-layer hood"
+      }
+    },
+    {
+      "id": "RL004",
+      "look": "black-leather-jacket",
+      "name": "Leather Racer Jacket",
+      "category": "jackets",
+      "gender": "MEN",
+      "colour": "Black",
+      "sizes": "men",
+      "description": "A café-racer jacket in soft, lightly grained black leather. Band collar with a snap tab, centre zip, two zipped slant hand pockets and zipped cuffs, cut close through the body so it sits clean over a tee. Fully lined. 100% lamb leather; lining 100% viscose. Specialist leather clean only.",
+      "alt": {
+        "front": "Black leather racer jacket with a snap-tab band collar and a centre zip, front view",
+        "side": "Black leather racer jacket from the side"
+      }
+    },
+    {
+      "id": "RL005",
+      "look": "brown-leather-jacket",
+      "name": "Washed Leather Jacket",
+      "category": "jackets",
+      "gender": "MEN",
+      "colour": "Brown",
+      "sizes": "men",
+      "description": "The racer cut in vintage-washed chestnut leather that darkens and creases with wear. Snap-tab band collar, centre zip, zipped slant hand pockets and a clean, seamed hem. Fully lined. 100% cowhide leather; lining 100% viscose. Specialist leather clean only; colour varies from hide to hide.",
+      "alt": {
+        "front": "Chestnut-brown washed leather racer jacket with a centre zip, front view",
+        "side": "Chestnut-brown washed leather racer jacket from the side"
+      }
+    },
+    {
+      "id": "RL006",
+      "look": "green-sweatshirt",
+      "name": "Crew Sweatshirt",
+      "category": "knitwear",
+      "gender": "UNISEX",
+      "colour": "Green",
+      "sizes": "unisex",
+      "description": "A loopback cotton crewneck in bottle green with a small white print on the chest. Ribbed neckline, cuffs and hem, set-in sleeves for a cleaner shoulder and a slightly boxy body. 100% cotton, 340 gsm. Machine wash cold inside out.",
+      "alt": {
+        "front": "Bottle-green crewneck sweatshirt with a small white chest print, front view",
+        "side": "Bottle-green crewneck sweatshirt from the side"
+      }
+    },
+    {
+      "id": "RL007",
+      "look": "maroon-hoodie",
+      "name": "Heavyweight Hoodie",
+      "category": "hoodies",
+      "gender": "UNISEX",
+      "colour": "Maroon",
+      "sizes": "unisex",
+      "description": "A 420 gsm heavyweight hoodie in deep maroon fleece. Lined hood with round drawcords and metal tips, kangaroo pocket, set-in sleeves and long ribbed cuffs and hem that hold their shape. Regular fit. 85% cotton, 15% polyester. Machine wash cold, do not tumble dry.",
+      "alt": {
+        "front": "Maroon heavyweight pullover hoodie with drawcords and a kangaroo pocket, front view",
+        "side": "Maroon heavyweight hoodie from the side"
+      }
+    },
+    {
+      "id": "RL008",
+      "look": "navy-t-shirt",
+      "name": "Everyday Tee",
+      "category": "t-shirts",
+      "gender": "UNISEX",
+      "colour": "Navy",
+      "sizes": "unisex",
+      "description": "A 220 gsm combed-cotton jersey tee in navy. Narrow ribbed crew neck, shoulder-to-shoulder tape and a straight hem; holds its shape wash after wash. Regular fit. 100% cotton. Machine wash cold, tumble dry low.",
+      "alt": {
+        "front": "Navy cotton crew-neck t-shirt, front view",
+        "side": "Navy cotton crew-neck t-shirt from the side"
+      }
+    }
+  ]
+}

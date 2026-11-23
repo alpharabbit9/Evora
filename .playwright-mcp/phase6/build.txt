@@ -1,0 +1,69 @@
+▲ Next.js 16.4.2 (Turbopack)
+- Environments: .env.local
+✓ Running next.config.ts took 61ms
+- Cache Components enabled
+- Partial Prefetching enabled
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 3.9s
+  Running TypeScript ...
+⚠ Your version of Next.js is affected by a known security vulnerability. This command is continuing after the upgrade reminder.
+Reference: https://registry.npmjs.org/-/npm/v1/security/advisories/bulk
+  Finished TypeScript in 10.3s ...
+  Collecting page data using 11 workers ...
+  Generating static pages using 11 workers (0/38) ...
+  Generating static pages using 11 workers (9/38) 
+  Generating static pages using 11 workers (18/38) 
+  Generating static pages using 11 workers (28/38) 
+✓ Generating static pages using 11 workers (38/38) in 5.4s
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ◐ /account
+├ ◐ /admin
+├ ◐ /admin/assistant
+├   /admin/assistant/[conversationId]
+│ └ ◐ /admin/assistant/[conversationId]
+├ ◐ /admin/audit
+├ ◐ /admin/categories
+├ ◐ /admin/coupons
+├ ◐ /admin/customers
+├ ◐ /admin/inventory
+├ ◐ /admin/inventory/movements
+├ ◐ /admin/jobs
+├ ◐ /admin/orders
+├   /admin/orders/[orderId]
+│ └ ◐ /admin/orders/[orderId]
+├ ◐ /admin/products
+├   /admin/products/[productId]
+│ └ ◐ /admin/products/[productId]
+├ ◐ /admin/products/new
+├ ◐ /admin/settings
+├ ○ /auth
+├ ◐ /cart
+├ ◐ /checkout
+├ ○ /collections/men
+├ ○ /collections/new
+├ ○ /collections/women
+├ ○ /faq
+├ ○ /forgot-password
+├   /orders/[orderId]
+│ └ ◐ /orders/[orderId]
+├ ○ /privacy
+├   /products/[slug]
+│ └ ◐ /products/[slug]
+├ ◐ /reset-password
+├ ○ /search
+├ ○ /shipping
+├ ○ /shop
+├ ○ /terms
+└ ◐ /wishlist
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)             prerendered as static content
+◐  (Partial Prerender)  prerendered as static HTML with dynamic server-streamed content
+

@@ -15,7 +15,8 @@ import type { NormalizedProduct } from './types.js';
  *  - Refreshed on rerun: name, description, brand, gender, source URL — unless an admin edited
  *    them, detected by `sourceContentHash` no longer matching the row (`skipped_local_override`).
  *  - Added on rerun when missing: variants the source lists that the product does not have yet
- *    (e.g. first run without demo pricing), and the image if the product has none.
+ *    (e.g. first run without demo pricing), the photo — with its gallery photos after it — if
+ *    the product has no PHOTO image, and the cut-out if it has no CUTOUT image (ADR 0017).
  *  - Never: deleting or archiving anything.
  *
  * Dry run executes exactly the same writes and then rolls the transaction back, so it reports
@@ -109,13 +110,14 @@ async function write(
       gender: true,
       sourceContentHash: true,
       variants: { select: { sku: true, optionKey: true } },
-      _count: { select: { images: true } },
+      images: { select: { kind: true } },
     },
   });
 
   let productId: string;
   let outcome: ProductOutcome;
   let hasImage: boolean;
+  let hasCutout: boolean;
   const existingSkus = new Set<string>();
   const existingOptionKeys = new Set<string>();
 
@@ -137,9 +139,11 @@ async function write(
     productId = createdProduct.id;
     outcome = 'inserted';
     hasImage = false;
+    hasCutout = false;
   } else {
     productId = existing.id;
-    hasImage = existing._count.images > 0;
+    hasImage = existing.images.some((image) => image.kind === 'PHOTO');
+    hasCutout = existing.images.some((image) => image.kind === 'CUTOUT');
     existing.variants.forEach((variant) => {
       existingSkus.add(variant.sku);
       existingOptionKeys.add(variant.optionKey);
@@ -234,6 +238,44 @@ async function write(
       },
     });
     imagesCreated = 1;
+
+    // The rest of the gallery, in order after the main photo. Added only with it, so a rerun
+    // never appends to a gallery an admin has since rearranged.
+    for (const [index, image] of (product.gallery ?? []).entries()) {
+      await tx.productImage.create({
+        data: {
+          productId,
+          objectKey: image.objectKey,
+          altText: image.altText,
+          sortOrder: index + 1,
+          widthPx: image.widthPx,
+          heightPx: image.heightPx,
+          byteSize: image.byteSize,
+          contentType: image.contentType,
+          sourceUrl: image.sourceUrl,
+          attribution: image.attribution,
+        },
+      });
+      imagesCreated += 1;
+    }
+  }
+  if (!hasCutout && product.cutout) {
+    await tx.productImage.create({
+      data: {
+        productId,
+        kind: 'CUTOUT',
+        objectKey: product.cutout.objectKey,
+        altText: product.cutout.altText,
+        sortOrder: 0,
+        widthPx: product.cutout.widthPx,
+        heightPx: product.cutout.heightPx,
+        byteSize: product.cutout.byteSize,
+        contentType: product.cutout.contentType,
+        sourceUrl: product.cutout.sourceUrl,
+        attribution: product.cutout.attribution,
+      },
+    });
+    imagesCreated += 1;
   }
 
   // Publication rule (plan §5.4): active category, an image, and an ACTIVE (therefore priced)
@@ -247,7 +289,12 @@ async function write(
         status: true,
         publishedAt: true,
         category: { select: { isActive: true } },
-        _count: { select: { images: true, variants: { where: { status: 'ACTIVE' } } } },
+        _count: {
+          select: {
+            images: { where: { kind: 'PHOTO' } },
+            variants: { where: { status: 'ACTIVE' } },
+          },
+        },
       },
     });
 

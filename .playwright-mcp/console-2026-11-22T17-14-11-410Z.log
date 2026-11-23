@@ -1,0 +1,142 @@
+[   58947ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/shop:1
+[   60132ms] [ERROR] Refused to execute script from 'http://localhost:3000/_next/static/development/_clientMiddlewareManifest.js' because its MIME type ('application/json') is not executable, and strict MIME type checking is enabled. @ http://localhost:3000/shop:1
+[   60464ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_react-dom_cjs_react-dom-client_development_1nq9a-7w2rk6e.js:16703
+[   60803ms] Error: [next]/internal/font/google/playfair_display_4f04b121.module.css:70:8
+Error: Module not found: Can't resolve '@vercel/turbopack-next/internal/font/google/font'
+  68 |   font-weight: 500;
+  69 |   font-display: swap;
+> 70 |   src: url(@vercel/turbopack-next/internal/font/google/font?{%22url%22:%22https://fonts.gs...
+     |        ^
+  71 |   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+...
+  72 | }
+  73 | @font-face {
+
+next/font/google queries have exactly one entry
+
+Debug info:
+- Execution of *<ModuleAssetContext as AssetContext>::process_resolve_result failed
+- Execution of resolve failed
+- Execution of resolve_internal failed
+- Execution of <NextFontGoogleFontFileReplacer as ImportMappingReplacement>::result failed
+- next/font/google queries have exactly one entry
+Error while looking up import map: next/font/google queries have exactly one entry
+
+Debug info:
+- Execution of <NextFontGoogleFontFileReplacer as ImportMappingReplacement>::result failed
+- next/font/google queries have exactly one entry
+
+
+Import trace:
+  Server Component:
+    [next]/internal/font/google/playfair_display_4f04b121.module.css
+    [next]/internal/font/google/playfair_display_4f04b121.js
+    ./src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at Object.getCompilationErrors (file://C:\Projects\Ecommerece Webapp\CommerceCore\frontend\node_modules\next\dist\server\dev\hot-reloader-turbopack.js:1518:37)
+    at DevBundlerService.getCompilationError (file://C:\Projects\Ecommerece Webapp\CommerceCore\frontend\node_modules\next\dist\server\lib\dev-bundler-service.js:63:55)
+    at DevServer.getCompilationError (file://C:\Projects\Ecommerece Webapp\CommerceCore\frontend\node_modules\next\dist\server\dev\next-dev-server.js:692:42)
+    at DevServer.findPageComponents (file://C:\Projects\Ecommerece Webapp\CommerceCore\frontend\node_modules\next\dist\server\dev\next-dev-server.js:662:43)
+    at async DevServer.renderErrorToResponseImpl (file://C:\Projects\Ecommerece Webapp\CommerceCore\frontend\node_modules\next\dist\server\base-server.js:2026:26)
+[   60780ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1gdrd03q-xsfc._.js:704
+[   60823ms] [ERROR] [next]/internal/font/google/playfair_display_4f04b121.module.css:70:8
+Error: Module not found: Can't resolve '@vercel/turbopack-next/internal/font/google/font'
+  68 |   font-weight: 500;
+  69 |   font-display: swap;
+> 70 |   src: url(@vercel/turbopack-next/internal/font/google/font?{%22url%22:%22https://fonts.gs...
+     |        ^
+  71 |   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+...
+  72 | }
+  73 | @font-face {
+
+next/font/google queries have exactly one entry
+
+Debug info:
+- Execution of *<ModuleAssetContext as AssetContext>::process_resolve_result failed
+- Execution of resolve failed
+- Execution of resolve_internal failed
+- Execution of <NextFontGoogleFontFileReplacer as ImportMappingReplacement>::result failed
+- next/font/google queries have exactly one entry
+Error while looking up import map: next/font/google queries have exactly one entry
+
+Debug info:
+- Execution of <NextFontGoogleFontFileReplacer as ImportMappingReplacement>::result failed
+- next/font/google queries have exactly one entry
+
+Import trace:
+  Server Component:
+    [next]/internal/font/google/playfair_display_4f04b121.module.css
+    [next]/internal/font/google/playfair_display_4f04b121.js
+    ./src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1gdrd03q-xsfc._.js:1761
+[   60824ms] [ERROR] [next]/internal/font/google/playfair_display_4f04b121.module.css:70:8
+Error: Module not found: Can't resolve '@vercel/turbopack-next/internal/font/google/font'
+  68 |   font-weight: 500;
+  69 |   font-display: swap;
+> 70 |   src: url(@vercel/turbopack-next/internal/font/google/font?{%22url%22:%22https://fonts.gs...
+     |        ^
+  71 |   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+...
+  72 | }
+  73 | @font-face {
+
+next/font/google queries have exactly one entry
+
+Debug info:
+- Execution of *<ModuleAssetContext as AssetContext>::process_resolve_result failed
+- Execution of resolve failed
+- Execution of resolve_internal failed
+- Execution of <NextFontGoogleFontFileReplacer as ImportMappingReplacement>::result failed
+- next/font/google queries have exactly one entry
+Error while looking up import map: next/font/google queries have exactly one entry
+
+Debug info:
+- Execution of <NextFontGoogleFontFileReplacer as ImportMappingReplacement>::result failed
+- next/font/google queries have exactly one entry
+
+Import trace:
+  Server Component:
+    [next]/internal/font/google/playfair_display_4f04b121.module.css
+    [next]/internal/font/google/playfair_display_4f04b121.js
+    ./src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1gdrd03q-xsfc._.js:1761
+[   60979ms] [ERROR] [next]/internal/font/google/playfair_display_4f04b121.module.css:70:8
+Error: Module not found: Can't resolve '@vercel/turbopack-next/internal/font/google/font'
+  68 |   font-weight: 500;
+  69 |   font-display: swap;
+> 70 |   src: url(@vercel/turbopack-next/internal/font/google/font?{%22url%22:%22https://fonts.gs...
+     |        ^
+  71 |   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+...
+  72 | }
+  73 | @font-face {
+
+next/font/google queries have exactly one entry
+
+Debug info:
+- Execution of *<ModuleAssetContext as AssetContext>::process_resolve_result failed
+- Execution of resolve failed
+- Execution of resolve_internal failed
+- Execution of <NextFontGoogleFontFileReplacer as ImportMappingReplacement>::result failed
+- next/font/google queries have exactly one entry
+Error while looking up import map: next/font/google queries have exactly one entry
+
+Debug info:
+- Execution of <NextFontGoogleFontFileReplacer as ImportMappingReplacement>::result failed
+- next/font/google queries have exactly one entry
+
+Import trace:
+  Server Component:
+    [next]/internal/font/google/playfair_display_4f04b121.module.css
+    [next]/internal/font/google/playfair_display_4f04b121.js
+    ./src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1gdrd03q-xsfc._.js:1761
+[  109918ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_16lnmlosr3ca7._.js:1014
+[  110921ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_16lnmlosr3ca7._.js:1014
+[  111924ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_16lnmlosr3ca7._.js:1014
+[  112929ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_16lnmlosr3ca7._.js:1014
+[  113933ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_16lnmlosr3ca7._.js:1014

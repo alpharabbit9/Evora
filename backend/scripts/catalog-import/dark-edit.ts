@@ -37,7 +37,7 @@ export function photoUrl(photoId: string): string {
 
 const GENDERS = ['MEN', 'WOMEN', 'UNISEX'] as const;
 
-const photoSchema = z.strictObject({
+export const photoSchema = z.strictObject({
   /** The CDN id (`1551028719-00167b16eac5`), not the photo page id. */
   id: z.string().regex(/^\d{10,13}-[0-9a-f]{12}$/, 'not an Unsplash CDN photo id'),
   /** Photo page slug on unsplash.com, for provenance and credit. */
@@ -137,9 +137,16 @@ class HttpStatusError extends Error {
   }
 }
 
-/** Cache first, CDN second. Cached under `<dataDir>/dark-edit/images/<photoId>.jpg`. */
-export function createPhotoSource(dataDir: string, fetchImpl: typeof fetch = fetch): PhotoSource {
-  const root = path.resolve(dataDir, 'dark-edit', 'images');
+/**
+ * Cache first, CDN second. Cached under `<dataDir>/<collection>/images/<photoId>.jpg`; the
+ * arrivals importer (`arrivals.ts`) passes its own collection.
+ */
+export function createPhotoSource(
+  dataDir: string,
+  fetchImpl: typeof fetch = fetch,
+  collection = 'dark-edit',
+): PhotoSource {
+  const root = path.resolve(dataDir, collection, 'images');
 
   return {
     async get(photoId) {

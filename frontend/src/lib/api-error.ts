@@ -26,6 +26,7 @@ export const ApiErrorCode = {
   PAYMENT_PENDING: 'PAYMENT_PENDING',
   RATE_LIMITED: 'RATE_LIMITED',
   INTERNAL_ERROR: 'INTERNAL_ERROR',
+  PROVIDER_UNAVAILABLE: 'PROVIDER_UNAVAILABLE',
   /** The request could not be sent or the response was unreadable. */
   NETWORK_ERROR: 'NETWORK_ERROR',
 } as const;

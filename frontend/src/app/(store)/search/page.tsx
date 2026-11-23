@@ -5,6 +5,7 @@ import { CatalogBrowser } from '@/components/catalog/catalog-browser';
 import { CatalogHeader } from '@/components/catalog/catalog-header';
 import { ListingFallback } from '@/components/catalog/listing-fallback';
 import { SearchBox } from '@/components/catalog/search-box';
+import { PageTransition } from '@/components/layout/page-transition';
 
 export const metadata: Metadata = {
   title: 'Search',
@@ -18,7 +19,7 @@ export const metadata: Metadata = {
  */
 export default function SearchPage() {
   return (
-    <>
+    <PageTransition>
       <CatalogHeader eyebrow="Search" title="Find a piece">
         <Suspense
           fallback={<div className="mt-8 h-[53px] max-w-2xl border-b border-foreground/40" />}
@@ -29,6 +30,6 @@ export default function SearchPage() {
       <Suspense fallback={<ListingFallback />}>
         <CatalogBrowser />
       </Suspense>
-    </>
+    </PageTransition>
   );
 }

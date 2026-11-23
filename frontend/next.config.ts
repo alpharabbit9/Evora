@@ -14,10 +14,44 @@ const mediaUrl = new URL(
  * guard). Development media is served by the API on localhost, so the guard is relaxed only
  * when the configured media host is a loopback name — never for a real CDN origin.
  */
-const mediaIsLoopback = ['localhost', '127.0.0.1', '[::1]'].includes(mediaUrl.hostname);
+const mediaIsLoopback =
+  ['localhost', '127.0.0.1', '[::1]'].includes(mediaUrl.hostname) ||
+  // `media.localhost` in the staging rehearsal (deploy/staging): loopback in the browser, a
+  // container on the private network for the image optimiser. Never a public host.
+  mediaUrl.hostname.endsWith('.localhost');
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  /**
+   * The end-to-end suite (`../e2e`) builds with its own API URL baked in, so it builds into
+   * `.next-e2e` rather than overwrite the build `npm run start` serves. Unset everywhere else.
+   */
+  distDir: process.env.NEXT_DIST_DIR ?? '.next',
+  /**
+   * The container image (ADR 0024) sets NEXT_OUTPUT=standalone to get a self-contained server
+   * (`.next/standalone`) with only the files it needs. Off otherwise, because `next start`, which
+   * development and the E2E suite use, does not support standalone output.
+   */
+  ...(process.env.NEXT_OUTPUT === 'standalone' ? { output: 'standalone' as const } : {}),
+  /** Do not advertise the framework (M12 hardening; checked by deploy/smoke/smoke.mjs). */
+  poweredByHeader: false,
+  /**
+   * Baseline hardening headers on every page. HSTS belongs to the TLS edge, which knows the
+   * real scheme, not to the app. A Content-Security-Policy is not set yet: Next's inline
+   * bootstrap scripts need per-request nonces, which is a change of its own (ADR 0024).
+   */
+  async headers() {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          { key: 'X-Content-Type-Options', value: 'nosniff' },
+          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+          { key: 'X-Frame-Options', value: 'DENY' },
+          { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
+        ],
+      },
+    ];
+  },
   cacheComponents: true,
   partialPrefetching: true,
   images: {

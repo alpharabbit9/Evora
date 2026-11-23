@@ -1,7 +1,7 @@
 import { Prisma } from '@prisma/client';
 
 import { prisma } from '../../lib/prisma.js';
-import { LISTING_FROM } from './catalog.query.js';
+import { MATCH_FROM } from './catalog.query.js';
 import { PUBLIC_PRODUCT_SQL } from './publication.js';
 
 /**
@@ -30,7 +30,7 @@ export async function listPublicCategories(): Promise<CategoryNode[]> {
     }),
     prisma.$queryRaw<{ id: string; count: number }[]>(Prisma.sql`
       SELECT c.id, COUNT(*)::int AS count
-      ${LISTING_FROM} WHERE ${PUBLIC_PRODUCT_SQL}
+      ${MATCH_FROM} WHERE ${PUBLIC_PRODUCT_SQL}
       GROUP BY c.id`),
   ]);
 

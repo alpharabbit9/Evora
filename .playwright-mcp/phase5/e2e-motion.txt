@@ -1,0 +1,29 @@
+[api] Loaded Prisma config from prisma.config.ts.
+[api] 
+
+[api] Prisma schema loaded from prisma\schema.prisma.
+
+[api] Datasource "db": PostgreSQL database "commercecore_e2e", schema "public" at "localhost:5432"
+
+[api] 
+[api] 18 migrations found in prisma/migrations
+
+[api] 
+
+[api] 
+
+[api] No pending migrations to apply.
+
+[api] Knowledge: 5 embedded, 0 unchanged, 0 removed
+[api] Products:  1 embedded, 0 unchanged, 0 removed
+
+
+Running 5 tests using 1 worker
+
+[1/5] [chromium] › tests\motion.spec.ts:74:5 › home page motion › with motion › Dark Edit photos wipe up into their frames, then the clip is cleared
+[2/5] [chromium] › tests\motion.spec.ts:100:5 › home page motion › with motion › the service strip items never move
+[3/5] [chromium] › tests\motion.spec.ts:114:5 › home page motion › with motion › the footer wordmark letters rise once and settle in place
+[4/5] [chromium] › tests\motion.spec.ts:132:5 › home page motion › with motion › the hero drift and autoplay hold while the hero is off screen
+[5/5] [chromium] › tests\motion.spec.ts:157:5 › home page motion › with reduced motion › nothing is clipped or translated; the footer word fades
+  5 passed (4.5m)
+exit 0

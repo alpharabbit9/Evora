@@ -1,0 +1,1190 @@
+{
+  "/": {
+    "chunks": 28,
+    "rawKB": 2248.1,
+    "gzKB": 675.5,
+    "ownGzKB": 387.9,
+    "ownFramer": true,
+    "framerKB": 49.1,
+    "list": [
+      {
+        "file": "3yoci0st31w8i.js",
+        "rawKB": 907.2,
+        "gzKB": 238.8,
+        "libs": [
+          "three"
+        ],
+        "own": false
+      },
+      {
+        "file": "2abgvfcolnmqq.js",
+        "rawKB": 224.2,
+        "gzKB": 70.1,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "2h4pi0zgsnqr7.js",
+        "rawKB": 145.1,
+        "gzKB": 49.1,
+        "libs": [
+          "framer-motion"
+        ],
+        "own": true
+      },
+      {
+        "file": "2l8fpcfss9uqn.js",
+        "rawKB": 161.1,
+        "gzKB": 44.5,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "0qa6pfjd3c4nu.js",
+        "rawKB": 111.5,
+        "gzKB": 43,
+        "libs": [
+          "gsap"
+        ],
+        "own": true
+      },
+      {
+        "file": "2uz74cxvnxlca.js",
+        "rawKB": 136.8,
+        "gzKB": 41.5,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "39sq4xm45yr89.js",
+        "rawKB": 51.4,
+        "gzKB": 18.2,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "3zdndph4bg48x.js",
+        "rawKB": 50.8,
+        "gzKB": 17,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "0-n15np6i98i0.js",
+        "rawKB": 32.8,
+        "gzKB": 13.4,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "3w24um0si6w-2.js",
+        "rawKB": 41.3,
+        "gzKB": 13.1,
+        "libs": [],
+        "own": false
+      },
+      {
+        "file": "2gz-ztgt06tdd.js",
+        "rawKB": 35.8,
+        "gzKB": 12.3,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "34jd45txuktih.js",
+        "rawKB": 39.1,
+        "gzKB": 11.3,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "0uvlj2rix_ppm.js",
+        "rawKB": 31.9,
+        "gzKB": 11,
+        "libs": [],
+        "own": false
+      },
+      {
+        "file": "1dd0bn69hnsde.js",
+        "rawKB": 32.4,
+        "gzKB": 10.1,
+        "libs": [
+          "lenis"
+        ],
+        "own": true
+      },
+      {
+        "file": "18i-47d--9oa5.js",
+        "rawKB": 27.7,
+        "gzKB": 9.5,
+        "libs": [
+          "lenis"
+        ],
+        "own": true
+      },
+      {
+        "file": "2ux7jyof0rasp.js",
+        "rawKB": 29.6,
+        "gzKB": 9.3,
+        "libs": [],
+        "own": false
+      },
+      {
+        "file": "0cfs4oomuhqk6.js",
+        "rawKB": 24,
+        "gzKB": 9.1,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "11t-zvhau74r5.js",
+        "rawKB": 32.6,
+        "gzKB": 8.5,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "29r2uj1wue3lq.js",
+        "rawKB": 20.9,
+        "gzKB": 7.7,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "2ds1mpuxcxniy.js",
+        "rawKB": 22.5,
+        "gzKB": 7.4,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "2banaj2dkswt_.js",
+        "rawKB": 16.7,
+        "gzKB": 6.2,
+        "libs": [],
+        "own": false
+      },
+      {
+        "file": "1c67ydjwu4qr3.js",
+        "rawKB": 18.5,
+        "gzKB": 5.9,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "215hk10_vr6mx.js",
+        "rawKB": 16,
+        "gzKB": 5.6,
+        "libs": [],
+        "own": false
+      },
+      {
+        "file": "turbopack-3-ry682tkyiqk.js",
+        "rawKB": 9.8,
+        "gzKB": 3.8,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "2-rfe7f68bjl5.js",
+        "rawKB": 13.8,
+        "gzKB": 3.5,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "1ckvzn7sfprko.js",
+        "rawKB": 5.5,
+        "gzKB": 2,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "0lzyu0ljegi3k.js",
+        "rawKB": 5.3,
+        "gzKB": 2,
+        "libs": [],
+        "own": false
+      },
+      {
+        "file": "26hcm1pao0tnb.js",
+        "rawKB": 3.8,
+        "gzKB": 1.6,
+        "libs": [],
+        "own": false
+      }
+    ]
+  },
+  "/shop": {
+    "chunks": 28,
+    "rawKB": 1344.8,
+    "gzKB": 438.4,
+    "ownGzKB": 315.7,
+    "ownFramer": false,
+    "framerKB": 49.1,
+    "list": [
+      {
+        "file": "2abgvfcolnmqq.js",
+        "rawKB": 224.2,
+        "gzKB": 70.1,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "2h4pi0zgsnqr7.js",
+        "rawKB": 145.1,
+        "gzKB": 49.1,
+        "libs": [
+          "framer-motion"
+        ],
+        "own": false
+      },
+      {
+        "file": "2l8fpcfss9uqn.js",
+        "rawKB": 161.1,
+        "gzKB": 44.5,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "0qa6pfjd3c4nu.js",
+        "rawKB": 111.5,
+        "gzKB": 43,
+        "libs": [
+          "gsap"
+        ],
+        "own": true
+      },
+      {
+        "file": "2uz74cxvnxlca.js",
+        "rawKB": 136.8,
+        "gzKB": 41.5,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "39sq4xm45yr89.js",
+        "rawKB": 51.4,
+        "gzKB": 18.2,
+        "libs": [],
+        "own": false
+      },
+      {
+        "file": "3zdndph4bg48x.js",
+        "rawKB": 50.8,
+        "gzKB": 17,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "0-n15np6i98i0.js",
+        "rawKB": 32.8,
+        "gzKB": 13.4,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "3w24um0si6w-2.js",
+        "rawKB": 41.3,
+        "gzKB": 13.1,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "2gz-ztgt06tdd.js",
+        "rawKB": 35.8,
+        "gzKB": 12.3,
+        "libs": [],
+        "own": false
+      },
+      {
+        "file": "34jd45txuktih.js",
+        "rawKB": 39.1,
+        "gzKB": 11.3,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "0uvlj2rix_ppm.js",
+        "rawKB": 31.9,
+        "gzKB": 11,
+        "libs": [],
+        "own": false
+      },
+      {
+        "file": "1dd0bn69hnsde.js",
+        "rawKB": 32.4,
+        "gzKB": 10.1,
+        "libs": [
+          "lenis"
+        ],
+        "own": true
+      },
+      {
+        "file": "18i-47d--9oa5.js",
+        "rawKB": 27.7,
+        "gzKB": 9.5,
+        "libs": [
+          "lenis"
+        ],
+        "own": true
+      },
+      {
+        "file": "2ux7jyof0rasp.js",
+        "rawKB": 29.6,
+        "gzKB": 9.3,
+        "libs": [],
+        "own": false
+      },
+      {
+        "file": "0cfs4oomuhqk6.js",
+        "rawKB": 24,
+        "gzKB": 9.1,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "11t-zvhau74r5.js",
+        "rawKB": 32.6,
+        "gzKB": 8.5,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "29r2uj1wue3lq.js",
+        "rawKB": 20.9,
+        "gzKB": 7.7,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "2ds1mpuxcxniy.js",
+        "rawKB": 22.5,
+        "gzKB": 7.4,
+        "libs": [],
+        "own": false
+      },
+      {
+        "file": "2banaj2dkswt_.js",
+        "rawKB": 16.7,
+        "gzKB": 6.2,
+        "libs": [],
+        "own": false
+      },
+      {
+        "file": "1c67ydjwu4qr3.js",
+        "rawKB": 18.5,
+        "gzKB": 5.9,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "215hk10_vr6mx.js",
+        "rawKB": 16,
+        "gzKB": 5.6,
+        "libs": [],
+        "own": false
+      },
+      {
+        "file": "turbopack-3-ry682tkyiqk.js",
+        "rawKB": 9.8,
+        "gzKB": 3.8,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "2-rfe7f68bjl5.js",
+        "rawKB": 13.8,
+        "gzKB": 3.5,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "1ckvzn7sfprko.js",
+        "rawKB": 5.5,
+        "gzKB": 2,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "0lzyu0ljegi3k.js",
+        "rawKB": 5.3,
+        "gzKB": 2,
+        "libs": [],
+        "own": false
+      },
+      {
+        "file": "1f4jx7mvafp81.js",
+        "rawKB": 3.9,
+        "gzKB": 1.7,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "26hcm1pao0tnb.js",
+        "rawKB": 3.8,
+        "gzKB": 1.6,
+        "libs": [],
+        "own": false
+      }
+    ]
+  },
+  "/products/rider-leather-biker-jacket-de001": {
+    "chunks": 27,
+    "rawKB": 1340.9,
+    "gzKB": 436.7,
+    "ownGzKB": 308.5,
+    "ownFramer": false,
+    "framerKB": 49.1,
+    "list": [
+      {
+        "file": "2abgvfcolnmqq.js",
+        "rawKB": 224.2,
+        "gzKB": 70.1,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "2h4pi0zgsnqr7.js",
+        "rawKB": 145.1,
+        "gzKB": 49.1,
+        "libs": [
+          "framer-motion"
+        ],
+        "own": false
+      },
+      {
+        "file": "2l8fpcfss9uqn.js",
+        "rawKB": 161.1,
+        "gzKB": 44.5,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "0qa6pfjd3c4nu.js",
+        "rawKB": 111.5,
+        "gzKB": 43,
+        "libs": [
+          "gsap"
+        ],
+        "own": true
+      },
+      {
+        "file": "2uz74cxvnxlca.js",
+        "rawKB": 136.8,
+        "gzKB": 41.5,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "39sq4xm45yr89.js",
+        "rawKB": 51.4,
+        "gzKB": 18.2,
+        "libs": [],
+        "own": false
+      },
+      {
+        "file": "3zdndph4bg48x.js",
+        "rawKB": 50.8,
+        "gzKB": 17,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "0-n15np6i98i0.js",
+        "rawKB": 32.8,
+        "gzKB": 13.4,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "3w24um0si6w-2.js",
+        "rawKB": 41.3,
+        "gzKB": 13.1,
+        "libs": [],
+        "own": false
+      },
+      {
+        "file": "2gz-ztgt06tdd.js",
+        "rawKB": 35.8,
+        "gzKB": 12.3,
+        "libs": [],
+        "own": false
+      },
+      {
+        "file": "34jd45txuktih.js",
+        "rawKB": 39.1,
+        "gzKB": 11.3,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "0uvlj2rix_ppm.js",
+        "rawKB": 31.9,
+        "gzKB": 11,
+        "libs": [],
+        "own": false
+      },
+      {
+        "file": "1dd0bn69hnsde.js",
+        "rawKB": 32.4,
+        "gzKB": 10.1,
+        "libs": [
+          "lenis"
+        ],
+        "own": true
+      },
+      {
+        "file": "18i-47d--9oa5.js",
+        "rawKB": 27.7,
+        "gzKB": 9.5,
+        "libs": [
+          "lenis"
+        ],
+        "own": true
+      },
+      {
+        "file": "2ux7jyof0rasp.js",
+        "rawKB": 29.6,
+        "gzKB": 9.3,
+        "libs": [],
+        "own": false
+      },
+      {
+        "file": "0cfs4oomuhqk6.js",
+        "rawKB": 24,
+        "gzKB": 9.1,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "11t-zvhau74r5.js",
+        "rawKB": 32.6,
+        "gzKB": 8.5,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "29r2uj1wue3lq.js",
+        "rawKB": 20.9,
+        "gzKB": 7.7,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "2ds1mpuxcxniy.js",
+        "rawKB": 22.5,
+        "gzKB": 7.4,
+        "libs": [],
+        "own": false
+      },
+      {
+        "file": "2banaj2dkswt_.js",
+        "rawKB": 16.7,
+        "gzKB": 6.2,
+        "libs": [],
+        "own": false
+      },
+      {
+        "file": "1c67ydjwu4qr3.js",
+        "rawKB": 18.5,
+        "gzKB": 5.9,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "215hk10_vr6mx.js",
+        "rawKB": 16,
+        "gzKB": 5.6,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "turbopack-3-ry682tkyiqk.js",
+        "rawKB": 9.8,
+        "gzKB": 3.8,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "2-rfe7f68bjl5.js",
+        "rawKB": 13.8,
+        "gzKB": 3.5,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "1ckvzn7sfprko.js",
+        "rawKB": 5.5,
+        "gzKB": 2,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "0lzyu0ljegi3k.js",
+        "rawKB": 5.3,
+        "gzKB": 2,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "26hcm1pao0tnb.js",
+        "rawKB": 3.8,
+        "gzKB": 1.6,
+        "libs": [],
+        "own": false
+      }
+    ]
+  },
+  "/cart": {
+    "chunks": 23,
+    "rawKB": 1274.4,
+    "gzKB": 413.9,
+    "ownGzKB": 373.3,
+    "ownFramer": true,
+    "framerKB": 49.1,
+    "list": [
+      {
+        "file": "2abgvfcolnmqq.js",
+        "rawKB": 224.2,
+        "gzKB": 70.1,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "2h4pi0zgsnqr7.js",
+        "rawKB": 145.1,
+        "gzKB": 49.1,
+        "libs": [
+          "framer-motion"
+        ],
+        "own": true
+      },
+      {
+        "file": "2l8fpcfss9uqn.js",
+        "rawKB": 161.1,
+        "gzKB": 44.5,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "0qa6pfjd3c4nu.js",
+        "rawKB": 111.5,
+        "gzKB": 43,
+        "libs": [
+          "gsap"
+        ],
+        "own": true
+      },
+      {
+        "file": "2uz74cxvnxlca.js",
+        "rawKB": 136.8,
+        "gzKB": 41.5,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "39sq4xm45yr89.js",
+        "rawKB": 51.4,
+        "gzKB": 18.2,
+        "libs": [],
+        "own": false
+      },
+      {
+        "file": "3zdndph4bg48x.js",
+        "rawKB": 50.8,
+        "gzKB": 17,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "0-n15np6i98i0.js",
+        "rawKB": 32.8,
+        "gzKB": 13.4,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "3w24um0si6w-2.js",
+        "rawKB": 41.3,
+        "gzKB": 13.1,
+        "libs": [],
+        "own": false
+      },
+      {
+        "file": "2gz-ztgt06tdd.js",
+        "rawKB": 35.8,
+        "gzKB": 12.3,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "34jd45txuktih.js",
+        "rawKB": 39.1,
+        "gzKB": 11.3,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "0uvlj2rix_ppm.js",
+        "rawKB": 31.9,
+        "gzKB": 11,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "1dd0bn69hnsde.js",
+        "rawKB": 32.4,
+        "gzKB": 10.1,
+        "libs": [
+          "lenis"
+        ],
+        "own": true
+      },
+      {
+        "file": "18i-47d--9oa5.js",
+        "rawKB": 27.7,
+        "gzKB": 9.5,
+        "libs": [
+          "lenis"
+        ],
+        "own": true
+      },
+      {
+        "file": "0cfs4oomuhqk6.js",
+        "rawKB": 24,
+        "gzKB": 9.1,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "11t-zvhau74r5.js",
+        "rawKB": 32.6,
+        "gzKB": 8.5,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "29r2uj1wue3lq.js",
+        "rawKB": 20.9,
+        "gzKB": 7.7,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "2ds1mpuxcxniy.js",
+        "rawKB": 22.5,
+        "gzKB": 7.4,
+        "libs": [],
+        "own": false
+      },
+      {
+        "file": "1c67ydjwu4qr3.js",
+        "rawKB": 18.5,
+        "gzKB": 5.9,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "turbopack-3-ry682tkyiqk.js",
+        "rawKB": 9.8,
+        "gzKB": 3.8,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "2-rfe7f68bjl5.js",
+        "rawKB": 13.8,
+        "gzKB": 3.5,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "1ckvzn7sfprko.js",
+        "rawKB": 5.5,
+        "gzKB": 2,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "21lbdr79hi9-z.js",
+        "rawKB": 4.9,
+        "gzKB": 1.9,
+        "libs": [],
+        "own": false
+      }
+    ]
+  },
+  "/auth": {
+    "chunks": 23,
+    "rawKB": 1274.4,
+    "gzKB": 413.9,
+    "ownGzKB": 373.3,
+    "ownFramer": true,
+    "framerKB": 49.1,
+    "list": [
+      {
+        "file": "2abgvfcolnmqq.js",
+        "rawKB": 224.2,
+        "gzKB": 70.1,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "2h4pi0zgsnqr7.js",
+        "rawKB": 145.1,
+        "gzKB": 49.1,
+        "libs": [
+          "framer-motion"
+        ],
+        "own": true
+      },
+      {
+        "file": "2l8fpcfss9uqn.js",
+        "rawKB": 161.1,
+        "gzKB": 44.5,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "0qa6pfjd3c4nu.js",
+        "rawKB": 111.5,
+        "gzKB": 43,
+        "libs": [
+          "gsap"
+        ],
+        "own": true
+      },
+      {
+        "file": "2uz74cxvnxlca.js",
+        "rawKB": 136.8,
+        "gzKB": 41.5,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "39sq4xm45yr89.js",
+        "rawKB": 51.4,
+        "gzKB": 18.2,
+        "libs": [],
+        "own": false
+      },
+      {
+        "file": "3zdndph4bg48x.js",
+        "rawKB": 50.8,
+        "gzKB": 17,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "0-n15np6i98i0.js",
+        "rawKB": 32.8,
+        "gzKB": 13.4,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "3w24um0si6w-2.js",
+        "rawKB": 41.3,
+        "gzKB": 13.1,
+        "libs": [],
+        "own": false
+      },
+      {
+        "file": "2gz-ztgt06tdd.js",
+        "rawKB": 35.8,
+        "gzKB": 12.3,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "34jd45txuktih.js",
+        "rawKB": 39.1,
+        "gzKB": 11.3,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "0uvlj2rix_ppm.js",
+        "rawKB": 31.9,
+        "gzKB": 11,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "1dd0bn69hnsde.js",
+        "rawKB": 32.4,
+        "gzKB": 10.1,
+        "libs": [
+          "lenis"
+        ],
+        "own": true
+      },
+      {
+        "file": "18i-47d--9oa5.js",
+        "rawKB": 27.7,
+        "gzKB": 9.5,
+        "libs": [
+          "lenis"
+        ],
+        "own": true
+      },
+      {
+        "file": "0cfs4oomuhqk6.js",
+        "rawKB": 24,
+        "gzKB": 9.1,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "11t-zvhau74r5.js",
+        "rawKB": 32.6,
+        "gzKB": 8.5,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "29r2uj1wue3lq.js",
+        "rawKB": 20.9,
+        "gzKB": 7.7,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "2ds1mpuxcxniy.js",
+        "rawKB": 22.5,
+        "gzKB": 7.4,
+        "libs": [],
+        "own": false
+      },
+      {
+        "file": "1c67ydjwu4qr3.js",
+        "rawKB": 18.5,
+        "gzKB": 5.9,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "turbopack-3-ry682tkyiqk.js",
+        "rawKB": 9.8,
+        "gzKB": 3.8,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "2-rfe7f68bjl5.js",
+        "rawKB": 13.8,
+        "gzKB": 3.5,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "1ckvzn7sfprko.js",
+        "rawKB": 5.5,
+        "gzKB": 2,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "21lbdr79hi9-z.js",
+        "rawKB": 4.9,
+        "gzKB": 1.9,
+        "libs": [],
+        "own": false
+      }
+    ]
+  },
+  "/faq": {
+    "chunks": 25,
+    "rawKB": 1319.6,
+    "gzKB": 429.1,
+    "ownGzKB": 302.5,
+    "ownFramer": false,
+    "framerKB": 49.1,
+    "list": [
+      {
+        "file": "2abgvfcolnmqq.js",
+        "rawKB": 224.2,
+        "gzKB": 70.1,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "2h4pi0zgsnqr7.js",
+        "rawKB": 145.1,
+        "gzKB": 49.1,
+        "libs": [
+          "framer-motion"
+        ],
+        "own": false
+      },
+      {
+        "file": "2l8fpcfss9uqn.js",
+        "rawKB": 161.1,
+        "gzKB": 44.5,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "0qa6pfjd3c4nu.js",
+        "rawKB": 111.5,
+        "gzKB": 43,
+        "libs": [
+          "gsap"
+        ],
+        "own": true
+      },
+      {
+        "file": "2uz74cxvnxlca.js",
+        "rawKB": 136.8,
+        "gzKB": 41.5,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "39sq4xm45yr89.js",
+        "rawKB": 51.4,
+        "gzKB": 18.2,
+        "libs": [],
+        "own": false
+      },
+      {
+        "file": "3zdndph4bg48x.js",
+        "rawKB": 50.8,
+        "gzKB": 17,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "0-n15np6i98i0.js",
+        "rawKB": 32.8,
+        "gzKB": 13.4,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "3w24um0si6w-2.js",
+        "rawKB": 41.3,
+        "gzKB": 13.1,
+        "libs": [],
+        "own": false
+      },
+      {
+        "file": "2gz-ztgt06tdd.js",
+        "rawKB": 35.8,
+        "gzKB": 12.3,
+        "libs": [],
+        "own": false
+      },
+      {
+        "file": "34jd45txuktih.js",
+        "rawKB": 39.1,
+        "gzKB": 11.3,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "0uvlj2rix_ppm.js",
+        "rawKB": 31.9,
+        "gzKB": 11,
+        "libs": [],
+        "own": false
+      },
+      {
+        "file": "1dd0bn69hnsde.js",
+        "rawKB": 32.4,
+        "gzKB": 10.1,
+        "libs": [
+          "lenis"
+        ],
+        "own": true
+      },
+      {
+        "file": "18i-47d--9oa5.js",
+        "rawKB": 27.7,
+        "gzKB": 9.5,
+        "libs": [
+          "lenis"
+        ],
+        "own": true
+      },
+      {
+        "file": "2ux7jyof0rasp.js",
+        "rawKB": 29.6,
+        "gzKB": 9.3,
+        "libs": [],
+        "own": false
+      },
+      {
+        "file": "0cfs4oomuhqk6.js",
+        "rawKB": 24,
+        "gzKB": 9.1,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "11t-zvhau74r5.js",
+        "rawKB": 32.6,
+        "gzKB": 8.5,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "29r2uj1wue3lq.js",
+        "rawKB": 20.9,
+        "gzKB": 7.7,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "2ds1mpuxcxniy.js",
+        "rawKB": 22.5,
+        "gzKB": 7.4,
+        "libs": [],
+        "own": false
+      },
+      {
+        "file": "2banaj2dkswt_.js",
+        "rawKB": 16.7,
+        "gzKB": 6.2,
+        "libs": [],
+        "own": false
+      },
+      {
+        "file": "1c67ydjwu4qr3.js",
+        "rawKB": 18.5,
+        "gzKB": 5.9,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "turbopack-3-ry682tkyiqk.js",
+        "rawKB": 9.8,
+        "gzKB": 3.8,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "2-rfe7f68bjl5.js",
+        "rawKB": 13.8,
+        "gzKB": 3.5,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "1ckvzn7sfprko.js",
+        "rawKB": 5.5,
+        "gzKB": 2,
+        "libs": [],
+        "own": true
+      },
+      {
+        "file": "26hcm1pao0tnb.js",
+        "rawKB": 3.8,
+        "gzKB": 1.6,
+        "libs": [],
+        "own": true
+      }
+    ]
+  }
+}

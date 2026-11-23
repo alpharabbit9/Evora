@@ -1,0 +1,201 @@
+[api] Loaded Prisma config from prisma.config.ts.
+[api] 
+[api] Prisma schema loaded from prisma\schema.prisma.
+[api] Datasource "db": PostgreSQL database "commercecore_e2e", schema "public" at "localhost:5432"
+[api] 
+[api] 18 migrations found in prisma/migrations
+[api] 
+[api] 
+[api] No pending migrations to apply.
+[api] Knowledge: 5 embedded, 0 unchanged, 0 removed
+[api] Products:  1 embedded, 0 unchanged, 0 removed
+[web] ⚠ Your version of Next.js is affected by a known security vulnerability. This command is continuing after the upgrade reminder.
+[web] Reference: https://registry.npmjs.org/-/npm/v1/security/advisories/bulk
+
+Running 55 tests using 1 worker
+
+  ok  1 [chromium] › tests\accessibility.spec.ts:44:3 › accessibility › public pages (19.0s)
+  ok  2 [chromium] › tests\accessibility.spec.ts:59:3 › accessibility › bag and checkout (11.5s)
+  ok  3 [chromium] › tests\hero.spec.ts:138:9 › home-page hero › desktop (1440px) › with motion › every slide change shows the model within 1.5s, never an empty figure (10.7s)
+  ok  4 [chromium] › tests\hero.spec.ts:153:9 › home-page hero › desktop (1440px) › with motion › the slide layers do not shift layout while they load and change (4.9s)
+  ok  5 [chromium] › tests\hero.spec.ts:202:7 › home-page hero › desktop (1440px) › under reduced motion the model still appears on every slide (7.0s)
+  ok  6 [chromium] › tests\hero.spec.ts:211:7 › home-page hero › desktop (1440px) › the model hides at most one letter of each slide word (3.3s)
+  ok  7 [chromium] › tests\hero.spec.ts:138:9 › home-page hero › phone (390px) › with motion › every slide change shows the model within 1.5s, never an empty figure (9.6s)
+  ok  8 [chromium] › tests\hero.spec.ts:153:9 › home-page hero › phone (390px) › with motion › the slide layers do not shift layout while they load and change (3.8s)
+  ok  9 [chromium] › tests\hero.spec.ts:202:7 › home-page hero › phone (390px) › under reduced motion the model still appears on every slide (7.0s)
+  ok 10 [chromium] › tests\hero.spec.ts:211:7 › home-page hero › phone (390px) › the model hides at most one letter of each slide word (3.7s)
+  ok 11 [chromium] › tests\homepage-sections.spec.ts:22:3 › home page sections › the chapters run in order, with the Dark Edit as a dark island (3.4s)
+  ok 12 [chromium] › tests\homepage-sections.spec.ts:69:5 › home page sections › no horizontal overflow at 390px (3.5s)
+  ok 13 [chromium] › tests\homepage-sections.spec.ts:69:5 › home page sections › no horizontal overflow at 768px (3.2s)
+  ok 14 [chromium] › tests\homepage-sections.spec.ts:69:5 › home page sections › no horizontal overflow at 1280px (3.1s)
+  ok 15 [chromium] › tests\homepage-sections.spec.ts:69:5 › home page sections › no horizontal overflow at 1440px (3.0s)
+  x  16 [chromium] › tests\micro-interactions.spec.ts:74:5 › home page micro-interactions › with motion › CTAs and hero controls dip while pressed, and come back (4.8s)
+  ok 17 [chromium] › tests\micro-interactions.spec.ts:103:5 › home page micro-interactions › with motion › the autoplay hairline fills, and holds while the hero is hovered (6.0s)
+  ok 18 [chromium] › tests\micro-interactions.spec.ts:122:5 › home page micro-interactions › with motion › garments beside the mouse swing wider, the one under it does not (14.7s)
+  ok 19 [chromium] › tests\micro-interactions.spec.ts:159:5 › home page micro-interactions › with reduced motion › nothing dips, and the rail ignores the pointer (6.3s)
+  ok 20 [chromium] › tests\motion.spec.ts:104:5 › home page motion › with motion › Dark Edit photos wipe up into their frames, then the clip is cleared (9.6s)
+  ok 21 [chromium] › tests\motion.spec.ts:130:5 › home page motion › with motion › the service strip items never move (2.6s)
+  ok 22 [chromium] › tests\motion.spec.ts:144:5 › home page motion › with motion › the footer wordmark letters rise once and settle in place (4.1s)
+  ok 23 [chromium] › tests\motion.spec.ts:162:5 › home page motion › with motion › the hero drift and autoplay hold while the hero is off screen (14.7s)
+  ok 24 [chromium] › tests\motion.spec.ts:183:5 › home page motion › with motion › the rail's garments slide in along the rod, and the sway pauses off screen (3.5s)
+  ok 25 [chromium] › tests\motion.spec.ts:215:5 › home page motion › with reduced motion › the rail fades in without sliding, and never sways (2.9s)
+  ok 26 [chromium] › tests\motion.spec.ts:231:5 › home page motion › with reduced motion › nothing is clipped or translated; the footer word fades (3.0s)
+  ok 27 [chromium] › tests\navigation.spec.ts:13:3 › header navigation › the primary link for the page being viewed is marked current (3.9s)
+  ok 28 [chromium] › tests\navigation.spec.ts:30:3 › header navigation › Escape closes the menu and returns focus to its button (2.7s)
+  ok 29 [chromium] › tests\navigation.spec.ts:43:3 › header navigation › a click outside the header closes the menu (2.6s)
+  ok 30 [chromium] › tests\navigation.spec.ts:56:3 › header navigation › the footer offers account links that match the session (4.8s)
+  ok 31 [chromium] › tests\navigation.spec.ts:70:3 › header navigation › a closed menu is not in the tab order (2.5s)
+  ok 32 [chromium] › tests\rail-3d.spec.ts:36:3 › recent arrivals WebGL layer › mounts for a mouse near the rail, and hides only the DOM photos (6.3s)
+  ok 33 [chromium] › tests\rail-3d.spec.ts:57:3 › recent arrivals WebGL layer › gives the CSS rail back when the WebGL context is lost (4.8s)
+  ok 34 [chromium] › tests\rail-3d.spec.ts:78:3 › recent arrivals WebGL layer › ?rail=css keeps the CSS rail (3.3s)
+  ok 35 [chromium] › tests\rail-3d.spec.ts:89:5 › recent arrivals WebGL layer › with reduced motion › keeps the CSS rail (3.1s)
+  ok 36 [chromium] › tests\rail-3d.spec.ts:103:3 › recent arrivals WebGL layer on a touch phone › keeps the CSS rail (5.6s)
+  ok 37 [chromium] › tests\responsive.spec.ts:27:3 › no sideways overflow at 360px (2.8s)
+  ok 38 [chromium] › tests\responsive.spec.ts:27:3 › no sideways overflow at 390px (3.1s)
+  ok 39 [chromium] › tests\responsive.spec.ts:27:3 › no sideways overflow at 768px (2.9s)
+  ok 40 [chromium] › tests\responsive.spec.ts:27:3 › no sideways overflow at 1024px (3.1s)
+  ok 41 [chromium] › tests\responsive.spec.ts:27:3 › no sideways overflow at 1280px (3.1s)
+  ok 42 [chromium] › tests\responsive.spec.ts:27:3 › no sideways overflow at 1440px (3.4s)
+  ok 43 [chromium] › tests\responsive.spec.ts:27:3 › no sideways overflow at 1920px (2.7s)
+  x  44 [chromium] › tests\responsive.spec.ts:47:3 › on a touch phone › every control in the header, hero and footer is a 44px target (6.6s)
+  ok 45 [chromium] › tests\responsive.spec.ts:96:3 › on a touch phone › the rail snaps a garment to the centre and fades only the edges with more rail (3.8s)
+  x  46 [chromium] › tests\responsive.spec.ts:139:1 › the Dark Edit is three columns at 768, with the lead tile two by two (12.2s)
+  ok 47 [chromium] › tests\responsive.spec.ts:166:3 › the header on scroll › hides on scroll-down past the hero and comes back on scroll-up (16.6s)
+  ok 48 [chromium] › tests\responsive.spec.ts:210:3 › the header on scroll › never hides on a page without a hero (3.9s)
+  ok 49 [chromium] › tests\responsive.spec.ts:228:3 › the header under reduced motion › never hides (4.3s)
+  ok 50 [chromium] › tests\storefront.spec.ts:11:3 › storefront › the shop lists the published product (1.8s)
+  ok 51 [chromium] › tests\storefront.spec.ts:16:3 › storefront › search finds it by name (1.4s)
+  ok 52 [chromium] › tests\storefront.spec.ts:21:3 › storefront › a sold-out size cannot be chosen (1.3s)
+  ok 53 [chromium] › tests\storefront.spec.ts:32:3 › storefront › an unknown product answers with a not-found page (1.3s)
+  ok 54 [chromium] › tests\storefront.spec.ts:48:3 › storefront › the home page shows no unconfirmed content in a production build (1.8s)
+  ok 55 [chromium] › tests\storefront.spec.ts:60:3 › storefront › a new customer sees an empty bag with a way back to the shop (2.9s)
+
+
+  1) [chromium] › tests\micro-interactions.spec.ts:74:5 › home page micro-interactions › with motion › CTAs and hero controls dip while pressed, and come back 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 2
+
+      Object {
+    -   "held": "0.97",
+    -   "released": "none",
+    +   "held": "0.970849",
+    +   "released": "0.999982",
+      }
+
+      78 |       const cta = page.locator('[data-hero="cta"] a').first();
+      79 |       await cta.waitFor();
+    > 80 |       expect(await pressScale(page, cta)).toEqual({
+         |                                           ^
+      81 |         held: "0.97",
+      82 |         released: "none",
+      83 |       });
+        at C:\Projects\Ecommerece Webapp\CommerceCore\e2e\tests\micro-interactions.spec.ts:80:43
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\micro-interactions-home-pa-f4b69-while-pressed-and-come-back-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\micro-interactions-home-pa-f4b69-while-pressed-and-come-back-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\micro-interactions-home-pa-f4b69-while-pressed-and-come-back-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\micro-interactions-home-pa-f4b69-while-pressed-and-come-back-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › tests\responsive.spec.ts:47:3 › on a touch phone › every control in the header, hero and footer is a 44px target 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 15
+
+    - Array []
+    + Array [
+    +   "Open menu at 0,0",
+    +   "EVORA home at 0,0",
+    +   "Search at 0,0",
+    +   "Cart at 0,0",
+    +   "Shop now at 0,0",
+    +   "Explore collection at 0,0",
+    +   "Slide 1 of 3: Heritage collection at 0,0",
+    +   "Slide 2 of 3: Modern elegance at 0,0",
+    +   "Slide 3 of 3: New season at 0,0",
+    +   "Previous slide at 0,0",
+    +   "Next slide at 0,0",
+    +   "Pause slideshow at 0,0",
+    +   "New arrivals at 0,0",
+    + ]
+
+      91 |       return out;
+      92 |     });
+    > 93 |     expect(misses).toEqual([]);
+         |                    ^
+      94 |   });
+      95 |
+      96 |   test("the rail snaps a garment to the centre and fades only the edges with more rail", async ({
+        at C:\Projects\Ecommerece Webapp\CommerceCore\e2e\tests\responsive.spec.ts:93:20
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\responsive-on-a-touch-phon-46ae2-and-footer-is-a-44px-target-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\responsive-on-a-touch-phon-46ae2-and-footer-is-a-44px-target-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\responsive-on-a-touch-phon-46ae2-and-footer-is-a-44px-target-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\responsive-on-a-touch-phon-46ae2-and-footer-is-a-44px-target-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [chromium] › tests\responsive.spec.ts:139:1 › the Dark Edit is three columns at 768, with the lead tile two by two 
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('section[aria-labelledby="dark-edit-heading"] ul').first().locator(':scope > li')
+    Expected: 9
+    Received: 1
+    Timeout:  10000ms
+
+    Call log:
+      - Expect "toHaveCount" with timeout 10000ms
+      - waiting for locator('section[aria-labelledby="dark-edit-heading"] ul').first().locator(':scope > li')
+        24 × locator resolved to 1 element
+           - unexpected value "1"
+
+
+      146 |     .first();
+      147 |   await grid.scrollIntoViewIfNeeded();
+    > 148 |   await expect(grid.locator(":scope > li")).toHaveCount(9);
+          |                                             ^
+      149 |   const shape = await grid.evaluate((ul) => {
+      150 |     const items = [...ul.children].map((li) => li.getBoundingClientRect());
+      151 |     const lead = items[0]!;
+        at C:\Projects\Ecommerece Webapp\CommerceCore\e2e\tests\responsive.spec.ts:148:45
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\responsive-the-Dark-Edit-i-a50f9-th-the-lead-tile-two-by-two-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\responsive-the-Dark-Edit-i-a50f9-th-the-lead-tile-two-by-two-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\responsive-the-Dark-Edit-i-a50f9-th-the-lead-tile-two-by-two-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\responsive-the-Dark-Edit-i-a50f9-th-the-lead-tile-two-by-two-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3 failed
+    [chromium] › tests\micro-interactions.spec.ts:74:5 › home page micro-interactions › with motion › CTAs and hero controls dip while pressed, and come back 
+    [chromium] › tests\responsive.spec.ts:47:3 › on a touch phone › every control in the header, hero and footer is a 44px target 
+    [chromium] › tests\responsive.spec.ts:139:1 › the Dark Edit is three columns at 768, with the lead tile two by two 
+  52 passed (6.2m)

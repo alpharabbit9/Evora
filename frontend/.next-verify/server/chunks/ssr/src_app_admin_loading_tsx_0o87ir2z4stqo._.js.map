@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../../src/app/admin/loading.tsx"],"sourcesContent":["import { AdminPageSkeleton } from '@/components/admin/admin-skeleton';\n\nexport default function AdminLoading() {\n  return <AdminPageSkeleton />;\n}\n"],"names":["AdminLoading"],"mappings":"uDAAA,EAAA,EAAA,CAAA,CAAA,wBAEe,SAASA,EACtB,MAAO,CAAA,EAAA,EAAA,GAAA,EAAC,EAAA,CAAiB,CAAA,CAAA,EAC3B"}

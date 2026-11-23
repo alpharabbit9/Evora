@@ -14,7 +14,7 @@ import { z } from 'zod';
  */
 
 /** `.trim()` before `.min(1)`: a field of spaces must fail here, as it does in the CHECK. */
-const requiredText = (max: number) => z.string().trim().min(1).max(max);
+export const requiredText = (max: number) => z.string().trim().min(1).max(max);
 
 /**
  * A nullable column. On create the field may be omitted (stored as NULL) or given a
@@ -26,7 +26,7 @@ const optionalOnCreate = (max: number) => requiredText(max).nullable().default(n
 const optionalOnUpdate = (max: number) => requiredText(max).nullable().optional();
 
 /** CHECK `addresses_country_code_check`: exactly two characters, upper case. */
-const countryCode = z
+export const countryCode = z
   .string()
   .trim()
   .regex(/^[A-Za-z]{2}$/, 'Must be a two-letter ISO country code')

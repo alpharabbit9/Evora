@@ -1,12 +1,14 @@
 import { apiGet, apiGetPage, type QueryValue } from '@/lib/api-client';
 
 import type {
+  ArrivalProduct,
   CategoryNode,
   Gender,
   ProductDetail,
   ProductFacets,
   ProductPage,
   ProductSort,
+  SearchSuggestions,
 } from './types';
 
 /**
@@ -68,6 +70,14 @@ export function fetchProductFacets(
   });
 }
 
+/** Newest public products that have a cut-out, newest first (ADR 0017). */
+export function fetchArrivals(limit: number, signal?: AbortSignal): Promise<ArrivalProduct[]> {
+  return apiGet<ArrivalProduct[]>('/products/arrivals', {
+    query: { limit },
+    ...(signal ? { signal } : {}),
+  });
+}
+
 export function fetchCategories(signal?: AbortSignal): Promise<CategoryNode[]> {
   return apiGet<CategoryNode[]>('/categories', signal ? { signal } : {});
 }
@@ -76,9 +86,24 @@ export function fetchProduct(slug: string): Promise<ProductDetail> {
   return apiGet<ProductDetail>(`/products/${encodeURIComponent(slug)}`);
 }
 
+/** Needs at least two characters; the API refuses fewer. */
+export const MIN_SUGGESTION_LENGTH = 2;
+
+export function fetchSearchSuggestions(
+  q: string,
+  signal?: AbortSignal,
+): Promise<SearchSuggestions> {
+  return apiGet<SearchSuggestions>('/search/suggestions', {
+    query: { q },
+    ...(signal ? { signal } : {}),
+  });
+}
+
 export const catalogKeys = {
+  suggestions: (q: string) => ['catalog', 'suggestions', q] as const,
   products: (query: ProductQuery) => ['catalog', 'products', query] as const,
   facets: (scope: Pick<ProductQuery, 'q' | 'category' | 'gender'>) =>
     ['catalog', 'facets', scope] as const,
   categories: () => ['catalog', 'categories'] as const,
+  arrivals: (limit: number) => ['catalog', 'arrivals', limit] as const,
 };

@@ -22,6 +22,78 @@
         "dev"
       ],
       "port": 3000
+    },
+    {
+      "name": "frontend-verify",
+      "runtimeExecutable": "cmd",
+      "runtimeArgs": [
+        "/c",
+        "set NEXT_DIST_DIR=.next-verify&& npm --prefix frontend run start -- -p 3030"
+      ],
+      "port": 3030
+    },
+    {
+      "name": "frontend-verify-3000",
+      "runtimeExecutable": "cmd",
+      "runtimeArgs": [
+        "/c",
+        "set NEXT_DIST_DIR=.next-verify&& npm --prefix frontend run start -- -p 3000"
+      ],
+      "port": 3000
+    },
+    {
+      "name": "fake-gateway",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "--prefix",
+        "backend",
+        "run",
+        "payments:fake-gateway"
+      ],
+      "port": 4100
+    },
+    {
+      "name": "backend-fake-payments",
+      "runtimeExecutable": "cmd",
+      "runtimeArgs": [
+        "/c",
+        "set SSLCOMMERZ_BASE_URL=http://127.0.0.1:4100&& set SSLCOMMERZ_STORE_ID=local-fake-store&& set SSLCOMMERZ_STORE_PASSWORD=local-fake-password&& npm --prefix backend run dev"
+      ],
+      "port": 4000
+    },
+    {
+      "name": "fake-llm",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "--prefix",
+        "backend",
+        "run",
+        "assistant:fake-llm"
+      ],
+      "port": 4111
+    },
+    {
+      "name": "backend-fake-assistant",
+      "runtimeExecutable": "cmd",
+      "runtimeArgs": [
+        "/c",
+        "set GROQ_BASE_URL=http://127.0.0.1:4110&& set GROQ_API_KEY=local-fake-groq-key&& set GROQ_CHAT_MODEL=fake-groq-model&& set OPENAI_BASE_URL=http://127.0.0.1:4111&& set OPENAI_API_KEY=local-fake-openai-key&& set OPENAI_CHAT_MODEL=fake-openai-model&& npm --prefix backend run assistant:index&& npm --prefix backend run dev"
+      ],
+      "port": 4000
+    },
+    {
+      "name": "showcase-api",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["showcase-video/capture/env/run.mjs", "api"],
+      "port": 4020,
+      "autoPort": false
+    },
+    {
+      "name": "showcase-web",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["showcase-video/capture/env/run.mjs", "web"],
+      "port": 3020,
+      "autoPort": false
     }
   ]
 }

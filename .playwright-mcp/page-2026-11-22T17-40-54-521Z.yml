@@ -1,0 +1,1036 @@
+- generic [active] [ref=f61e1]:
+  - link "Skip to content" [ref=f61e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=f61e3]:
+    - generic [ref=f61e4]:
+      - generic [ref=f61e5]:
+        - button "Open menu" [ref=f61e6]
+        - navigation "Primary" [ref=f61e12]:
+          - link "Men" [ref=f61e13] [cursor=pointer]:
+            - /url: /collections/men
+          - link "Women" [ref=f61e14] [cursor=pointer]:
+            - /url: /collections/women
+          - link "Accessories" [ref=f61e15] [cursor=pointer]:
+            - /url: /shop?category=accessories
+          - link "Shop all" [ref=f61e16] [cursor=pointer]:
+            - /url: /shop
+      - link "EVORA home" [ref=f61e17] [cursor=pointer]:
+        - /url: /
+        - text: EVORA
+      - generic [ref=f61e18]:
+        - button "Dark theme" [ref=f61e19]
+        - link "Search" [ref=f61e30] [cursor=pointer]:
+          - /url: /search
+        - link "Account" [ref=f61e36] [cursor=pointer]:
+          - /url: /account
+        - link "Wishlist, 2 items" [ref=f61e42] [cursor=pointer]:
+          - /url: /wishlist
+          - generic [ref=f61e46]:
+            - text: Wishlist
+            - generic [ref=f61e47]: (2)
+        - link "Cart, 1 items" [ref=f61e48] [cursor=pointer]:
+          - /url: /cart
+          - generic [ref=f61e53]:
+            - text: Cart
+            - generic [ref=f61e54]: (1)
+  - main [ref=f61e55]:
+    - generic [ref=f61e56]:
+      - generic [ref=f61e57]:
+        - generic [ref=f61e58]:
+          - generic [ref=f61e62]:
+            - generic [ref=f61e63]:
+              - paragraph [ref=f61e64]: The collection
+              - heading "Shop all" [level=1] [ref=f61e66]
+              - paragraph [ref=f61e68]: Outerwear, tailoring, denim, footwear and accessories in a darker register.
+            - navigation "Collections" [ref=f61e69]:
+              - list [ref=f61e70]:
+                - listitem [ref=f61e71]:
+                  - link "Shop all" [ref=f61e72] [cursor=pointer]:
+                    - /url: /shop
+                - listitem [ref=f61e73]:
+                  - link "Men" [ref=f61e74] [cursor=pointer]:
+                    - /url: /collections/men
+                - listitem [ref=f61e78]:
+                  - link "Women" [ref=f61e79] [cursor=pointer]:
+                    - /url: /collections/women
+                - listitem [ref=f61e83]:
+                  - link "New arrivals" [ref=f61e84] [cursor=pointer]:
+                    - /url: /collections/new
+          - paragraph [ref=f61e88]:
+            - text: "Photo:"
+            - link "Samuel Yongbo Kwon" [ref=f61e89] [cursor=pointer]:
+              - /url: https://unsplash.com/photos/6R5srMX5iUk
+            - text: / Unsplash
+        - paragraph [ref=f61e90]: "Demo catalog: product photos and names come from the Kaggle “Fashion Product Images” dataset, and prices and stock are generated for development. Nothing here is for sale."
+      - generic [ref=f61e91]:
+        - generic [ref=f61e92]:
+          - paragraph [ref=f61e94]: 2,748 products
+          - generic [ref=f61e95]:
+            - text: Sort
+            - combobox "Sort" [ref=f61e96]:
+              - option "Featured" [selected]
+              - option "Newest"
+              - 'option "Price: low to high"'
+              - 'option "Price: high to low"'
+              - 'option "Name: A–Z"'
+        - generic [ref=f61e97]:
+          - complementary "Filters" [ref=f61e98]:
+            - generic [ref=f61e99]:
+              - region "Category" [ref=f61e100]:
+                - heading "Category" [level=2] [ref=f61e101]
+                - list [ref=f61e102]:
+                  - listitem [ref=f61e103]:
+                    - button "All categories" [ref=f61e104]
+                  - listitem [ref=f61e106]:
+                    - button "Outerwear , 128 products" [ref=f61e107]:
+                      - generic [ref=f61e108]: Outerwear
+                      - generic [ref=f61e109]:
+                        - generic [ref=f61e110]: ","
+                        - text: "128"
+                        - generic [ref=f61e111]: products
+                    - list [ref=f61e112]:
+                      - listitem [ref=f61e113]:
+                        - button "Jackets , 109 products" [ref=f61e114]:
+                          - generic [ref=f61e115]: Jackets
+                          - generic [ref=f61e116]:
+                            - generic [ref=f61e117]: ","
+                            - text: "109"
+                            - generic [ref=f61e118]: products
+                      - listitem [ref=f61e119]:
+                        - button "Blazers , 13 products" [ref=f61e120]:
+                          - generic [ref=f61e121]: Blazers
+                          - generic [ref=f61e122]:
+                            - generic [ref=f61e123]: ","
+                            - text: "13"
+                            - generic [ref=f61e124]: products
+                      - listitem [ref=f61e125]:
+                        - button "Coats , 6 products" [ref=f61e126]:
+                          - generic [ref=f61e127]: Coats
+                          - generic [ref=f61e128]:
+                            - generic [ref=f61e129]: ","
+                            - text: "6"
+                            - generic [ref=f61e130]: products
+                  - listitem [ref=f61e131]:
+                    - button "Tops , 762 products" [ref=f61e132]:
+                      - generic [ref=f61e133]: Tops
+                      - generic [ref=f61e134]:
+                        - generic [ref=f61e135]: ","
+                        - text: "762"
+                        - generic [ref=f61e136]: products
+                    - list [ref=f61e137]:
+                      - listitem [ref=f61e138]:
+                        - button "T-Shirts & Tops , 301 products" [ref=f61e139]:
+                          - generic [ref=f61e140]: T-Shirts & Tops
+                          - generic [ref=f61e141]:
+                            - generic [ref=f61e142]: ","
+                            - text: "301"
+                            - generic [ref=f61e143]: products
+                      - listitem [ref=f61e144]:
+                        - button "Shirts , 249 products" [ref=f61e145]:
+                          - generic [ref=f61e146]: Shirts
+                          - generic [ref=f61e147]:
+                            - generic [ref=f61e148]: ","
+                            - text: "249"
+                            - generic [ref=f61e149]: products
+                      - listitem [ref=f61e150]:
+                        - button "Knitwear , 203 products" [ref=f61e151]:
+                          - generic [ref=f61e152]: Knitwear
+                          - generic [ref=f61e153]:
+                            - generic [ref=f61e154]: ","
+                            - text: "203"
+                            - generic [ref=f61e155]: products
+                      - listitem [ref=f61e156]:
+                        - button "Hoodies , 9 products" [ref=f61e157]:
+                          - generic [ref=f61e158]: Hoodies
+                          - generic [ref=f61e159]:
+                            - generic [ref=f61e160]: ","
+                            - text: "9"
+                            - generic [ref=f61e161]: products
+                  - listitem [ref=f61e162]:
+                    - button "Bottoms , 347 products" [ref=f61e163]:
+                      - generic [ref=f61e164]: Bottoms
+                      - generic [ref=f61e165]:
+                        - generic [ref=f61e166]: ","
+                        - text: "347"
+                        - generic [ref=f61e167]: products
+                    - list [ref=f61e168]:
+                      - listitem [ref=f61e169]:
+                        - button "Jeans , 96 products" [ref=f61e170]:
+                          - generic [ref=f61e171]: Jeans
+                          - generic [ref=f61e172]:
+                            - generic [ref=f61e173]: ","
+                            - text: "96"
+                            - generic [ref=f61e174]: products
+                      - listitem [ref=f61e175]:
+                        - button "Trousers , 251 products" [ref=f61e176]:
+                          - generic [ref=f61e177]: Trousers
+                          - generic [ref=f61e178]:
+                            - generic [ref=f61e179]: ","
+                            - text: "251"
+                            - generic [ref=f61e180]: products
+                  - listitem [ref=f61e181]:
+                    - button "Dresses , 74 products" [ref=f61e182]:
+                      - generic [ref=f61e183]: Dresses
+                      - generic [ref=f61e184]:
+                        - generic [ref=f61e185]: ","
+                        - text: "74"
+                        - generic [ref=f61e186]: products
+                  - listitem [ref=f61e187]:
+                    - button "Footwear , 472 products" [ref=f61e188]:
+                      - generic [ref=f61e189]: Footwear
+                      - generic [ref=f61e190]:
+                        - generic [ref=f61e191]: ","
+                        - text: "472"
+                        - generic [ref=f61e192]: products
+                    - list [ref=f61e193]:
+                      - listitem [ref=f61e194]:
+                        - button "Boots , 23 products" [ref=f61e195]:
+                          - generic [ref=f61e196]: Boots
+                          - generic [ref=f61e197]:
+                            - generic [ref=f61e198]: ","
+                            - text: "23"
+                            - generic [ref=f61e199]: products
+                      - listitem [ref=f61e200]:
+                        - button "Dress Shoes , 199 products" [ref=f61e201]:
+                          - generic [ref=f61e202]: Dress Shoes
+                          - generic [ref=f61e203]:
+                            - generic [ref=f61e204]: ","
+                            - text: "199"
+                            - generic [ref=f61e205]: products
+                      - listitem [ref=f61e206]:
+                        - button "Sneakers , 250 products" [ref=f61e207]:
+                          - generic [ref=f61e208]: Sneakers
+                          - generic [ref=f61e209]:
+                            - generic [ref=f61e210]: ","
+                            - text: "250"
+                            - generic [ref=f61e211]: products
+                  - listitem [ref=f61e212]:
+                    - button "Accessories , 648 products" [ref=f61e213]:
+                      - generic [ref=f61e214]: Accessories
+                      - generic [ref=f61e215]:
+                        - generic [ref=f61e216]: ","
+                        - text: "648"
+                        - generic [ref=f61e217]: products
+                    - list [ref=f61e218]:
+                      - listitem [ref=f61e219]:
+                        - button "Sunglasses , 250 products" [ref=f61e220]:
+                          - generic [ref=f61e221]: Sunglasses
+                          - generic [ref=f61e222]:
+                            - generic [ref=f61e223]: ","
+                            - text: "250"
+                            - generic [ref=f61e224]: products
+                      - listitem [ref=f61e225]:
+                        - button "Wallets , 200 products" [ref=f61e226]:
+                          - generic [ref=f61e227]: Wallets
+                          - generic [ref=f61e228]:
+                            - generic [ref=f61e229]: ","
+                            - text: "200"
+                            - generic [ref=f61e230]: products
+                      - listitem [ref=f61e231]:
+                        - button "Belts , 150 products" [ref=f61e232]:
+                          - generic [ref=f61e233]: Belts
+                          - generic [ref=f61e234]:
+                            - generic [ref=f61e235]: ","
+                            - text: "150"
+                            - generic [ref=f61e236]: products
+                      - listitem [ref=f61e237]:
+                        - button "Rings & Chains , 48 products" [ref=f61e238]:
+                          - generic [ref=f61e239]: Rings & Chains
+                          - generic [ref=f61e240]:
+                            - generic [ref=f61e241]: ","
+                            - text: "48"
+                            - generic [ref=f61e242]: products
+                  - listitem [ref=f61e243]:
+                    - button "Bags , 317 products" [ref=f61e244]:
+                      - generic [ref=f61e245]: Bags
+                      - generic [ref=f61e246]:
+                        - generic [ref=f61e247]: ","
+                        - text: "317"
+                        - generic [ref=f61e248]: products
+                    - list [ref=f61e249]:
+                      - listitem [ref=f61e250]:
+                        - button "Handbags , 199 products" [ref=f61e251]:
+                          - generic [ref=f61e252]: Handbags
+                          - generic [ref=f61e253]:
+                            - generic [ref=f61e254]: ","
+                            - text: "199"
+                            - generic [ref=f61e255]: products
+                      - listitem [ref=f61e256]:
+                        - button "Messenger Bags , 77 products" [ref=f61e257]:
+                          - generic [ref=f61e258]: Messenger Bags
+                          - generic [ref=f61e259]:
+                            - generic [ref=f61e260]: ","
+                            - text: "77"
+                            - generic [ref=f61e261]: products
+                      - listitem [ref=f61e262]:
+                        - button "Duffel Bags , 41 products" [ref=f61e263]:
+                          - generic [ref=f61e264]: Duffel Bags
+                          - generic [ref=f61e265]:
+                            - generic [ref=f61e266]: ","
+                            - text: "41"
+                            - generic [ref=f61e267]: products
+              - region "Shop for" [ref=f61e268]:
+                - heading "Shop for" [level=2] [ref=f61e269]
+                - generic [ref=f61e270]:
+                  - button "All" [pressed] [ref=f61e271]
+                  - button "Men" [ref=f61e272]
+                  - button "Women" [ref=f61e273]
+                  - button "Unisex" [ref=f61e274]
+              - region "Colour" [ref=f61e275]:
+                - heading "Colour" [level=2] [ref=f61e276]
+                - list [ref=f61e277]:
+                  - listitem [ref=f61e278]:
+                    - button "Black , 1307 products" [ref=f61e279]:
+                      - generic [ref=f61e281]: Black
+                      - generic [ref=f61e283]:
+                        - generic [ref=f61e284]: ","
+                        - text: "1307"
+                        - generic [ref=f61e285]: products
+                  - listitem [ref=f61e286]:
+                    - button "Brown , 542 products" [ref=f61e287]:
+                      - generic [ref=f61e289]: Brown
+                      - generic [ref=f61e291]:
+                        - generic [ref=f61e292]: ","
+                        - text: "542"
+                        - generic [ref=f61e293]: products
+                  - listitem [ref=f61e294]:
+                    - button "Grey , 370 products" [ref=f61e295]:
+                      - generic [ref=f61e297]: Grey
+                      - generic [ref=f61e299]:
+                        - generic [ref=f61e300]: ","
+                        - text: "370"
+                        - generic [ref=f61e301]: products
+                  - listitem [ref=f61e302]:
+                    - button "Navy Blue , 284 products" [ref=f61e303]:
+                      - generic [ref=f61e305]: Navy Blue
+                      - generic [ref=f61e307]:
+                        - generic [ref=f61e308]: ","
+                        - text: "284"
+                        - generic [ref=f61e309]: products
+                  - listitem [ref=f61e310]:
+                    - button "Olive , 57 products" [ref=f61e311]:
+                      - generic [ref=f61e313]: Olive
+                      - generic [ref=f61e315]:
+                        - generic [ref=f61e316]: ","
+                        - text: "57"
+                        - generic [ref=f61e317]: products
+                  - listitem [ref=f61e318]:
+                    - button "Charcoal , 51 products" [ref=f61e319]:
+                      - generic [ref=f61e321]: Charcoal
+                      - generic [ref=f61e323]:
+                        - generic [ref=f61e324]: ","
+                        - text: "51"
+                        - generic [ref=f61e325]: products
+                  - listitem [ref=f61e326]:
+                    - button "Maroon , 48 products" [ref=f61e327]:
+                      - generic [ref=f61e329]: Maroon
+                      - generic [ref=f61e331]:
+                        - generic [ref=f61e332]: ","
+                        - text: "48"
+                        - generic [ref=f61e333]: products
+                  - listitem [ref=f61e334]:
+                    - button "Silver , 33 products" [ref=f61e335]:
+                      - generic [ref=f61e337]: Silver
+                      - generic [ref=f61e339]:
+                        - generic [ref=f61e340]: ","
+                        - text: "33"
+                        - generic [ref=f61e341]: products
+                  - listitem [ref=f61e342]:
+                    - button "Grey Melange , 19 products" [ref=f61e343]:
+                      - generic [ref=f61e345]: Grey Melange
+                      - generic [ref=f61e347]:
+                        - generic [ref=f61e348]: ","
+                        - text: "19"
+                        - generic [ref=f61e349]: products
+                  - listitem [ref=f61e350]:
+                    - button "Steel , 14 products" [ref=f61e351]:
+                      - generic [ref=f61e353]: Steel
+                      - generic [ref=f61e355]:
+                        - generic [ref=f61e356]: ","
+                        - text: "14"
+                        - generic [ref=f61e357]: products
+                  - listitem [ref=f61e358]:
+                    - button "Coffee Brown , 9 products" [ref=f61e359]:
+                      - generic [ref=f61e361]: Coffee Brown
+                      - generic [ref=f61e363]:
+                        - generic [ref=f61e364]: ","
+                        - text: "9"
+                        - generic [ref=f61e365]: products
+                  - listitem [ref=f61e366]:
+                    - button "Burgundy , 4 products" [ref=f61e367]:
+                      - generic [ref=f61e369]: Burgundy
+                      - generic [ref=f61e371]:
+                        - generic [ref=f61e372]: ","
+                        - text: "4"
+                        - generic [ref=f61e373]: products
+                  - listitem [ref=f61e374]:
+                    - button "Mustard , 2 products" [ref=f61e375]:
+                      - generic [ref=f61e377]: Mustard
+                      - generic [ref=f61e379]:
+                        - generic [ref=f61e380]: ","
+                        - text: "2"
+                        - generic [ref=f61e381]: products
+                  - listitem [ref=f61e382]:
+                    - button "Navy , 2 products" [ref=f61e383]:
+                      - generic [ref=f61e385]: Navy
+                      - generic [ref=f61e387]:
+                        - generic [ref=f61e388]: ","
+                        - text: "2"
+                        - generic [ref=f61e389]: products
+                  - listitem [ref=f61e390]:
+                    - button "Forest Green , 1 product" [ref=f61e391]:
+                      - generic [ref=f61e393]: Forest Green
+                      - generic [ref=f61e395]:
+                        - generic [ref=f61e396]: ","
+                        - text: "1"
+                        - generic [ref=f61e397]: product
+                  - listitem [ref=f61e398]:
+                    - button "Green , 1 product" [ref=f61e399]:
+                      - generic [ref=f61e401]: Green
+                      - generic [ref=f61e403]:
+                        - generic [ref=f61e404]: ","
+                        - text: "1"
+                        - generic [ref=f61e405]: product
+                  - listitem [ref=f61e406]:
+                    - button "Indigo , 1 product" [ref=f61e407]:
+                      - generic [ref=f61e409]: Indigo
+                      - generic [ref=f61e411]:
+                        - generic [ref=f61e412]: ","
+                        - text: "1"
+                        - generic [ref=f61e413]: product
+                  - listitem [ref=f61e414]:
+                    - button "Orange , 1 product" [ref=f61e415]:
+                      - generic [ref=f61e417]: Orange
+                      - generic [ref=f61e419]:
+                        - generic [ref=f61e420]: ","
+                        - text: "1"
+                        - generic [ref=f61e421]: product
+                  - listitem [ref=f61e422]:
+                    - button "Royal Blue , 1 product" [ref=f61e423]:
+                      - generic [ref=f61e425]: Royal Blue
+                      - generic [ref=f61e427]:
+                        - generic [ref=f61e428]: ","
+                        - text: "1"
+                        - generic [ref=f61e429]: product
+                  - listitem [ref=f61e430]:
+                    - button "Rust , 1 product" [ref=f61e431]:
+                      - generic [ref=f61e433]: Rust
+                      - generic [ref=f61e435]:
+                        - generic [ref=f61e436]: ","
+                        - text: "1"
+                        - generic [ref=f61e437]: product
+              - region "Size" [ref=f61e438]:
+                - heading "Size" [level=2] [ref=f61e439]
+                - paragraph [ref=f61e440]: Choose a category to filter by size.
+              - region "Brand" [ref=f61e441]:
+                - heading "Brand" [level=2] [ref=f61e442]
+                - list [ref=f61e443]:
+                  - listitem [ref=f61e444]:
+                    - button "ADIDAS , 59 products" [ref=f61e445]:
+                      - generic [ref=f61e447]: ADIDAS
+                      - generic [ref=f61e449]:
+                        - generic [ref=f61e450]: ","
+                        - text: "59"
+                        - generic [ref=f61e451]: products
+                  - listitem [ref=f61e452]:
+                    - button "Allen Solly , 34 products" [ref=f61e453]:
+                      - generic [ref=f61e455]: Allen Solly
+                      - generic [ref=f61e457]:
+                        - generic [ref=f61e458]: ","
+                        - text: "34"
+                        - generic [ref=f61e459]: products
+                  - listitem [ref=f61e460]:
+                    - button "Arrow , 54 products" [ref=f61e461]:
+                      - generic [ref=f61e463]: Arrow
+                      - generic [ref=f61e465]:
+                        - generic [ref=f61e466]: ","
+                        - text: "54"
+                        - generic [ref=f61e467]: products
+                  - listitem [ref=f61e468]:
+                    - button "Arrow Woman , 35 products" [ref=f61e469]:
+                      - generic [ref=f61e471]: Arrow Woman
+                      - generic [ref=f61e473]:
+                        - generic [ref=f61e474]: ","
+                        - text: "35"
+                        - generic [ref=f61e475]: products
+                  - listitem [ref=f61e476]:
+                    - button "Baggit , 105 products" [ref=f61e477]:
+                      - generic [ref=f61e479]: Baggit
+                      - generic [ref=f61e481]:
+                        - generic [ref=f61e482]: ","
+                        - text: "105"
+                        - generic [ref=f61e483]: products
+                  - listitem [ref=f61e484]:
+                    - button "Basics , 31 products" [ref=f61e485]:
+                      - generic [ref=f61e487]: Basics
+                      - generic [ref=f61e489]:
+                        - generic [ref=f61e490]: ","
+                        - text: "31"
+                        - generic [ref=f61e491]: products
+                  - listitem [ref=f61e492]:
+                    - button "BULCHEE , 28 products" [ref=f61e493]:
+                      - generic [ref=f61e495]: BULCHEE
+                      - generic [ref=f61e497]:
+                        - generic [ref=f61e498]: ","
+                        - text: "28"
+                        - generic [ref=f61e499]: products
+                  - listitem [ref=f61e500]:
+                    - button "Clarks , 28 products" [ref=f61e501]:
+                      - generic [ref=f61e503]: Clarks
+                      - generic [ref=f61e505]:
+                        - generic [ref=f61e506]: ","
+                        - text: "28"
+                        - generic [ref=f61e507]: products
+                - button "Show all 40" [ref=f61e508]
+              - region "Price" [ref=f61e509]:
+                - heading "Price" [level=2] [ref=f61e510]
+                - generic [ref=f61e511]:
+                  - generic [ref=f61e512]:
+                    - generic [ref=f61e513]:
+                      - generic [ref=f61e514]: Min (৳)
+                      - textbox "Min (৳)" [ref=f61e515]:
+                        - /placeholder: "900"
+                    - generic [ref=f61e516]:
+                      - generic [ref=f61e517]: Max (৳)
+                      - textbox "Max (৳)" [ref=f61e518]:
+                        - /placeholder: "18200"
+                  - paragraph [ref=f61e519]: ৳900 – ৳18,200 in this selection
+                  - button "Apply" [ref=f61e521]
+              - region "Availability" [ref=f61e522]:
+                - heading "Availability" [level=2] [ref=f61e523]
+                - button "In stock only" [ref=f61e524]
+          - region "Products" [ref=f61e527]:
+            - list [ref=f61e528]:
+              - listitem [ref=f61e529]:
+                - generic [ref=f61e530]:
+                  - 'link "Black leather biker jacket with silver zips laid flat on white linen EVORA Men Rider Leather Biker Jacket ৳13,250 Colours: Black" [ref=f61e531] [cursor=pointer]':
+                    - /url: /products/rider-leather-biker-jacket-de001
+                    - generic [ref=f61e532]:
+                      - img "Black leather biker jacket with silver zips laid flat on white linen" [ref=f61e534]
+                      - generic [aria-hidden] [ref=f61e535]: View product
+                    - generic [ref=f61e539]:
+                      - paragraph [ref=f61e540]:
+                        - generic [ref=f61e541]: EVORA
+                        - generic [ref=f61e542]: Men
+                      - heading "Rider Leather Biker Jacket" [level=3] [ref=f61e543]
+                      - generic [ref=f61e544]:
+                        - paragraph [ref=f61e545]:
+                          - generic [ref=f61e546]: ৳13,250
+                        - paragraph [ref=f61e547]:
+                          - generic [ref=f61e549]: "Colours: Black"
+                  - button "Save Rider Leather Biker Jacket to wishlist" [ref=f61e550]
+              - listitem [ref=f61e553]:
+                - generic [ref=f61e554]:
+                  - 'link "Pair of black leather engineer boots with buckle straps on a stone floor EVORA Men Engineer Buckle Boots ৳10,650 Colours: Black" [ref=f61e555] [cursor=pointer]':
+                    - /url: /products/engineer-buckle-boots-de002
+                    - generic [ref=f61e556]:
+                      - img "Pair of black leather engineer boots with buckle straps on a stone floor" [ref=f61e558]
+                      - generic [aria-hidden] [ref=f61e559]: View product
+                    - generic [ref=f61e563]:
+                      - paragraph [ref=f61e564]:
+                        - generic [ref=f61e565]: EVORA
+                        - generic [ref=f61e566]: Men
+                      - heading "Engineer Buckle Boots" [level=3] [ref=f61e567]
+                      - generic [ref=f61e568]:
+                        - paragraph [ref=f61e569]:
+                          - generic [ref=f61e570]: ৳10,650
+                        - paragraph [ref=f61e571]:
+                          - generic [ref=f61e573]: "Colours: Black"
+                  - button "Save Engineer Buckle Boots to wishlist" [pressed] [ref=f61e574]
+              - listitem [ref=f61e577]:
+                - generic [ref=f61e578]:
+                  - 'link "Black single-breasted blazer on a hanger against weathered wood EVORA Men Single-Breasted Black Blazer ৳9,550 Colours: Black" [ref=f61e579] [cursor=pointer]':
+                    - /url: /products/single-breasted-black-blazer-de003
+                    - generic [ref=f61e580]:
+                      - img "Black single-breasted blazer on a hanger against weathered wood" [ref=f61e582]
+                      - generic [aria-hidden] [ref=f61e583]: View product
+                    - generic [ref=f61e587]:
+                      - paragraph [ref=f61e588]:
+                        - generic [ref=f61e589]: EVORA
+                        - generic [ref=f61e590]: Men
+                      - heading "Single-Breasted Black Blazer" [level=3] [ref=f61e591]
+                      - generic [ref=f61e592]:
+                        - paragraph [ref=f61e593]:
+                          - generic [ref=f61e594]: ৳9,550
+                        - paragraph [ref=f61e595]:
+                          - generic [ref=f61e597]: "Colours: Black"
+                  - button "Save Single-Breasted Black Blazer to wishlist" [pressed] [ref=f61e598]
+              - listitem [ref=f61e601]:
+                - generic [ref=f61e602]:
+                  - 'link "Model in a black zip hoodie and black trousers against a white studio wall EVORA Unisex Studio Zip Hoodie ৳5,100 Colours: Black" [ref=f61e603] [cursor=pointer]':
+                    - /url: /products/studio-zip-hoodie-de004
+                    - generic [ref=f61e604]:
+                      - img "Model in a black zip hoodie and black trousers against a white studio wall" [ref=f61e606]
+                      - generic [aria-hidden] [ref=f61e607]: View product
+                    - generic [ref=f61e611]:
+                      - paragraph [ref=f61e612]:
+                        - generic [ref=f61e613]: EVORA
+                        - generic [ref=f61e614]: Unisex
+                      - heading "Studio Zip Hoodie" [level=3] [ref=f61e615]
+                      - generic [ref=f61e616]:
+                        - paragraph [ref=f61e617]:
+                          - generic [ref=f61e618]: ৳5,100
+                        - paragraph [ref=f61e619]:
+                          - generic [ref=f61e621]: "Colours: Black"
+                  - button "Save Studio Zip Hoodie to wishlist" [ref=f61e622]
+              - listitem [ref=f61e625]:
+                - 'link "The detail Carry it darker Handbags, messengers and duffels to finish the look. Shop bags Photo: Zahra / Unsplash" [ref=f61e626] [cursor=pointer]':
+                  - /url: /shop?category=bags
+                  - generic [ref=f61e628]: The detail
+                  - generic [ref=f61e630]: Carry it darker
+                  - generic [ref=f61e631]: Handbags, messengers and duffels to finish the look.
+                  - generic [ref=f61e632]: Shop bags
+                  - generic [ref=f61e635]: "Photo: Zahra / Unsplash"
+              - listitem [ref=f61e636]:
+                - generic [ref=f61e637]:
+                  - 'link "Woman in a cropped black leather moto jacket beside a black metal fence EVORA Women Cropped Moto Leather Jacket ৳6,700 Colours: Black" [ref=f61e638] [cursor=pointer]':
+                    - /url: /products/cropped-moto-leather-jacket-de005
+                    - generic [ref=f61e639]:
+                      - img "Woman in a cropped black leather moto jacket beside a black metal fence" [ref=f61e641]
+                      - generic [aria-hidden] [ref=f61e642]: View product
+                    - generic [ref=f61e646]:
+                      - paragraph [ref=f61e647]:
+                        - generic [ref=f61e648]: EVORA
+                        - generic [ref=f61e649]: Women
+                      - heading "Cropped Moto Leather Jacket" [level=3] [ref=f61e650]
+                      - generic [ref=f61e651]:
+                        - paragraph [ref=f61e652]:
+                          - generic [ref=f61e653]: ৳6,700
+                        - paragraph [ref=f61e654]:
+                          - generic [ref=f61e656]: "Colours: Black"
+                  - button "Save Cropped Moto Leather Jacket to wishlist" [ref=f61e657]
+              - listitem [ref=f61e660]:
+                - generic [ref=f61e661]:
+                  - 'link "Woman in a long black leather trench coat in a white columned corridor EVORA Women Leather Trench Coat ৳11,100 Colours: Black" [ref=f61e662] [cursor=pointer]':
+                    - /url: /products/leather-trench-coat-de006
+                    - generic [ref=f61e663]:
+                      - img "Woman in a long black leather trench coat in a white columned corridor" [ref=f61e665]
+                      - generic [aria-hidden] [ref=f61e666]: View product
+                    - generic [ref=f61e670]:
+                      - paragraph [ref=f61e671]:
+                        - generic [ref=f61e672]: EVORA
+                        - generic [ref=f61e673]: Women
+                      - heading "Leather Trench Coat" [level=3] [ref=f61e674]
+                      - generic [ref=f61e675]:
+                        - paragraph [ref=f61e676]:
+                          - generic [ref=f61e677]: ৳11,100
+                        - paragraph [ref=f61e678]:
+                          - generic [ref=f61e680]: "Colours: Black"
+                  - button "Save Leather Trench Coat to wishlist" [ref=f61e681]
+              - listitem [ref=f61e684]:
+                - generic [ref=f61e685]:
+                  - 'link "Man in a black bomber jacket in front of a graffiti wall EVORA Men Nylon Bomber Jacket ৳7,050 Colours: Black" [ref=f61e686] [cursor=pointer]':
+                    - /url: /products/nylon-bomber-jacket-de007
+                    - generic [ref=f61e687]:
+                      - img "Man in a black bomber jacket in front of a graffiti wall" [ref=f61e689]
+                      - generic [aria-hidden] [ref=f61e690]: View product
+                    - generic [ref=f61e694]:
+                      - paragraph [ref=f61e695]:
+                        - generic [ref=f61e696]: EVORA
+                        - generic [ref=f61e697]: Men
+                      - heading "Nylon Bomber Jacket" [level=3] [ref=f61e698]
+                      - generic [ref=f61e699]:
+                        - paragraph [ref=f61e700]:
+                          - generic [ref=f61e701]: ৳7,050
+                        - paragraph [ref=f61e702]:
+                          - generic [ref=f61e704]: "Colours: Black"
+                  - button "Save Nylon Bomber Jacket to wishlist" [ref=f61e705]
+              - listitem [ref=f61e708]:
+                - generic [ref=f61e709]:
+                  - 'link "Single black leather ankle boot with side zips on a white surface EVORA Unisex Side-Zip Leather Ankle Boots ৳13,200 Colours: Black" [ref=f61e710] [cursor=pointer]':
+                    - /url: /products/side-zip-leather-ankle-boots-de008
+                    - generic [ref=f61e711]:
+                      - img "Single black leather ankle boot with side zips on a white surface" [ref=f61e713]
+                      - generic [aria-hidden] [ref=f61e714]: View product
+                    - generic [ref=f61e718]:
+                      - paragraph [ref=f61e719]:
+                        - generic [ref=f61e720]: EVORA
+                        - generic [ref=f61e721]: Unisex
+                      - heading "Side-Zip Leather Ankle Boots" [level=3] [ref=f61e722]
+                      - generic [ref=f61e723]:
+                        - paragraph [ref=f61e724]:
+                          - generic [ref=f61e725]: ৳13,200
+                        - paragraph [ref=f61e726]:
+                          - generic [ref=f61e728]: "Colours: Black"
+                  - button "Save Side-Zip Leather Ankle Boots to wishlist" [ref=f61e729]
+              - listitem [ref=f61e732]:
+                - generic [ref=f61e733]:
+                  - 'link "Woman in an oversized black blazer leaning against a white wall EVORA Women Oversized Tailored Blazer ৳15,350 Colours: Black" [ref=f61e734] [cursor=pointer]':
+                    - /url: /products/oversized-tailored-blazer-de009
+                    - generic [ref=f61e735]:
+                      - img "Woman in an oversized black blazer leaning against a white wall" [ref=f61e737]
+                      - generic [aria-hidden] [ref=f61e738]: View product
+                    - generic [ref=f61e742]:
+                      - paragraph [ref=f61e743]:
+                        - generic [ref=f61e744]: EVORA
+                        - generic [ref=f61e745]: Women
+                      - heading "Oversized Tailored Blazer" [level=3] [ref=f61e746]
+                      - generic [ref=f61e747]:
+                        - paragraph [ref=f61e748]:
+                          - generic [ref=f61e749]: ৳15,350
+                        - paragraph [ref=f61e750]:
+                          - generic [ref=f61e752]: "Colours: Black"
+                  - button "Save Oversized Tailored Blazer to wishlist" [ref=f61e753]
+              - listitem [ref=f61e756]:
+                - generic [ref=f61e757]:
+                  - 'link "Man in a black double-breasted overcoat in front of a green hedge EVORA Men Double-Breasted Overcoat ৳10,100 Colours: Black" [ref=f61e758] [cursor=pointer]':
+                    - /url: /products/double-breasted-overcoat-de010
+                    - generic [ref=f61e759]:
+                      - img "Man in a black double-breasted overcoat in front of a green hedge" [ref=f61e761]
+                      - generic [aria-hidden] [ref=f61e762]: View product
+                    - generic [ref=f61e766]:
+                      - paragraph [ref=f61e767]:
+                        - generic [ref=f61e768]: EVORA
+                        - generic [ref=f61e769]: Men
+                      - heading "Double-Breasted Overcoat" [level=3] [ref=f61e770]
+                      - generic [ref=f61e771]:
+                        - paragraph [ref=f61e772]:
+                          - generic [ref=f61e773]: ৳10,100
+                        - paragraph [ref=f61e774]:
+                          - generic [ref=f61e776]: "Colours: Black"
+                  - button "Save Double-Breasted Overcoat to wishlist" [ref=f61e777]
+              - listitem [ref=f61e780]:
+                - generic [ref=f61e781]:
+                  - 'link "Person in a black hoodie with the hood up against white blinds EVORA Unisex Shadow Pullover Hoodie ৳4,450 Colours: Black" [ref=f61e782] [cursor=pointer]':
+                    - /url: /products/shadow-pullover-hoodie-de011
+                    - generic [ref=f61e783]:
+                      - img "Person in a black hoodie with the hood up against white blinds" [ref=f61e785]
+                      - generic [aria-hidden] [ref=f61e786]: View product
+                    - generic [ref=f61e790]:
+                      - paragraph [ref=f61e791]:
+                        - generic [ref=f61e792]: EVORA
+                        - generic [ref=f61e793]: Unisex
+                      - heading "Shadow Pullover Hoodie" [level=3] [ref=f61e794]
+                      - generic [ref=f61e795]:
+                        - paragraph [ref=f61e796]:
+                          - generic [ref=f61e797]: ৳4,450
+                        - paragraph [ref=f61e798]:
+                          - generic [ref=f61e800]: "Colours: Black"
+                  - button "Save Shadow Pullover Hoodie to wishlist" [ref=f61e801]
+              - listitem [ref=f61e804]:
+                - generic [ref=f61e805]:
+                  - 'link "Pair of black lace-up combat boots on a stone step against a white wall EVORA Unisex Lace-Up Combat Boots ৳6,950 Colours: Black" [ref=f61e806] [cursor=pointer]':
+                    - /url: /products/lace-up-combat-boots-de012
+                    - generic [ref=f61e807]:
+                      - img "Pair of black lace-up combat boots on a stone step against a white wall" [ref=f61e809]
+                      - generic [aria-hidden] [ref=f61e810]: View product
+                    - generic [ref=f61e814]:
+                      - paragraph [ref=f61e815]:
+                        - generic [ref=f61e816]: EVORA
+                        - generic [ref=f61e817]: Unisex
+                      - heading "Lace-Up Combat Boots" [level=3] [ref=f61e818]
+                      - generic [ref=f61e819]:
+                        - paragraph [ref=f61e820]:
+                          - generic [ref=f61e821]: ৳6,950
+                        - paragraph [ref=f61e822]:
+                          - generic [ref=f61e824]: "Colours: Black"
+                  - button "Save Lace-Up Combat Boots to wishlist" [ref=f61e825]
+              - listitem [ref=f61e828]:
+                - generic [ref=f61e829]:
+                  - 'link "Close view of a man holding the lapels of a black leather jacket EVORA Men Asymmetric Zip Leather Jacket ৳6,850 Colours: Black" [ref=f61e830] [cursor=pointer]':
+                    - /url: /products/asymmetric-zip-leather-jacket-de013
+                    - generic [ref=f61e831]:
+                      - img "Close view of a man holding the lapels of a black leather jacket" [ref=f61e833]
+                      - generic [aria-hidden] [ref=f61e834]: View product
+                    - generic [ref=f61e838]:
+                      - paragraph [ref=f61e839]:
+                        - generic [ref=f61e840]: EVORA
+                        - generic [ref=f61e841]: Men
+                      - heading "Asymmetric Zip Leather Jacket" [level=3] [ref=f61e842]
+                      - generic [ref=f61e843]:
+                        - paragraph [ref=f61e844]:
+                          - generic [ref=f61e845]: ৳6,850
+                        - paragraph [ref=f61e846]:
+                          - generic [ref=f61e848]: "Colours: Black"
+                  - button "Save Asymmetric Zip Leather Jacket to wishlist" [ref=f61e849]
+              - listitem [ref=f61e852]:
+                - generic [ref=f61e853]:
+                  - 'link "Man in a black satin bomber jacket posing on a city street EVORA Men Satin Bomber Jacket ৳9,950 Colours: Black" [ref=f61e854] [cursor=pointer]':
+                    - /url: /products/satin-bomber-jacket-de014
+                    - generic [ref=f61e855]:
+                      - img "Man in a black satin bomber jacket posing on a city street" [ref=f61e857]
+                      - generic [aria-hidden] [ref=f61e858]: View product
+                    - generic [ref=f61e862]:
+                      - paragraph [ref=f61e863]:
+                        - generic [ref=f61e864]: EVORA
+                        - generic [ref=f61e865]: Men
+                      - heading "Satin Bomber Jacket" [level=3] [ref=f61e866]
+                      - generic [ref=f61e867]:
+                        - paragraph [ref=f61e868]:
+                          - generic [ref=f61e869]: ৳9,950
+                        - paragraph [ref=f61e870]:
+                          - generic [ref=f61e872]: "Colours: Black"
+                  - button "Save Satin Bomber Jacket to wishlist" [ref=f61e873]
+              - listitem [ref=f61e876]:
+                - generic [ref=f61e877]:
+                  - 'link "Woman in a belted black longline blazer, sunglasses and black boots EVORA Women Longline Belted Blazer ৳8,900 Colours: Black" [ref=f61e878] [cursor=pointer]':
+                    - /url: /products/longline-belted-blazer-de015
+                    - generic [ref=f61e879]:
+                      - img "Woman in a belted black longline blazer, sunglasses and black boots" [ref=f61e881]
+                      - generic [aria-hidden] [ref=f61e882]: View product
+                    - generic [ref=f61e886]:
+                      - paragraph [ref=f61e887]:
+                        - generic [ref=f61e888]: EVORA
+                        - generic [ref=f61e889]: Women
+                      - heading "Longline Belted Blazer" [level=3] [ref=f61e890]
+                      - generic [ref=f61e891]:
+                        - paragraph [ref=f61e892]:
+                          - generic [ref=f61e893]: ৳8,900
+                        - paragraph [ref=f61e894]:
+                          - generic [ref=f61e896]: "Colours: Black"
+                  - button "Save Longline Belted Blazer to wishlist" [ref=f61e897]
+              - listitem [ref=f61e900]:
+                - generic [ref=f61e901]:
+                  - 'link "Pair of black leather Chelsea boots on a dark wooden floor EVORA Men Leather Chelsea Boots ৳10,850 Colours: Black" [ref=f61e902] [cursor=pointer]':
+                    - /url: /products/leather-chelsea-boots-de016
+                    - generic [ref=f61e903]:
+                      - img "Pair of black leather Chelsea boots on a dark wooden floor" [ref=f61e905]
+                      - generic [aria-hidden] [ref=f61e906]: View product
+                    - generic [ref=f61e910]:
+                      - paragraph [ref=f61e911]:
+                        - generic [ref=f61e912]: EVORA
+                        - generic [ref=f61e913]: Men
+                      - heading "Leather Chelsea Boots" [level=3] [ref=f61e914]
+                      - generic [ref=f61e915]:
+                        - paragraph [ref=f61e916]:
+                          - generic [ref=f61e917]: ৳10,850
+                        - paragraph [ref=f61e918]:
+                          - generic [ref=f61e920]: "Colours: Black"
+                  - button "Save Leather Chelsea Boots to wishlist" [ref=f61e921]
+              - listitem [ref=f61e924]:
+                - generic [ref=f61e925]:
+                  - 'link "Woman in an oversized black pullover hoodie by a window EVORA Women Oversized Pullover Hoodie ৳3,500 Colours: Black" [ref=f61e926] [cursor=pointer]':
+                    - /url: /products/oversized-pullover-hoodie-de017
+                    - generic [ref=f61e927]:
+                      - img "Woman in an oversized black pullover hoodie by a window" [ref=f61e929]
+                      - generic [aria-hidden] [ref=f61e930]: View product
+                    - generic [ref=f61e934]:
+                      - paragraph [ref=f61e935]:
+                        - generic [ref=f61e936]: EVORA
+                        - generic [ref=f61e937]: Women
+                      - heading "Oversized Pullover Hoodie" [level=3] [ref=f61e938]
+                      - generic [ref=f61e939]:
+                        - paragraph [ref=f61e940]:
+                          - generic [ref=f61e941]: ৳3,500
+                        - paragraph [ref=f61e942]:
+                          - generic [ref=f61e944]: "Colours: Black"
+                  - button "Save Oversized Pullover Hoodie to wishlist" [ref=f61e945]
+              - listitem [ref=f61e948]:
+                - generic [ref=f61e949]:
+                  - 'link "Woman in a black belted trench coat walking past a dark stone wall EVORA Women Belted Trench Coat ৳9,500 Colours: Black" [ref=f61e950] [cursor=pointer]':
+                    - /url: /products/belted-trench-coat-de018
+                    - generic [ref=f61e951]:
+                      - img "Woman in a black belted trench coat walking past a dark stone wall" [ref=f61e953]
+                      - generic [aria-hidden] [ref=f61e954]: View product
+                    - generic [ref=f61e958]:
+                      - paragraph [ref=f61e959]:
+                        - generic [ref=f61e960]: EVORA
+                        - generic [ref=f61e961]: Women
+                      - heading "Belted Trench Coat" [level=3] [ref=f61e962]
+                      - generic [ref=f61e963]:
+                        - paragraph [ref=f61e964]:
+                          - generic [ref=f61e965]: ৳9,500
+                        - paragraph [ref=f61e966]:
+                          - generic [ref=f61e968]: "Colours: Black"
+                  - button "Save Belted Trench Coat to wishlist" [ref=f61e969]
+              - listitem [ref=f61e972]:
+                - generic [ref=f61e973]:
+                  - 'link "Man in a black leather jacket with quilted shoulders outdoors in autumn EVORA Men Quilted Shoulder Leather Jacket ৳9,100 Colours: Black" [ref=f61e974] [cursor=pointer]':
+                    - /url: /products/quilted-shoulder-leather-jacket-de019
+                    - generic [ref=f61e975]:
+                      - img "Man in a black leather jacket with quilted shoulders outdoors in autumn" [ref=f61e977]
+                      - generic [aria-hidden] [ref=f61e978]: View product
+                    - generic [ref=f61e982]:
+                      - paragraph [ref=f61e983]:
+                        - generic [ref=f61e984]: EVORA
+                        - generic [ref=f61e985]: Men
+                      - heading "Quilted Shoulder Leather Jacket" [level=3] [ref=f61e986]
+                      - generic [ref=f61e987]:
+                        - paragraph [ref=f61e988]:
+                          - generic [ref=f61e989]: ৳9,100
+                        - paragraph [ref=f61e990]:
+                          - generic [ref=f61e992]: "Colours: Black"
+                  - button "Save Quilted Shoulder Leather Jacket to wishlist" [ref=f61e993]
+              - listitem [ref=f61e996]:
+                - generic [ref=f61e997]:
+                  - 'link "Man in a black dinner blazer, black shirt and sunglasses EVORA Men Shawl-Lapel Dinner Blazer ৳8,250 Colours: Black" [ref=f61e998] [cursor=pointer]':
+                    - /url: /products/shawl-lapel-dinner-blazer-de020
+                    - generic [ref=f61e999]:
+                      - img "Man in a black dinner blazer, black shirt and sunglasses" [ref=f61e1001]
+                      - generic [aria-hidden] [ref=f61e1002]: View product
+                    - generic [ref=f61e1006]:
+                      - paragraph [ref=f61e1007]:
+                        - generic [ref=f61e1008]: EVORA
+                        - generic [ref=f61e1009]: Men
+                      - heading "Shawl-Lapel Dinner Blazer" [level=3] [ref=f61e1010]
+                      - generic [ref=f61e1011]:
+                        - paragraph [ref=f61e1012]:
+                          - generic [ref=f61e1013]: ৳8,250
+                        - paragraph [ref=f61e1014]:
+                          - generic [ref=f61e1016]: "Colours: Black"
+                  - button "Save Shawl-Lapel Dinner Blazer to wishlist" [ref=f61e1017]
+              - listitem [ref=f61e1020]:
+                - generic [ref=f61e1021]:
+                  - 'link "Man in a black denim jacket with a fleece collar against a shutter EVORA Men Sherpa-Collar Denim Jacket ৳6,000 Colours: Black" [ref=f61e1022] [cursor=pointer]':
+                    - /url: /products/sherpa-collar-denim-jacket-de021
+                    - generic [ref=f61e1023]:
+                      - img "Man in a black denim jacket with a fleece collar against a shutter" [ref=f61e1025]
+                      - generic [aria-hidden] [ref=f61e1026]: View product
+                    - generic [ref=f61e1030]:
+                      - paragraph [ref=f61e1031]:
+                        - generic [ref=f61e1032]: EVORA
+                        - generic [ref=f61e1033]: Men
+                      - heading "Sherpa-Collar Denim Jacket" [level=3] [ref=f61e1034]
+                      - generic [ref=f61e1035]:
+                        - paragraph [ref=f61e1036]:
+                          - generic [ref=f61e1037]: ৳6,000
+                        - paragraph [ref=f61e1038]:
+                          - generic [ref=f61e1040]: "Colours: Black"
+                  - button "Save Sherpa-Collar Denim Jacket to wishlist" [ref=f61e1041]
+              - listitem [ref=f61e1044]:
+                - generic [ref=f61e1045]:
+                  - 'link "Pair of black leather slouch knee boots on a white background EVORA Women Slouch Knee Boots ৳12,600 Colours: Black" [ref=f61e1046] [cursor=pointer]':
+                    - /url: /products/slouch-knee-boots-de022
+                    - generic [ref=f61e1047]:
+                      - img "Pair of black leather slouch knee boots on a white background" [ref=f61e1049]
+                      - generic [aria-hidden] [ref=f61e1050]: View product
+                    - generic [ref=f61e1054]:
+                      - paragraph [ref=f61e1055]:
+                        - generic [ref=f61e1056]: EVORA
+                        - generic [ref=f61e1057]: Women
+                      - heading "Slouch Knee Boots" [level=3] [ref=f61e1058]
+                      - generic [ref=f61e1059]:
+                        - paragraph [ref=f61e1060]:
+                          - generic [ref=f61e1061]: ৳12,600
+                        - paragraph [ref=f61e1062]:
+                          - generic [ref=f61e1064]: "Colours: Black"
+                  - button "Save Slouch Knee Boots to wishlist" [ref=f61e1065]
+              - listitem [ref=f61e1068]:
+                - generic [ref=f61e1069]:
+                  - 'link "Young man in a black full-zip hoodie with the hood up outdoors EVORA Men Full-Zip Hoodie ৳3,700 Colours: Black" [ref=f61e1070] [cursor=pointer]':
+                    - /url: /products/full-zip-hoodie-de023
+                    - generic [ref=f61e1071]:
+                      - img "Young man in a black full-zip hoodie with the hood up outdoors" [ref=f61e1073]
+                      - generic [aria-hidden] [ref=f61e1074]: View product
+                    - generic [ref=f61e1078]:
+                      - paragraph [ref=f61e1079]:
+                        - generic [ref=f61e1080]: EVORA
+                        - generic [ref=f61e1081]: Men
+                      - heading "Full-Zip Hoodie" [level=3] [ref=f61e1082]
+                      - generic [ref=f61e1083]:
+                        - paragraph [ref=f61e1084]:
+                          - generic [ref=f61e1085]: ৳3,700
+                        - paragraph [ref=f61e1086]:
+                          - generic [ref=f61e1088]: "Colours: Black"
+                  - button "Save Full-Zip Hoodie to wishlist" [ref=f61e1089]
+              - listitem [ref=f61e1092]:
+                - generic [ref=f61e1093]:
+                  - 'link "Navy padded bomber jacket with a cream fleece collar on a grey background EVORA Men Shearling-Collar Bomber ৳10,350 Colours: Navy Blue" [ref=f61e1094] [cursor=pointer]':
+                    - /url: /products/shearling-collar-bomber-de024
+                    - generic [ref=f61e1095]:
+                      - img "Navy padded bomber jacket with a cream fleece collar on a grey background" [ref=f61e1097]
+                      - generic [aria-hidden] [ref=f61e1098]: View product
+                    - generic [ref=f61e1102]:
+                      - paragraph [ref=f61e1103]:
+                        - generic [ref=f61e1104]: EVORA
+                        - generic [ref=f61e1105]: Men
+                      - heading "Shearling-Collar Bomber" [level=3] [ref=f61e1106]
+                      - generic [ref=f61e1107]:
+                        - paragraph [ref=f61e1108]:
+                          - generic [ref=f61e1109]: ৳10,350
+                        - paragraph [ref=f61e1110]:
+                          - generic [ref=f61e1112]: "Colours: Navy Blue"
+                  - button "Save Shearling-Collar Bomber to wishlist" [ref=f61e1113]
+            - navigation "Pagination" [ref=f61e1116]:
+              - list [ref=f61e1117]:
+                - listitem [ref=f61e1118]
+                - listitem [ref=f61e1122]:
+                  - link "Page 1" [ref=f61e1123] [cursor=pointer]:
+                    - /url: /shop
+                    - text: "1"
+                - listitem [ref=f61e1124]:
+                  - link "Page 2" [ref=f61e1125] [cursor=pointer]:
+                    - /url: /shop?page=2
+                    - text: "2"
+                - listitem [ref=f61e1126]:
+                  - link "Page 3" [ref=f61e1127] [cursor=pointer]:
+                    - /url: /shop?page=3
+                    - text: "3"
+                - listitem [aria-hidden] [ref=f61e1128]: …
+                - listitem [ref=f61e1129]:
+                  - link "Page 115" [ref=f61e1130] [cursor=pointer]:
+                    - /url: /shop?page=115
+                    - text: "115"
+                - listitem [ref=f61e1131]:
+                  - link "Next page" [ref=f61e1132] [cursor=pointer]:
+                    - /url: /shop?page=2
+              - paragraph [ref=f61e1135]: Page 1 of 115
+  - contentinfo [ref=f61e1136]:
+    - generic [ref=f61e1137]:
+      - generic [ref=f61e1138]:
+        - generic [ref=f61e1139]:
+          - paragraph [ref=f61e1140]: Considered clothing and objects for a slower, more deliberate everyday.
+          - paragraph [ref=f61e1141]: Designed to be worn, kept, and returned to.
+        - generic [ref=f61e1142]:
+          - generic [ref=f61e1143]:
+            - heading "Shop" [level=2] [ref=f61e1144]
+            - list [ref=f61e1145]:
+              - listitem [ref=f61e1146]:
+                - link "New arrivals" [ref=f61e1147] [cursor=pointer]:
+                  - /url: /collections/new
+              - listitem [ref=f61e1148]:
+                - link "Men" [ref=f61e1149] [cursor=pointer]:
+                  - /url: /collections/men
+              - listitem [ref=f61e1150]:
+                - link "Women" [ref=f61e1151] [cursor=pointer]:
+                  - /url: /collections/women
+              - listitem [ref=f61e1152]:
+                - link "Accessories" [ref=f61e1153] [cursor=pointer]:
+                  - /url: /shop?category=accessories
+              - listitem [ref=f61e1154]:
+                - link "Shop all" [ref=f61e1155] [cursor=pointer]:
+                  - /url: /shop
+          - generic [ref=f61e1156]:
+            - heading "Account" [level=2] [ref=f61e1157]
+            - list [ref=f61e1158]:
+              - listitem [ref=f61e1159]:
+                - link "My account" [ref=f61e1160] [cursor=pointer]:
+                  - /url: /account
+              - listitem [ref=f61e1161]:
+                - link "Wishlist" [ref=f61e1162] [cursor=pointer]:
+                  - /url: /wishlist
+          - generic [ref=f61e1163]:
+            - heading "Help" [level=2] [ref=f61e1164]
+            - list [ref=f61e1165]:
+              - listitem [ref=f61e1166]:
+                - link "Shipping & returns" [ref=f61e1167] [cursor=pointer]:
+                  - /url: /shipping
+              - listitem [ref=f61e1168]:
+                - link "FAQ" [ref=f61e1169] [cursor=pointer]:
+                  - /url: /faq
+      - link "EVORA home" [ref=f61e1171] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f61e1173]: E
+        - generic [ref=f61e1175]: V
+        - generic [ref=f61e1177]: O
+        - generic [ref=f61e1179]: R
+        - generic [ref=f61e1181]: A
+      - generic [ref=f61e1182]:
+        - paragraph [ref=f61e1183]: © EVORA. All rights reserved.
+        - navigation "Legal" [ref=f61e1184]:
+          - link "Privacy" [ref=f61e1185] [cursor=pointer]:
+            - /url: /privacy
+          - link "Terms" [ref=f61e1186] [cursor=pointer]:
+            - /url: /terms
+  - region "Notifications alt+T"
+  - button "Open Tanstack query devtools" [ref=f61e1237] [cursor=pointer]
+  - generic [ref=f61e1290] [cursor=pointer]:
+    - button "Open Next.js Dev Tools" [ref=f61e1291]
+    - generic [ref=f61e1295]:
+      - button "Open issues overlay" [ref=f61e1296]:
+        - generic [ref=f61e1297]:
+          - generic [aria-hidden] [ref=f61e1298]: "0"
+          - generic [ref=f61e1299]: "1"
+        - generic [ref=f61e1300]: Insight
+      - button "Collapse issues badge" [ref=f61e1301]
+  - alert [ref=f61e1304]

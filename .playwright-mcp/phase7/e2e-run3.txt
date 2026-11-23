@@ -1,0 +1,29 @@
+[api] Loaded Prisma config from prisma.config.ts.
+[api] 
+
+[api] Prisma schema loaded from prisma\schema.prisma.
+
+[api] Datasource "db": PostgreSQL database "commercecore_e2e", schema "public" at "localhost:5432"
+
+[api] 
+[api] 18 migrations found in prisma/migrations
+[api] 
+
+[api] 
+
+[api] No pending migrations to apply.
+
+[api] Knowledge: 5 embedded, 0 unchanged, 0 removed
+[api] Products:  1 embedded, 0 unchanged, 0 removed
+
+[web] ⚠ Your version of Next.js is affected by a known security vulnerability. This command is continuing after the upgrade reminder.
+[web] Reference: https://registry.npmjs.org/-/npm/v1/security/advisories/bulk
+
+
+Running 4 tests using 1 worker
+
+[1/4] [chromium] › tests\micro-interactions.spec.ts:74:5 › home page micro-interactions › with motion › CTAs and hero controls dip while pressed, and come back
+[2/4] [chromium] › tests\micro-interactions.spec.ts:103:5 › home page micro-interactions › with motion › the autoplay hairline fills, and holds while the hero is hovered
+[3/4] [chromium] › tests\micro-interactions.spec.ts:122:5 › home page micro-interactions › with motion › garments beside the mouse swing wider, the one under it does not
+[4/4] [chromium] › tests\micro-interactions.spec.ts:159:5 › home page micro-interactions › with reduced motion › nothing dips, and the rail ignores the pointer
+  4 passed (1.5m)

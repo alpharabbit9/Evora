@@ -105,7 +105,7 @@ export function NewsletterForm() {
         <button
           type="submit"
           disabled={pending}
-          className="group inline-flex h-12 shrink-0 items-center justify-center gap-3 rounded-lg bg-foreground px-6 text-[10px] font-semibold tracking-[0.26em] text-background uppercase transition-colors hover:bg-sand-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground disabled:cursor-not-allowed disabled:opacity-60"
+          className="press group inline-flex h-12 shrink-0 items-center justify-center gap-3 rounded-lg bg-foreground px-6 text-[10px] font-semibold tracking-[0.26em] text-background uppercase [--press-fade:150ms] hover:bg-sand-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground disabled:cursor-not-allowed disabled:opacity-60"
         >
           {pending ? 'Subscribing…' : 'Subscribe'}
           <ArrowRight

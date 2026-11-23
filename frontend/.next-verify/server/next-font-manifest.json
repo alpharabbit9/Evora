@@ -1,0 +1,223 @@
+{
+  "app": {
+    "[project]/src/app/(store)/account/page": [
+      "static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2",
+      "static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2",
+      "static/media/2a65768255d6b625-s.p.3u4lli0-axodc.woff2",
+      "static/media/Brigends_Expanded-s.p.26n6veu4_p6f_.otf"
+    ],
+    "[project]/src/app/(store)/cart/page": [
+      "static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2",
+      "static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2",
+      "static/media/2a65768255d6b625-s.p.3u4lli0-axodc.woff2",
+      "static/media/Brigends_Expanded-s.p.26n6veu4_p6f_.otf"
+    ],
+    "[project]/src/app/(store)/checkout/page": [
+      "static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2",
+      "static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2",
+      "static/media/2a65768255d6b625-s.p.3u4lli0-axodc.woff2",
+      "static/media/Brigends_Expanded-s.p.26n6veu4_p6f_.otf"
+    ],
+    "[project]/src/app/(store)/collections/men/page": [
+      "static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2",
+      "static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2",
+      "static/media/2a65768255d6b625-s.p.3u4lli0-axodc.woff2",
+      "static/media/Brigends_Expanded-s.p.26n6veu4_p6f_.otf"
+    ],
+    "[project]/src/app/(store)/collections/new/page": [
+      "static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2",
+      "static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2",
+      "static/media/2a65768255d6b625-s.p.3u4lli0-axodc.woff2",
+      "static/media/Brigends_Expanded-s.p.26n6veu4_p6f_.otf"
+    ],
+    "[project]/src/app/(store)/collections/women/page": [
+      "static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2",
+      "static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2",
+      "static/media/2a65768255d6b625-s.p.3u4lli0-axodc.woff2",
+      "static/media/Brigends_Expanded-s.p.26n6veu4_p6f_.otf"
+    ],
+    "[project]/src/app/(store)/faq/page": [
+      "static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2",
+      "static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2",
+      "static/media/2a65768255d6b625-s.p.3u4lli0-axodc.woff2",
+      "static/media/Brigends_Expanded-s.p.26n6veu4_p6f_.otf"
+    ],
+    "[project]/src/app/(store)/forgot-password/page": [
+      "static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2",
+      "static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2",
+      "static/media/2a65768255d6b625-s.p.3u4lli0-axodc.woff2",
+      "static/media/Brigends_Expanded-s.p.26n6veu4_p6f_.otf"
+    ],
+    "[project]/src/app/(store)/orders/[orderId]/page": [
+      "static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2",
+      "static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2",
+      "static/media/2a65768255d6b625-s.p.3u4lli0-axodc.woff2",
+      "static/media/Brigends_Expanded-s.p.26n6veu4_p6f_.otf"
+    ],
+    "[project]/src/app/(store)/page": [
+      "static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2",
+      "static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2",
+      "static/media/2a65768255d6b625-s.p.3u4lli0-axodc.woff2",
+      "static/media/Brigends_Expanded-s.p.26n6veu4_p6f_.otf"
+    ],
+    "[project]/src/app/(store)/privacy/page": [
+      "static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2",
+      "static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2",
+      "static/media/2a65768255d6b625-s.p.3u4lli0-axodc.woff2",
+      "static/media/Brigends_Expanded-s.p.26n6veu4_p6f_.otf"
+    ],
+    "[project]/src/app/(store)/products/[slug]/page": [
+      "static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2",
+      "static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2",
+      "static/media/2a65768255d6b625-s.p.3u4lli0-axodc.woff2",
+      "static/media/Brigends_Expanded-s.p.26n6veu4_p6f_.otf"
+    ],
+    "[project]/src/app/(store)/reset-password/page": [
+      "static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2",
+      "static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2",
+      "static/media/2a65768255d6b625-s.p.3u4lli0-axodc.woff2",
+      "static/media/Brigends_Expanded-s.p.26n6veu4_p6f_.otf"
+    ],
+    "[project]/src/app/(store)/search/page": [
+      "static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2",
+      "static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2",
+      "static/media/2a65768255d6b625-s.p.3u4lli0-axodc.woff2",
+      "static/media/Brigends_Expanded-s.p.26n6veu4_p6f_.otf"
+    ],
+    "[project]/src/app/(store)/shipping/page": [
+      "static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2",
+      "static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2",
+      "static/media/2a65768255d6b625-s.p.3u4lli0-axodc.woff2",
+      "static/media/Brigends_Expanded-s.p.26n6veu4_p6f_.otf"
+    ],
+    "[project]/src/app/(store)/shop/page": [
+      "static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2",
+      "static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2",
+      "static/media/2a65768255d6b625-s.p.3u4lli0-axodc.woff2",
+      "static/media/Brigends_Expanded-s.p.26n6veu4_p6f_.otf"
+    ],
+    "[project]/src/app/(store)/terms/page": [
+      "static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2",
+      "static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2",
+      "static/media/2a65768255d6b625-s.p.3u4lli0-axodc.woff2",
+      "static/media/Brigends_Expanded-s.p.26n6veu4_p6f_.otf"
+    ],
+    "[project]/src/app/(store)/wishlist/page": [
+      "static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2",
+      "static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2",
+      "static/media/2a65768255d6b625-s.p.3u4lli0-axodc.woff2",
+      "static/media/Brigends_Expanded-s.p.26n6veu4_p6f_.otf"
+    ],
+    "[project]/src/app/_not-found/page": [
+      "static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2",
+      "static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2",
+      "static/media/2a65768255d6b625-s.p.3u4lli0-axodc.woff2",
+      "static/media/Brigends_Expanded-s.p.26n6veu4_p6f_.otf"
+    ],
+    "[project]/src/app/admin/assistant/[conversationId]/page": [
+      "static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2",
+      "static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2",
+      "static/media/2a65768255d6b625-s.p.3u4lli0-axodc.woff2",
+      "static/media/Brigends_Expanded-s.p.26n6veu4_p6f_.otf"
+    ],
+    "[project]/src/app/admin/assistant/page": [
+      "static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2",
+      "static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2",
+      "static/media/2a65768255d6b625-s.p.3u4lli0-axodc.woff2",
+      "static/media/Brigends_Expanded-s.p.26n6veu4_p6f_.otf"
+    ],
+    "[project]/src/app/admin/audit/page": [
+      "static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2",
+      "static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2",
+      "static/media/2a65768255d6b625-s.p.3u4lli0-axodc.woff2",
+      "static/media/Brigends_Expanded-s.p.26n6veu4_p6f_.otf"
+    ],
+    "[project]/src/app/admin/categories/page": [
+      "static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2",
+      "static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2",
+      "static/media/2a65768255d6b625-s.p.3u4lli0-axodc.woff2",
+      "static/media/Brigends_Expanded-s.p.26n6veu4_p6f_.otf"
+    ],
+    "[project]/src/app/admin/coupons/page": [
+      "static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2",
+      "static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2",
+      "static/media/2a65768255d6b625-s.p.3u4lli0-axodc.woff2",
+      "static/media/Brigends_Expanded-s.p.26n6veu4_p6f_.otf"
+    ],
+    "[project]/src/app/admin/customers/page": [
+      "static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2",
+      "static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2",
+      "static/media/2a65768255d6b625-s.p.3u4lli0-axodc.woff2",
+      "static/media/Brigends_Expanded-s.p.26n6veu4_p6f_.otf"
+    ],
+    "[project]/src/app/admin/inventory/movements/page": [
+      "static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2",
+      "static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2",
+      "static/media/2a65768255d6b625-s.p.3u4lli0-axodc.woff2",
+      "static/media/Brigends_Expanded-s.p.26n6veu4_p6f_.otf"
+    ],
+    "[project]/src/app/admin/inventory/page": [
+      "static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2",
+      "static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2",
+      "static/media/2a65768255d6b625-s.p.3u4lli0-axodc.woff2",
+      "static/media/Brigends_Expanded-s.p.26n6veu4_p6f_.otf"
+    ],
+    "[project]/src/app/admin/jobs/page": [
+      "static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2",
+      "static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2",
+      "static/media/2a65768255d6b625-s.p.3u4lli0-axodc.woff2",
+      "static/media/Brigends_Expanded-s.p.26n6veu4_p6f_.otf"
+    ],
+    "[project]/src/app/admin/orders/[orderId]/page": [
+      "static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2",
+      "static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2",
+      "static/media/2a65768255d6b625-s.p.3u4lli0-axodc.woff2",
+      "static/media/Brigends_Expanded-s.p.26n6veu4_p6f_.otf"
+    ],
+    "[project]/src/app/admin/orders/page": [
+      "static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2",
+      "static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2",
+      "static/media/2a65768255d6b625-s.p.3u4lli0-axodc.woff2",
+      "static/media/Brigends_Expanded-s.p.26n6veu4_p6f_.otf"
+    ],
+    "[project]/src/app/admin/page": [
+      "static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2",
+      "static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2",
+      "static/media/2a65768255d6b625-s.p.3u4lli0-axodc.woff2",
+      "static/media/Brigends_Expanded-s.p.26n6veu4_p6f_.otf"
+    ],
+    "[project]/src/app/admin/products/[productId]/page": [
+      "static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2",
+      "static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2",
+      "static/media/2a65768255d6b625-s.p.3u4lli0-axodc.woff2",
+      "static/media/Brigends_Expanded-s.p.26n6veu4_p6f_.otf"
+    ],
+    "[project]/src/app/admin/products/new/page": [
+      "static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2",
+      "static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2",
+      "static/media/2a65768255d6b625-s.p.3u4lli0-axodc.woff2",
+      "static/media/Brigends_Expanded-s.p.26n6veu4_p6f_.otf"
+    ],
+    "[project]/src/app/admin/products/page": [
+      "static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2",
+      "static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2",
+      "static/media/2a65768255d6b625-s.p.3u4lli0-axodc.woff2",
+      "static/media/Brigends_Expanded-s.p.26n6veu4_p6f_.otf"
+    ],
+    "[project]/src/app/admin/settings/page": [
+      "static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2",
+      "static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2",
+      "static/media/2a65768255d6b625-s.p.3u4lli0-axodc.woff2",
+      "static/media/Brigends_Expanded-s.p.26n6veu4_p6f_.otf"
+    ],
+    "[project]/src/app/auth/page": [
+      "static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2",
+      "static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2",
+      "static/media/2a65768255d6b625-s.p.3u4lli0-axodc.woff2",
+      "static/media/Brigends_Expanded-s.p.26n6veu4_p6f_.otf"
+    ]
+  },
+  "appUsingSizeAdjust": true,
+  "pages": {},
+  "pagesUsingSizeAdjust": false
+}

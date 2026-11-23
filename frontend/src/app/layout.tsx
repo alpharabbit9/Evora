@@ -3,6 +3,8 @@ import { Geist, Geist_Mono, Playfair_Display } from 'next/font/google';
 import localFont from 'next/font/local';
 
 import { AppProviders } from '@/components/providers/app-providers';
+import { SITE_URL } from '@/lib/env';
+import { SITE_DESCRIPTION, SITE_NAME, SITE_TITLE } from '@/lib/site';
 
 import './globals.css';
 
@@ -16,10 +18,12 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 });
 
+// Headings use the regular weight, with medium in a few places; 600 and 700 were never set, so
+// they are not downloaded. Add a weight here before using it, or the browser fakes a bold.
 const playfair = Playfair_Display({
   variable: '--font-playfair',
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
+  weight: ['400', '500'],
 });
 
 // Display face, read from the Charcoal & Ivory theme folder. The weight range stops the
@@ -33,11 +37,16 @@ const brigends = localFont({
 });
 
 export const metadata: Metadata = {
+  // Resolves the relative URLs below and the Open Graph image file (`opengraph-image.jpg`,
+  // captured from the home page hero) into absolute ones, which link previews require.
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: 'EVORA — Modern essentials',
+    default: SITE_TITLE,
     template: '%s — EVORA',
   },
-  description: 'Considered clothing and objects for a slower, more deliberate everyday.',
+  description: SITE_DESCRIPTION,
+  openGraph: { siteName: SITE_NAME, type: 'website' },
+  twitter: { card: 'summary_large_image' },
 };
 
 export default function RootLayout({ children }: LayoutProps<'/'>) {

@@ -1,0 +1,151 @@
+# Staging rehearsal (ADR 0024): the production build of every deployable, with NODE_ENV=production,
+# in the topology production must use — one public origin, the API path-routed under /api — on
+# one machine. Real staging replaces the four supporting services with their managed equivalents
+# (PostgreSQL, S3-compatible storage — SeaweedFS here, as MinIO no longer publishes images —
+# an SMTP relay, the platform's TLS edge); the three
+# application containers and their environment stay the same.
+#
+#   ./setup.sh                    # once: secrets, local CA and Mailpit certificate (gitignored)
+#   docker compose up -d --build  # http://localhost:8080
+#
+# Image tags are pinned by major version here; pin digests in a real environment.
+name: commercecore-staging
+
+x-api-env: &api-env
+  NODE_ENV: production
+  PORT: '4000'
+  LOG_LEVEL: info
+  DATABASE_URL: postgresql://commercecore:${POSTGRES_PASSWORD:?run setup.sh}@postgres:5432/commercecore?schema=public
+  BETTER_AUTH_SECRET: ${BETTER_AUTH_SECRET:?run setup.sh}
+  # One origin: the browser reaches the storefront and the API through the proxy.
+  BETTER_AUTH_URL: http://localhost:8080
+  FRONTEND_ORIGIN: http://localhost:8080
+  PAYMENT_CALLBACK_BASE_URL: http://localhost:8080
+  STORAGE_DRIVER: s3
+  S3_ENDPOINT: http://s3:8333
+  S3_REGION: us-east-1
+  S3_BUCKET: commercecore-media
+  S3_ACCESS_KEY_ID: ${S3_ACCESS_KEY_ID:?run setup.sh}
+  S3_SECRET_ACCESS_KEY: ${S3_SECRET_ACCESS_KEY:?run setup.sh}
+  # `media.localhost` resolves to 127.0.0.1 in the browser and to the S3 service inside this network.
+  MEDIA_PUBLIC_URL: http://media.localhost:8333/commercecore-media
+  EMAIL_DRIVER: smtp
+  SMTP_HOST: mailpit
+  SMTP_PORT: '1025'
+  SMTP_SECURE: 'false'
+  EMAIL_FROM: CommerceCore Staging <no-reply@staging.commercecore.test>
+  STORE_NAME: CommerceCore (staging)
+  # Online payment stays off until a sandbox store with a public callback URL exists.
+  SSLCOMMERZ_STORE_ID: ''
+  SSLCOMMERZ_STORE_PASSWORD: ''
+  # Trust the rehearsal CA for Mailpit's STARTTLS certificate; production trusts the system store.
+  NODE_EXTRA_CA_CERTS: /certs/ca.crt
+
+services:
+  postgres:
+    image: pgvector/pgvector:0.8.6-pg17 # PostgreSQL 17 with pgvector (ADR 0025)
+    environment:
+      POSTGRES_USER: commercecore
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?run setup.sh}
+      POSTGRES_DB: commercecore
+    ports: ['127.0.0.1:55432:5432'] # for the backup/restore drill only
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U commercecore']
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  s3:
+    image: chrislusf/seaweedfs:latest
+    command: server -dir=/data -s3 -s3.port=8333 -s3.config=/etc/seaweedfs/s3.json
+    ports: ['127.0.0.1:8333:8333']
+    volumes: ['s3data:/data', './secrets/s3.json:/etc/seaweedfs/s3.json:ro']
+    networks:
+      default:
+        aliases: [media.localhost]
+
+  s3-init:
+    image: amazon/aws-cli:latest
+    depends_on: [s3]
+    # Retries until the S3 gateway answers, then makes sure the media bucket exists.
+    entrypoint: >-
+      sh -c "until aws --endpoint-url http://s3:8333 s3api head-bucket --bucket commercecore-media 2>/dev/null ||
+                    aws --endpoint-url http://s3:8333 s3api create-bucket --bucket commercecore-media; do sleep 2; done"
+    environment:
+      AWS_ACCESS_KEY_ID: ${S3_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${S3_SECRET_ACCESS_KEY}
+      AWS_DEFAULT_REGION: us-east-1
+
+  mailpit:
+    image: axllent/mailpit:latest
+    environment:
+      MP_SMTP_TLS_CERT: /certs/mailpit.crt
+      MP_SMTP_TLS_KEY: /certs/mailpit.key
+      MP_SMTP_REQUIRE_STARTTLS: 'true'
+    ports: ['127.0.0.1:8025:8025'] # web UI and API, to read what the worker sent
+    volumes: ['./certs:/certs:ro']
+
+  migrate:
+    build: { context: ../../backend, target: migrate }
+    image: commercecore-migrate:staging
+    environment:
+      DATABASE_URL: postgresql://commercecore:${POSTGRES_PASSWORD}@postgres:5432/commercecore?schema=public
+    depends_on:
+      postgres: { condition: service_healthy }
+    restart: 'no'
+
+  api:
+    build: { context: ../../backend, target: runtime }
+    image: commercecore-api:staging
+    environment: *api-env
+    volumes: ['./certs:/certs:ro']
+    depends_on:
+      migrate: { condition: service_completed_successfully }
+      s3-init: { condition: service_completed_successfully }
+    restart: unless-stopped
+
+  worker:
+    build: { context: ../../backend, target: runtime }
+    image: commercecore-api:staging
+    command: ['node', 'dist/worker.js']
+    environment: *api-env
+    # The image's HEALTHCHECK probes the API's HTTP port, which the worker does not open. The
+    # worker's health is its queue (docs/runbooks/monitoring.md); here, that its process is alive.
+    healthcheck:
+      test: ['CMD', 'node', '-e', "process.kill(1, 0)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    volumes: ['./certs:/certs:ro']
+    depends_on:
+      api: { condition: service_started }
+      mailpit: { condition: service_started }
+    restart: unless-stopped
+
+  web:
+    build:
+      context: ../../frontend
+      args:
+        NEXT_PUBLIC_API_URL: http://localhost:8080
+        NEXT_PUBLIC_MEDIA_URL: http://media.localhost:8333/commercecore-media
+        # The storefront's public origin: canonical links, the sitemap and link previews.
+        NEXT_PUBLIC_SITE_URL: http://localhost:8080
+    image: commercecore-web:staging
+    environment:
+      # Server-side requests go straight to the API over the private network.
+      API_INTERNAL_URL: http://api:4000
+    depends_on:
+      api: { condition: service_started }
+    restart: unless-stopped
+
+  proxy:
+    image: caddy:2
+    ports: ['127.0.0.1:8080:8080']
+    volumes: ['./Caddyfile:/etc/caddy/Caddyfile:ro']
+    depends_on: [api, web]
+    restart: unless-stopped
+
+volumes:
+  pgdata:
+  s3data:

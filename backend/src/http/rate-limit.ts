@@ -39,12 +39,39 @@ export interface RateLimitConfig {
   readonly session: RateLimitRule;
   /** State-changing requests to the application's own routes. */
   readonly write: RateLimitRule;
+  /**
+   * Quotes and order placement (API_SPEC.md §10). Tighter than `write` because each request
+   * re-prices a whole order, and a placement claims stock.
+   */
+  readonly checkout: RateLimitRule;
+  /**
+   * The unauthenticated browser return from the payment gateway. Each request can make the API
+   * call the provider, so it must not become a way to make us send traffic. The provider's own
+   * notifications are deliberately NOT limited (API_SPEC.md §10): dropping one would lose a
+   * payment event, and an unsigned one is refused before any work happens.
+   */
+  readonly paymentReturn: RateLimitRule;
+  /**
+   * Search-as-you-type (API_SPEC.md §10). A GET, so `write` does not cover it, and each request
+   * runs a full catalog search. Generous enough for typing, which the storefront debounces.
+   */
+  readonly suggestions: RateLimitRule;
+  /**
+   * Messages to the shopping assistant (ADR 0025). Each one calls a paid provider, so it is
+   * tighter than `write`. The real cap is the daily allowance counted in the database; this
+   * stops a burst from one address before it reaches that query.
+   */
+  readonly assistant: RateLimitRule;
 }
 
 export const DEFAULT_RATE_LIMITS: RateLimitConfig = {
   credential: { windowMs: 15 * 60 * 1000, limit: 20 },
   session: { windowMs: 60 * 1000, limit: 120 },
   write: { windowMs: 60 * 1000, limit: 60 },
+  checkout: { windowMs: 60 * 1000, limit: 30 },
+  paymentReturn: { windowMs: 60 * 1000, limit: 30 },
+  suggestions: { windowMs: 60 * 1000, limit: 120 },
+  assistant: { windowMs: 60 * 1000, limit: 12 },
 };
 
 /**
@@ -90,6 +117,14 @@ export interface AuthLimiters {
   readonly session: RequestHandler;
   /** Mount on the application's own routes; skips GET/HEAD/OPTIONS itself. */
   readonly write: RequestHandler;
+  /** Mount on `/checkout`, ahead of `write`. */
+  readonly checkout: RequestHandler;
+  /** Mount on the gateway's browser return. Counts every method: the gateway may use either. */
+  readonly paymentReturn: RequestHandler;
+  /** Mount on `/search/suggestions`. Counts GETs, unlike `write`. */
+  readonly suggestions: RequestHandler;
+  /** Mount on `/assistant`. Counts writes only: reading a conversation is not limited here. */
+  readonly assistant: RequestHandler;
 }
 
 /**
@@ -102,5 +137,9 @@ export function createRateLimiters(config: RateLimitConfig = DEFAULT_RATE_LIMITS
     credential: buildLimiter('credential', config.credential),
     session: buildLimiter('auth-session', config.session),
     write: buildLimiter('write', config.write, { skipSafe: true }),
+    checkout: buildLimiter('checkout', config.checkout, { skipSafe: true }),
+    paymentReturn: buildLimiter('payment-return', config.paymentReturn),
+    suggestions: buildLimiter('suggestions', config.suggestions),
+    assistant: buildLimiter('assistant', config.assistant, { skipSafe: true }),
   };
 }

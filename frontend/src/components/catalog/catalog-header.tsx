@@ -1,6 +1,13 @@
+import { PageHeader } from '@/components/layout/page-header';
+import { Skeleton } from '@/components/ui/skeleton';
+
+const HEADER_FRAME =
+  'mx-auto w-full max-w-[1680px] px-4 pt-10 pb-8 sm:px-6 sm:pt-14 lg:px-10 xl:px-14';
+
 /**
- * Static opener for a listing page: eyebrow, editorial heading and a line of copy. A Server
- * Component, so it is part of the prerendered shell while the listing streams in below.
+ * Static opener for a listing page without a banner (search): the store's `PageHeader`, with
+ * the demo-catalog notice under whatever the page adds. A Server Component, so it is part of the
+ * prerendered shell while the listing streams in below.
  */
 export function CatalogHeader({
   eyebrow,
@@ -14,20 +21,22 @@ export function CatalogHeader({
   children?: React.ReactNode;
 }) {
   return (
-    <header className="mx-auto w-full max-w-[1680px] px-4 pt-10 pb-8 sm:px-6 sm:pt-14 lg:px-10 xl:px-14">
-      <p className="flex items-center gap-3 text-[10px] font-semibold tracking-[0.24em] text-muted-foreground uppercase">
-        <span aria-hidden="true" className="h-px w-8 bg-current opacity-60" />
-        {eyebrow}
-      </p>
-      <h1 className="mt-5 font-heading text-[clamp(2.2rem,1.6rem+2.2vw,3.75rem)] leading-[1.04] font-normal tracking-[-0.015em] text-balance">
-        {title}
-      </h1>
-      {description ? (
-        <p className="mt-4 max-w-xl text-sm leading-7 text-muted-foreground">{description}</p>
-      ) : null}
+    <PageHeader className={HEADER_FRAME} eyebrow={eyebrow} title={title} description={description}>
       {children}
       <DemoNotice />
-    </header>
+    </PageHeader>
+  );
+}
+
+/** The header's footprint — eyebrow, heading, copy, notice — for a route still loading. */
+export function CatalogHeaderSkeleton() {
+  return (
+    <div className={HEADER_FRAME} aria-hidden="true">
+      <Skeleton className="h-3 w-28" />
+      <Skeleton className="mt-5 h-[clamp(2.2rem,1.6rem+2.2vw,3.5rem)] w-72 max-w-full" />
+      <Skeleton className="mt-4 h-4 w-full max-w-xl" />
+      <Skeleton className="mt-6 h-10 w-full max-w-2xl" />
+    </div>
   );
 }
 

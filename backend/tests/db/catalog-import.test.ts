@@ -121,6 +121,27 @@ describe('persistProduct', () => {
     }
   });
 
+  it('stores gallery photos in order after the main photo, and never appends on a rerun', async () => {
+    const main = product().image;
+    if (!main) throw new Error('fixture has no image');
+    const side = { ...main, objectKey: 'catalog/test/1001/2.webp', altText: 'Side view' };
+    const back = { ...main, objectKey: 'catalog/test/1001/3.webp', altText: 'Back view' };
+
+    const first = await persistProduct(testDb, product({ gallery: [side] }), PRICED);
+    expect(first.imagesCreated).toBe(2);
+
+    // A rerun that now lists a third photo adds nothing: the gallery is only written with the
+    // main photo, so an admin's arrangement is never appended to.
+    const rerun = await persistProduct(testDb, product({ gallery: [side, back] }), PRICED);
+    expect(rerun.imagesCreated).toBe(0);
+
+    const images = await testDb.productImage.findMany({ orderBy: { sortOrder: 'asc' } });
+    expect(images.map((image) => [image.sortOrder, image.altText, image.kind])).toEqual([
+      [0, 'Roadster Men Black T-shirt', 'PHOTO'],
+      [1, 'Side view', 'PHOTO'],
+    ]);
+  });
+
   it('creates a single variant with no size option when the source lists no sizes', async () => {
     await persistProduct(testDb, product({ sizes: [] }), PRICED);
     const variants = await testDb.productVariant.findMany();

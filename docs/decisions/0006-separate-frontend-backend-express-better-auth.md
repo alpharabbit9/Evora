@@ -1,6 +1,10 @@
 # ADR 0006 — Separate Frontend/Backend Deployables with Express and Better Auth
 
-- **Status:** Accepted
+- **Status:** Accepted. **Amended by [ADR 0024](0024-staging-production-readiness.md):** production
+  must be same-site (one origin, or sibling subdomains sharing `AUTH_COOKIE_DOMAIN`), and the session
+  cookie is `SameSite=Lax` everywhere. The cross-site layout and `SameSite=None` described under
+  Consequences no longer apply. Since ADR 0014 the storefront reads the session cookie itself, which
+  a cross-site layout cannot deliver.
 - **Date:** 2026-10-21
 - **Amends:** ADR 0001 (Modular Monolith) — the *deployment* half only; the modular-boundary half still stands.
 

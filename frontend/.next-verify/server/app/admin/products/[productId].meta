@@ -1,0 +1,48 @@
+{
+  "status": 200,
+  "headers": {
+    "link": "</_next/static/media/2a65768255d6b625-s.p.3u4lli0-axodc.woff2>; rel=preload; as=\"font\"; crossorigin=\"\"; type=\"font/woff2\", </_next/static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2>; rel=preload; as=\"font\"; crossorigin=\"\"; type=\"font/woff2\", </_next/static/media/Brigends_Expanded-s.p.26n6veu4_p6f_.otf>; rel=preload; as=\"font\"; crossorigin=\"\"; type=\"font/otf\", </_next/static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2>; rel=preload; as=\"font\"; crossorigin=\"\"; type=\"font/woff2\"",
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/admin/layout,_N_T_/admin/products/layout,_N_T_/admin/products/[productId]/layout,_N_T_/admin/products/[productId]/page"
+  },
+  "postponed": "3036:13[\"productId\"][1,{\"nextSegmentId\":1,\"rootFormatContext\":{\"insertionMode\":0,\"selectedValue\":null,\"tagScope\":0,\"viewTransition\":null},\"progressiveChunkSize\":12800,\"resumableState\":{\"idPrefix\":\"\",\"nextFormID\":0,\"streamingFormat\":0,\"instructions\":96,\"hasBody\":true,\"hasHtml\":true,\"unknownResources\":{\"font\":{\"/_next/static/media/2a65768255d6b625-s.p.3u4lli0-axodc.woff2\":[],\"/_next/static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2\":[],\"/_next/static/media/Brigends_Expanded-s.p.26n6veu4_p6f_.otf\":[],\"/_next/static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2\":[]}},\"dnsResources\":{},\"connectResources\":{\"default\":{},\"anonymous\":{},\"credentials\":{}},\"imageResources\":{},\"styleResources\":{\"/_next/static/chunks/38aivj47fjby8.css\":null,\"/_next/static/chunks/2ezohweq1h052.css\":null},\"scriptResources\":{\"/_next/static/chunks/1ckvzn7sfprko.js\":null,\"/_next/static/chunks/11t-zvhau74r5.js\":null,\"/_next/static/chunks/2abgvfcolnmqq.js\":null,\"/_next/static/chunks/2l8fpcfss9uqn.js\":null,\"/_next/static/chunks/turbopack-3-ry682tkyiqk.js\":null,\"/_next/static/chunks/34jd45txuktih.js\":null,\"/_next/static/chunks/1dd0bn69hnsde.js\":null,\"/_next/static/chunks/1c67ydjwu4qr3.js\":null,\"/_next/static/chunks/0qa6pfjd3c4nu.js\":null,\"/_next/static/chunks/2-rfe7f68bjl5.js\":null,\"/_next/static/chunks/0-n15np6i98i0.js\":null,\"/_next/static/chunks/18i-47d--9oa5.js\":null,\"/_next/static/chunks/0cfs4oomuhqk6.js\":null,\"/_next/static/chunks/2uz74cxvnxlca.js\":null,\"/_next/static/chunks/29r2uj1wue3lq.js\":null,\"/_next/static/chunks/3zdndph4bg48x.js\":null,\"/_next/static/chunks/0nkopt71er1_d.js\":null,\"/_next/static/chunks/1z-dxqdntnxmy.js\":null,\"/_next/static/chunks/2r_n4ifieount.js\":null,\"/_next/static/chunks/0ysy3gghyg_oz.js\":null},\"moduleUnknownResources\":{},\"moduleScriptResources\":{\"/_next/static/chunks/1ckvzn7sfprko.js\":null}},\"replayNodes\":[[\"sl\",0,[[\"Context\",0,[[\"Context\",0,[[\"ServerInsertedHTMLProvider\",0,[[\"Context\",0,[[\"io\",0,[[\"aV\",0,[[\"az\",0,[[\"aq\",0,[[\"is\",0,[[\"Fragment\",0,[[\"Context\",2,[[\"Context\",0,[[\"Context\",0,[[\"Context\",0,[[\"Context\",0,[[\"Context\",0,[[\"Context\",0,[[\"aV\",0,[[\"az\",0,[[\"aq\",0,[[\"ai\",0,[[\"aa\",0,[[\"__next_root_layout_boundary__\",1,[[\"Fragment\",\"c\",[[\"html\",1,[[\"body\",0,[[null,0,[[null,0,[[\"Context\",0,[[null,0,[[\"i\",0,[[\"Context\",0,[[\"Fragment\",1,[[\"u\",0,[[\"ForwardRef\",0,[[\"Context\",0,[[null,1,[[\"Activity\",\"admin\",[[\"Context\",\"admin\",[[null,2,[[\"Fragment\",0,[[\"E\",0,[[\"D\",0,[[\"Fragment\",0,[[\"n\",0,[[\"Fragment\",0,[[\"G\",0,[[\"Fragment\",0,[[null,0,[[\"l\",0,[[\"x\",0,[[\"w\",0,[[\"F\",0,[[\"Context\",0,[[null,0,[[\"Context\",0,[[\"Fragment\",\"c\",[[\"Suspense\",1,[],0,[\"Suspense Fallback\",1,[],null],0]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],\"replaySlots\":null}]null",
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/_index",
+    "/admin/products/$d$productId/__PAGE__"
+  ],
+  "prefetchHints": {
+    "hints": 0,
+    "slots": {
+      "children": {
+        "hints": 64,
+        "slots": {
+          "children": {
+            "hints": 96,
+            "slots": {
+              "children": {
+                "hints": 96,
+                "slots": {
+                  "children": {
+                    "hints": 160,
+                    "slots": null
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "routeCache": {
+    "key": "/route-cache/APP_PAGE/cb51a3f1eb4daaa3244785fe575bfb7f2701384470c610309eb1ec803b1d8829/$/admin/products/[productId]",
+    "owner": {
+      "kind": "APP_PAGE",
+      "sourceRoute": "/admin/products/[productId]/page"
+    },
+    "isFallback": true
+  }
+}

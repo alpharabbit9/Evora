@@ -1,0 +1,37 @@
+{
+  "status": 200,
+  "headers": {
+    "link": "</_next/static/media/2a65768255d6b625-s.p.3u4lli0-axodc.woff2>; rel=preload; as=\"font\"; crossorigin=\"\"; type=\"font/woff2\", </_next/static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2>; rel=preload; as=\"font\"; crossorigin=\"\"; type=\"font/woff2\", </_next/static/media/Brigends_Expanded-s.p.26n6veu4_p6f_.otf>; rel=preload; as=\"font\"; crossorigin=\"\"; type=\"font/otf\", </_next/static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2>; rel=preload; as=\"font\"; crossorigin=\"\"; type=\"font/woff2\"",
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/auth/layout,_N_T_/auth/page,_N_T_/auth"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/_index",
+    "/auth/__PAGE__"
+  ],
+  "prefetchHints": {
+    "hints": 49152,
+    "slots": {
+      "children": {
+        "hints": 49216,
+        "slots": {
+          "children": {
+            "hints": 49312,
+            "slots": null
+          }
+        }
+      }
+    }
+  },
+  "routeCache": {
+    "key": "/route-cache/APP_PAGE/4227697197147303d9772f4d4b3dfc57e87378774d898d8ff12cea5c7845c3e2/$/auth",
+    "owner": {
+      "kind": "APP_PAGE",
+      "sourceRoute": "/auth/page"
+    },
+    "isFallback": false
+  }
+}

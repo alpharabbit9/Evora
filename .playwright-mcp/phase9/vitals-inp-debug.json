@@ -1,0 +1,52 @@
+{
+  "label": "inp-debug",
+  "summary": {
+    "ttfb": 5.799999997019768,
+    "fcp": 2036,
+    "lcp": 2512,
+    "clsLoad": 0,
+    "cls": 0,
+    "tbt": 3463,
+    "inp": 624,
+    "jsKB": 450.5439453125,
+    "totalKB": 1355.7021484375,
+    "lcpEl": [
+      "img[alt=Man in a charcoal herringbone three-piece suit, long wool overcoat and flat cap, walking] image?url=%2Fimages%2FHero%2Fhero1.webp&w=828&q=75"
+    ]
+  },
+  "runs": [
+    {
+      "ttfb": 5.799999997019768,
+      "load": 7877.0999999940395,
+      "lcp": 2512,
+      "lcpEl": "img[alt=Man in a charcoal herringbone three-piece suit, long wool overcoat and flat cap, walking] image?url=%2Fimages%2FHero%2Fhero1.webp&w=828&q=75",
+      "fcp": 2036,
+      "tbt": 3463,
+      "clsLoad": 0,
+      "cls": 0,
+      "shiftLog": [],
+      "inp": 624,
+      "interactions": 5,
+      "perTap": [
+        [
+          "button[aria-label=\"Next slide\"]",
+          "pointerdown 600 [delay 83 js 6 paint 511], pointerup 600 [delay 96 js 2 paint 502], click 600 [delay 135 js 326 paint 139]"
+        ],
+        [
+          "button[aria-label=\"Pause slideshow\"]",
+          "pointerdown 144 [delay 53 js 7 paint 85], pointerup 144 [delay 63 js 1 paint 80], click 144 [delay 96 js 26 paint 22]"
+        ],
+        [
+          "header button[aria-expanded]",
+          "pointerdown 200 [delay 48 js 5 paint 148], pointerup 200 [delay 56 js 0 paint 144], click 200 [delay 91 js 85 paint 24]"
+        ],
+        [
+          ".arrivals-rail .arrival a",
+          "pointerdown 624 [delay 143 js 10 paint 471], pointerup 624 [delay 166 js 1 paint 457], click 624 [delay 220 js 149 paint 256]"
+        ]
+      ],
+      "jsKB": 450.5439453125,
+      "totalKB": 1355.7021484375
+    }
+  ]
+}

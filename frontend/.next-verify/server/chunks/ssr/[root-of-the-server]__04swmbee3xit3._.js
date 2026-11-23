@@ -1,0 +1,3 @@
+module.exports=[[24951,(a,b,c)=>{b.exports=a.r(18622)},7997,(a,b,c)=>{b.exports=a.r(24951).vendored["react-rsc"].ReactJsxRuntime},11857,(a,b,c)=>{b.exports=a.r(24951).vendored["react-rsc"].ReactServerDOMTurbopackServer},96835,a=>{var b=a.i(92665);a.s(["W",0,"Considered clothing and objects for a slower, more deliberate everyday.","C",0,"EVORA","h",0,"EVORA — Modern essentials","I",0,function(a){return`${b.A}${a.startsWith("/")?a:`/${a}`}`}])}],18622,(a,b,c)=>{b.exports=a.x("next/dist/compiled/next-server/app-page-turbo.runtime.prod.js",()=>require("next/dist/compiled/next-server/app-page-turbo.runtime.prod.js"))}];
+
+//# sourceMappingURL=%5Broot-of-the-server%5D__04swmbee3xit3._.js.map

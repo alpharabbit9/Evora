@@ -1,12 +1,12 @@
 // CommerceCore — Prisma schema
 //
 // Scope: identity (Better Auth) + the commerce domain model from docs/database-design.md.
-// This file defines TABLES AND CONSTRAINTS ONLY. No checkout, payment, refund, pricing or
-// reservation behavior exists yet — those land in M5/M6/M7/M8.
+// This file defines TABLES AND CONSTRAINTS ONLY; behavior lives in src/modules.
 //
 // Deliberately absent, with reasons:
-//   InventoryReservation  — ADR 0004 is still Proposed; `stockQuantity` means ON-HAND until it lands.
-//   Review, WishlistItem  — PRD §4 marks them optional/unaccepted; uniqueness rules undefined.
+//   InventoryReservation  — ADR 0004 chose decrement-on-order; `stockQuantity` is what can be sold.
+//   Review                — PRD §4 marks it optional/unaccepted; uniqueness rules undefined.
+//                           (WishlistItem was accepted and added by ADR 0016.)
 //   Notification          — OutboxEvent covers durable async work; a second table has no demonstrated need.
 //   StoreSettings         — shipping/tax/store policy is unresolved (PRD §9); M10.
 //
@@ -83,6 +83,9 @@ model User {
   inventoryMovements InventoryMovement[]
   couponRedemptions  CouponRedemption[]
   auditLogs          AuditLog[]
+  wishlistItems      WishlistItem[]
+  settingsChanges    StoreSettings[]
+  assistantChats     AssistantConversation[]
 
   @@map("users")
 }
@@ -253,18 +256,24 @@ model Product {
   createdAt         DateTime       @default(now()) @map("created_at")
   updatedAt         DateTime       @updatedAt @map("updated_at")
 
-  category       Category         @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  category       Category          @relation(fields: [categoryId], references: [id], onDelete: Restrict)
   variants       ProductVariant[]
   images         ProductImage[]
   orderItems     OrderItem[]
   couponProducts CouponProduct[]
+  wishlistItems  WishlistItem[]
+  embedding      ProductEmbedding?
 
   @@unique([sourceProvider, sourceExternalId])
   @@index([categoryId])
   @@index([status, publishedAt(sort: Desc)])
   @@index([brand])
   @@index([gender, status])
-  @@index([featuredRank])
+  /// The storefront's default order (`featured` in catalog.query.ts), column for column, so a
+  /// page is read from the index instead of sorting every published product. ASC puts NULLs
+  /// last in PostgreSQL, matching `featured_rank ASC NULLS LAST`. Measured in
+  /// docs/performance-review.md: 729 ms → 2 ms at 20,000 products.
+  @@index([featuredRank, publishedAt(sort: Desc), createdAt(sort: Desc), id(sort: Desc)])
   @@map("products")
 }
 
@@ -301,26 +310,36 @@ model ProductVariant {
   @@map("product_variants")
 }
 
+/// What an image is for (ADR 0017). PHOTO: the listing card and the product gallery. CUTOUT: the
+/// garment alone on a transparent background, drawn only by the home page's arrivals rail —
+/// never in the gallery, never the card image, and it does not satisfy the publication rule.
+enum ProductImageKind {
+  PHOTO
+  CUTOUT
+}
+
 /// Image metadata only; binaries live in object storage under `objectKey`.
 /// `altText` is NOT optional — PRD §5 requires accessible alternatives.
 /// No unique on (product_id, sort_order): reordering would need deferrable constraints.
 /// CHECK: sort_order >= 0, char_length(alt_text) > 0, byte_size > 0, width_px > 0, height_px > 0.
+/// PARTIAL UNIQUE: at most one CUTOUT per product (product_images_one_cutout_per_product_key).
 model ProductImage {
-  id          String   @id @default(cuid())
-  productId   String   @map("product_id")
-  variantId   String?  @map("variant_id")
-  objectKey   String   @unique @map("object_key")
-  altText     String   @map("alt_text")
-  sortOrder   Int      @default(0) @map("sort_order")
-  widthPx     Int?     @map("width_px")
-  heightPx    Int?     @map("height_px")
-  byteSize    Int?     @map("byte_size")
-  contentType String?  @map("content_type")
+  id          String           @id @default(cuid())
+  productId   String           @map("product_id")
+  variantId   String?          @map("variant_id")
+  objectKey   String           @unique @map("object_key")
+  altText     String           @map("alt_text")
+  sortOrder   Int              @default(0) @map("sort_order")
+  kind        ProductImageKind @default(PHOTO)
+  widthPx     Int?             @map("width_px")
+  heightPx    Int?             @map("height_px")
+  byteSize    Int?             @map("byte_size")
+  contentType String?          @map("content_type")
   /// Provenance of a dataset image (ADR 0011). Internal; not a URL to serve.
-  sourceUrl   String?  @map("source_url")
+  sourceUrl   String?          @map("source_url")
   attribution String?
-  createdAt   DateTime @default(now()) @map("created_at")
-  updatedAt   DateTime @updatedAt @map("updated_at")
+  createdAt   DateTime         @default(now()) @map("created_at")
+  updatedAt   DateTime         @updatedAt @map("updated_at")
 
   product Product         @relation(fields: [productId], references: [id], onDelete: Cascade)
   variant ProductVariant? @relation(fields: [variantId], references: [id], onDelete: SetNull)
@@ -367,12 +386,16 @@ model Cart {
 /// The DB only guarantees a sane range — the real per-order cap is a service policy.
 /// CHECK: quantity BETWEEN 1 AND 999.
 model CartItem {
-  id        String   @id @default(cuid())
-  cartId    String   @map("cart_id")
-  variantId String   @map("variant_id")
-  quantity  Int
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
+  id                 String   @id @default(cuid())
+  cartId             String   @map("cart_id")
+  variantId          String   @map("variant_id")
+  quantity           Int
+  /// The unit price the customer was last shown for this line (set on add and on a quantity
+  /// change), so the bag can say the price has changed since. Display only: checkout prices from
+  /// the catalog. NULL for lines older than the column. CHECK: NULL or >= 0.
+  unitPriceSeenMinor Int?     @map("unit_price_seen_minor")
+  createdAt          DateTime @default(now()) @map("created_at")
+  updatedAt          DateTime @updatedAt @map("updated_at")
 
   cart    Cart           @relation(fields: [cartId], references: [id], onDelete: Cascade)
   variant ProductVariant @relation(fields: [variantId], references: [id], onDelete: Restrict)
@@ -380,6 +403,30 @@ model CartItem {
   @@unique([cartId, variantId])
   @@index([variantId])
   @@map("cart_items")
+}
+
+// ---------------------------------------------------------------------------
+// Wishlist (ADR 0016)
+// ---------------------------------------------------------------------------
+
+/// A product a customer saved for later. Product-level, not variant-level: a listing card has
+/// no size or colour to choose, and the choice is made on the product page.
+/// Unique (user_id, product_id): saving twice is the same state, so the write is idempotent.
+/// No price or stock is stored — the list is re-read from the catalog, like the cart.
+/// The per-customer cap is a service policy (MAX_WISHLIST_ITEMS), not a constraint.
+model WishlistItem {
+  id        String   @id @default(cuid())
+  userId    String   @map("user_id")
+  productId String   @map("product_id")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, productId])
+  @@index([userId, createdAt(sort: Desc)])
+  @@index([productId])
+  @@map("wishlist_items")
 }
 
 // ---------------------------------------------------------------------------
@@ -396,7 +443,8 @@ enum CouponType {
 /// unique constraint: the pricing service claims a redemption with a conditional
 ///   UPDATE coupons SET used_count = used_count + 1 WHERE id = $1 AND (usage_limit IS NULL
 ///   OR used_count < usage_limit)
-/// exactly like the stock claim in architecture.md §8. That logic is M5, not this phase.
+/// exactly like the stock claim in architecture.md §8, under a row lock on the coupon so a
+/// per-customer limit holds too (`modules/coupons`, ADR 0022).
 /// CHECK: code = upper(code); exactly one of percent_bps / value_minor set per type; FIXED
 /// requires a currency; percent_bps BETWEEN 1 AND 10000; money and limits non-negative;
 /// used_count <= usage_limit; ends_at > starts_at.
@@ -481,8 +529,9 @@ enum PaymentMethod {
 /// it leaks neither volume nor another customer's order.
 ///
 /// `idempotencyKey`/`requestFingerprint` are the inbound checkout-replay pair from
-/// docs/database-design.md §4. They only help once an order row exists; replaying a request
-/// that failed BEFORE commit needs a separate request table, which is an M6 decision.
+/// docs/database-design.md §4. `idempotencyKey` holds a per-customer hash of the client's key.
+/// A request that failed BEFORE commit left no row, so its key may be used again; no separate
+/// request table is needed (ADR 0018).
 ///
 /// CHECK: all money >= 0; total = subtotal - discount + shipping + tax; discount <= subtotal;
 /// user_id or guest_access_token_hash present; currency upper-case and 3 chars;
@@ -517,6 +566,9 @@ model Order {
   shipPostalCode    String  @map("ship_postal_code")
   shipCountryCode   String  @map("ship_country_code") @db.Char(2)
   shippingMethod    String? @map("shipping_method")
+  /// Set when the order is marked SHIPPED (ADR 0020). CHECK: 1-80 / 1-120 characters when set.
+  shippingCarrier   String? @map("shipping_carrier")
+  trackingNumber    String? @map("tracking_number")
 
   idempotencyKey     String? @unique @map("idempotency_key")
   requestFingerprint String? @map("request_fingerprint")
@@ -538,6 +590,7 @@ model Order {
   @@index([status, createdAt(sort: Desc)])
   @@index([paymentStatus])
   @@index([couponId])
+  @@index([createdAt])
   @@map("orders")
 }
 
@@ -600,12 +653,14 @@ model OrderStatusHistory {
 /// that gap depends on the unresolved guest-checkout policy (PRD §9).
 /// CHECK: discount_minor > 0.
 model CouponRedemption {
-  id            String   @id @default(cuid())
-  couponId      String   @map("coupon_id")
-  orderId       String   @map("order_id")
-  userId        String?  @map("user_id")
-  discountMinor Int      @map("discount_minor")
-  createdAt     DateTime @default(now()) @map("created_at")
+  id            String    @id @default(cuid())
+  couponId      String    @map("coupon_id")
+  orderId       String    @map("order_id")
+  userId        String?   @map("user_id")
+  discountMinor Int       @map("discount_minor")
+  /// Set when the order closed (cancelled, payment failed): the use is given back (ADR 0022).
+  releasedAt    DateTime? @map("released_at")
+  createdAt     DateTime  @default(now()) @map("created_at")
 
   coupon Coupon @relation(fields: [couponId], references: [id], onDelete: Restrict)
   order  Order  @relation(fields: [orderId], references: [id], onDelete: Restrict)
@@ -613,6 +668,7 @@ model CouponRedemption {
 
   @@unique([couponId, orderId])
   @@index([couponId, userId])
+  @@index([couponId, userId, releasedAt])
   @@index([orderId])
   @@map("coupon_redemptions")
 }
@@ -778,11 +834,27 @@ enum OutboxEventType {
   SHIPPING_UPDATE
   LOW_STOCK_ALERT
   /// Better Auth hands us a verification/reset URL; delivery goes through this outbox so an
-  /// email provider outage cannot break sign-up or password reset. The sending worker is M9.
+  /// email provider outage cannot break sign-up or password reset (ADR 0021 sends it).
   EMAIL_VERIFICATION
   PASSWORD_RESET
+  /// A person must look at a payment: money after its order closed, a mismatch, a risk hold (ADR 0019).
+  PAYMENT_REVIEW_REQUIRED
+  /// Tell the customer their order was cancelled (ADR 0020).
+  ORDER_CANCELLED
+  /// Tell the customer a refund was issued or completed (ADR 0020).
+  REFUND_UPDATE
+  /// Recurring: the payment and refund sweep (ADR 0021). One row, rescheduled after every run,
+  /// never SENT or DEAD.
+  PAYMENT_RECONCILIATION
+  /// Recurring: refresh the shopping assistant's search index (ADR 0025). One row.
+  ASSISTANT_INDEX_SWEEP
+  /// Recurring: delete assistant conversations 30 days after their last message (ADR 0025). One row.
+  ASSISTANT_RETENTION
 }
 
+/// PENDING waits for its first try; PROCESSING is claimed by a worker until `nextAttemptAt` (the
+/// lease); FAILED failed and waits for its retry at `nextAttemptAt`; SENT is done; DEAD gave up and
+/// waits for a person (ADR 0021).
 enum OutboxStatus {
   PENDING
   PROCESSING
@@ -794,8 +866,11 @@ enum OutboxStatus {
 /// Durable outbox. A row is inserted inside the business transaction; a worker sends it
 /// afterwards, so an email provider outage can never invalidate a committed order
 /// (PRD §7, architecture.md §11). `dedupeKey` is the stable job identity that makes a
-/// retried send idempotent. The worker itself is M9.
-/// CHECK: attempt_count >= 0; status 'SENT' requires processed_at.
+/// retried send idempotent. `src/worker.ts` sends it (ADR 0021): at least once, never in a
+/// transaction, with bounded exponential backoff and jitter between tries.
+/// While PROCESSING, `nextAttemptAt` is the lease expiry and `claimToken` fences the outcome.
+/// CHECK: attempt_count >= 0; status 'SENT' requires processed_at; claim_token is set exactly when
+/// PROCESSING; last_error at most 1000 characters.
 model OutboxEvent {
   id            String          @id @default(cuid())
   eventType     OutboxEventType @map("event_type")
@@ -806,6 +881,7 @@ model OutboxEvent {
   nextAttemptAt DateTime        @default(now()) @map("next_attempt_at")
   lastError     String?         @map("last_error")
   processedAt   DateTime?       @map("processed_at")
+  claimToken    String?         @map("claim_token")
   createdAt     DateTime        @default(now()) @map("created_at")
   updatedAt     DateTime        @updatedAt @map("updated_at")
 
@@ -837,5 +913,147 @@ model AuditLog {
   @@index([entityType, entityId])
   @@index([actorUserId, createdAt(sort: Desc)])
   @@index([action, createdAt(sort: Desc)])
+  @@index([createdAt(sort: Desc)])
   @@map("audit_logs")
+}
+
+/// Shipping, tax and store identity an administrator can change (M10, ADR 0022). One row,
+/// `id = 'default'`; until it exists the defaults in `modules/settings` apply. `version` makes a
+/// save conditional on what the administrator saw, so two people editing cannot silently undo each
+/// other. Tax is exclusive (added on top of the discounted merchandise subtotal).
+/// CHECK: id = 'default'; store_name 1–80; fees >= 0, threshold > 0; tax_rate_bps 0–5000; version >= 1.
+model StoreSettings {
+  id                         String   @id @default("default")
+  storeName                  String   @map("store_name")
+  supportEmail               String?  @map("support_email")
+  standardFeeDhakaMinor      Int      @map("standard_fee_dhaka_minor")
+  standardFeeNationalMinor   Int      @map("standard_fee_national_minor")
+  expressEnabled             Boolean  @default(true) @map("express_enabled")
+  expressFeeDhakaMinor       Int      @map("express_fee_dhaka_minor")
+  expressFeeNationalMinor    Int      @map("express_fee_national_minor")
+  freeShippingThresholdMinor Int?     @map("free_shipping_threshold_minor")
+  taxRateBps                 Int      @default(0) @map("tax_rate_bps")
+  version                    Int      @default(1)
+  updatedByUserId            String?  @map("updated_by_user_id")
+  createdAt                  DateTime @default(now()) @map("created_at")
+  updatedAt                  DateTime @updatedAt @map("updated_at")
+
+  updatedBy User? @relation(fields: [updatedByUserId], references: [id], onDelete: SetNull)
+
+  @@map("store_settings")
+}
+
+// ---------------------------------------------------------------------------
+// Shopping assistant (ADR 0025)
+//
+// Vector columns are `vector(1536)` from the pgvector extension. Prisma cannot read or write
+// them, so every row with an embedding is written and searched with raw SQL
+// (`src/modules/assistant/`). The HNSW indexes and every CHECK live in the migration SQL.
+// ---------------------------------------------------------------------------
+
+enum KnowledgeStatus {
+  /// Wording that is not yet store policy (PRD §9); the assistant says so when it cites it.
+  DRAFT
+  CONFIRMED
+}
+
+/// One policy or FAQ page the assistant may quote, loaded from `backend/content/assistant/*.md`.
+/// `contentHash` is of the whole file, so an unchanged file is not re-embedded.
+/// CHECK: slug and title non-empty; path starts with "/".
+model KnowledgeDocument {
+  id          String          @id @default(cuid())
+  slug        String          @unique
+  title       String
+  path        String
+  status      KnowledgeStatus @default(DRAFT)
+  contentHash String          @map("content_hash")
+  createdAt   DateTime        @default(now()) @map("created_at")
+  updatedAt   DateTime        @updatedAt @map("updated_at")
+
+  chunks KnowledgeChunk[]
+
+  @@map("knowledge_documents")
+}
+
+/// A searchable piece of a document. CHECK: ordinal >= 0; content 1–4000 characters.
+/// Index: HNSW on `embedding` with cosine distance.
+model KnowledgeChunk {
+  id         String                      @id @default(cuid())
+  documentId String                      @map("document_id")
+  ordinal    Int
+  heading    String?
+  content    String
+  embedding  Unsupported("vector(1536)")?
+  createdAt  DateTime                    @default(now()) @map("created_at")
+
+  document KnowledgeDocument @relation(fields: [documentId], references: [id], onDelete: Cascade)
+
+  @@unique([documentId, ordinal])
+  @@map("knowledge_chunks")
+}
+
+/// A public product's text as a vector, for search by meaning. Holds no price or stock: those are
+/// read live through the catalog (ADR 0025, decision 2). `contentHash` is of the embedded text.
+/// Index: HNSW on `embedding` with cosine distance.
+model ProductEmbedding {
+  productId   String                      @id @map("product_id")
+  contentHash String                      @map("content_hash")
+  model       String
+  embedding   Unsupported("vector(1536)")
+  embeddedAt  DateTime                    @default(now()) @map("embedded_at")
+
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@map("product_embeddings")
+}
+
+enum AssistantRole {
+  USER
+  ASSISTANT
+}
+
+/// A chat. Owned by a customer or by a guest's random token (only its hash is stored), never both
+/// and never neither (CHECK). Deleted 30 days after `lastMessageAt` by the worker (ADR 0025).
+/// CHECK: exactly one owner; message_count >= 0.
+model AssistantConversation {
+  id             String   @id @default(cuid())
+  userId         String?  @map("user_id")
+  guestTokenHash String?  @unique @map("guest_token_hash")
+  createdAt      DateTime @default(now()) @map("created_at")
+  lastMessageAt  DateTime @default(now()) @map("last_message_at")
+  messageCount   Int      @default(0) @map("message_count")
+
+  user     User?              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  messages AssistantMessage[]
+
+  @@index([userId, lastMessageAt(sort: Desc)])
+  @@index([lastMessageAt])
+  @@map("assistant_conversations")
+}
+
+/// One turn. `clientKeyHash` is a hash of the sender's IP, for the guest daily cap; it is never
+/// shown. `toolNames` records which tools ran, not their arguments (they can hold order ids).
+/// CHECK: content at most 8000 characters, and at most 1000 for a customer's message; token
+/// counts and latency not negative; error_code at most 64 characters.
+model AssistantMessage {
+  id             String        @id @default(cuid())
+  conversationId String        @map("conversation_id")
+  role           AssistantRole
+  content        String
+  provider       String?
+  model          String?
+  inputTokens    Int           @default(0) @map("input_tokens")
+  outputTokens   Int           @default(0) @map("output_tokens")
+  toolNames      String[]      @default([]) @map("tool_names")
+  latencyMs      Int?          @map("latency_ms")
+  errorCode      String?       @map("error_code")
+  clientKeyHash  String?       @map("client_key_hash")
+  createdAt      DateTime      @default(now()) @map("created_at")
+
+  conversation AssistantConversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+
+  @@index([conversationId, createdAt])
+  @@index([clientKeyHash, createdAt])
+  @@index([createdAt])
+  @@map("assistant_messages")
 }

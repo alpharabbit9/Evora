@@ -1,0 +1,91 @@
+[api] Loaded Prisma config from prisma.config.ts.
+[api] 
+
+[api] Prisma schema loaded from prisma\schema.prisma.
+
+[api] Datasource "db": PostgreSQL database "commercecore_e2e", schema "public" at "localhost:5432"
+
+[api] 
+[api] 18 migrations found in prisma/migrations
+[api] 
+
+[api] 
+
+[api] ┌─────────────────────────────────────────────────────────┐
+[api] │  Update available 7.10.1 -> 8.0.0-rc.34                 │
+[api] │                                                         │
+[api] │  This is a major update - please follow the guide at    │
+[api] │  https://pris.ly/d/major-version-upgrade                │
+[api] │                                                         │
+[api] │  Run the following to update                            │
+[api] │    npm i --save-dev prisma@latest                       │
+[api] │    npm i @prisma/client@latest                          │
+[api] └─────────────────────────────────────────────────────────┘
+
+[api] No pending migrations to apply.
+
+[api] Knowledge: 5 embedded, 0 unchanged, 0 removed
+[api] Products:  1 embedded, 0 unchanged, 0 removed
+
+[web] ⚠ Your version of Next.js is affected by a known security vulnerability. This command is continuing after the upgrade reminder.
+[web] Reference: https://registry.npmjs.org/-/npm/v1/security/advisories/bulk
+
+
+Running 22 tests using 1 worker
+
+[1/22] [chromium] › tests\accessibility.spec.ts:44:3 › accessibility › public pages
+[2/22] [chromium] › tests\accessibility.spec.ts:59:3 › accessibility › bag and checkout
+[3/22] [chromium] › tests\hero.spec.ts:138:9 › home-page hero › desktop (1440px) › with motion › every slide change shows the model within 1.5s, never an empty figure
+[4/22] [chromium] › tests\hero.spec.ts:153:9 › home-page hero › desktop (1440px) › with motion › the slide layers do not shift layout while they load and change
+[5/22] [chromium] › tests\hero.spec.ts:201:7 › home-page hero › desktop (1440px) › under reduced motion the model still appears on every slide
+[6/22] [chromium] › tests\hero.spec.ts:210:7 › home-page hero › desktop (1440px) › the model hides at most one letter of each slide word
+[7/22] [chromium] › tests\hero.spec.ts:138:9 › home-page hero › phone (390px) › with motion › every slide change shows the model within 1.5s, never an empty figure
+[8/22] [chromium] › tests\hero.spec.ts:153:9 › home-page hero › phone (390px) › with motion › the slide layers do not shift layout while they load and change
+[9/22] [chromium] › tests\hero.spec.ts:201:7 › home-page hero › phone (390px) › under reduced motion the model still appears on every slide
+[10/22] [chromium] › tests\hero.spec.ts:210:7 › home-page hero › phone (390px) › the model hides at most one letter of each slide word
+[11/22] [chromium] › tests\homepage-sections.spec.ts:22:3 › home page sections › the chapters run in order, with the Dark Edit as a dark island
+[12/22] [chromium] › tests\homepage-sections.spec.ts:69:5 › home page sections › no horizontal overflow at 390px
+[13/22] [chromium] › tests\homepage-sections.spec.ts:69:5 › home page sections › no horizontal overflow at 768px
+[14/22] [chromium] › tests\homepage-sections.spec.ts:69:5 › home page sections › no horizontal overflow at 1280px
+[15/22] [chromium] › tests\homepage-sections.spec.ts:69:5 › home page sections › no horizontal overflow at 1440px
+[16/22] [chromium] › tests\motion.spec.ts:104:5 › home page motion › with motion › Dark Edit photos wipe up into their frames, then the clip is cleared
+[17/22] [chromium] › tests\motion.spec.ts:130:5 › home page motion › with motion › the service strip items never move
+[18/22] [chromium] › tests\motion.spec.ts:144:5 › home page motion › with motion › the footer wordmark letters rise once and settle in place
+  1) [chromium] › tests\motion.spec.ts:144:5 › home page motion › with motion › the footer wordmark letters rise once and settle in place 
+
+    Error: expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+      149 |       const before = await letterOffsets(page);
+      150 |       expect(before).toHaveLength(5);
+    > 151 |       for (const y of before) expect(y).toBeGreaterThan(0);
+          |                                         ^
+      152 |
+      153 |       await scrollToBottom(page);
+      154 |       await expect
+        at C:\Projects\Ecommerece Webapp\CommerceCore\e2e\tests\motion.spec.ts:151:41
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\motion-home-page-motion-wi-afb37-se-once-and-settle-in-place-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\motion-home-page-motion-wi-afb37-se-once-and-settle-in-place-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\motion-home-page-motion-wi-afb37-se-once-and-settle-in-place-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\motion-home-page-motion-wi-afb37-se-once-and-settle-in-place-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[19/22] [chromium] › tests\motion.spec.ts:162:5 › home page motion › with motion › the hero drift and autoplay hold while the hero is off screen
+[20/22] [chromium] › tests\motion.spec.ts:183:5 › home page motion › with motion › the rail's garments slide in along the rod, and the sway pauses off screen
+[21/22] [chromium] › tests\motion.spec.ts:215:5 › home page motion › with reduced motion › the rail fades in without sliding, and never sways
+[22/22] [chromium] › tests\motion.spec.ts:231:5 › home page motion › with reduced motion › nothing is clipped or translated; the footer word fades
+  1 failed
+    [chromium] › tests\motion.spec.ts:144:5 › home page motion › with motion › the footer wordmark letters rise once and settle in place 
+  21 passed (3.4m)

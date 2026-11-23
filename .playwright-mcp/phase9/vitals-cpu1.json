@@ -1,0 +1,86 @@
+{
+  "label": "cpu1",
+  "summary": {
+    "ttfb": 9.5,
+    "fcp": 2028,
+    "lcp": 2168,
+    "clsLoad": 0,
+    "cls": 0,
+    "tbt": 207,
+    "inp": 168,
+    "jsKB": 450.5439453125,
+    "totalKB": 1314.1728515625,
+    "lcpEl": [
+      "img[alt=Man in a charcoal herringbone three-piece suit, long wool overcoat and flat cap, walking] image?url=%2Fimages%2FHero%2Fhero1.webp&w=828&q=75",
+      "img[alt=Man in a charcoal herringbone three-piece suit, long wool overcoat and flat cap, walking] image?url=%2Fimages%2FHero%2Fhero1.webp&w=828&q=75"
+    ]
+  },
+  "runs": [
+    {
+      "ttfb": 9.5,
+      "load": 6059,
+      "lcp": 2168,
+      "lcpEl": "img[alt=Man in a charcoal herringbone three-piece suit, long wool overcoat and flat cap, walking] image?url=%2Fimages%2FHero%2Fhero1.webp&w=828&q=75",
+      "fcp": 2004,
+      "tbt": 158,
+      "clsLoad": 0,
+      "cls": 0,
+      "shiftLog": [],
+      "inp": 168,
+      "interactions": 5,
+      "perTap": [
+        [
+          "button[aria-label=\"Next slide\"]",
+          "pointerdown 96 [delay 28 js 1 paint 67], pointerup 96 [delay 30 js 0 paint 65], click 96 [delay 35 js 28 paint 33]"
+        ],
+        [
+          "button[aria-label=\"Pause slideshow\"]",
+          "pointerdown 96 [delay 45 js 1 paint 50], pointerup 96 [delay 46 js 0 paint 50], click 96 [delay 54 js 4 paint 38]"
+        ],
+        [
+          "header button[aria-expanded]",
+          "pointerdown 96 [delay 46 js 0 paint 50], pointerup 96 [delay 46 js 0 paint 50], click 96 [delay 50 js 9 paint 37]"
+        ],
+        [
+          ".arrivals-rail .arrival a",
+          "pointerdown 168 [delay 68 js 1 paint 99], pointerup 168 [delay 69 js 0 paint 99], click 168 [delay 73 js 16 paint 80]"
+        ]
+      ],
+      "jsKB": 450.5439453125,
+      "totalKB": 1314.1728515625
+    },
+    {
+      "ttfb": 8.700000002980232,
+      "load": 5784.70000000298,
+      "lcp": 2160,
+      "lcpEl": "img[alt=Man in a charcoal herringbone three-piece suit, long wool overcoat and flat cap, walking] image?url=%2Fimages%2FHero%2Fhero1.webp&w=828&q=75",
+      "fcp": 2028,
+      "tbt": 207,
+      "clsLoad": 0,
+      "cls": 0,
+      "shiftLog": [],
+      "inp": 112,
+      "interactions": 5,
+      "perTap": [
+        [
+          "button[aria-label=\"Next slide\"]",
+          "pointerdown 104 [delay 29 js 1 paint 74], pointerup 104 [delay 31 js 0 paint 72], click 104 [delay 37 js 39 paint 28]"
+        ],
+        [
+          "button[aria-label=\"Pause slideshow\"]",
+          "pointerdown 56 [delay 27 js 1 paint 28], pointerup 56 [delay 28 js 0 paint 28], click 56 [delay 33 js 2 paint 21]"
+        ],
+        [
+          "header button[aria-expanded]",
+          "pointerdown 64 [delay 30 js 0 paint 34], pointerup 64 [delay 30 js 0 paint 34], click 64 [delay 34 js 7 paint 23]"
+        ],
+        [
+          ".arrivals-rail .arrival a",
+          "pointerdown 112 [delay 28 js 1 paint 84], pointerup 112 [delay 29 js 0 paint 83], click 112 [delay 32 js 20 paint 60]"
+        ]
+      ],
+      "jsKB": 450.5439453125,
+      "totalKB": 1314.0732421875
+    }
+  ]
+}

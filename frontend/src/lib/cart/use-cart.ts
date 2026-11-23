@@ -15,8 +15,9 @@ import type { Cart } from '@/lib/catalog/types';
  * business (API_SPEC.md §5): it rejects a sold-out or unpublished variant with an
  * `ApiError` the caller can show as-is.
  *
- * Personalised data: never cached by the server or shared between visitors. The guest cart
- * cookie is httpOnly, so it is invisible here; `apiFetch` sends it with `credentials`.
+ * Personalised data: never cached by the server or shared between visitors. The cart belongs
+ * to an account (ADR 0014) and the API answers 401 without a session; `apiFetch` sends the
+ * session cookie with `credentials`.
  */
 export const cartKey = ['cart'] as const;
 
@@ -24,30 +25,33 @@ export function fetchCart(): Promise<Cart> {
   return apiGet<Cart>('/cart');
 }
 
-export function useCart() {
-  return useQuery({ queryKey: cartKey, queryFn: fetchCart });
+export function useCart({ enabled = true }: { enabled?: boolean } = {}) {
+  return useQuery({ queryKey: cartKey, queryFn: fetchCart, enabled });
 }
 
 /**
- * Item count for the header. When the signed-in user changes (sign-in, sign-out), the cart
- * is re-read: signing in merges the guest bag into the account's on the server, and signing
- * out must not keep showing the account's count.
+ * Item count for the header, read only for a signed-in user — a signed-out visitor has no
+ * cart, so asking would only earn a 401 on every page. When the user changes (sign-in,
+ * sign-out) the cached cart is dropped rather than refreshed in place: it belongs to the
+ * previous user, and must not show even while the next read is in flight. Signing in is also
+ * when the server folds a pre-ADR 0014 guest bag into the account.
  *
- * `undefined` while the first read is in flight or failed, so the badge shows nothing rather
- * than a misleading zero.
+ * `undefined` while signed out, or while the first read is in flight or failed, so the badge
+ * shows nothing rather than a misleading zero.
  */
 export function useCartBadge(userId: string | undefined): number | undefined {
   const queryClient = useQueryClient();
-  const cart = useCart();
+  const signedIn = userId !== undefined;
+  const cart = useCart({ enabled: signedIn });
   const previousUser = useRef(userId);
 
   useEffect(() => {
     if (previousUser.current === userId) return;
     previousUser.current = userId;
-    void queryClient.invalidateQueries({ queryKey: cartKey });
+    void queryClient.resetQueries({ queryKey: cartKey });
   }, [userId, queryClient]);
 
-  return cart.data?.itemCount;
+  return signedIn ? cart.data?.itemCount : undefined;
 }
 
 export interface AddToCartInput {

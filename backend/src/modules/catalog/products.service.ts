@@ -1,11 +1,17 @@
-import { Prisma, type ProductGender } from '@prisma/client';
+import { Prisma, type ProductGender, ProductImageKind } from '@prisma/client';
 
 import { env } from '../../config/env.js';
 import { notFound } from '../../http/errors.js';
 import { toSkipTake } from '../../http/schemas.js';
 import { type ImageView, toImageView } from '../../lib/media.js';
 import { prisma } from '../../lib/prisma.js';
-import { LISTING_FROM, listingConditions, orderBySql, scopeConditions } from './catalog.query.js';
+import {
+  LISTING_FROM,
+  MATCH_FROM,
+  listingConditions,
+  orderBySql,
+  scopeConditions,
+} from './catalog.query.js';
 import type { GenderFilter, ProductFacetsQuery, ProductListQuery } from './catalog.schemas.js';
 import {
   PURCHASABLE_VARIANT_WHERE,
@@ -133,6 +139,7 @@ const CARD_SELECT = {
     select: { options: true, priceMinor: true, compareAtPriceMinor: true, stockQuantity: true },
   },
   images: {
+    where: { kind: ProductImageKind.PHOTO },
     orderBy: [{ sortOrder: 'asc' }, { createdAt: 'asc' }],
     take: 1,
     select: { objectKey: true, altText: true, widthPx: true, heightPx: true },
@@ -175,7 +182,7 @@ export async function listProducts(filters: ProductListQuery): Promise<ProductPa
 
   const [countRows, idRows] = await Promise.all([
     prisma.$queryRaw<{ total: number }[]>(
-      Prisma.sql`SELECT COUNT(*)::int AS total ${LISTING_FROM} WHERE ${where}`,
+      Prisma.sql`SELECT COUNT(*)::int AS total ${MATCH_FROM} WHERE ${where}`,
     ),
     prisma.$queryRaw<{ id: string }[]>(
       Prisma.sql`SELECT p.id ${LISTING_FROM} WHERE ${where}
@@ -184,25 +191,89 @@ export async function listProducts(filters: ProductListQuery): Promise<ProductPa
   ]);
 
   const total = countRows[0]?.total ?? 0;
-  const ids = idRows.map((row) => row.id);
+  const items = await cardsInOrder(
+    idRows.map((row) => row.id),
+    {},
+  );
 
+  return { items, total };
+}
+
+/**
+ * Card fields for `ids`, in the order given. `IN (...)` does not preserve order, so it is
+ * restored here; ids that match no row (or that `where` excludes) are dropped.
+ */
+async function cardsInOrder(
+  ids: readonly string[],
+  where: Prisma.ProductWhereInput,
+): Promise<ProductCardView[]> {
   if (ids.length === 0) {
-    return { items: [], total };
+    return [];
   }
 
   const rows = await prisma.product.findMany({
-    where: { id: { in: ids } },
+    where: { id: { in: [...ids] }, ...where },
     select: CARD_SELECT,
   });
 
-  // `IN (...)` does not preserve order; restore the SQL sort.
   const byId = new Map(rows.map((row) => [row.id, row]));
-  const items = ids
+  return ids
     .map((id) => byId.get(id))
     .filter((row): row is CardRow => row !== undefined && row.variants.length > 0)
     .map(toCardView);
+}
 
-  return { items, total };
+/**
+ * Cards for products saved elsewhere (the wishlist), in the caller's order. Only products that
+ * pass the publication rule today are returned: one taken down since it was saved disappears
+ * from the list exactly as it disappears from the catalog, with nothing about it revealed.
+ */
+export function publicCardsByIds(ids: readonly string[]): Promise<ProductCardView[]> {
+  return cardsInOrder(ids, publicProductWhere());
+}
+
+/** Whether a product id is one the public catalog shows right now. */
+export async function isPublicProduct(productId: string): Promise<boolean> {
+  const row = await prisma.product.findFirst({
+    where: { id: productId, ...publicProductWhere() },
+    select: { id: true },
+  });
+  return row !== null;
+}
+
+/** A rail garment: the listing card plus the transparent cut-out the rail draws (ADR 0017). */
+export interface ArrivalView extends ProductCardView {
+  readonly cutout: ImageView;
+}
+
+/**
+ * The newest public products that have a cut-out, newest first — what the home page hangs on
+ * its "Recent Arrivals" rail. Two short reads: the cards, then their cut-outs. The publication
+ * rule applies in full (a cut-out does not stand in for a photo), so the rail never shows a
+ * product the catalog would hide.
+ */
+export async function listArrivals(limit: number): Promise<ArrivalView[]> {
+  const rows = await prisma.product.findMany({
+    where: {
+      AND: [publicProductWhere(), { images: { some: { kind: ProductImageKind.CUTOUT } } }],
+    },
+    orderBy: [{ publishedAt: 'desc' }, { createdAt: 'desc' }, { id: 'asc' }],
+    take: limit,
+    select: CARD_SELECT,
+  });
+  if (rows.length === 0) return [];
+
+  const cutouts = await prisma.productImage.findMany({
+    where: { productId: { in: rows.map((row) => row.id) }, kind: ProductImageKind.CUTOUT },
+    select: { productId: true, objectKey: true, altText: true, widthPx: true, heightPx: true },
+  });
+  const cutoutByProduct = new Map(cutouts.map((cutout) => [cutout.productId, cutout]));
+
+  return rows.flatMap((row) => {
+    const cutout = cutoutByProduct.get(row.id);
+    // Deleted between the two reads: drop it rather than hang an empty hanger.
+    return cutout ? [{ ...toCardView(row), cutout: toImageView(cutout) }] : [];
+  });
 }
 
 const DETAIL_SELECT = {
@@ -229,6 +300,8 @@ const DETAIL_SELECT = {
     },
   },
   images: {
+    // The gallery is photos only; a CUTOUT belongs to the arrivals rail (ADR 0017).
+    where: { kind: ProductImageKind.PHOTO },
     orderBy: [{ sortOrder: 'asc' }, { createdAt: 'asc' }],
     select: { objectKey: true, altText: true, widthPx: true, heightPx: true },
   },
@@ -297,23 +370,23 @@ export async function getProductFacets(filters: ProductFacetsQuery): Promise<Pro
       ${LISTING_FROM} WHERE ${scope}`),
     prisma.$queryRaw<{ slug: string; name: string; count: number }[]>(Prisma.sql`
       SELECT c.slug, c.name, COUNT(*)::int AS count
-      ${LISTING_FROM} WHERE ${categoryScope}
+      ${MATCH_FROM} WHERE ${categoryScope}
       GROUP BY c.slug, c.name ORDER BY count DESC, c.name ASC`),
     prisma.$queryRaw<FacetValue[]>(Prisma.sql`
       SELECT fv.options->>'color' AS value, COUNT(DISTINCT p.id)::int AS count
-      ${LISTING_FROM}
+      ${MATCH_FROM}
       JOIN product_variants fv ON fv.product_id = p.id AND ${purchasableVariantSql('fv')}
       WHERE ${scope} AND fv.options->>'color' IS NOT NULL
       GROUP BY 1 ORDER BY count DESC, value ASC`),
     prisma.$queryRaw<FacetValue[]>(Prisma.sql`
       SELECT upper(fv.options->>'size') AS value, COUNT(DISTINCT p.id)::int AS count
-      ${LISTING_FROM}
+      ${MATCH_FROM}
       JOIN product_variants fv ON fv.product_id = p.id AND ${purchasableVariantSql('fv')}
       WHERE ${scope} AND fv.options->>'size' IS NOT NULL
       GROUP BY 1`),
     prisma.$queryRaw<FacetValue[]>(Prisma.sql`
       SELECT p.brand AS value, COUNT(*)::int AS count
-      ${LISTING_FROM} WHERE ${scope} AND p.brand IS NOT NULL
+      ${MATCH_FROM} WHERE ${scope} AND p.brand IS NOT NULL
       GROUP BY 1 ORDER BY count DESC, value ASC LIMIT ${BRAND_FACET_LIMIT}`),
   ]);
 

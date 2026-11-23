@@ -1,0 +1,154 @@
+[
+ {
+  "width": 1440,
+  "reduced": false,
+  "swayAtTop": {
+   "offscreenClass": true,
+   "states": [
+    "paused"
+   ]
+  },
+  "before": "x60/op0.00 x60/op0.00 x60/op0.00",
+  "entrance": [
+   "0ms x0/op0.99 x3/op0.96 x17/op0.72",
+   "111ms x0/op1.00 x1/op0.99 x6/op0.90",
+   "222ms x0/op1.00 x0/op1.00 x2/op0.97",
+   "334ms x0/op1.00 x0/op1.00 x1/op0.98",
+   "445ms x0/op1.00 x0/op1.00 x0/op1.00",
+   "555ms x0/op1.00 x0/op1.00 x0/op1.00",
+   "666ms x0/op1.00 x0/op1.00 x0/op1.00",
+   "777ms x0/op1.00 x0/op1.00 x0/op1.00",
+   "889ms x0/op1.00 x0/op1.00 x0/op1.00",
+   "1000ms x0/op1.00 x0/op1.00 x0/op1.00",
+   "1110ms x0/op1.00 x0/op1.00 x0/op1.00",
+   "1221ms x0/op1.00 x0/op1.00 x0/op1.00",
+   "1333ms x0/op1.00 x0/op1.00 x0/op1.00"
+  ],
+  "swayOnScreen": {
+   "offscreenClass": false,
+   "states": [
+    "running"
+   ]
+  },
+  "scroll": {
+   "railScrollable": 0,
+   "pageOverflow": 0
+  },
+  "hoverTurn": {
+   "t": "1",
+   "frontOpacity": "1",
+   "labelOpacity": "1"
+  },
+  "swayOffScreen": {
+   "offscreenClass": true,
+   "states": [
+    "paused"
+   ]
+  },
+  "swayBack": {
+   "offscreenClass": false,
+   "states": [
+    "running"
+   ]
+  },
+  "errors": []
+ },
+ {
+  "width": 390,
+  "reduced": false,
+  "swayAtTop": {
+   "offscreenClass": true,
+   "states": [
+    "paused"
+   ]
+  },
+  "before": "x60/op0.00 x60/op0.00 x60/op0.00",
+  "entrance": [
+   "0ms x2/op0.96 x11/op0.82 x59/op0.01",
+   "111ms x1/op0.99 x4/op0.93 x26/op0.57",
+   "222ms x0/op1.00 x1/op0.98 x9/op0.85",
+   "333ms x0/op1.00 x0/op1.00 x3/op0.96",
+   "445ms x0/op1.00 x0/op1.00 x1/op0.98",
+   "555ms x0/op1.00 x0/op1.00 x0/op1.00",
+   "666ms x0/op1.00 x0/op1.00 x0/op1.00",
+   "778ms x0/op1.00 x0/op1.00 x0/op1.00",
+   "888ms x0/op1.00 x0/op1.00 x0/op1.00",
+   "999ms x0/op1.00 x0/op1.00 x0/op1.00",
+   "1110ms x0/op1.00 x0/op1.00 x0/op1.00",
+   "1220ms x0/op1.00 x0/op1.00 x0/op1.00",
+   "1331ms x0/op1.00 x0/op1.00 x0/op1.00"
+  ],
+  "swayOnScreen": {
+   "offscreenClass": false,
+   "states": [
+    "running"
+   ]
+  },
+  "scroll": {
+   "railScrollable": 393,
+   "pageOverflow": 0
+  },
+  "swayOffScreen": {
+   "offscreenClass": true,
+   "states": [
+    "paused"
+   ]
+  },
+  "swayBack": {
+   "offscreenClass": false,
+   "states": [
+    "running"
+   ]
+  },
+  "errors": []
+ },
+ {
+  "width": 1440,
+  "reduced": true,
+  "swayAtTop": {
+   "offscreenClass": true,
+   "states": [
+    "none"
+   ]
+  },
+  "before": "x0/op0.00 x0/op0.00 x0/op0.00",
+  "entrance": [
+   "0ms x0/op0.00 x0/op0.00 x0/op0.00",
+   "113ms x0/op0.30 x0/op0.00 x0/op0.00",
+   "224ms x0/op0.53 x0/op0.15 x0/op0.00",
+   "335ms x0/op0.83 x0/op0.46 x0/op0.00",
+   "446ms x0/op1.00 x0/op0.69 x0/op0.18",
+   "556ms x0/op1.00 x0/op0.94 x0/op0.44",
+   "667ms x0/op1.00 x0/op1.00 x0/op0.74",
+   "778ms x0/op1.00 x0/op1.00 x0/op1.00",
+   "889ms x0/op1.00 x0/op1.00 x0/op1.00",
+   "1000ms x0/op1.00 x0/op1.00 x0/op1.00",
+   "1110ms x0/op1.00 x0/op1.00 x0/op1.00",
+   "1221ms x0/op1.00 x0/op1.00 x0/op1.00",
+   "1332ms x0/op1.00 x0/op1.00 x0/op1.00"
+  ],
+  "swayOnScreen": {
+   "offscreenClass": false,
+   "states": [
+    "none"
+   ]
+  },
+  "scroll": {
+   "railScrollable": 79,
+   "pageOverflow": 0
+  },
+  "swayOffScreen": {
+   "offscreenClass": true,
+   "states": [
+    "none"
+   ]
+  },
+  "swayBack": {
+   "offscreenClass": false,
+   "states": [
+    "none"
+   ]
+  },
+  "errors": []
+ }
+]

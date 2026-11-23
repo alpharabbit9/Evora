@@ -22,8 +22,20 @@ import { PUBLIC_PRODUCT_SQL, purchasableVariantSql } from './publication.js';
  */
 
 /**
- * `JOIN LATERAL ... ON price.min_price IS NOT NULL` drops products with no purchasable
- * variant, which is rule 4 of the publication rule (`publication.ts`).
+ * The joins every catalog query needs, without a price. Use this unless the query reads or
+ * sorts by `price.min_price`: counts and most facets do not, and computing each product's
+ * lowest price for them made a listing's count four times slower (docs/performance-review.md).
+ */
+export const MATCH_FROM = Prisma.sql`
+  FROM products p
+  JOIN categories c ON c.id = p.category_id
+  LEFT JOIN categories pc ON pc.id = c.parent_id
+`;
+
+/**
+ * `MATCH_FROM` plus each product's lowest purchasable price as `price.min_price`, for the
+ * price sorts and the price-range facet. The `IS NOT NULL` also drops a product with no
+ * purchasable variant, which `PUBLIC_PRODUCT_SQL` already requires.
  */
 export const LISTING_FROM = Prisma.sql`
   FROM products p

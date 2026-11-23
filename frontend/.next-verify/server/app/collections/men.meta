@@ -1,0 +1,48 @@
+{
+  "status": 200,
+  "headers": {
+    "link": "</_next/static/media/2a65768255d6b625-s.p.3u4lli0-axodc.woff2>; rel=preload; as=\"font\"; crossorigin=\"\"; type=\"font/woff2\", </_next/static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2>; rel=preload; as=\"font\"; crossorigin=\"\"; type=\"font/woff2\", </_next/static/media/Brigends_Expanded-s.p.26n6veu4_p6f_.otf>; rel=preload; as=\"font\"; crossorigin=\"\"; type=\"font/otf\", </_next/static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2>; rel=preload; as=\"font\"; crossorigin=\"\"; type=\"font/woff2\"",
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/(store)/layout,_N_T_/(store)/collections/layout,_N_T_/(store)/collections/men/layout,_N_T_/(store)/collections/men/page,_N_T_/collections/men"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/_index",
+    "/!KHN0b3JlKQ",
+    "/!KHN0b3JlKQ/collections/men/__PAGE__"
+  ],
+  "prefetchHints": {
+    "hints": 49152,
+    "slots": {
+      "children": {
+        "hints": 49152,
+        "slots": {
+          "children": {
+            "hints": 49216,
+            "slots": {
+              "children": {
+                "hints": 49248,
+                "slots": {
+                  "children": {
+                    "hints": 49312,
+                    "slots": null
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "routeCache": {
+    "key": "/route-cache/APP_PAGE/e589464a15f880eb90b6688857efc318ca0a3a7f8a706bc875415aa7d26aaacb/$/collections/men",
+    "owner": {
+      "kind": "APP_PAGE",
+      "sourceRoute": "/(store)/collections/men/page"
+    },
+    "isFallback": false
+  }
+}

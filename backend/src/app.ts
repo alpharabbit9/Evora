@@ -19,6 +19,7 @@ import {
 import { REQUEST_ID_HEADER, requestContext } from './http/request-context.js';
 import { apiRouter } from './http/routes/index.js';
 import { healthRouter } from './http/routes/health.js';
+import { paymentReturnRouter, paymentWebhookRouter } from './modules/payments/payments.routes.js';
 
 export const API_PREFIX = '/api/v1';
 
@@ -53,7 +54,15 @@ export function createApp(options: CreateAppOptions = {}): Express {
       exposedHeaders: [REQUEST_ID_HEADER],
     }),
   );
-  app.use(compression());
+  // A streamed reply (the assistant's server-sent events, ADR 0025) must reach the browser as it
+  // is written; compression would hold it back until a buffer fills.
+  app.use(
+    compression({
+      filter: (req, res) =>
+        !String(res.getHeader('content-type') ?? '').startsWith('text/event-stream') &&
+        compression.filter(req, res),
+    }),
+  );
 
   // Product images in development. With the s3 driver the bucket/CDN serves them instead.
   if (env.STORAGE_DRIVER === 'filesystem') {
@@ -102,6 +111,14 @@ export function createApp(options: CreateAppOptions = {}): Express {
   // express.json(). Express 5 requires a named wildcard (`*splat`).
   app.all(`${API_PREFIX}/auth/*splat`, toNodeHandler(auth));
 
+  // --- Payment provider callbacks ------------------------------------------------------
+  // Ahead of the Origin check, because these arrive from the provider or from a cross-site
+  // redirect, and neither uses a cookie. The webhook proves itself with a signature and has no
+  // rate limit (API_SPEC.md §10); the return proves nothing, is believed about nothing, and is
+  // limited because each request can make us call the provider.
+  app.use(`${API_PREFIX}/webhooks/payments`, paymentWebhookRouter);
+  app.use(`${API_PREFIX}/payments/return`, limiters.paymentReturn, paymentReturnRouter);
+
   // --- Application routes --------------------------------------------------------------
   // Every route below this line gets parsed bodies and cookies.
   app.use(express.json({ limit: '100kb' }));
@@ -109,7 +126,13 @@ export function createApp(options: CreateAppOptions = {}): Express {
 
   // `requireTrustedOrigin` is the CSRF protection for these routes: they are authenticated
   // by the same cookie as the auth subtree, but Better Auth's own origin check does not
-  // reach them. `limiters.write` skips safe methods itself.
+  // reach them. `limiters.write` skips safe methods itself. Checkout counts against its own,
+  // smaller allowance as well, behind the same origin check.
+  app.use(`${API_PREFIX}/checkout`, requireTrustedOrigin, limiters.checkout);
+  // Starting a payment session calls the provider, so it shares checkout's allowance.
+  app.use(`${API_PREFIX}/orders/:orderId/payment-session`, requireTrustedOrigin, limiters.checkout);
+  app.use(`${API_PREFIX}/search/suggestions`, limiters.suggestions);
+  app.use(`${API_PREFIX}/assistant`, requireTrustedOrigin, limiters.assistant);
   app.use(API_PREFIX, requireTrustedOrigin, limiters.write, apiRouter);
 
   app.use(notFoundHandler);

@@ -1,5 +1,5 @@
 import { ApiError, ApiErrorCode, type ApiErrorCodeName, type ApiErrorDetail } from './api-error';
-import { API_BASE_URL } from './env';
+import { API_BASE_URL, SERVER_API_BASE_URL } from './env';
 
 /**
  * The single way this app talks to the CommerceCore API.
@@ -37,7 +37,9 @@ export function newIdempotencyKey(): string {
 }
 
 function buildUrl(path: string, query: Record<string, QueryValue> | undefined): string {
-  const url = new URL(`${API_BASE_URL}${path.startsWith('/') ? path : `/${path}`}`);
+  // On the server, the private address when one is configured (ADR 0024).
+  const base = typeof window === 'undefined' ? SERVER_API_BASE_URL : API_BASE_URL;
+  const url = new URL(`${base}${path.startsWith('/') ? path : `/${path}`}`);
 
   for (const [key, value] of Object.entries(query ?? {})) {
     if (value !== undefined && value !== null) {
@@ -183,10 +185,40 @@ export function apiPost<T>(path: string, options: BodyOptions = {}): Promise<T> 
   return apiFetch<T>(path, { ...options, method: 'POST' });
 }
 
+export function apiPut<T>(path: string, options: BodyOptions = {}): Promise<T> {
+  return apiFetch<T>(path, { ...options, method: 'PUT' });
+}
+
 export function apiPatch<T>(path: string, options: BodyOptions = {}): Promise<T> {
   return apiFetch<T>(path, { ...options, method: 'PATCH' });
 }
 
 export function apiDelete<T>(path: string, options: BodyOptions = {}): Promise<T> {
   return apiFetch<T>(path, { ...options, method: 'DELETE' });
+}
+
+/**
+ * A file from the API (a CSV export): the raw body, with the API's own error when it refuses.
+ * Same credentials and no-store as every other call.
+ */
+export async function apiDownload(
+  path: string,
+  query?: Record<string, QueryValue>,
+): Promise<{ blob: Blob; filename: string | null }> {
+  let response: Response;
+
+  try {
+    response = await fetch(buildUrl(path, query), { credentials: 'include', cache: 'no-store' });
+  } catch (cause) {
+    throw new ApiError(ApiErrorCode.NETWORK_ERROR, 'The request could not be sent.', { cause });
+  }
+
+  if (!response.ok) {
+    throw await toApiError(response, response.headers.get('x-request-id') ?? undefined);
+  }
+
+  const disposition = response.headers.get('content-disposition') ?? '';
+  const filename = /filename="([^"]+)"/.exec(disposition)?.[1] ?? null;
+
+  return { blob: await response.blob(), filename };
 }

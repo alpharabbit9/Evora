@@ -9,6 +9,7 @@ export const metadata: Metadata = { title: 'New arrivals', description: DESCRIPT
 export default function NewArrivalsPage() {
   return (
     <CollectionPage
+      collection="new"
       eyebrow="Just in"
       title="New arrivals"
       description={DESCRIPTION}

@@ -17,3 +17,12 @@ export function safeRedirectPath(value: string | null | undefined, fallback = '/
 
   return value;
 }
+
+/**
+ * The sign-in page, set to come back to `next` once the visitor has signed in or created an
+ * account. Used by every route and action that needs a session (ADR 0014), so they all
+ * return the visitor to where they were.
+ */
+export function signInPath(next: string): string {
+  return `/sign-in?${new URLSearchParams({ next: safeRedirectPath(next, '/') }).toString()}`;
+}

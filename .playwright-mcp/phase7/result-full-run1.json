@@ -1,0 +1,263 @@
+{
+  "hero-1440": {
+    "indicatorsBefore": [
+      {
+        "w": 24,
+        "x": 1118,
+        "bg": "rgb(42, 37, 41)",
+        "scale": "1 1.5"
+      },
+      {
+        "w": 24,
+        "x": 1154,
+        "bg": "oklab(0.271562 0.00915412 -0.00474146 / 0.35)",
+        "scale": "none"
+      },
+      {
+        "w": 24,
+        "x": 1190,
+        "bg": "oklab(0.271562 0.00915412 -0.00474146 / 0.35)",
+        "scale": "none"
+      }
+    ],
+    "indicatorsAfter": [
+      {
+        "w": 24,
+        "x": 1118,
+        "bg": "oklab(0.271562 0.00915412 -0.00474146 / 0.35)",
+        "scale": "none"
+      },
+      {
+        "w": 24,
+        "x": 1154,
+        "bg": "oklab(0.271562 0.00915412 -0.00474146 / 0.35)",
+        "scale": "none"
+      },
+      {
+        "w": 24,
+        "x": 1190,
+        "bg": "rgb(42, 37, 41)",
+        "scale": "1 1.5"
+      }
+    ],
+    "hairline": {
+      "width": 1440,
+      "height": 1,
+      "bottomGap": 0,
+      "heroWidth": 1440
+    },
+    "fill1s": [
+      0.332,
+      0.335
+    ],
+    "fillWhileHovered": [
+      0,
+      0
+    ],
+    "heroLayoutShift": 0
+  },
+  "hero-390": {
+    "indicatorsBefore": [
+      {
+        "w": 24,
+        "x": 22,
+        "bg": "rgb(42, 37, 41)",
+        "scale": "1 1.5"
+      },
+      {
+        "w": 24,
+        "x": 58,
+        "bg": "oklab(0.271562 0.00915412 -0.00474146 / 0.35)",
+        "scale": "none"
+      },
+      {
+        "w": 24,
+        "x": 94,
+        "bg": "oklab(0.271562 0.00915412 -0.00474146 / 0.35)",
+        "scale": "none"
+      }
+    ],
+    "indicatorsAfter": [
+      {
+        "w": 24,
+        "x": 22,
+        "bg": "oklab(0.271562 0.00915412 -0.00474146 / 0.35)",
+        "scale": "none"
+      },
+      {
+        "w": 24,
+        "x": 58,
+        "bg": "oklab(0.271562 0.00915412 -0.00474146 / 0.35)",
+        "scale": "none"
+      },
+      {
+        "w": 24,
+        "x": 94,
+        "bg": "rgb(42, 37, 41)",
+        "scale": "1 1.5"
+      }
+    ],
+    "hairline": {
+      "width": 390,
+      "height": 1,
+      "bottomGap": 0,
+      "heroWidth": 390
+    },
+    "fill1s": [
+      0.367,
+      0.368
+    ],
+    "fillWhileHovered": [
+      0,
+      0
+    ],
+    "heroLayoutShift": 0
+  },
+  "press-motion": {
+    "heroCta": {
+      "rest": "none",
+      "held": "0.97",
+      "released": "none",
+      "transitionHasScale": true
+    },
+    "heroNext": {
+      "rest": "none",
+      "held": "0.92",
+      "released": "none",
+      "transitionHasScale": true
+    },
+    "headerCart": {
+      "rest": "none",
+      "held": "0.94",
+      "released": "none",
+      "transitionHasScale": true
+    },
+    "menuButton": {
+      "rest": "none",
+      "held": "0.92",
+      "released": "none",
+      "transitionHasScale": true
+    },
+    "campaignCta": {
+      "rest": "none",
+      "held": "0.97",
+      "released": "none",
+      "transitionHasScale": true
+    }
+  },
+  "press-reduced": {
+    "heroCta": {
+      "rest": "none",
+      "held": "none",
+      "released": "none",
+      "transitionHasScale": true
+    },
+    "heroNext": {
+      "rest": "none",
+      "held": "none",
+      "released": "none",
+      "transitionHasScale": true
+    },
+    "headerCart": {
+      "rest": "none",
+      "held": "none",
+      "released": "none",
+      "transitionHasScale": true
+    },
+    "menuButton": {
+      "rest": "none",
+      "held": "none",
+      "released": "none",
+      "transitionHasScale": true
+    },
+    "campaignCta": {
+      "rest": "none",
+      "held": "none",
+      "released": "none",
+      "transitionHasScale": true
+    }
+  },
+  "card": {
+    "duration": "0.9s",
+    "prop": "scale",
+    "hoverTrace": [
+      {
+        "t": 0,
+        "scale": "1.00673"
+      },
+      {
+        "t": 300,
+        "scale": "1.05608"
+      },
+      {
+        "t": 600,
+        "scale": "1.05975"
+      },
+      {
+        "t": 950,
+        "scale": "1.06"
+      }
+    ]
+  },
+  "rail-1440": {
+    "nearBesideGarment3": [
+      0,
+      0.09,
+      0.55,
+      1,
+      0.55,
+      0.09,
+      0,
+      0
+    ],
+    "maxAngle": {
+      "garment3": 2.4,
+      "garment7": 1
+    },
+    "nearOverGarment3": [
+      0,
+      0.08,
+      0.54,
+      0,
+      0.55,
+      0.1,
+      0,
+      0
+    ],
+    "nearAfterLeave": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "rail-1440-reduced": {
+    "nearBesideGarment3": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "rail-390-touch": {
+    "nearBesideGarment3": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "errors": []
+}

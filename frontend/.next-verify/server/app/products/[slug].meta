@@ -1,0 +1,49 @@
+{
+  "status": 200,
+  "headers": {
+    "link": "</_next/static/media/2a65768255d6b625-s.p.3u4lli0-axodc.woff2>; rel=preload; as=\"font\"; crossorigin=\"\"; type=\"font/woff2\", </_next/static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2>; rel=preload; as=\"font\"; crossorigin=\"\"; type=\"font/woff2\", </_next/static/media/Brigends_Expanded-s.p.26n6veu4_p6f_.otf>; rel=preload; as=\"font\"; crossorigin=\"\"; type=\"font/otf\", </_next/static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2>; rel=preload; as=\"font\"; crossorigin=\"\"; type=\"font/woff2\"",
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/(store)/layout,_N_T_/(store)/products/layout,_N_T_/(store)/products/[slug]/layout,_N_T_/(store)/products/[slug]/page"
+  },
+  "postponed": "4659:8[\"slug\"][1,{\"nextSegmentId\":6,\"rootFormatContext\":{\"insertionMode\":0,\"selectedValue\":null,\"tagScope\":0,\"viewTransition\":null},\"progressiveChunkSize\":12800,\"resumableState\":{\"idPrefix\":\"\",\"nextFormID\":0,\"streamingFormat\":0,\"instructions\":482,\"hasBody\":true,\"hasHtml\":true,\"unknownResources\":{\"font\":{\"/_next/static/media/2a65768255d6b625-s.p.3u4lli0-axodc.woff2\":[],\"/_next/static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2\":[],\"/_next/static/media/Brigends_Expanded-s.p.26n6veu4_p6f_.otf\":[],\"/_next/static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2\":[]}},\"dnsResources\":{},\"connectResources\":{\"default\":{},\"anonymous\":{},\"credentials\":{}},\"imageResources\":{},\"styleResources\":{\"/_next/static/chunks/38aivj47fjby8.css\":null,\"/_next/static/chunks/2ezohweq1h052.css\":null},\"scriptResources\":{\"/_next/static/chunks/1ckvzn7sfprko.js\":null,\"/_next/static/chunks/11t-zvhau74r5.js\":null,\"/_next/static/chunks/2abgvfcolnmqq.js\":null,\"/_next/static/chunks/2l8fpcfss9uqn.js\":null,\"/_next/static/chunks/turbopack-3-ry682tkyiqk.js\":null,\"/_next/static/chunks/34jd45txuktih.js\":null,\"/_next/static/chunks/1dd0bn69hnsde.js\":null,\"/_next/static/chunks/1c67ydjwu4qr3.js\":null,\"/_next/static/chunks/0qa6pfjd3c4nu.js\":null,\"/_next/static/chunks/2-rfe7f68bjl5.js\":null,\"/_next/static/chunks/0-n15np6i98i0.js\":null,\"/_next/static/chunks/18i-47d--9oa5.js\":null,\"/_next/static/chunks/0cfs4oomuhqk6.js\":null,\"/_next/static/chunks/3zdndph4bg48x.js\":null,\"/_next/static/chunks/29r2uj1wue3lq.js\":null,\"/_next/static/chunks/2uz74cxvnxlca.js\":null,\"/_next/static/chunks/1-xciud71_8d_.js\":null,\"/_next/static/chunks/0lzyu0ljegi3k.js\":null},\"moduleUnknownResources\":{},\"moduleScriptResources\":{\"/_next/static/chunks/1ckvzn7sfprko.js\":null}},\"replayNodes\":[[\"sl\",0,[[\"Context\",0,[[\"Context\",0,[[\"ServerInsertedHTMLProvider\",0,[[\"Context\",0,[[\"io\",0,[[\"aV\",0,[[\"az\",0,[[\"aq\",0,[[\"is\",0,[[\"Fragment\",0,[[\"Context\",2,[[\"Context\",0,[[\"Context\",0,[[\"Context\",0,[[\"Context\",0,[[\"Context\",0,[[\"Context\",0,[[\"aV\",0,[[\"az\",0,[[\"aq\",0,[[\"ai\",0,[[\"aa\",0,[[\"__next_root_layout_boundary__\",1,[[\"Fragment\",\"c\",[[\"html\",1,[[\"body\",0,[[null,0,[[null,0,[[\"Context\",0,[[null,0,[[\"i\",0,[[\"Context\",0,[[\"Fragment\",1,[[\"u\",0,[[\"ForwardRef\",0,[[\"Context\",0,[[null,1,[[\"Activity\",\"(store)\",[[\"Context\",\"(store)\",[[null,2,[[\"Fragment\",0,[[\"E\",0,[[\"D\",0,[[\"Fragment\",0,[[\"n\",0,[[\"Fragment\",0,[[\"G\",0,[[\"Fragment\",0,[[null,0,[[\"l\",0,[[\"x\",0,[[\"w\",0,[[\"F\",0,[[\"Context\",0,[[\"Fragment\",\"c\",[[\"Fragment\",1,[[null,1,[[\"header\",0,[[\"div\",0,[[\"div\",0,[[\"div\",1,[[\"nav\",0,[[\"O\",0,[[\"Suspense\",0,[],0,[\"Suspense Fallback\",0,[],null],0]],null]],null]],null],[\"nav\",2,[[\"O\",0,[[\"Suspense\",0,[],1,[\"Suspense Fallback\",0,[],null],1]],null]],null]],null]],null]],null]],null],[\"main\",2,[[null,0,[[\"Activity\",\"products\",[[\"Context\",\"products\",[[null,2,[[\"Fragment\",0,[[\"E\",0,[[\"D\",0,[[\"Fragment\",0,[[\"n\",0,[[\"Fragment\",0,[[\"G\",0,[[\"Fragment\",0,[[null,0,[[\"l\",0,[[\"x\",0,[[\"w\",0,[[\"F\",0,[[\"Context\",0,[[\"Fragment\",\"c\",[[null,1,[[\"Activity\",\"slug|d\",[[\"Context\",\"slug|d\",[[null,2,[[\"Fragment\",0,[[\"E\",0,[[\"D\",0,[[\"Fragment\",0,[[\"n\",0,[[\"Fragment\",0,[[\"G\",0,[[\"Fragment\",0,[[null,0,[[\"Fragment\",0,[[\"x\",0,[[\"w\",0,[[\"F\",0,[[\"Context\",0,[[null,0,[[\"Context\",0,[[\"Fragment\",\"c\",[[null,1,[[\"Activity\",\"__PAGE__\",[[\"Context\",\"__PAGE__\",[[null,2,[[\"Fragment\",0,[[\"E\",0,[[\"D\",0,[[\"Fragment\",0,[[\"n\",0,[[\"m\",0,[[\"G\",0,[[\"Suspense\",0,[[null,0,[[\"l\",0,[[\"x\",0,[[\"w\",0,[[\"F\",0,[[\"Context\",0,[[\"Fragment\",\"c\",[[\"ViewTransition\",0,[[\"div\",0,[[\"Suspense\",0,[],3,[\"Suspense Fallback\",0,[],null],3]],null]],null],[\"__next_outlet_boundary__\",2,[[\"Suspense\",0,[],4,[\"Suspense Fallback\",0,[],null],4]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null],[\"ii\",\"/!KHN0b3JlKQ/products/$d$slug/__PAGE__/_head\",[[\"Fragment\",\"h\",[[\"__next_metadata_boundary__\",2,[[\"div\",0,[[\"Suspense\",0,[],2,[\"Suspense Fallback\",0,[],null],2]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],\"replaySlots\":null}]null",
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/_index",
+    "/!KHN0b3JlKQ",
+    "/!KHN0b3JlKQ/products/$d$slug/__PAGE__"
+  ],
+  "prefetchHints": {
+    "hints": 16384,
+    "slots": {
+      "children": {
+        "hints": 16384,
+        "slots": {
+          "children": {
+            "hints": 16448,
+            "slots": {
+              "children": {
+                "hints": 16480,
+                "slots": {
+                  "children": {
+                    "hints": 16544,
+                    "slots": null
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "routeCache": {
+    "key": "/route-cache/APP_PAGE/380606e887d7a41e2db48426a34eb4d061694b215fe68daae37912790bc7ed32/$/products/[slug]",
+    "owner": {
+      "kind": "APP_PAGE",
+      "sourceRoute": "/(store)/products/[slug]/page"
+    },
+    "isFallback": true
+  }
+}

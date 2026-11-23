@@ -4,10 +4,12 @@ import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { SearchXIcon, SlidersHorizontalIcon } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { useId, useState } from 'react';
+import { Fragment, useId, useState } from 'react';
 
 import { EmptyState } from '@/components/common/empty-state';
 import { ErrorState } from '@/components/common/error-state';
+import { IN_PLACE_NAVIGATION } from '@/components/layout/page-transition';
+import { BatchReveal } from '@/components/storefront/scroll-motion';
 import { Button } from '@/components/ui/button';
 import { catalogKeys, fetchCategories, fetchProductFacets, fetchProducts } from '@/lib/catalog/api';
 import {
@@ -23,6 +25,7 @@ import { cn } from '@/lib/utils';
 
 import { type ListingChanges, CatalogFilters } from './catalog-filters';
 import { CatalogPagination } from './catalog-pagination';
+import { EditorialTile } from './editorial-tile';
 import { PRODUCT_GRID, ProductCard, ProductGridSkeleton } from './product-card';
 
 const focusRing =
@@ -31,6 +34,9 @@ const focusRing =
 /** Facets and categories change only when the catalog does; products are re-read more often. */
 const FACETS_STALE_MS = 5 * 60_000;
 const CATEGORIES_STALE_MS = 10 * 60_000;
+
+/** The editorial tile follows this many cards: the second row on phones and from `xl`. */
+const TILE_AFTER = 4;
 
 /**
  * The product listing: filters, sort, grid and pagination over `GET /products`.
@@ -75,7 +81,7 @@ export function CatalogBrowser({ preset = {} }: { preset?: ListingPreset }) {
   const current = new URLSearchParams(searchParams.toString());
   const hrefWith = (changes: ListingChanges) => listingHref(pathname, current, changes);
   const navigate = (changes: ListingChanges) => {
-    router.replace(hrefWith(changes), { scroll: false });
+    router.replace(hrefWith(changes), { scroll: false, transitionTypes: [IN_PLACE_NAVIGATION] });
   };
 
   const clearFilters = () => {
@@ -95,6 +101,9 @@ export function CatalogBrowser({ preset = {} }: { preset?: ListingPreset }) {
   const effectiveSort: ProductSort = query.sort ?? (query.q ? 'relevance' : 'featured');
   const filtered = hasActiveFilters({ ...state, gender: preset.gender ? undefined : state.gender });
   const total = products.data?.total;
+  // Only on the first page of a plain collection; inside a search or a filter it would push
+  // the results the visitor asked for apart.
+  const showTile = state.page === 1 && !filtered && !query.q;
 
   return (
     <div className="mx-auto w-full max-w-[1680px] px-4 pb-24 sm:px-6 lg:px-10 xl:px-14">
@@ -160,7 +169,14 @@ export function CatalogBrowser({ preset = {} }: { preset?: ListingPreset }) {
         <aside
           id={filtersId}
           aria-label="Filters"
-          className={cn('mb-10 lg:mb-0 lg:block', filtersOpen ? 'block' : 'hidden')}
+          className={cn(
+            'mb-10 lg:mb-0 lg:block',
+            // Below `lg` the panel drops 8px into place as it fades in (CSS); from `lg` it is
+            // always shown and never animates. Closing hides it at once.
+            filtersOpen
+              ? 'block animate-in duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] fade-in slide-in-from-top-2 motion-reduce:animate-none lg:animate-none'
+              : 'hidden',
+          )}
         >
           {facets.isError ? (
             <ErrorState
@@ -203,7 +219,12 @@ export function CatalogBrowser({ preset = {} }: { preset?: ListingPreset }) {
             />
           ) : (
             <>
-              <ul
+              {/* GSAP owns each `li`'s opacity and transform (the row-by-row entrance); the
+                  list's own opacity is the placeholder dimming. Keyed by the result set, so a
+                  new page or filter staggers in afresh rather than swapping in place. */}
+              <BatchReveal
+                key={products.data.items.map((product) => product.id).join()}
+                as="ul"
                 className={cn(
                   PRODUCT_GRID,
                   'transition-opacity duration-200',
@@ -211,11 +232,14 @@ export function CatalogBrowser({ preset = {} }: { preset?: ListingPreset }) {
                 )}
               >
                 {products.data.items.map((product, index) => (
-                  <li key={product.id}>
-                    <ProductCard product={product} preload={index < 4 && state.page === 1} />
-                  </li>
+                  <Fragment key={product.id}>
+                    {showTile && index === TILE_AFTER ? <EditorialTile /> : null}
+                    <li>
+                      <ProductCard product={product} preload={index < 4 && state.page === 1} />
+                    </li>
+                  </Fragment>
                 ))}
-              </ul>
+              </BatchReveal>
               <CatalogPagination
                 page={products.data.page}
                 pageSize={products.data.pageSize}
@@ -251,6 +275,7 @@ function NoResults({
         action={
           <Link
             href={firstPageHref}
+            transitionTypes={[IN_PLACE_NAVIGATION]}
             className="border-b border-foreground/30 pb-0.5 text-[10px] font-semibold tracking-[0.2em] uppercase hover:border-foreground"
           >
             Back to page 1

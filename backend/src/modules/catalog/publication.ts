@@ -1,4 +1,4 @@
-import { Prisma, ProductStatus, ProductVariantStatus } from '@prisma/client';
+import { Prisma, ProductImageKind, ProductStatus, ProductVariantStatus } from '@prisma/client';
 
 /**
  * The publication rule: when a product may be shown to the public or put in a cart
@@ -7,7 +7,8 @@ import { Prisma, ProductStatus, ProductVariantStatus } from '@prisma/client';
  * A product is public only when ALL of these hold:
  *   1. status is PUBLISHED and publishedAt is not in the future;
  *   2. its category is active, and so is that category's parent, if it has one;
- *   3. it has at least one image;
+ *   3. it has at least one PHOTO image (a cut-out alone is not enough: the card and the
+ *      gallery show photos, ADR 0017);
  *   4. it has at least one ACTIVE variant with a price above zero.
  *
  * The importer applies the same rule before it publishes, but the API does not trust that:
@@ -34,15 +35,19 @@ export function publicProductWhere(now: Date = new Date()): Prisma.ProductWhereI
       isActive: true,
       OR: [{ parentId: null }, { parent: { isActive: true } }],
     },
-    images: { some: {} },
+    images: { some: { kind: ProductImageKind.PHOTO } },
     variants: { some: PURCHASABLE_VARIANT_WHERE },
   };
 }
 
 /**
  * SQL form, for queries that alias `products p`, `categories c` (the product's category)
- * and `LEFT JOIN categories pc` (its parent). Rule 4 is enforced by the caller's join to
- * purchasable variants (`PURCHASABLE_VARIANT_SQL`), which every listing query needs anyway.
+ * and `LEFT JOIN categories pc` (its parent) — `MATCH_FROM` or `LISTING_FROM` in
+ * `catalog.query.ts`. All four rules are here, so the condition is correct whatever the FROM.
+ *
+ * Rule 4 used to be left to `LISTING_FROM`'s per-product lowest-price join, which made every
+ * count and facet compute a price it never read. As an EXISTS it is a semi-join that stops at
+ * the first sellable variant (docs/performance-review.md).
  *
  * `published_at` is a timestamp without time zone holding UTC (Prisma's convention), so it
  * is compared with UTC "now" rather than with `now()`, whose result depends on the session
@@ -54,7 +59,11 @@ export const PUBLIC_PRODUCT_SQL = Prisma.sql`
   AND p.published_at <= (now() AT TIME ZONE 'UTC')
   AND c.is_active
   AND (c.parent_id IS NULL OR pc.is_active)
-  AND EXISTS (SELECT 1 FROM product_images i WHERE i.product_id = p.id)
+  AND EXISTS (SELECT 1 FROM product_images i WHERE i.product_id = p.id AND i.kind = 'PHOTO')
+  AND EXISTS (
+    SELECT 1 FROM product_variants sv
+    WHERE sv.product_id = p.id AND sv.status = 'ACTIVE' AND sv.price_minor > 0
+  )
 `;
 
 /** For a `product_variants` alias `v`. */

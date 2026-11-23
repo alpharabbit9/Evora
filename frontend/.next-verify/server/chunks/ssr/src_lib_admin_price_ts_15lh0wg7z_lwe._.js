@@ -1,0 +1,3 @@
+module.exports=[1437,a=>{"use strict";let b=/^\d{1,8}(\.\d{1,2})?$/;a.s(["B",0,function(a){return b.test(a.trim())},"Z",0,function(a){let[b="0",c=""]=a.trim().split(".");return 100*Number(b)+Number(c.padEnd(2,"0"))},"h",0,function(a){let b=Math.trunc(a/100),c=a%100;return 0===c?String(b):`${String(b)}.${String(c).padStart(2,"0")}`}])}];
+
+//# sourceMappingURL=src_lib_admin_price_ts_15lh0wg7z_lwe._.js.map

@@ -3,7 +3,7 @@ import { betterAuth } from 'better-auth';
 import { prismaAdapter } from 'better-auth/adapters/prisma';
 
 import { env, isProduction } from '../config/env.js';
-import { enqueueAuthEmail } from '../modules/notifications/auth-email.js';
+import { AUTH_LINK_TTL_MS, enqueueAuthEmail } from '../modules/notifications/auth-email.js';
 import { logger } from './logger.js';
 import { prisma } from './prisma.js';
 
@@ -17,7 +17,7 @@ import { prisma } from './prisma.js';
  */
 
 /** One hour. Short enough that a leaked reset link stops working quickly. */
-const RESET_TOKEN_TTL_SECONDS = 60 * 60;
+const RESET_TOKEN_TTL_SECONDS = AUTH_LINK_TTL_MS.PASSWORD_RESET / 1000;
 
 export const auth = betterAuth({
   database: prismaAdapter(prisma, { provider: 'postgresql' }),
@@ -30,9 +30,10 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
 
-    // Delivery is not implemented (no provider selected, PRD §9), so requiring verification
-    // would lock every new account out permanently. Flip this to `true` in the same change
-    // that lands the M9 outbox worker and a provider — not before.
+    // The outbox worker delivers links now (ADR 0021), but no email provider is chosen (PRD §9)
+    // and the filesystem driver only writes files. Requiring verification would lock every new
+    // account out wherever no relay is configured, and the storefront has no "check your inbox"
+    // step yet. Turn it on with both: a configured relay and that page.
     requireEmailVerification: false,
 
     minPasswordLength: 12,
@@ -61,11 +62,11 @@ export const auth = betterAuth({
   },
 
   emailVerification: {
-    // Nothing can be delivered yet, so sign-up does not pretend to send anything. The
-    // `/auth/send-verification-email` endpoint stays available for when delivery exists.
+    // Off for the reason `requireEmailVerification` is: an email nobody is asked to act on.
+    // `/auth/send-verification-email` queues one on request, and the worker sends it.
     sendOnSignUp: false,
     autoSignInAfterVerification: true,
-    expiresIn: 60 * 60 * 24,
+    expiresIn: AUTH_LINK_TTL_MS.EMAIL_VERIFICATION / 1000,
 
     sendVerificationEmail: async ({ user, url, token }) => {
       await enqueueAuthEmail({
@@ -125,14 +126,27 @@ export const auth = betterAuth({
     useSecureCookies: isProduction,
     defaultCookieAttributes: {
       httpOnly: true,
-      // Cross-SITE in production (different registrable domains), so the cookie has to be
-      // `None; Secure`. In development frontend and API differ only by port, which is
-      // same-site, so `Lax` is both sufficient and safer. ADR 0006 records why this is
-      // cross-origin at all, and that putting both behind one origin is preferable.
-      sameSite: isProduction ? 'none' : 'lax',
+      // `Lax` everywhere. The storefront must read this cookie too (its proxy and Server
+      // Components), which only works when it and the API are same-site: one host, or sibling
+      // subdomains under AUTH_COOKIE_DOMAIN. `env.ts` refuses any other production shape
+      // (ADR 0024), so `None` would only weaken CSRF protection without making anything work.
+      // The payment return is a cross-site POST and deliberately needs no cookie (it redirects
+      // with 303, and the follow-up GET carries the Lax cookie).
+      sameSite: 'lax',
       secure: isProduction,
       path: '/',
     },
+
+    // Sibling subdomains share the session through the parent domain; unset, the cookie stays
+    // host-only, which is the tighter choice when the API is served under the storefront's host.
+    ...(env.AUTH_COOKIE_DOMAIN
+      ? {
+          crossSubDomainCookies: {
+            enabled: true,
+            domain: env.AUTH_COOKIE_DOMAIN.replace(/^\./, ''),
+          },
+        }
+      : {}),
 
     /**
      * Both of these are stated explicitly, and the value is the same in every environment
@@ -146,8 +160,9 @@ export const auth = betterAuth({
      * suite, which is the worst of both: no test could ever show that it works, and a
      * regression in it would stay green.
      *
-     * With `SameSite=None` in production (ADR 0006), this check is what stands between a
-     * hostile page and this API. It is not something to leave to an implicit default.
+     * `SameSite=Lax` (ADR 0024) narrows what a hostile page can do, but a sibling subdomain is
+     * same-site, so this check is still what stands between another origin and this API. It
+     * is not something to leave to an implicit default.
      */
     disableOriginCheck: false,
     disableCSRFCheck: false,

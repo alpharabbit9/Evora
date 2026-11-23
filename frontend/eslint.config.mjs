@@ -9,6 +9,9 @@ const eslintConfig = defineConfig([
   globalIgnores([
     // Default ignores of eslint-config-next:
     '.next/**',
+    '.next-e2e/**',
+    // Local production builds used to validate a change (plan.md Phase 5 onward).
+    '.next-verify/**',
     'out/**',
     'build/**',
     'next-env.d.ts',

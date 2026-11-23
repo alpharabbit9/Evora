@@ -1,0 +1,61 @@
+{
+  "badge-1024": {
+    "onLoad": {
+      "text": "2",
+      "pop": false,
+      "scale": "none"
+    },
+    "sizePicked": "M",
+    "after": {
+      "t": 494,
+      "text": "3",
+      "pop": true,
+      "scale": "none"
+    },
+    "peakScale": 1.14995,
+    "frames": 22
+  },
+  "badge-1440": {
+    "onLoad": {
+      "text": "(2)",
+      "pop": false,
+      "scale": "none"
+    },
+    "sizePicked": "M",
+    "after": {
+      "t": 495,
+      "text": "(3)",
+      "pop": true,
+      "scale": "none"
+    },
+    "peakScale": 1.14991,
+    "frames": 23
+  },
+  "badge-1024-reduced": {
+    "onLoad": {
+      "text": "2",
+      "pop": false,
+      "scale": "none"
+    },
+    "sizePicked": "M",
+    "after": {
+      "t": 493,
+      "text": "3",
+      "pop": true,
+      "scale": "none"
+    },
+    "peakScale": 1,
+    "frames": 23
+  },
+  "horizontalOverflow": {
+    "390-light": 0,
+    "390-dark": 0,
+    "768-light": 0,
+    "768-dark": 0,
+    "1280-light": 0,
+    "1280-dark": 0,
+    "1440-light": 0,
+    "1440-dark": 0
+  },
+  "errors": []
+}

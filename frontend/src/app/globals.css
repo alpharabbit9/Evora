@@ -1,8 +1,8 @@
-@import "tailwindcss";
-@import "tw-animate-css";
-@import "shadcn/tailwind.css";
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
 /* `html.lenis { height: auto }` plus the overflow hooks SmoothScrollProvider relies on. */
-@import "lenis/dist/lenis.css";
+@import 'lenis/dist/lenis.css';
 
 /*
  * Charcoal & Ivory theme, imported from `frontend/charcoal-ivory-theme/`. That folder is the
@@ -19,11 +19,11 @@
  * selects the token file's `.dark` block. With either class present, the OS setting never
  * decides; the token file's `prefers-color-scheme` fallback only fills in for a missing one.
  */
-@import "../../charcoal-ivory-theme/styles/tokens.css";
+@import '../../charcoal-ivory-theme/styles/tokens.css';
 
 /* The theme's README, preview page and component CSS are reference material, not app
    markup: keep Tailwind from generating utilities for the class names they mention. */
-@source not "../../charcoal-ivory-theme";
+@source not '../../charcoal-ivory-theme';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -78,7 +78,7 @@
   --font-heading: var(--font-playfair, serif);
   /* Brigends Expanded is a demo build: digits and symbols render a watermark. Keep it to
      alphabetic text (the wordmark, word-only headings); numbers stay in `font-sans`. */
-  --font-display: var(--font-brigends), "Arial Narrow", system-ui, sans-serif;
+  --font-display: var(--font-brigends), 'Arial Narrow', system-ui, sans-serif;
 
   /* shadcn/ui derives its radii from one base; `--radius` itself comes from the theme. */
   --radius-sm: calc(var(--radius) * 0.6);
@@ -102,6 +102,19 @@
   --color-chart-3: var(--chart-3);
   --color-chart-2: var(--chart-2);
   --color-chart-1: var(--chart-1);
+}
+
+/*
+ * Section spacing for the storefront: `pt-section-lg`, `pb-section-sm` and so on. One fluid
+ * scale, so sections stop each carrying their own `clamp()`. `lg` separates chapters, `md` opens
+ * a product section, `sm` closes one or opens a band that follows a rule, and `xs` is for a
+ * section whose top edge is already set by the one before it.
+ */
+@theme {
+  --spacing-section-lg: clamp(3.5rem, 2.5rem + 4vw, 6.5rem);
+  --spacing-section-md: clamp(3rem, 2rem + 3vw, 5rem);
+  --spacing-section-sm: clamp(2rem, 1rem + 3vw, 4rem);
+  --spacing-section-xs: clamp(0.5rem, 0.25rem + 1vw, 1rem);
 }
 
 /* shadcn/ui tokens the theme does not define (charts, the admin sidebar). */
@@ -157,5 +170,735 @@
   }
   to {
     clip-path: circle(141.5% at 0% 100%);
+  }
+}
+
+/*
+ * The theme control's icon (ThemeToggle): the sun and the moon share one grid cell, and the
+ * one for the current theme shows. During the reveal above, the incoming icon spins in as the
+ * outgoing one spins out. CSS, not Framer Motion (plan.md 9.5): this control is in every page's
+ * header, and it was the only reason framer-motion loaded on every route.
+ *
+ * Keyframe animations, not transitions: next-themes (`disableTransitionOnChange`) turns
+ * transitions off while it swaps the theme class. The animation's name follows the theme, so a
+ * switch restarts it; its duration is 0 except while `data-theme-transition` is set, so the
+ * first paint, reduced motion and browsers without view transitions land on the end state at
+ * once. The rotations match the old Framer version: the moon comes in from -90deg and leaves
+ * to 90deg, the sun the reverse.
+ */
+/* Longhands, not the `animation` shorthand: the production CSS minifier rewrote that
+   shorthand's fill mode to `none`, which leaves a 0s animation with no end state to hold. */
+.theme-icon {
+  grid-area: 1 / 1;
+  animation-duration: 0s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  animation-fill-mode: both;
+}
+
+.theme-icon-sun {
+  --theme-icon-in: 90deg;
+  --theme-icon-out: -90deg;
+  animation-name: theme-icon-show;
+}
+
+.theme-icon-moon {
+  --theme-icon-in: -90deg;
+  --theme-icon-out: 90deg;
+  animation-name: theme-icon-hide;
+}
+
+:root.dark .theme-icon-sun {
+  animation-name: theme-icon-hide;
+}
+
+:root.dark .theme-icon-moon {
+  animation-name: theme-icon-show;
+}
+
+:root[data-theme-transition] .theme-icon {
+  animation-duration: 500ms;
+}
+
+@keyframes theme-icon-show {
+  from {
+    opacity: 0;
+    rotate: var(--theme-icon-in);
+    scale: 0.4;
+  }
+  to {
+    opacity: 1;
+    rotate: 0deg;
+    scale: 1;
+  }
+}
+
+@keyframes theme-icon-hide {
+  from {
+    opacity: 1;
+    rotate: 0deg;
+    scale: 1;
+  }
+  to {
+    opacity: 0;
+    rotate: var(--theme-icon-out);
+    scale: 0.4;
+  }
+}
+
+/*
+ * Route transitions (ADR 0015). `PageTransition` gives the leaving page the `page-exit` class
+ * and the arriving one `page-enter`: the old page fades out quickly so it never competes with
+ * the new one, which rises 8px into place as it fades in, overlapping the end of the exit.
+ * Opacity and transform only, so it stays on the compositor. Header and footer are outside
+ * the page and ride the browser's default root crossfade, which shows identical pixels as
+ * still.
+ *
+ * No `view-transition-name` is set here or on the header: a permanent name would lift the
+ * header out of the theme switch's circle reveal above, which animates `root` alone.
+ */
+::view-transition-old(.page-exit) {
+  animation: 140ms cubic-bezier(0.4, 0, 1, 1) both page-fade-out;
+}
+
+::view-transition-new(.page-enter) {
+  animation: 280ms cubic-bezier(0, 0, 0.2, 1) 60ms both page-fade-in;
+}
+
+@keyframes page-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes page-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+/* The overlay would otherwise swallow clicks for the length of the animation. */
+::view-transition {
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
+}
+
+/*
+ * Header menu panel (components/layout/site-header.tsx). The panel stays mounted and
+ * `data-state` drives it; CSS owns its opacity, translate and display (ADR 0010), nothing
+ * else animates them.
+ *
+ * - Open: it drops 8px into place as it fades in, 220ms on the theme's --ease-out.
+ *   `@starting-style` gives the transition a "from" state, because the panel arrives from
+ *   `display: none`.
+ * - Close: subtler and quicker, 4px and 140ms on an ease-in, since attention is already
+ *   moving on. `display` flips to `none` only at the end (`allow-discrete`), which is what
+ *   lets the exit play; `inert`, set by the component the moment it closes, keeps the
+ *   fading panel out of the tab order meanwhile.
+ * - Browsers without discrete transitions simply open and close it instantly.
+ * - Reduced motion: opacity only, no travel.
+ */
+.site-menu-panel {
+  transition:
+    opacity 140ms cubic-bezier(0.4, 0, 1, 1),
+    translate 140ms cubic-bezier(0.4, 0, 1, 1),
+    display 140ms allow-discrete;
+}
+
+.site-menu-panel[data-state='closed'] {
+  display: none;
+  opacity: 0;
+  translate: 0 -4px;
+}
+
+.site-menu-panel[data-state='open'] {
+  opacity: 1;
+  translate: 0 0;
+  transition-duration: 220ms;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@starting-style {
+  .site-menu-panel[data-state='open'] {
+    opacity: 0;
+    translate: 0 -8px;
+  }
+}
+
+/* The menu button's two glyphs cross-fade with a quarter turn; the utilities set the end
+   states, this sets the timing. */
+.menu-icon {
+  transition:
+    opacity 200ms cubic-bezier(0.16, 1, 0.3, 1),
+    rotate 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-menu-panel,
+  .site-menu-panel[data-state='closed'],
+  .menu-icon {
+    translate: none;
+    rotate: none;
+  }
+
+  @starting-style {
+    .site-menu-panel[data-state='open'] {
+      translate: none;
+    }
+  }
+}
+
+/*
+ * Tap targets (plan.md Phase 8): a small control (a 36px icon button, a text link) gets an
+ * invisible hit area at least 44px each way, centred on it, without changing its size or the
+ * layout. Each inset is 0 when the control is already that big. Neighbours must sit at least
+ * 44px apart (centre to centre), or their hit areas overlap; give them room in the layout
+ * instead. Uses `::before`, so it composes with the `after:` underlines.
+ */
+@utility tap-target {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset-block: min(0px, calc((100% - 2.75rem) / 2));
+    inset-inline: min(0px, calc((100% - 2.75rem) / 2));
+  }
+}
+
+/*
+ * The assistant launcher (assistant-widget.tsx) is fixed in the screen's bottom-right corner:
+ * 52px wide at 16px in on phones, an "Ask us" pill about 105px wide at 24px in from `sm`.
+ * While it is on the page, `--launcher-reach` is how far in from the right edge it reaches,
+ * plus an 8px gap, so a band that ends in that corner (the home hero's controls) can keep
+ * clear of it. Unset, and so 0, when the assistant is off (plan.md Phase 8).
+ */
+:root:has([data-assistant-launcher]) {
+  --launcher-reach: 4.75rem;
+}
+
+@media (width >= 40rem) {
+  :root:has([data-assistant-launcher]) {
+    --launcher-reach: 8.5rem;
+  }
+}
+
+/*
+ * Press feedback (plan.md Phase 7.1): the hero CTAs and controls, the campaign CTA and the
+ * newsletter submit dip while held. CSS owns `scale` on them (ADR 0010); GSAP's entrances
+ * animate their wrappers, never these elements.
+ *
+ * Unlayered on purpose, so this one `transition` list beats any Tailwind `transition-*` or
+ * `duration-*` utility on the same element (utilities live in a cascade layer). Colours keep
+ * the element's own pace (`--press-fade`); the dip itself is quick going down (100ms) and a
+ * touch slower coming back (160ms). `--press-scale` lets a small round control dip further.
+ * Reduced motion: no dip; the hover and active colours still answer the press.
+ */
+.press {
+  --press-ms: 160ms;
+  transition:
+    color var(--press-fade, 300ms) var(--ease-out),
+    background-color var(--press-fade, 300ms) var(--ease-out),
+    border-color var(--press-fade, 300ms) var(--ease-out),
+    outline-color var(--press-fade, 300ms) var(--ease-out),
+    box-shadow var(--press-fade, 300ms) var(--ease-out),
+    opacity var(--press-fade, 300ms) var(--ease-out),
+    scale var(--press-ms) var(--ease-out);
+}
+
+.press:active:not(:disabled) {
+  --press-ms: 100ms;
+  scale: var(--press-scale, 0.97);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .press:active:not(:disabled) {
+    scale: none;
+  }
+}
+
+/*
+ * Header count badge (plan.md Phase 7.3). `HeaderAction` remounts the count with this class
+ * only when a known count changes (never on page load or sign-in), so it pops once: 1 → 1.15
+ * → 1 over 250ms. CSS owns its `scale`. Reduced motion: the number just changes.
+ */
+.badge-pop {
+  animation: badge-pop 250ms var(--ease-out);
+}
+
+@keyframes badge-pop {
+  40% {
+    scale: 1.15;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .badge-pop {
+    animation: none;
+  }
+}
+
+/*
+ * Recent Arrivals clothes rail (components/storefront/recent-arrivals, ADR 0027). CSS owns all
+ * of its motion (ADR 0010) except the entrance; each moving layer is its own element or its own
+ * property, so no two rules fight over one property:
+ *
+ *   .arrival-enter         entrance, sliding in along the rod once  (GSAP: opacity, transform;
+ *                          a `RevealItem` between the `li` and its link — no CSS motion here)
+ *   .arrival               how close a mouse pointer is              (transition: `--near`;
+ *                          `ArrivalsRail` sets the target, fine pointers only)
+ *   .arrival-sway          idle sway from the hook                  (animation: `rotate`;
+ *                          paused while the rail is off screen, `.is-offscreen`; swings
+ *                          wider as `--near` rises)
+ *                          sliding aside for a turned neighbour     (transition: `translate`)
+ *   .arrival-hanger        edge-on <-> open, turning with the garment (transition: transform)
+ *   .arrival-figure        coming forward off the rail, and the shade (transition: scale, filter)
+ *   .arrival-cutout-side   the side photo swinging away / back      (transition: transform, opacity)
+ *   .arrival-cutout-front  the front photo swinging in / away       (transition: transform, opacity)
+ *   .arrival-label         name under a turned garment              (transition: opacity, translate)
+ *
+ * The turn. Two photos cannot rotate in 3D, so the outgoing view swings away on the Y axis and
+ * fades while the incoming one swings in from the other side and settles: the garment reads as
+ * turning on its hanger. The side photo shows the garment facing left, so it swings away to +Y
+ * and the front arrives from -Y. The outgoing view goes at once on an accelerating curve; the
+ * incoming one starts 170ms later and lands on a decelerating curve with a slight overshoot.
+ * Turning back is the same move mirrored.
+ *
+ * Every turned-state rule only sets `--t` (0 side-on, 1 facing front) and swaps the easings;
+ * the properties derive from them. A transition takes its timing from the state it is going
+ * to, so the delays and easings always belong to the move in progress, and leaving mid-turn
+ * reverses smoothly from wherever the garment is.
+ *
+ * Slots never change width: a turned garment grows around its own centre while its neighbours
+ * slide away, so nothing moves out from under the pointer. Only the garment's own outline
+ * (`.arrival-hit`, which travels with it) takes the pointer.
+ *
+ * Optional WebGL layer (plan.md Phase 6 prototype, `recent-arrivals/rail-3d`): a canvas over
+ * `.arrivals-stage` draws the garments, reading every position, sway, fade and turned state
+ * from the rules here; it owns no CSS property. Once it has drawn, `.is-3d` on the rail hides
+ * the two `.arrival-cutout` photos (visibility only) and nothing else changes.
+ *
+ * A garment turns on hover (pointers that can hover), on keyboard focus, and when a touch
+ * screen's first tap sets `data-turned`. Per garment the component sets `--length` (a hoodie
+ * hangs lower than a tee) and `--i` (its place, to stagger the sway); on the list,
+ * `--max-length` (the longest `--length` there) sizes the list's height.
+ */
+.arrivals-rail {
+  /* A jacket's height on the rail; everything else is measured from it. */
+  --rail-h: clamp(12rem, 6rem + 15vw, 22rem);
+  --hook-h: calc(var(--rail-h) * 0.13);
+  /* Side-on, a garment is about 36% of its height wide; the slot leaves a gap beside it. */
+  --slot: calc(var(--rail-h) * 0.42);
+  /* How far neighbours slide aside for a turned garment, which is about 83% of its height wide
+     facing front. */
+  --push: calc(var(--rail-h) * 0.24);
+  /* Rod beyond the outermost hooks: enough for an end garment pushed aside to stay on it. */
+  --overhang: calc(var(--push) + var(--rail-h) * 0.04);
+  /* Clear wall either side of the brackets. */
+  --end: calc(var(--rail-h) * 0.06);
+  --swing: 58deg;
+  --turn-away: cubic-bezier(0.35, 0, 0.65, 0.55);
+  --fade-away: cubic-bezier(0.6, 0, 0.9, 0.55);
+  --turn-in: cubic-bezier(0.2, 1.15, 0.35, 1);
+  --rod: color-mix(in oklab, var(--foreground) 62%, var(--background));
+  /* Scrolls sideways only, when the rail is wider than the screen. Sway and the turned
+     garment's scale overflow a few pixels vertically; clip that rather than show a vertical
+     scrollbar. */
+  overflow: auto hidden;
+  overscroll-behavior-x: contain;
+  scrollbar-width: thin;
+}
+
+/* Touch screens swipe the rail; the bar would only draw a line under it. */
+@media (hover: none) {
+  .arrivals-rail {
+    scrollbar-width: none;
+  }
+
+  .arrivals-rail::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* plan.md 8.2: below `lg` the rail can be wider than the screen. A swipe settles with a
+   garment centred (proximity, so a short nudge is never yanked back), and an edge fades only
+   where there is more rail beyond it: the fade widths are typed lengths driven by the rail's
+   own sideways scroll. A rail that fits has no scroll range, so its timeline is inactive and
+   both fades stay at 0. Browsers without scroll-driven animations get no fade, never a fade
+   stuck over the first or last garment. */
+@property --fade-start {
+  syntax: '<length>';
+  inherits: false;
+  initial-value: 0px;
+}
+
+@property --fade-end {
+  syntax: '<length>';
+  inherits: false;
+  initial-value: 0px;
+}
+
+@media (width < 64rem) {
+  .arrivals-rail {
+    scroll-snap-type: x proximity;
+  }
+
+  .arrival {
+    scroll-snap-align: center;
+  }
+
+  @supports (animation-timeline: scroll()) {
+    .arrivals-rail {
+      --fade: 2.5rem;
+      mask-image: linear-gradient(
+        to right,
+        transparent,
+        #000 var(--fade-start),
+        #000 calc(100% - var(--fade-end)),
+        transparent
+      );
+      animation: rail-edge-fade linear both;
+      animation-timeline: scroll(self inline);
+    }
+  }
+}
+
+@keyframes rail-edge-fade {
+  0% {
+    --fade-start: 0px;
+    --fade-end: var(--fade);
+  }
+
+  12%,
+  88% {
+    --fade-start: var(--fade);
+    --fade-end: var(--fade);
+  }
+
+  100% {
+    --fade-start: var(--fade);
+    --fade-end: 0px;
+  }
+}
+
+.arrivals-list {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  /* Only as wide as the garments and the rod's ends, centred: no long empty rod. */
+  width: max-content;
+  margin-inline: auto;
+  /* The hook, the longest garment on the rail, and room for the label under it. */
+  height: calc(
+    0.6rem + var(--hook-h) + var(--rail-h) * var(--max-length, 1.06) * var(--rest-scale, 1) +
+      7rem
+  );
+  /* The rod's overhang, plus room for an end garment to turn without being clipped. */
+  padding-inline: calc(var(--overhang) + var(--end));
+}
+
+/* The list's own box, for the optional WebGL layer to cover exactly. */
+.arrivals-stage {
+  position: relative;
+  width: max-content;
+  margin-inline: auto;
+}
+
+/* The WebGL layer is drawing the garments: the DOM keeps their boxes, links and labels. */
+.arrivals-rail.is-3d .arrival-cutout {
+  visibility: hidden;
+}
+
+/* The rod, a metal tube with a highlight along its top, casting a soft shadow on the wall. */
+.arrivals-list::before {
+  content: '';
+  position: absolute;
+  inset-inline: calc(var(--end) + 0.25rem);
+  top: 0.55rem;
+  height: 7px;
+  border-radius: 9999px;
+  background: linear-gradient(
+    to bottom,
+    color-mix(in oklab, var(--rod) 40%, white) 0%,
+    var(--rod) 45%,
+    color-mix(in oklab, var(--rod) 70%, black) 100%
+  );
+  box-shadow: 0 10px 14px -8px rgb(0 0 0 / 0.35);
+}
+
+/* The two wall brackets holding the rod at either end. */
+.arrivals-list::after {
+  content: '';
+  position: absolute;
+  inset-inline: var(--end);
+  top: 0.15rem;
+  height: 15px;
+  background:
+    linear-gradient(var(--rod), var(--rod)) left / 9px 100% no-repeat,
+    linear-gradient(var(--rod), var(--rod)) right / 9px 100% no-repeat;
+  border-radius: 3px;
+}
+
+.arrival {
+  --t: 0;
+  --side-ease: var(--turn-in);
+  --side-fade: var(--ease-out);
+  --front-ease: var(--turn-away);
+  --front-fade: var(--fade-away);
+  --garment-h: calc(var(--rail-h) * var(--length, 1) * var(--rest-scale, 1));
+  /* Both photos' shared canvas: 826 x 900 (make_cutouts.py). */
+  --canvas-w: calc(var(--garment-h) * 0.918);
+  --shift: 0px;
+  position: relative;
+  flex: none;
+  width: var(--slot);
+  pointer-events: none;
+  /* Proximity sway (plan.md Phase 7.4): a garment the mouse passes close to swings a little
+     wider, as if brushed. `--near` is typed so it eases instead of jumping mid-swing. */
+  transition: --near 900ms var(--ease-out);
+}
+
+.arrival-enter {
+  height: 100%;
+}
+
+.arrival-link {
+  position: relative;
+  display: block;
+  height: 100%;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.arrival-sway {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  display: block;
+  width: var(--canvas-w);
+  translate: calc(-50% + var(--shift)) 0;
+  transform-origin: 50% 0.75rem;
+  animation: arrival-sway 5.5s ease-in-out infinite alternate;
+  animation-delay: calc(var(--i, 0) * -0.9s);
+  transition: translate 800ms var(--ease-out);
+}
+
+/* A loop nobody can see: hold it where it is until the rail scrolls back into view. */
+.arrivals-rail.is-offscreen .arrival-sway {
+  animation-play-state: paused;
+}
+
+/* 0 far from (or under) the pointer, up to 1 right beside it. Inherited by `.arrival-sway`. */
+@property --near {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0;
+}
+
+/* ±1deg at rest, up to ±2.4deg beside the pointer. */
+@keyframes arrival-sway {
+  from {
+    rotate: calc(-1deg * (1 + var(--near) * 1.4));
+  }
+  to {
+    rotate: calc(1deg * (1 + var(--near) * 1.4));
+  }
+}
+
+/* Edge-on while the garment hangs side-on; opens out as it turns to face front. */
+.arrival-hanger {
+  position: relative;
+  z-index: 0;
+  display: block;
+  width: 56%;
+  height: var(--hook-h);
+  margin: 0.3rem auto 0;
+  color: color-mix(in oklab, var(--foreground) 70%, transparent);
+  transform: perspective(500px) rotateY(calc((1 - var(--t)) * 74deg));
+  transition: transform 800ms var(--turn-in) calc(var(--t) * 120ms);
+}
+
+/* Laid over the lower half of the hanger's arms, as if the hanger were inside it. */
+.arrival-figure {
+  position: relative;
+  z-index: 1;
+  display: block;
+  height: var(--garment-h);
+  margin-top: calc(var(--hook-h) * -0.45);
+  perspective: 1100px;
+  scale: calc(1 + var(--t) * 0.06);
+  transform-origin: 50% 0;
+  transition:
+    scale 900ms var(--ease-out),
+    filter 600ms var(--ease-out);
+}
+
+.arrival-cutout {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: 50% 0;
+  backface-visibility: hidden;
+  user-select: none;
+  will-change: transform, opacity;
+  /* Each garment shades the one behind it on the packed rail. */
+  filter: drop-shadow(-6px 10px 12px rgb(0 0 0 / 0.22));
+}
+
+/* Arriving takes the slow, settling easing and waits for the other view to start leaving;
+   leaving takes the fast one and goes at once. */
+.arrival-cutout-side {
+  /* The side photo's collar sits a little right of centre: bring it under the hook. */
+  translate: -4% 0;
+  opacity: calc(1 - var(--t));
+  transform: rotateY(calc(var(--t) * var(--swing))) scale(calc(1 - var(--t) * 0.08));
+  transition:
+    transform calc(480ms + (1 - var(--t)) * 420ms) var(--side-ease) calc((1 - var(--t)) * 170ms),
+    opacity calc(380ms + (1 - var(--t)) * 40ms) var(--side-fade) calc((1 - var(--t)) * 170ms);
+}
+
+.arrival-cutout-front {
+  opacity: var(--t);
+  transform: rotateY(calc((1 - var(--t)) * var(--swing) * -1)) scale(calc(0.92 + var(--t) * 0.08));
+  filter: drop-shadow(0 18px 22px rgb(0 0 0 / 0.25));
+  transition:
+    transform calc(480ms + var(--t) * 420ms) var(--front-ease) calc(var(--t) * 170ms),
+    opacity calc(380ms + var(--t) * 40ms) var(--front-fade) calc(var(--t) * 170ms);
+}
+
+/* The pointer target: the garment's outline side-on (its slot), its full width facing front. */
+.arrival-hit {
+  position: absolute;
+  top: calc(var(--hook-h) * 0.15);
+  left: 50%;
+  width: calc(var(--slot) + var(--t) * (var(--garment-h) * 0.8 - var(--slot)));
+  height: calc(var(--hook-h) * 0.7 + var(--garment-h));
+  translate: -50% 0;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.arrival-label {
+  position: absolute;
+  top: calc(0.3rem + var(--hook-h) * 0.55 + var(--garment-h) * 1.06 + 0.75rem);
+  left: 50%;
+  width: max(14rem, calc(var(--garment-h) * 0.8));
+  translate: -50% calc((1 - var(--t)) * 8px);
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-sm);
+  text-align: center;
+  opacity: var(--t);
+  pointer-events: none;
+  transition:
+    opacity 400ms var(--ease-out) calc(var(--t) * 250ms),
+    translate 600ms var(--ease-out) calc(var(--t) * 250ms);
+}
+
+.arrival-link:focus-visible .arrival-label {
+  outline: 2px solid var(--ring);
+  outline-offset: 4px;
+}
+
+/* --- Facing front: keyboard focus, or a touch screen's first tap --- */
+.arrival:is([data-turned], :has(.arrival-link:focus-visible)) {
+  --t: 1;
+  --side-ease: var(--turn-away);
+  --side-fade: var(--fade-away);
+  --front-ease: var(--turn-in);
+  --front-fade: var(--ease-out);
+  z-index: 2;
+}
+
+.arrival:is([data-turned], :has(.arrival-link:focus-visible)) .arrival-label {
+  pointer-events: auto;
+}
+
+.arrival:is([data-turned], :has(.arrival-link:focus-visible)) ~ .arrival {
+  --shift: var(--push);
+}
+
+.arrival:has(~ .arrival:is([data-turned], :has(.arrival-link:focus-visible))) {
+  --shift: calc(var(--push) * -1);
+}
+
+/* The rest of the rail steps back while one piece is out. */
+.arrivals-list:has(.arrival[data-turned]) .arrival:not([data-turned]) .arrival-figure {
+  filter: brightness(0.82) saturate(0.85);
+}
+
+/* `(hover: hover)`: a tap must not leave a garment stuck facing front on a touch screen. */
+@media (hover: hover) {
+  .arrival:hover {
+    --t: 1;
+    --side-ease: var(--turn-away);
+    --side-fade: var(--fade-away);
+    --front-ease: var(--turn-in);
+    --front-fade: var(--ease-out);
+    z-index: 2;
+  }
+
+  .arrival:hover .arrival-label {
+    pointer-events: auto;
+  }
+
+  .arrival:hover ~ .arrival {
+    --shift: var(--push);
+  }
+
+  .arrival:has(~ .arrival:hover) {
+    --shift: calc(var(--push) * -1);
+  }
+
+  .arrivals-list:has(.arrival:hover) .arrival:not(:hover) .arrival-figure {
+    filter: brightness(0.82) saturate(0.85);
+  }
+}
+
+/*
+ * Reduced motion: no turning, swaying or sliding. Garments hang facing the front at a smaller
+ * size with room between them, each with its name always shown under it: nothing turns to
+ * reveal them, so they must not wait on a hover.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .arrivals-rail {
+    --push: 0px;
+    /* On the rail, not the garment, so the list's height shrinks with the garments. */
+    --rest-scale: 0.62;
+  }
+
+  .arrival {
+    --t: 1;
+    width: calc(var(--garment-h) * 0.86 + 1rem);
+  }
+
+  .arrival-sway {
+    animation: none;
+    transition: none;
+  }
+
+  .arrival-hanger,
+  .arrival-figure,
+  .arrival-cutout,
+  .arrival-label {
+    transition: none;
+  }
+
+  .arrival-figure {
+    scale: none;
+  }
+
+  .arrival-label {
+    width: calc(var(--garment-h) * 0.86 + 1rem);
+    pointer-events: auto;
   }
 }

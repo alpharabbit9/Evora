@@ -1,0 +1,307 @@
+- generic [active] [ref=e1]:
+  - link "Skip to content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - button "Open menu" [ref=e6]
+        - navigation "Primary" [ref=e8]:
+          - link "Men" [ref=e9] [cursor=pointer]:
+            - /url: /collections/men
+          - link "Women" [ref=e10] [cursor=pointer]:
+            - /url: /collections/women
+          - link "Accessories" [ref=e11] [cursor=pointer]:
+            - /url: /shop?category=accessories
+          - link "Shop all" [ref=e12] [cursor=pointer]:
+            - /url: /shop
+      - link "EVORA home" [ref=e13] [cursor=pointer]:
+        - /url: /
+        - text: EVORA
+      - generic [ref=e14]:
+        - button "Dark theme" [ref=e15]
+        - link "Search" [ref=e25] [cursor=pointer]:
+          - /url: /search
+        - link "Login" [ref=e31] [cursor=pointer]:
+          - /url: /sign-in
+        - link "Wishlist" [ref=e37] [cursor=pointer]:
+          - /url: /wishlist
+        - link "Cart" [ref=e42] [cursor=pointer]:
+          - /url: /cart
+  - main [ref=e48]:
+    - generic [ref=e49]:
+      - heading "EVORA — Modern essentials" [level=1] [ref=e50]
+      - region "Featured collections" [ref=e53]:
+        - generic [ref=e54]:
+          - 'group "1 of 3: Heritage collection" [ref=e56]':
+            - generic [aria-hidden]:
+              - generic:
+                - paragraph:
+                  - generic: E
+                  - generic: V
+                  - generic: O
+                  - generic: R
+                  - generic: A
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - img "Man in a charcoal herringbone three-piece suit, long wool overcoat and flat cap, walking"
+            - list [ref=e57]:
+              - listitem [ref=e58]: Menswear
+              - listitem [ref=e59]: Heritage
+              - listitem [ref=e61]: Autumn / Winter
+            - paragraph [ref=e63]:
+              - generic [ref=e64]: Timeless style
+              - generic [ref=e65]: for modern men
+            - heading "English heritage. Reimagined for today." [level=2] [ref=e67]:
+              - generic [ref=e68]: English heritage.
+              - generic [ref=e70]: Reimagined for today.
+            - generic [ref=e73]:
+              - link "Shop now" [ref=e75] [cursor=pointer]:
+                - /url: /collections/men
+              - link "Explore collection" [ref=e77] [cursor=pointer]:
+                - /url: /collections/new
+            - paragraph [ref=e78]:
+              - generic [ref=e79]: New collection
+              - generic [ref=e80]: "2026"
+          - generic [ref=e81]:
+            - generic [ref=e82]:
+              - paragraph [aria-hidden] [ref=e83]:
+                - generic [ref=e84]: "01"
+                - generic [ref=e87]: "03"
+              - group "Choose a slide" [ref=e88]:
+                - 'button "Slide 1 of 3: Heritage collection" [ref=e89]'
+                - 'button "Slide 2 of 3: Modern elegance" [ref=e92]'
+                - 'button "Slide 3 of 3: New season" [ref=e94]'
+            - generic [ref=e96]:
+              - button "Previous slide" [ref=e97]
+              - button "Next slide" [ref=e100]
+              - button "Pause slideshow" [ref=e103]
+      - region "Recent Arrivals" [ref=e107]:
+        - generic [ref=e108]:
+          - generic [ref=e109]:
+            - generic [ref=e110]:
+              - paragraph [ref=e111]: Just landed
+              - heading "Recent Arrivals" [level=2] [ref=e113]
+            - link "Shop new in" [ref=e116] [cursor=pointer]:
+              - /url: /collections/new
+          - status "Loading new arrivals" [ref=e117]:
+            - list [aria-hidden] [ref=e118]:
+              - listitem [ref=e119]:
+                - generic [ref=e120] [cursor=pointer]
+              - listitem [ref=e126]:
+                - generic [ref=e127] [cursor=pointer]
+              - listitem [ref=e133]:
+                - generic [ref=e134] [cursor=pointer]
+              - listitem [ref=e140]:
+                - generic [ref=e141] [cursor=pointer]
+              - listitem [ref=e147]:
+                - generic [ref=e148] [cursor=pointer]
+              - listitem [ref=e154]:
+                - generic [ref=e155] [cursor=pointer]
+              - listitem [ref=e161]:
+                - generic [ref=e162] [cursor=pointer]
+              - listitem [ref=e168]:
+                - generic [ref=e169] [cursor=pointer]
+      - region "Built for the After Hours" [ref=e175]:
+        - generic [ref=e176]:
+          - generic [ref=e177]:
+            - generic [ref=e179]:
+              - paragraph [ref=e180]: The Dark Edit
+              - heading "Built for the After Hours" [level=2] [ref=e181]
+            - link "Shop the edit" [ref=e185] [cursor=pointer]:
+              - /url: /shop
+          - status [ref=e188]:
+            - generic [ref=e238]: Loading products
+      - region "More Than Just Fashion" [ref=e239]:
+        - generic [ref=e241]:
+          - generic [ref=e243]:
+            - paragraph [ref=e244]: Why shop with us?
+            - heading "More Than Just Fashion" [level=2] [ref=e245]
+          - list [ref=e248]:
+            - listitem [ref=e249]:
+              - generic [ref=e253]:
+                - heading "Premium Quality" [level=3] [ref=e254]
+                - paragraph [ref=e255]: Only the finest materials and craftsmanship.
+            - listitem [ref=e256]:
+              - generic [ref=e259]:
+                - heading "Secure Payment" [level=3] [ref=e260]
+                - paragraph [ref=e261]: Shop with confidence using trusted payment methods.
+            - listitem [ref=e262]:
+              - generic [ref=e268]:
+                - heading "Fast & Reliable Shipping" [level=3] [ref=e269]
+                - paragraph [ref=e270]: Get your order delivered on time, every time.
+            - listitem [ref=e271]:
+              - generic [ref=e275]:
+                - heading "Easy Returns" [level=3] [ref=e276]
+                - paragraph [ref=e277]: Hassle-free returns within 30 days.
+      - region "Layered in Wool" [ref=e278]:
+        - generic [ref=e280]:
+          - generic [ref=e283]:
+            - generic [ref=e284]:
+              - paragraph [ref=e286]: The winter edit
+              - heading "Layered in Wool" [level=2] [ref=e287]:
+                - generic [ref=e288]: Layered
+                - generic [ref=e290]: in Wool
+              - paragraph [ref=e293]: Overcoats, blazers and jackets from the latest outerwear collection.
+              - link "Shop outerwear" [ref=e295] [cursor=pointer]:
+                - /url: /shop?category=outerwear
+            - paragraph [ref=e302]: Crafted style.Elevated looks.
+          - paragraph [ref=e303]: "Photo: Behrooz Rahimi / Unsplash"
+      - region "Real People. Real Style." [ref=e304]:
+        - generic [ref=e306]:
+          - generic [ref=e307]:
+            - generic [ref=e309]:
+              - paragraph [ref=e310]: What our customers say
+              - heading "Real People. Real Style." [level=2] [ref=e311]
+            - paragraph [ref=e315]: Sample reviews for preview
+          - list [ref=e316]:
+            - listitem [ref=e317]:
+              - figure "James Carter Rated 5 out of 5" [ref=e318]:
+                - generic [ref=e320]:
+                  - generic [aria-hidden] [ref=e321]: JC
+                  - generic [ref=e322]:
+                    - generic [ref=e323]: James Carter
+                    - generic [ref=e324]: Rated 5 out of 5
+                - blockquote [ref=e340]:
+                  - paragraph [ref=e341]: Absolutely love the quality and fit! EVORA never disappoints.
+                - paragraph [ref=e342]:
+                  - generic [ref=e343]:
+                    - generic [ref=e347]: "Purchased:"
+                    - generic [ref=e348]: Waxed Cotton Field Jacket
+            - listitem [ref=e349]:
+              - figure "Sophia Bennett Rated 5 out of 5" [ref=e350]:
+                - generic [ref=e352]:
+                  - generic [aria-hidden] [ref=e353]: SB
+                  - generic [ref=e354]:
+                    - generic [ref=e355]: Sophia Bennett
+                    - generic [ref=e356]: Rated 5 out of 5
+                - blockquote [ref=e372]:
+                  - paragraph [ref=e373]: The delivery was super fast and the packaging felt premium.
+                - paragraph [ref=e374]:
+                  - generic [ref=e375]:
+                    - generic [ref=e379]: "Purchased:"
+                    - generic [ref=e380]: Camel Wool Overcoat
+            - listitem [ref=e381]:
+              - figure "Daniel Kim Rated 5 out of 5" [ref=e382]:
+                - generic [ref=e384]:
+                  - generic [aria-hidden] [ref=e385]: DK
+                  - generic [ref=e386]:
+                    - generic [ref=e387]: Daniel Kim
+                    - generic [ref=e388]: Rated 5 out of 5
+                - blockquote [ref=e404]:
+                  - paragraph [ref=e405]: Clean design, great products, and excellent customer service.
+                - paragraph [ref=e406]:
+                  - generic [ref=e407]:
+                    - generic [ref=e411]: "Purchased:"
+                    - generic [ref=e412]: Textured Cotton Tee
+      - region "Join Our Newsletter" [ref=e413]:
+        - generic [ref=e419]:
+          - generic [ref=e420]:
+            - generic [ref=e421]:
+              - paragraph [ref=e422]: Stay in the loop
+              - heading "Join Our Newsletter" [level=2] [ref=e423]
+            - paragraph [ref=e426]: Be the first to know about new arrivals, exclusive offers and more.
+          - generic [ref=e429]:
+            - generic [ref=e430]: Email address
+            - textbox "Email address" [ref=e431]:
+              - /placeholder: Enter your email address
+            - button "Subscribe" [ref=e432]
+      - region "Common Questions" [ref=e435]:
+        - generic [ref=e437]:
+          - generic [ref=e439]:
+            - paragraph [ref=e440]: FAQ
+            - heading "Common Questions" [level=2] [ref=e441]
+          - generic [ref=e444]:
+            - generic [ref=e445]:
+              - heading [level=3] [ref=e446]:
+                - button "How long does shipping take?" [expanded] [ref=e447]
+              - region "How long does shipping take?" [ref=e452]:
+                - generic [ref=e454]:
+                  - paragraph [ref=e455]: Delivery times and fees depend on your address and the delivery option you choose. Both are shown at checkout, before you pay.
+                  - paragraph [ref=e456]: Placeholder — policy to be confirmed
+            - generic [ref=e457]:
+              - heading [level=3] [ref=e458]:
+                - button "Can I return or exchange an item?" [ref=e459]
+              - region "Can I return or exchange an item?":
+                - generic [ref=e464]:
+                  - paragraph [ref=e465]: Returns are accepted within 30 days of delivery.
+                  - paragraph [ref=e466]: Full eligibility terms, including exchanges and refunds for cash-on-delivery orders, are still being finalised and will be published before launch.
+                  - paragraph [ref=e467]: Placeholder — policy to be confirmed
+            - generic [ref=e468]:
+              - heading [level=3] [ref=e469]:
+                - button "What payment methods do you accept?" [ref=e470]
+              - region "What payment methods do you accept?":
+                - generic [ref=e475]:
+                  - paragraph [ref=e476]: "Cash on delivery, and online payment through SSLCOMMERZ, including bKash, cards and other mobile banking. Payment details go straight to the provider: we never see or store them."
+                  - paragraph [ref=e477]: Placeholder — policy to be confirmed
+            - generic [ref=e478]:
+              - heading [level=3] [ref=e479]:
+                - button "Do you offer international shipping?" [ref=e480]
+              - region "Do you offer international shipping?":
+                - generic [ref=e485]:
+                  - paragraph [ref=e486]: We're still confirming which countries we deliver to. The destinations we serve will be listed at checkout.
+                  - paragraph [ref=e487]: Placeholder — policy to be confirmed
+  - contentinfo [ref=e488]:
+    - generic [ref=e489]:
+      - generic [ref=e490]:
+        - generic [ref=e491]:
+          - paragraph [ref=e492]: Considered clothing and objects for a slower, more deliberate everyday.
+          - paragraph [ref=e493]: Designed to be worn, kept, and returned to.
+        - generic [ref=e494]:
+          - generic [ref=e495]:
+            - heading "Shop" [level=2] [ref=e496]
+            - list [ref=e497]:
+              - listitem [ref=e498]:
+                - link "New arrivals" [ref=e499] [cursor=pointer]:
+                  - /url: /collections/new
+              - listitem [ref=e500]:
+                - link "Men" [ref=e501] [cursor=pointer]:
+                  - /url: /collections/men
+              - listitem [ref=e502]:
+                - link "Women" [ref=e503] [cursor=pointer]:
+                  - /url: /collections/women
+              - listitem [ref=e504]:
+                - link "Accessories" [ref=e505] [cursor=pointer]:
+                  - /url: /shop?category=accessories
+              - listitem [ref=e506]:
+                - link "Shop all" [ref=e507] [cursor=pointer]:
+                  - /url: /shop
+          - generic [ref=e508]:
+            - heading "Account" [level=2] [ref=e509]
+            - list [ref=e510]:
+              - listitem [ref=e511]:
+                - link "Sign in" [ref=e512] [cursor=pointer]:
+                  - /url: /sign-in
+              - listitem [ref=e513]:
+                - link "Create account" [ref=e514] [cursor=pointer]:
+                  - /url: /sign-up
+              - listitem [ref=e515]:
+                - link "My account" [ref=e516] [cursor=pointer]:
+                  - /url: /account
+              - listitem [ref=e517]:
+                - link "Wishlist" [ref=e518] [cursor=pointer]:
+                  - /url: /wishlist
+          - generic [ref=e519]:
+            - heading "Help" [level=2] [ref=e520]
+            - list [ref=e521]:
+              - listitem [ref=e522]:
+                - link "Shipping & returns" [ref=e523] [cursor=pointer]:
+                  - /url: /shipping
+              - listitem [ref=e524]:
+                - link "FAQ" [ref=e525] [cursor=pointer]:
+                  - /url: /faq
+      - link "EVORA home" [ref=e527] [cursor=pointer]:
+        - /url: /
+        - text: EVORA
+      - generic [ref=e528]:
+        - paragraph [ref=e529]: © EVORA. All rights reserved.
+        - navigation "Legal" [ref=e530]:
+          - link "Privacy" [ref=e531] [cursor=pointer]:
+            - /url: /privacy
+          - link "Terms" [ref=e532] [cursor=pointer]:
+            - /url: /terms
+  - region "Notifications alt+T"
+  - button "Open Tanstack query devtools" [ref=e583] [cursor=pointer]
+  - button "Open Next.js Dev Tools" [ref=e637] [cursor=pointer]
+  - alert [ref=e641]

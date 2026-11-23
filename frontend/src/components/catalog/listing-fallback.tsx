@@ -1,3 +1,5 @@
+import { CatalogHeaderSkeleton } from './catalog-header';
+import { CollectionBannerSkeleton } from './collection-banner';
 import { ProductGridSkeleton } from './product-card';
 
 /**
@@ -12,5 +14,18 @@ export function ListingFallback() {
         <ProductGridSkeleton count={8} />
       </div>
     </div>
+  );
+}
+
+/**
+ * A whole listing route — header included — for its `loading.tsx`. Collections open with a
+ * photo banner (`banner`); search keeps the plain header.
+ */
+export function ListingPageSkeleton({ banner = false }: { banner?: boolean }) {
+  return (
+    <>
+      {banner ? <CollectionBannerSkeleton /> : <CatalogHeaderSkeleton />}
+      <ListingFallback />
+    </>
   );
 }

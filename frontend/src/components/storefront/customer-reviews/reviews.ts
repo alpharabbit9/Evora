@@ -10,28 +10,16 @@
  * To go live, replace them with `customer` entries — from the reviews API once it exists —
  * and never with invented text.
  *
- * Photos: illustrative stock shots, not the reviewers, and chosen so that nobody in them can
- * be recognised (seen from behind, faces turned away). That is deliberate and must stay so
- * for any stock image used here: a recognisable stranger beside a quote presents that person
- * as endorsing the store, which neither licence below allows (the Unsplash Terms exclude
- * recognisable people from the licence; Pexels forbids implied endorsement). A customer's own
- * photo needs their consent. Images are decorative (`alt: ''`): the quote and name carry the
- * card. All Unsplash License, cropped to 4:3 and resized to 1200 × 900:
+ * Avatars: a card shows the reviewer's own photo only when they supplied it (and consented to
+ * it being shown); otherwise their initials. Never a stock portrait: a recognisable stranger
+ * beside a quote presents that person as endorsing the store, which neither the Unsplash nor
+ * the Pexels licence allows. The samples therefore have none. (The stock shots they used to
+ * carry, under `public/images/homepage/reviews/`, are no longer used here. Keep the folder:
+ * the E2E fixture, `backend/scripts/e2e/prepare.ts`, copies one as its test product photo.)
  *
- * - man-in-coat-at-shop-window.jpg — Mathias Reding (unsplash.com/@matreding),
- *   unsplash.com/photos/9iLMPbZUwl0
- * - woman-in-camel-coat-walking.jpg — Mikhail Tyrsyna (unsplash.com/@tventos),
- *   unsplash.com/photos/cod_x1dNWDs
- * - man-walking-in-stone-square.jpg — Hooman R. (unsplash.com/@hooman_r),
- *   unsplash.com/photos/vAxUhNQre3M
+ * A production build shows only `customer` entries (ADR 0026): the samples are for development
+ * and staging review.
  */
-
-export type ReviewImage = {
-  /** Under `public/`, 4:3. */
-  src: string;
-  /** Empty for an illustrative photo; describe it only when it shows the reviewer's own look. */
-  alt: string;
-};
 
 type ReviewBase = {
   id: string;
@@ -42,11 +30,14 @@ type ReviewBase = {
   text: string;
   /**
    * The item reviewed, as the catalog names it. For a customer review this comes from the
-   * order line; the samples' items are illustrative, chosen to match their photos.
+   * order line; the samples' items are illustrative.
    */
   product?: string;
-  /** Optional: a card without one shows the reviewer's initials instead. */
-  image?: ReviewImage;
+  /**
+   * The reviewer's own photo, under `public/` or the media origin, square. Optional: a card
+   * without one shows the reviewer's initials instead.
+   */
+  avatar?: string;
 };
 
 export type Review = ReviewBase &
@@ -66,7 +57,6 @@ export const REVIEWS: readonly Review[] = [
     rating: 5,
     text: 'Absolutely love the quality and fit! EVORA never disappoints.',
     product: 'Waxed Cotton Field Jacket',
-    image: { src: '/images/homepage/reviews/man-in-coat-at-shop-window.jpg', alt: '' },
     source: 'sample',
   },
   {
@@ -75,7 +65,6 @@ export const REVIEWS: readonly Review[] = [
     rating: 5,
     text: 'The delivery was super fast and the packaging felt premium.',
     product: 'Camel Wool Overcoat',
-    image: { src: '/images/homepage/reviews/woman-in-camel-coat-walking.jpg', alt: '' },
     source: 'sample',
   },
   {
@@ -84,7 +73,6 @@ export const REVIEWS: readonly Review[] = [
     rating: 5,
     text: 'Clean design, great products, and excellent customer service.',
     product: 'Textured Cotton Tee',
-    image: { src: '/images/homepage/reviews/man-walking-in-stone-square.jpg', alt: '' },
     source: 'sample',
   },
 ];

@@ -1,5 +1,5 @@
 import type { Prisma } from '@prisma/client';
-import { CartStatus } from '@prisma/client';
+import { CartStatus, ProductImageKind } from '@prisma/client';
 
 import { env } from '../../config/env.js';
 import { conflict, notFound, outOfStock, validationFailed } from '../../http/errors.js';
@@ -29,8 +29,8 @@ import { GUEST_CART_TTL_MS } from './guest-token.js';
  * at all — a cart always shows today's price (CLAUDE.md: never trust client price or stock).
  *
  * The cart is advisory. Stock is checked when a line is added or raised, but not reserved:
- * ADR 0004 (decrement vs reservation) is still open, and checkout (M6) must re-validate price
- * and stock inside its own transaction regardless of what the cart said.
+ * stock is claimed when an order is placed (ADR 0004), and checkout re-validates price and
+ * stock inside its own transaction regardless of what the cart said.
  */
 
 export type CartOwner =
@@ -52,6 +52,11 @@ export interface CartLineView {
   /** Current price from the catalog, never a stored or client value. */
   readonly unitPriceMinor: number;
   readonly lineTotalMinor: number;
+  /**
+   * The unit price the customer last saw for this line, when the catalog price has changed since
+   * (added it, or last changed its quantity); `null` when it has not, or is not known.
+   */
+  readonly previousUnitPriceMinor: number | null;
   readonly variant: {
     readonly id: string;
     readonly sku: string;
@@ -107,11 +112,6 @@ function ownerWhere(owner: CartOwner): Prisma.CartWhereInput {
   };
 }
 
-export async function hasActiveCart(owner: CartOwner): Promise<boolean> {
-  const cart = await prisma.cart.findFirst({ where: ownerWhere(owner), select: { id: true } });
-  return cart !== null;
-}
-
 /**
  * Find-or-create without a race: `carts_one_active_per_user_key` (and the unique guest token
  * hash) allow one active cart per owner, and `createMany({ skipDuplicates })` is
@@ -140,8 +140,8 @@ async function findOrCreateCartId(tx: TransactionClient, owner: CartOwner): Prom
   const created = await tx.cart.findFirst({ where: ownerWhere(owner), select: { id: true } });
 
   if (!created) {
-    // Only possible if the guest hash belongs to an expired row; the route issues a fresh
-    // token in that case, so reaching this is a bug rather than a user error.
+    // Only possible for a guest hash that belongs to an expired row, and the routes only ever
+    // add to an account cart (ADR 0014), so reaching this is a bug rather than a user error.
     throw new Error('Cart could not be created for this owner');
   }
 
@@ -172,7 +172,7 @@ export async function addItem(owner: CartOwner, input: AddCartItemInput): Promis
     async (tx) => {
       const variant = await tx.productVariant.findFirst({
         where: { id: input.variantId, ...PURCHASABLE_VARIANT_WHERE, product: publicProductWhere() },
-        select: { id: true, stockQuantity: true },
+        select: { id: true, stockQuantity: true, priceMinor: true },
       });
 
       if (!variant) {
@@ -196,8 +196,17 @@ export async function addItem(owner: CartOwner, input: AddCartItemInput): Promis
 
       const line = await tx.cartItem.upsert({
         where: { cartId_variantId: { cartId, variantId: variant.id } },
-        create: { cartId, variantId: variant.id, quantity: input.quantity },
-        update: { quantity: { increment: input.quantity } },
+        // Adding is choosing to buy at today's price, so it is the price the customer has seen.
+        create: {
+          cartId,
+          variantId: variant.id,
+          quantity: input.quantity,
+          unitPriceSeenMinor: variant.priceMinor,
+        },
+        update: {
+          quantity: { increment: input.quantity },
+          unitPriceSeenMinor: variant.priceMinor,
+        },
         select: { quantity: true },
       });
 
@@ -226,7 +235,12 @@ export async function updateItem(
     async (tx) => {
       const line = await tx.cartItem.findFirst({
         where: { id: itemId, cart: ownerWhere(owner) },
-        select: { id: true, quantity: true, variantId: true },
+        select: {
+          id: true,
+          quantity: true,
+          variantId: true,
+          variant: { select: { priceMinor: true } },
+        },
       });
 
       if (!line) {
@@ -252,7 +266,12 @@ export async function updateItem(
         }
       }
 
-      await tx.cartItem.update({ where: { id: line.id }, data: { quantity: input.quantity } });
+      // The customer changed this line while looking at its current price: that is now the price
+      // they have seen, and the "price changed" notice has done its job.
+      await tx.cartItem.update({
+        where: { id: line.id },
+        data: { quantity: input.quantity, unitPriceSeenMinor: line.variant.priceMinor },
+      });
     },
     { label: 'cart.updateItem' },
   );
@@ -341,6 +360,7 @@ const CART_SELECT = {
     select: {
       id: true,
       quantity: true,
+      unitPriceSeenMinor: true,
       variant: {
         select: {
           id: true,
@@ -354,6 +374,7 @@ const CART_SELECT = {
               name: true,
               brand: true,
               images: {
+                where: { kind: ProductImageKind.PHOTO },
                 orderBy: [{ sortOrder: 'asc' }, { createdAt: 'asc' }],
                 take: 1,
                 select: { objectKey: true, altText: true, widthPx: true, heightPx: true },
@@ -366,7 +387,7 @@ const CART_SELECT = {
   },
 } satisfies Prisma.CartSelect;
 
-function lineStatus(purchasable: boolean, stock: number, quantity: number): CartLineStatus {
+export function lineStatus(purchasable: boolean, stock: number, quantity: number): CartLineStatus {
   if (!purchasable) return 'unavailable';
   if (stock <= 0) return 'out_of_stock';
   if (quantity > stock) return 'insufficient_stock';
@@ -407,6 +428,10 @@ export async function getCart(owner: CartOwner): Promise<CartView> {
       status: lineStatus(purchasable.has(variant.id), variant.stockQuantity, item.quantity),
       unitPriceMinor: variant.priceMinor,
       lineTotalMinor: variant.priceMinor * item.quantity,
+      previousUnitPriceMinor:
+        item.unitPriceSeenMinor !== null && item.unitPriceSeenMinor !== variant.priceMinor
+          ? item.unitPriceSeenMinor
+          : null,
       variant: {
         id: variant.id,
         sku: variant.sku,

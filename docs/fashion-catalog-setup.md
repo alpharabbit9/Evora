@@ -273,3 +273,30 @@ ranked, stock equals ledger sum for every Dark Edit variant.
 
 Known limits: one photo per product; several photos are styled shots (a model, a street) rather than
 packshots; item DE026 is dark brown leather and is labelled `Coffee Brown`, not black.
+
+## 15. The clothes-rail pieces (2026-11-16)
+
+The garments hanging on the home page's Recent Arrivals rail are catalog products, so each one
+opens its own product page (ADR 0027).
+
+| | |
+|---|---|
+| Dataset | `backend/scripts/catalog-import/curated/rail.json`: id, look, name, category, gender, colour, size set, description, alt text per view |
+| Content | 8 pieces: jackets 4 (bomber, varsity, black leather, brown leather), hoodies 2, sweatshirt (`knitwear`) 1, tee 1 |
+| Synthetic | Names, copy, sizes and the `EVORA` brand are invented to match the photos; price and stock are `SYNTHETIC` (BDT bands) |
+| Photos | Two per product, front (main, `sort_order` 0) then side (1): 1200 × 1500 WebP studio shots rendered from the store owner's photos by `frontend/scripts/recent-arrivals/make_cutouts.py`, committed in `curated/rail/photos/`, stored at `catalog/commercecore-rail/<id>/{1,2}.webp`. No network access |
+| Provenance | `source_provider = 'commercecore-rail'`, external id `RL001`–`RL008`, SKU `EVR-RL0nn-<size>`, slug `<name>-rl0nn` |
+| Storefront | `arrivals-data.ts` links each rail garment to `/products/<slug>`; `backend/tests/rail.test.ts` fails if a slug or name drifts from what the importer creates |
+
+```bash
+cd backend
+npm run catalog:rail -- --dry-run --publish   # rehearse; writes nothing
+npm run catalog:rail -- --publish             # real import; rerunning changes nothing
+```
+
+`persistProduct` now takes `gallery` photos after the main one. They are written only together with
+the main photo, so a rerun never appends to a gallery an admin has rearranged (§5). Rollback is §7
+with `source_provider = 'commercecore-rail'` and `backend/.data/media/catalog/commercecore-rail/`.
+
+**First import (2026-11-16, development database):** 8 inserted and published, 45 variants, 41 stock
+movements, 16 images, no failures.

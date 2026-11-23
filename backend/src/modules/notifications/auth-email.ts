@@ -13,19 +13,28 @@ import { prisma } from '../../lib/prisma.js';
  * `POST /auth/forget-password` still answers 200 when the mail system is down — the row
  * simply waits.
  *
- * NOT YET DELIVERED. The outbox worker is M9 and no email provider has been selected
- * (PRD §9). Until then these rows accumulate with status PENDING and nothing is sent. The
- * HTTP flows below them are real and tested; delivery is not. Do not describe email
- * verification or password reset as "working" to an end user on that basis.
+ * Delivered by the outbox worker (`src/worker.ts`, ADR 0021) through the configured email
+ * transport. In development that is the filesystem driver, which writes an `.eml` file under
+ * MAIL_ROOT and sends nothing; real delivery needs EMAIL_DRIVER=smtp and a relay. A row that is
+ * still PENDING when its link has expired is not sent: the worker marks it DEAD.
  *
  * Token handling: the payload carries the URL because that is what an email has to contain.
  * That means a reset token is readable by anyone with database access between enqueue and
  * send, which is the same exposure as any outbox-backed mail system. It is bounded by
- * `resetPasswordTokenExpiresIn` (1 hour) rather than by the row's lifetime, and the M9
- * worker must clear `payload` once a row reaches SENT. Nothing here is ever logged.
+ * `AUTH_LINK_TTL_MS` rather than by the row's lifetime, and the worker replaces the payload
+ * once the row is SENT or DEAD (`SCRUB_ON_FINISH`). Nothing here is ever logged.
  */
 export type AuthEmailType =
   typeof OutboxEventType.EMAIL_VERIFICATION | typeof OutboxEventType.PASSWORD_RESET;
+
+/**
+ * How long each link works. `src/lib/auth.ts` gives these to Better Auth, and the worker refuses
+ * to send a link older than this, so the two cannot drift apart.
+ */
+export const AUTH_LINK_TTL_MS: Readonly<Record<AuthEmailType, number>> = {
+  PASSWORD_RESET: 60 * 60 * 1000,
+  EMAIL_VERIFICATION: 24 * 60 * 60 * 1000,
+};
 
 /** Structural, so this module does not depend on Better Auth's exported `User` type. */
 export interface AuthEmailRecipient {
@@ -74,6 +83,6 @@ export async function enqueueAuthEmail(request: AuthEmailRequest): Promise<void>
   // Identifiers only: no URL, no token, no password.
   logger.info(
     { outboxEventId: event.id, eventType: request.type, userId: request.recipient.id },
-    'Queued authentication email in the outbox (delivery pending an email provider)',
+    'Queued authentication email in the outbox',
   );
 }

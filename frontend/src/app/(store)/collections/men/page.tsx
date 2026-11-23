@@ -9,6 +9,7 @@ export const metadata: Metadata = { title: 'Men', description: DESCRIPTION };
 export default function MenCollectionPage() {
   return (
     <CollectionPage
+      collection="men"
       eyebrow="Collection"
       title="Men"
       description={DESCRIPTION}

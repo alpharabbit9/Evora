@@ -1,0 +1,32 @@
+3:"$Sreact.fragment"
+4:"/_next/static/chunks/2-rfe7f68bjl5.js"
+5:I[39756,["$4"],"default"]
+6:I[37457,["$4"],"default"]
+b:"$Sreact.view_transition"
+c:"$Sreact.suspense"
+e:I[97367,["$4"],"OutletBoundary"]
+12:"ViewportBoundary"
+13:I[97367,["$4"],"$12"]
+14:"MetadataBoundary"
+15:I[97367,["$4"],"$14"]
+16:I[27201,["$4"],"IconMark"]
+8:X
+8:C
+9:X
+9:300
+11:X
+a:[["children",{"s":"__PAGE__","h":16546,"d":{"r":["$","$3","c",{"children":[["$","$b",null,{"enter":{"in-place":"none","default":"page-enter"},"exit":{"in-place":"none","default":"page-exit"},"default":"none","children":["$","div",null,{"className":"flex flex-1 flex-col","children":["$","div",null,{"className":"mx-auto flex w-full max-w-md flex-1 flex-col gap-6 px-4 py-12","children":[["$","h1",null,{"className":"text-xl font-semibold","children":"Choose a new password"}],["$","$c",null,{"fallback":["$","div",null,{"role":"status","aria-live":"polite","className":"flex flex-col gap-4","children":[["$","div",null,{"data-slot":"skeleton","className":"animate-pulse rounded-md bg-muted h-16 w-full","aria-hidden":"true"}],["$","div",null,{"data-slot":"skeleton","className":"animate-pulse rounded-md bg-muted h-16 w-full","aria-hidden":"true"}],["$","div",null,{"data-slot":"skeleton","className":"animate-pulse rounded-md bg-muted h-11 w-40","aria-hidden":"true"}],["$","span",null,{"className":"sr-only","children":"Loading"}]]}],"children":"$@d"}]]}]}]}],[["$","script","script-0",{"src":"/_next/static/chunks/07fczi7h98_sr.js","async":true}],["$","script","script-1",{"src":"/_next/static/chunks/2gz-ztgt06tdd.js","async":true}]],["$","$Le",null,{"children":["$","$c",null,{"name":"Next.MetadataOutlet","children":"$@f"}]}]]}],"p":"$@10","v":"$11","s":"$9"}}]]
+2:[["children",{"s":"reset-password","h":16450,"d":{"r":["$","$3","c",{"children":[null,["$","$L5",null,{"parallelRouterKey":"children","template":["$","$L6",null,{}]}]]}],"p":"$@7","v":"$8","s":"$9"},"c":"$Qa"}]]
+1:[["children",{"s":"(store)","h":16386,"c":"$Q2"}]]
+18:X
+1b:X
+0:{"t":{"t":{"s":"","h":16402,"c":"$Q1"},"h":{"r":["$","$3","h",{"children":[null,["$","$L13",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","$L15",null,{"children":[["$","div",null,{"hidden":true,"children":["$","$c",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Choose a new password — EVORA"}],["$","meta","1",{"name":"description","content":"Considered clothing and objects for a slower, more deliberate everyday."}],["$","meta","2",{"name":"referrer","content":"no-referrer"}],["$","meta","3",{"name":"robots","content":"noindex"}],["$","meta","4",{"property":"og:title","content":"Choose a new password — EVORA"}],["$","meta","5",{"property":"og:description","content":"Considered clothing and objects for a slower, more deliberate everyday."}],["$","meta","6",{"property":"og:site_name","content":"EVORA"}],["$","meta","7",{"property":"og:image","content":"http://localhost:3000/opengraph-image.jpg?opengraph-image.0b85pvvpwv0u7.jpg"}],["$","meta","8",{"property":"og:image:type","content":"image/jpeg"}],["$","meta","9",{"property":"og:image:width","content":"1200"}],["$","meta","10",{"property":"og:image:height","content":"630"}],["$","meta","11",{"property":"og:image:alt","content":"EVORA Heritage collection: a man in a long charcoal overcoat, three-piece herringbone suit and flat cap walks across the word HERITAGE."}],["$","meta","12",{"property":"og:type","content":"website"}],["$","meta","13",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","14",{"name":"twitter:title","content":"Choose a new password — EVORA"}],["$","meta","15",{"name":"twitter:description","content":"Considered clothing and objects for a slower, more deliberate everyday."}],["$","meta","16",{"name":"twitter:image","content":"http://localhost:3000/twitter-image.jpg?twitter-image.0b85pvvpwv0u7.jpg"}],["$","meta","17",{"name":"twitter:image:alt","content":"EVORA Heritage collection: a man in a long charcoal overcoat, three-piece herringbone suit and flat cap walks across the word HERITAGE."}],["$","meta","18",{"name":"twitter:image:type","content":"image/jpeg"}],["$","meta","19",{"name":"twitter:image:width","content":"1200"}],["$","meta","20",{"name":"twitter:image:height","content":"630"}],["$","link","21",{"rel":"icon","href":"/favicon.ico?favicon.117ezoe8m31dk.ico","sizes":"48x48","type":"image/x-icon"}],["$","$L16","22",{}]]}]}],null]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],"p":"$@17","v":"$18","s":"$9"}},"a":"$@19","u":"$@1a","b":"ZcGhI57anLh7kyANq2ifz","r":"$1b"}
+f:null
+9:C
+18:C
+1b:C
+11:C
+1a:true
+19:4658
+7:"$undefined"
+17:"$undefined"

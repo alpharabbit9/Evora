@@ -1,0 +1,2579 @@
+{
+  "results": {
+    "360": {
+      "overflow": 0,
+      "wideElements": [],
+      "smallTargets": [
+        "main | a \"Skip to content\" 1x1",
+        "header | button \"Open menu\" 40x40",
+        "header | a \"EVORA home\" 110x22",
+        "header | a \"Search\" 18x18",
+        "header | a \"Login\" 18x18",
+        "header | a \"Cart\" 18x18",
+        "Featured collections | button \"Slide 1 of 3: Heritage collection\" 36x32",
+        "Featured collections | button \"Slide 2 of 3: Modern elegance\" 36x32",
+        "Featured collections | button \"Slide 3 of 3: New season\" 36x32",
+        "Featured collections | button \"Previous slide\" 36x36",
+        "Featured collections | button \"Next slide\" 36x36",
+        "Featured collections | button \"Pause slideshow\" 36x36",
+        "recent-arrivals-heading | a \"Shop new in\" 93x20",
+        "dark-edit-heading | a \"Shop the edit\" 129x22",
+        "dark-edit-heading | button \"Save Rider Leather Biker Jacket to wishl\" 36x36",
+        "dark-edit-heading | button \"Save Engineer Buckle Boots to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Single-Breasted Black Blazer to wis\" 36x36",
+        "dark-edit-heading | button \"Save Studio Zip Hoodie to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Cropped Moto Leather Jacket to wish\" 36x36",
+        "dark-edit-heading | button \"Save Leather Trench Coat to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Nylon Bomber Jacket to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Side-Zip Leather Ankle Boots to wis\" 36x36",
+        "dark-edit-heading | button \"Save Oversized Tailored Blazer to wishli\" 36x36",
+        "footer | a \"New arrivals\" 79x18",
+        "footer | a \"Men\" 28x18",
+        "footer | a \"Women\" 49x18",
+        "footer | a \"Accessories\" 77x18",
+        "footer | a \"Shop all\" 52x18",
+        "footer | a \"Sign in\" 44x18",
+        "footer | a \"Create account\" 98x18",
+        "footer | a \"Wishlist\" 51x18",
+        "footer | a \"Shipping & returns\" 118x18",
+        "footer | a \"FAQ\" 26x18",
+        "footer | a \"Privacy\" 51x15",
+        "footer | a \"Terms\" 41x15"
+      ],
+      "heroText": [
+        {
+          "text": "H",
+          "size": 45.0859,
+          "top": 214,
+          "bottom": 259
+        },
+        {
+          "text": "E",
+          "size": 45.0859,
+          "top": 214,
+          "bottom": 259
+        },
+        {
+          "text": "R",
+          "size": 45.0859,
+          "top": 214,
+          "bottom": 259
+        },
+        {
+          "text": "I",
+          "size": 45.0859,
+          "top": 214,
+          "bottom": 259
+        },
+        {
+          "text": "T",
+          "size": 45.0859,
+          "top": 214,
+          "bottom": 259
+        },
+        {
+          "text": "A",
+          "size": 45.0859,
+          "top": 214,
+          "bottom": 259
+        },
+        {
+          "text": "G",
+          "size": 45.0859,
+          "top": 214,
+          "bottom": 259
+        },
+        {
+          "text": "E",
+          "size": 45.0859,
+          "top": 214,
+          "bottom": 259
+        },
+        {
+          "text": "Menswear",
+          "size": 9,
+          "top": 85,
+          "bottom": 99
+        },
+        {
+          "text": "English heritage.",
+          "size": 13,
+          "top": 113,
+          "bottom": 134
+        },
+        {
+          "text": "Reimagined for today.",
+          "size": 13,
+          "top": 134,
+          "bottom": 155
+        },
+        {
+          "text": "Explore collection",
+          "size": 10,
+          "top": 657,
+          "bottom": 705
+        }
+      ],
+      "hero": {
+        "top": 65,
+        "height": 716,
+        "width": 360
+      },
+      "heroFigure": {
+        "left": -4,
+        "right": 393,
+        "top": 207,
+        "bottom": 637
+      },
+      "rail": {
+        "clientWidth": 360,
+        "scrollWidth": 782,
+        "scrollable": true,
+        "snapType": "none",
+        "snapAlign": "none",
+        "mask": "none",
+        "scrollbarWidth": "none",
+        "scrollLeft": 0,
+        "canvas": false
+      },
+      "sections": [
+        {
+          "label": "Featured collections",
+          "height": 716
+        },
+        {
+          "label": "recent-arrivals-heading",
+          "height": 603
+        },
+        {
+          "label": "dark-edit-heading",
+          "height": 2159
+        },
+        {
+          "label": "campaign-banner-heading",
+          "height": 656
+        },
+        {
+          "label": "service-strip-heading",
+          "height": 326
+        },
+        {
+          "label": "newsletter-heading",
+          "height": 345
+        }
+      ]
+    },
+    "390": {
+      "overflow": 0,
+      "wideElements": [],
+      "smallTargets": [
+        "main | a \"Skip to content\" 1x1",
+        "header | button \"Open menu\" 40x40",
+        "header | a \"EVORA home\" 110x22",
+        "header | a \"Search\" 18x18",
+        "header | a \"Login\" 18x18",
+        "header | a \"Cart\" 18x18",
+        "Featured collections | button \"Slide 1 of 3: Heritage collection\" 36x32",
+        "Featured collections | button \"Slide 2 of 3: Modern elegance\" 36x32",
+        "Featured collections | button \"Slide 3 of 3: New season\" 36x32",
+        "Featured collections | button \"Previous slide\" 36x36",
+        "Featured collections | button \"Next slide\" 36x36",
+        "Featured collections | button \"Pause slideshow\" 36x36",
+        "recent-arrivals-heading | a \"Shop new in\" 93x20",
+        "dark-edit-heading | a \"Shop the edit\" 129x22",
+        "dark-edit-heading | button \"Save Rider Leather Biker Jacket to wishl\" 36x36",
+        "dark-edit-heading | button \"Save Engineer Buckle Boots to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Single-Breasted Black Blazer to wis\" 36x36",
+        "dark-edit-heading | button \"Save Studio Zip Hoodie to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Cropped Moto Leather Jacket to wish\" 36x36",
+        "dark-edit-heading | button \"Save Leather Trench Coat to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Nylon Bomber Jacket to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Side-Zip Leather Ankle Boots to wis\" 36x36",
+        "dark-edit-heading | button \"Save Oversized Tailored Blazer to wishli\" 36x36",
+        "footer | a \"New arrivals\" 79x18",
+        "footer | a \"Men\" 28x18",
+        "footer | a \"Women\" 49x18",
+        "footer | a \"Accessories\" 77x18",
+        "footer | a \"Shop all\" 52x18",
+        "footer | a \"Sign in\" 44x18",
+        "footer | a \"Create account\" 98x18",
+        "footer | a \"Wishlist\" 51x18",
+        "footer | a \"Shipping & returns\" 118x18",
+        "footer | a \"FAQ\" 26x18",
+        "footer | a \"Privacy\" 51x15",
+        "footer | a \"Terms\" 41x15"
+      ],
+      "heroText": [
+        {
+          "text": "H",
+          "size": 49.2096,
+          "top": 228,
+          "bottom": 277
+        },
+        {
+          "text": "E",
+          "size": 49.2096,
+          "top": 228,
+          "bottom": 277
+        },
+        {
+          "text": "R",
+          "size": 49.2096,
+          "top": 228,
+          "bottom": 277
+        },
+        {
+          "text": "I",
+          "size": 49.2096,
+          "top": 228,
+          "bottom": 277
+        },
+        {
+          "text": "T",
+          "size": 49.2096,
+          "top": 228,
+          "bottom": 277
+        },
+        {
+          "text": "A",
+          "size": 49.2096,
+          "top": 228,
+          "bottom": 277
+        },
+        {
+          "text": "G",
+          "size": 49.2096,
+          "top": 228,
+          "bottom": 277
+        },
+        {
+          "text": "E",
+          "size": 49.2096,
+          "top": 228,
+          "bottom": 277
+        },
+        {
+          "text": "Menswear",
+          "size": 9,
+          "top": 85,
+          "bottom": 99
+        },
+        {
+          "text": "English heritage.",
+          "size": 13,
+          "top": 113,
+          "bottom": 134
+        },
+        {
+          "text": "Reimagined for today.",
+          "size": 13,
+          "top": 134,
+          "bottom": 155
+        },
+        {
+          "text": "Explore collection",
+          "size": 10,
+          "top": 721,
+          "bottom": 769
+        }
+      ],
+      "hero": {
+        "top": 65,
+        "height": 780,
+        "width": 390
+      },
+      "heroFigure": {
+        "left": -5,
+        "right": 426,
+        "top": 220,
+        "bottom": 688
+      },
+      "rail": {
+        "clientWidth": 390,
+        "scrollWidth": 782,
+        "scrollable": true,
+        "snapType": "none",
+        "snapAlign": "none",
+        "mask": "none",
+        "scrollbarWidth": "none",
+        "scrollLeft": 0,
+        "canvas": false
+      },
+      "sections": [
+        {
+          "label": "Featured collections",
+          "height": 780
+        },
+        {
+          "label": "recent-arrivals-heading",
+          "height": 555
+        },
+        {
+          "label": "dark-edit-heading",
+          "height": 2276
+        },
+        {
+          "label": "campaign-banner-heading",
+          "height": 656
+        },
+        {
+          "label": "service-strip-heading",
+          "height": 302
+        },
+        {
+          "label": "newsletter-heading",
+          "height": 311
+        }
+      ]
+    },
+    "768": {
+      "overflow": 0,
+      "wideElements": [],
+      "smallTargets": [
+        "main | a \"Skip to content\" 1x1",
+        "header | button \"Open menu\" 40x40",
+        "header | a \"EVORA home\" 130x26",
+        "header | button \"Dark theme\" 18x18",
+        "header | a \"Search\" 18x18",
+        "header | a \"Login\" 18x18",
+        "header | a \"Wishlist\" 18x18",
+        "header | a \"Cart\" 18x18",
+        "Featured collections | button \"Slide 1 of 3: Heritage collection\" 36x32",
+        "Featured collections | button \"Slide 2 of 3: Modern elegance\" 36x32",
+        "Featured collections | button \"Slide 3 of 3: New season\" 36x32",
+        "Featured collections | button \"Previous slide\" 40x40",
+        "Featured collections | button \"Next slide\" 40x40",
+        "Featured collections | button \"Pause slideshow\" 40x40",
+        "recent-arrivals-heading | a \"Shop new in\" 93x20",
+        "dark-edit-heading | a \"Shop the edit\" 129x22",
+        "dark-edit-heading | button \"Save Rider Leather Biker Jacket to wishl\" 36x36",
+        "dark-edit-heading | button \"Save Engineer Buckle Boots to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Single-Breasted Black Blazer to wis\" 36x36",
+        "dark-edit-heading | button \"Save Studio Zip Hoodie to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Cropped Moto Leather Jacket to wish\" 36x36",
+        "dark-edit-heading | button \"Save Leather Trench Coat to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Nylon Bomber Jacket to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Side-Zip Leather Ankle Boots to wis\" 36x36",
+        "dark-edit-heading | button \"Save Oversized Tailored Blazer to wishli\" 36x36",
+        "footer | a \"New arrivals\" 79x18",
+        "footer | a \"Men\" 28x18",
+        "footer | a \"Women\" 49x18",
+        "footer | a \"Accessories\" 77x18",
+        "footer | a \"Shop all\" 52x18",
+        "footer | a \"Sign in\" 44x18",
+        "footer | a \"Create account\" 98x18",
+        "footer | a \"Wishlist\" 51x18",
+        "footer | a \"Shipping & returns\" 118x18",
+        "footer | a \"FAQ\" 26x18",
+        "footer | a \"Privacy\" 51x15",
+        "footer | a \"Terms\" 41x15"
+      ],
+      "heroText": [
+        {
+          "text": "H",
+          "size": 98.9691,
+          "top": 414,
+          "bottom": 513
+        },
+        {
+          "text": "E",
+          "size": 98.9691,
+          "top": 414,
+          "bottom": 513
+        },
+        {
+          "text": "R",
+          "size": 98.9691,
+          "top": 414,
+          "bottom": 513
+        },
+        {
+          "text": "I",
+          "size": 98.9691,
+          "top": 414,
+          "bottom": 513
+        },
+        {
+          "text": "T",
+          "size": 98.9691,
+          "top": 414,
+          "bottom": 513
+        },
+        {
+          "text": "A",
+          "size": 98.9691,
+          "top": 414,
+          "bottom": 513
+        },
+        {
+          "text": "G",
+          "size": 98.9691,
+          "top": 414,
+          "bottom": 513
+        },
+        {
+          "text": "E",
+          "size": 98.9691,
+          "top": 414,
+          "bottom": 513
+        },
+        {
+          "text": "Menswear",
+          "size": 10,
+          "top": 125,
+          "bottom": 140
+        },
+        {
+          "text": "Timeless style",
+          "size": 10,
+          "top": 125,
+          "bottom": 143
+        },
+        {
+          "text": "for modern men",
+          "size": 10,
+          "top": 143,
+          "bottom": 161
+        },
+        {
+          "text": "English heritage.",
+          "size": 14.4,
+          "top": 211,
+          "bottom": 234
+        },
+        {
+          "text": "Reimagined for today.",
+          "size": 14.4,
+          "top": 234,
+          "bottom": 257
+        },
+        {
+          "text": "Explore collection",
+          "size": 10,
+          "top": 893,
+          "bottom": 941
+        },
+        {
+          "text": "New collection",
+          "size": 12.8,
+          "top": 901,
+          "bottom": 921
+        },
+        {
+          "text": "2026",
+          "size": 12.8,
+          "top": 921,
+          "bottom": 941
+        }
+      ],
+      "hero": {
+        "top": 73,
+        "height": 952,
+        "width": 768
+      },
+      "heroFigure": {
+        "left": 138,
+        "right": 691,
+        "top": 263,
+        "bottom": 862
+      },
+      "rail": {
+        "clientWidth": 768,
+        "scrollWidth": 853,
+        "scrollable": true,
+        "snapType": "none",
+        "snapAlign": "none",
+        "mask": "none",
+        "scrollbarWidth": "none",
+        "scrollLeft": 0,
+        "canvas": false
+      },
+      "sections": [
+        {
+          "label": "Featured collections",
+          "height": 952
+        },
+        {
+          "label": "recent-arrivals-heading",
+          "height": 605
+        },
+        {
+          "label": "dark-edit-heading",
+          "height": 3648
+        },
+        {
+          "label": "campaign-banner-heading",
+          "height": 742
+        },
+        {
+          "label": "service-strip-heading",
+          "height": 237
+        },
+        {
+          "label": "newsletter-heading",
+          "height": 323
+        }
+      ]
+    },
+    "1024": {
+      "overflow": 0,
+      "wideElements": [],
+      "smallTargets": [
+        "main | a \"Skip to content\" 1x1",
+        "header | button \"Open menu\" 40x40",
+        "header | a \"Men\" 30x25",
+        "header | a \"Women\" 52x25",
+        "header | a \"Accessories\" 97x25",
+        "header | a \"Shop all\" 68x25",
+        "header | a \"EVORA home\" 142x28",
+        "header | button \"Dark theme\" 18x18",
+        "header | a \"Search\" 18x18",
+        "header | a \"Login\" 18x18",
+        "header | a \"Wishlist\" 18x18",
+        "header | a \"Cart\" 18x18",
+        "Featured collections | button \"Slide 1 of 3: Heritage collection\" 36x32",
+        "Featured collections | button \"Slide 2 of 3: Modern elegance\" 36x32",
+        "Featured collections | button \"Slide 3 of 3: New season\" 36x32",
+        "Featured collections | button \"Previous slide\" 40x40",
+        "Featured collections | button \"Next slide\" 40x40",
+        "Featured collections | button \"Pause slideshow\" 40x40",
+        "recent-arrivals-heading | a \"Shop new in\" 93x20",
+        "dark-edit-heading | a \"Shop the edit\" 129x22",
+        "dark-edit-heading | button \"Save Rider Leather Biker Jacket to wishl\" 36x36",
+        "dark-edit-heading | button \"Save Engineer Buckle Boots to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Single-Breasted Black Blazer to wis\" 36x36",
+        "dark-edit-heading | button \"Save Studio Zip Hoodie to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Cropped Moto Leather Jacket to wish\" 36x36",
+        "dark-edit-heading | button \"Save Leather Trench Coat to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Nylon Bomber Jacket to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Side-Zip Leather Ankle Boots to wis\" 36x36",
+        "dark-edit-heading | button \"Save Oversized Tailored Blazer to wishli\" 36x36",
+        "footer | a \"New arrivals\" 79x18",
+        "footer | a \"Men\" 28x18",
+        "footer | a \"Women\" 49x18",
+        "footer | a \"Accessories\" 77x18",
+        "footer | a \"Shop all\" 52x18",
+        "footer | a \"Sign in\" 44x18",
+        "footer | a \"Create account\" 98x18",
+        "footer | a \"Wishlist\" 51x18",
+        "footer | a \"Shipping & returns\" 118x18",
+        "footer | a \"FAQ\" 26x18",
+        "footer | a \"Privacy\" 51x15",
+        "footer | a \"Terms\" 41x15"
+      ],
+      "heroText": [
+        {
+          "text": "H",
+          "size": 129.759,
+          "top": 293,
+          "bottom": 422
+        },
+        {
+          "text": "E",
+          "size": 129.759,
+          "top": 293,
+          "bottom": 422
+        },
+        {
+          "text": "R",
+          "size": 129.759,
+          "top": 293,
+          "bottom": 422
+        },
+        {
+          "text": "I",
+          "size": 129.759,
+          "top": 293,
+          "bottom": 422
+        },
+        {
+          "text": "T",
+          "size": 129.759,
+          "top": 293,
+          "bottom": 422
+        },
+        {
+          "text": "A",
+          "size": 129.759,
+          "top": 293,
+          "bottom": 422
+        },
+        {
+          "text": "G",
+          "size": 129.759,
+          "top": 293,
+          "bottom": 422
+        },
+        {
+          "text": "E",
+          "size": 129.759,
+          "top": 293,
+          "bottom": 422
+        },
+        {
+          "text": "Menswear",
+          "size": 10,
+          "top": 115,
+          "bottom": 130
+        },
+        {
+          "text": "Timeless style",
+          "size": 10,
+          "top": 115,
+          "bottom": 133
+        },
+        {
+          "text": "for modern men",
+          "size": 10,
+          "top": 133,
+          "bottom": 151
+        },
+        {
+          "text": "English heritage.",
+          "size": 14.4,
+          "top": 170,
+          "bottom": 193
+        },
+        {
+          "text": "Reimagined for today.",
+          "size": 14.4,
+          "top": 193,
+          "bottom": 216
+        },
+        {
+          "text": "Explore collection",
+          "size": 10,
+          "top": 604,
+          "bottom": 652
+        },
+        {
+          "text": "New collection",
+          "size": 12.8,
+          "top": 533,
+          "bottom": 553
+        },
+        {
+          "text": "2026",
+          "size": 12.8,
+          "top": 553,
+          "bottom": 572
+        }
+      ],
+      "hero": {
+        "top": 81,
+        "height": 614,
+        "width": 1024
+      },
+      "heroFigure": {
+        "left": 295,
+        "right": 811,
+        "top": 120,
+        "bottom": 679
+      },
+      "rail": {
+        "clientWidth": 1024,
+        "scrollWidth": 1024,
+        "scrollable": false,
+        "snapType": "none",
+        "snapAlign": "none",
+        "mask": "none",
+        "scrollbarWidth": "thin",
+        "scrollLeft": 0,
+        "canvas": true
+      },
+      "sections": [
+        {
+          "label": "Featured collections",
+          "height": 614
+        },
+        {
+          "label": "recent-arrivals-heading",
+          "height": 671
+        },
+        {
+          "label": "dark-edit-heading",
+          "height": 1477
+        },
+        {
+          "label": "campaign-banner-heading",
+          "height": 605
+        },
+        {
+          "label": "service-strip-heading",
+          "height": 226
+        },
+        {
+          "label": "newsletter-heading",
+          "height": 385
+        }
+      ]
+    },
+    "1280": {
+      "overflow": 0,
+      "wideElements": [],
+      "smallTargets": [
+        "main | a \"Skip to content\" 1x1",
+        "header | button \"Open menu\" 40x40",
+        "header | a \"Men\" 30x25",
+        "header | a \"Women\" 52x25",
+        "header | a \"Accessories\" 97x25",
+        "header | a \"Shop all\" 68x25",
+        "header | a \"EVORA home\" 170x34",
+        "header | button \"Dark theme\" 18x18",
+        "header | a \"Search\" 76x18",
+        "header | a \"Login\" 65x18",
+        "header | a \"Wishlist\" 86x18",
+        "header | a \"Cart\" 59x18",
+        "Featured collections | button \"Slide 1 of 3: Heritage collection\" 36x32",
+        "Featured collections | button \"Slide 2 of 3: Modern elegance\" 36x32",
+        "Featured collections | button \"Slide 3 of 3: New season\" 36x32",
+        "Featured collections | button \"Previous slide\" 40x40",
+        "Featured collections | button \"Next slide\" 40x40",
+        "Featured collections | button \"Pause slideshow\" 40x40",
+        "recent-arrivals-heading | a \"Shop new in\" 93x20",
+        "dark-edit-heading | a \"Shop the edit\" 129x22",
+        "dark-edit-heading | button \"Save Rider Leather Biker Jacket to wishl\" 36x36",
+        "dark-edit-heading | button \"Save Engineer Buckle Boots to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Single-Breasted Black Blazer to wis\" 36x36",
+        "dark-edit-heading | button \"Save Studio Zip Hoodie to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Cropped Moto Leather Jacket to wish\" 36x36",
+        "dark-edit-heading | button \"Save Leather Trench Coat to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Nylon Bomber Jacket to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Side-Zip Leather Ankle Boots to wis\" 36x36",
+        "dark-edit-heading | button \"Save Oversized Tailored Blazer to wishli\" 36x36",
+        "footer | a \"New arrivals\" 79x18",
+        "footer | a \"Men\" 28x18",
+        "footer | a \"Women\" 49x18",
+        "footer | a \"Accessories\" 77x18",
+        "footer | a \"Shop all\" 52x18",
+        "footer | a \"Sign in\" 44x18",
+        "footer | a \"Create account\" 98x18",
+        "footer | a \"Wishlist\" 51x18",
+        "footer | a \"Shipping & returns\" 118x18",
+        "footer | a \"FAQ\" 26x18",
+        "footer | a \"Privacy\" 51x15",
+        "footer | a \"Terms\" 41x15"
+      ],
+      "heroText": [
+        {
+          "text": "H",
+          "size": 160.55,
+          "top": 325,
+          "bottom": 485
+        },
+        {
+          "text": "E",
+          "size": 160.55,
+          "top": 325,
+          "bottom": 485
+        },
+        {
+          "text": "R",
+          "size": 160.55,
+          "top": 325,
+          "bottom": 485
+        },
+        {
+          "text": "I",
+          "size": 160.55,
+          "top": 325,
+          "bottom": 485
+        },
+        {
+          "text": "T",
+          "size": 160.55,
+          "top": 325,
+          "bottom": 485
+        },
+        {
+          "text": "A",
+          "size": 160.55,
+          "top": 325,
+          "bottom": 485
+        },
+        {
+          "text": "G",
+          "size": 160.55,
+          "top": 325,
+          "bottom": 485
+        },
+        {
+          "text": "E",
+          "size": 160.55,
+          "top": 325,
+          "bottom": 485
+        },
+        {
+          "text": "Menswear",
+          "size": 10,
+          "top": 121,
+          "bottom": 136
+        },
+        {
+          "text": "Timeless style",
+          "size": 10,
+          "top": 121,
+          "bottom": 139
+        },
+        {
+          "text": "for modern men",
+          "size": 10,
+          "top": 139,
+          "bottom": 157
+        },
+        {
+          "text": "English heritage.",
+          "size": 14.72,
+          "top": 185,
+          "bottom": 209
+        },
+        {
+          "text": "Reimagined for today.",
+          "size": 14.72,
+          "top": 209,
+          "bottom": 232
+        },
+        {
+          "text": "Explore collection",
+          "size": 10,
+          "top": 703,
+          "bottom": 751
+        },
+        {
+          "text": "New collection",
+          "size": 12.8,
+          "top": 631,
+          "bottom": 651
+        },
+        {
+          "text": "2026",
+          "size": 12.8,
+          "top": 651,
+          "bottom": 671
+        }
+      ],
+      "hero": {
+        "top": 81,
+        "height": 720,
+        "width": 1280
+      },
+      "heroFigure": {
+        "left": 389,
+        "right": 993,
+        "top": 127,
+        "bottom": 782
+      },
+      "rail": {
+        "clientWidth": 1280,
+        "scrollWidth": 1280,
+        "scrollable": false,
+        "snapType": "none",
+        "snapAlign": "none",
+        "mask": "none",
+        "scrollbarWidth": "thin",
+        "scrollLeft": 0,
+        "canvas": true
+      },
+      "sections": [
+        {
+          "label": "Featured collections",
+          "height": 720
+        },
+        {
+          "label": "recent-arrivals-heading",
+          "height": 736
+        },
+        {
+          "label": "dark-edit-heading",
+          "height": 1724
+        },
+        {
+          "label": "campaign-banner-heading",
+          "height": 656
+        },
+        {
+          "label": "service-strip-heading",
+          "height": 238
+        },
+        {
+          "label": "newsletter-heading",
+          "height": 400
+        }
+      ]
+    },
+    "1440": {
+      "overflow": 0,
+      "wideElements": [],
+      "smallTargets": [
+        "main | a \"Skip to content\" 1x1",
+        "header | button \"Open menu\" 40x40",
+        "header | a \"Men\" 30x25",
+        "header | a \"Women\" 52x25",
+        "header | a \"Accessories\" 97x25",
+        "header | a \"Shop all\" 68x25",
+        "header | a \"EVORA home\" 170x34",
+        "header | button \"Dark theme\" 18x18",
+        "header | a \"Search\" 76x18",
+        "header | a \"Login\" 65x18",
+        "header | a \"Wishlist\" 86x18",
+        "header | a \"Cart\" 59x18",
+        "Featured collections | button \"Slide 1 of 3: Heritage collection\" 36x32",
+        "Featured collections | button \"Slide 2 of 3: Modern elegance\" 36x32",
+        "Featured collections | button \"Slide 3 of 3: New season\" 36x32",
+        "Featured collections | button \"Previous slide\" 40x40",
+        "Featured collections | button \"Next slide\" 40x40",
+        "Featured collections | button \"Pause slideshow\" 40x40",
+        "recent-arrivals-heading | a \"Shop new in\" 93x20",
+        "dark-edit-heading | a \"Shop the edit\" 129x22",
+        "dark-edit-heading | button \"Save Rider Leather Biker Jacket to wishl\" 36x36",
+        "dark-edit-heading | button \"Save Engineer Buckle Boots to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Single-Breasted Black Blazer to wis\" 36x36",
+        "dark-edit-heading | button \"Save Studio Zip Hoodie to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Cropped Moto Leather Jacket to wish\" 36x36",
+        "dark-edit-heading | button \"Save Leather Trench Coat to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Nylon Bomber Jacket to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Side-Zip Leather Ankle Boots to wis\" 36x36",
+        "dark-edit-heading | button \"Save Oversized Tailored Blazer to wishli\" 36x36",
+        "footer | a \"New arrivals\" 79x18",
+        "footer | a \"Men\" 28x18",
+        "footer | a \"Women\" 49x18",
+        "footer | a \"Accessories\" 77x18",
+        "footer | a \"Shop all\" 52x18",
+        "footer | a \"Sign in\" 44x18",
+        "footer | a \"Create account\" 98x18",
+        "footer | a \"Wishlist\" 51x18",
+        "footer | a \"Shipping & returns\" 118x18",
+        "footer | a \"FAQ\" 26x18",
+        "footer | a \"Privacy\" 51x15",
+        "footer | a \"Terms\" 41x15"
+      ],
+      "heroText": [
+        {
+          "text": "H",
+          "size": 182.543,
+          "top": 359,
+          "bottom": 541
+        },
+        {
+          "text": "E",
+          "size": 182.543,
+          "top": 359,
+          "bottom": 541
+        },
+        {
+          "text": "R",
+          "size": 182.543,
+          "top": 359,
+          "bottom": 541
+        },
+        {
+          "text": "I",
+          "size": 182.543,
+          "top": 359,
+          "bottom": 541
+        },
+        {
+          "text": "T",
+          "size": 182.543,
+          "top": 359,
+          "bottom": 541
+        },
+        {
+          "text": "A",
+          "size": 182.543,
+          "top": 359,
+          "bottom": 541
+        },
+        {
+          "text": "G",
+          "size": 182.543,
+          "top": 359,
+          "bottom": 541
+        },
+        {
+          "text": "E",
+          "size": 182.543,
+          "top": 359,
+          "bottom": 541
+        },
+        {
+          "text": "Menswear",
+          "size": 10,
+          "top": 126,
+          "bottom": 141
+        },
+        {
+          "text": "Timeless style",
+          "size": 10,
+          "top": 126,
+          "bottom": 144
+        },
+        {
+          "text": "for modern men",
+          "size": 10,
+          "top": 144,
+          "bottom": 162
+        },
+        {
+          "text": "English heritage.",
+          "size": 16.56,
+          "top": 200,
+          "bottom": 226
+        },
+        {
+          "text": "Reimagined for today.",
+          "size": 16.56,
+          "top": 226,
+          "bottom": 253
+        },
+        {
+          "text": "Explore collection",
+          "size": 10,
+          "top": 796,
+          "bottom": 844
+        },
+        {
+          "text": "New collection",
+          "size": 14.4,
+          "top": 719,
+          "bottom": 741
+        },
+        {
+          "text": "2026",
+          "size": 14.4,
+          "top": 741,
+          "bottom": 764
+        }
+      ],
+      "hero": {
+        "top": 81,
+        "height": 820,
+        "width": 1440
+      },
+      "heroFigure": {
+        "left": 433,
+        "right": 1122,
+        "top": 133,
+        "bottom": 880
+      },
+      "rail": {
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "scrollable": false,
+        "snapType": "none",
+        "snapAlign": "none",
+        "mask": "none",
+        "scrollbarWidth": "thin",
+        "scrollLeft": 0,
+        "canvas": true
+      },
+      "sections": [
+        {
+          "label": "Featured collections",
+          "height": 820
+        },
+        {
+          "label": "recent-arrivals-heading",
+          "height": 777
+        },
+        {
+          "label": "dark-edit-heading",
+          "height": 1899
+        },
+        {
+          "label": "campaign-banner-heading",
+          "height": 688
+        },
+        {
+          "label": "service-strip-heading",
+          "height": 245
+        },
+        {
+          "label": "newsletter-heading",
+          "height": 409
+        }
+      ]
+    },
+    "1920": {
+      "overflow": 0,
+      "wideElements": [],
+      "smallTargets": [
+        "main | a \"Skip to content\" 1x1",
+        "header | button \"Open menu\" 40x40",
+        "header | a \"Men\" 30x25",
+        "header | a \"Women\" 52x25",
+        "header | a \"Accessories\" 97x25",
+        "header | a \"Shop all\" 68x25",
+        "header | a \"EVORA home\" 170x34",
+        "header | button \"Dark theme\" 18x18",
+        "header | a \"Search\" 76x18",
+        "header | a \"Login\" 65x18",
+        "header | a \"Wishlist\" 86x18",
+        "header | a \"Cart\" 59x18",
+        "Featured collections | button \"Slide 1 of 3: Heritage collection\" 36x32",
+        "Featured collections | button \"Slide 2 of 3: Modern elegance\" 36x32",
+        "Featured collections | button \"Slide 3 of 3: New season\" 36x32",
+        "Featured collections | button \"Previous slide\" 40x40",
+        "Featured collections | button \"Next slide\" 40x40",
+        "Featured collections | button \"Pause slideshow\" 40x40",
+        "recent-arrivals-heading | a \"Shop new in\" 93x20",
+        "dark-edit-heading | a \"Shop the edit\" 129x22",
+        "dark-edit-heading | button \"Save Rider Leather Biker Jacket to wishl\" 36x36",
+        "dark-edit-heading | button \"Save Engineer Buckle Boots to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Single-Breasted Black Blazer to wis\" 36x36",
+        "dark-edit-heading | button \"Save Studio Zip Hoodie to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Cropped Moto Leather Jacket to wish\" 36x36",
+        "dark-edit-heading | button \"Save Leather Trench Coat to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Nylon Bomber Jacket to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Side-Zip Leather Ankle Boots to wis\" 36x36",
+        "dark-edit-heading | button \"Save Oversized Tailored Blazer to wishli\" 36x36",
+        "footer | a \"New arrivals\" 79x18",
+        "footer | a \"Men\" 28x18",
+        "footer | a \"Women\" 49x18",
+        "footer | a \"Accessories\" 77x18",
+        "footer | a \"Shop all\" 52x18",
+        "footer | a \"Sign in\" 44x18",
+        "footer | a \"Create account\" 98x18",
+        "footer | a \"Wishlist\" 51x18",
+        "footer | a \"Shipping & returns\" 118x18",
+        "footer | a \"FAQ\" 26x18",
+        "footer | a \"Privacy\" 51x15",
+        "footer | a \"Terms\" 41x15"
+      ],
+      "heroText": [
+        {
+          "text": "H",
+          "size": 215.533,
+          "top": 423,
+          "bottom": 639
+        },
+        {
+          "text": "E",
+          "size": 215.533,
+          "top": 423,
+          "bottom": 639
+        },
+        {
+          "text": "R",
+          "size": 215.533,
+          "top": 423,
+          "bottom": 639
+        },
+        {
+          "text": "I",
+          "size": 215.533,
+          "top": 423,
+          "bottom": 639
+        },
+        {
+          "text": "T",
+          "size": 215.533,
+          "top": 423,
+          "bottom": 639
+        },
+        {
+          "text": "A",
+          "size": 215.533,
+          "top": 423,
+          "bottom": 639
+        },
+        {
+          "text": "G",
+          "size": 215.533,
+          "top": 423,
+          "bottom": 639
+        },
+        {
+          "text": "E",
+          "size": 215.533,
+          "top": 423,
+          "bottom": 639
+        },
+        {
+          "text": "Menswear",
+          "size": 10,
+          "top": 136,
+          "bottom": 151
+        },
+        {
+          "text": "Timeless style",
+          "size": 10,
+          "top": 136,
+          "bottom": 154
+        },
+        {
+          "text": "for modern men",
+          "size": 10,
+          "top": 154,
+          "bottom": 172
+        },
+        {
+          "text": "English heritage.",
+          "size": 19.2,
+          "top": 226,
+          "bottom": 257
+        },
+        {
+          "text": "Reimagined for today.",
+          "size": 19.2,
+          "top": 257,
+          "bottom": 287
+        },
+        {
+          "text": "Explore collection",
+          "size": 10,
+          "top": 963,
+          "bottom": 1011
+        },
+        {
+          "text": "New collection",
+          "size": 16.8,
+          "top": 879,
+          "bottom": 905
+        },
+        {
+          "text": "2026",
+          "size": 16.8,
+          "top": 905,
+          "bottom": 931
+        }
+      ],
+      "hero": {
+        "top": 81,
+        "height": 1000,
+        "width": 1920
+      },
+      "heroFigure": {
+        "left": 607,
+        "right": 1447,
+        "top": 145,
+        "bottom": 1055
+      },
+      "rail": {
+        "clientWidth": 1680,
+        "scrollWidth": 1680,
+        "scrollable": false,
+        "snapType": "none",
+        "snapAlign": "none",
+        "mask": "none",
+        "scrollbarWidth": "thin",
+        "scrollLeft": 0,
+        "canvas": true
+      },
+      "sections": [
+        {
+          "label": "Featured collections",
+          "height": 1000
+        },
+        {
+          "label": "recent-arrivals-heading",
+          "height": 834
+        },
+        {
+          "label": "dark-edit-heading",
+          "height": 2153
+        },
+        {
+          "label": "campaign-banner-heading",
+          "height": 720
+        },
+        {
+          "label": "service-strip-heading",
+          "height": 252
+        },
+        {
+          "label": "newsletter-heading",
+          "height": 416
+        }
+      ]
+    },
+    "360-dark": {
+      "overflow": 0,
+      "wideElements": [],
+      "smallTargets": [
+        "main | a \"Skip to content\" 1x1",
+        "header | button \"Open menu\" 40x40",
+        "header | a \"EVORA home\" 110x22",
+        "header | a \"Search\" 18x18",
+        "header | a \"Login\" 18x18",
+        "header | a \"Cart\" 18x18",
+        "Featured collections | button \"Slide 1 of 3: Heritage collection\" 36x32",
+        "Featured collections | button \"Slide 2 of 3: Modern elegance\" 36x32",
+        "Featured collections | button \"Slide 3 of 3: New season\" 36x32",
+        "Featured collections | button \"Previous slide\" 36x36",
+        "Featured collections | button \"Next slide\" 36x36",
+        "Featured collections | button \"Pause slideshow\" 36x36",
+        "recent-arrivals-heading | a \"Shop new in\" 93x20",
+        "dark-edit-heading | a \"Shop the edit\" 129x22",
+        "dark-edit-heading | button \"Save Rider Leather Biker Jacket to wishl\" 36x36",
+        "dark-edit-heading | button \"Save Engineer Buckle Boots to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Single-Breasted Black Blazer to wis\" 36x36",
+        "dark-edit-heading | button \"Save Studio Zip Hoodie to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Cropped Moto Leather Jacket to wish\" 36x36",
+        "dark-edit-heading | button \"Save Leather Trench Coat to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Nylon Bomber Jacket to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Side-Zip Leather Ankle Boots to wis\" 36x36",
+        "dark-edit-heading | button \"Save Oversized Tailored Blazer to wishli\" 36x36",
+        "footer | a \"New arrivals\" 79x18",
+        "footer | a \"Men\" 28x18",
+        "footer | a \"Women\" 49x18",
+        "footer | a \"Accessories\" 77x18",
+        "footer | a \"Shop all\" 52x18",
+        "footer | a \"Sign in\" 44x18",
+        "footer | a \"Create account\" 98x18",
+        "footer | a \"Wishlist\" 51x18",
+        "footer | a \"Shipping & returns\" 118x18",
+        "footer | a \"FAQ\" 26x18",
+        "footer | a \"Privacy\" 51x15",
+        "footer | a \"Terms\" 41x15"
+      ],
+      "heroText": [
+        {
+          "text": "H",
+          "size": 45.0859,
+          "top": 214,
+          "bottom": 259
+        },
+        {
+          "text": "E",
+          "size": 45.0859,
+          "top": 214,
+          "bottom": 259
+        },
+        {
+          "text": "R",
+          "size": 45.0859,
+          "top": 214,
+          "bottom": 259
+        },
+        {
+          "text": "I",
+          "size": 45.0859,
+          "top": 214,
+          "bottom": 259
+        },
+        {
+          "text": "T",
+          "size": 45.0859,
+          "top": 214,
+          "bottom": 259
+        },
+        {
+          "text": "A",
+          "size": 45.0859,
+          "top": 214,
+          "bottom": 259
+        },
+        {
+          "text": "G",
+          "size": 45.0859,
+          "top": 214,
+          "bottom": 259
+        },
+        {
+          "text": "E",
+          "size": 45.0859,
+          "top": 214,
+          "bottom": 259
+        },
+        {
+          "text": "Menswear",
+          "size": 9,
+          "top": 85,
+          "bottom": 99
+        },
+        {
+          "text": "English heritage.",
+          "size": 13,
+          "top": 113,
+          "bottom": 134
+        },
+        {
+          "text": "Reimagined for today.",
+          "size": 13,
+          "top": 134,
+          "bottom": 155
+        },
+        {
+          "text": "Explore collection",
+          "size": 10,
+          "top": 657,
+          "bottom": 705
+        }
+      ],
+      "hero": {
+        "top": 65,
+        "height": 716,
+        "width": 360
+      },
+      "heroFigure": {
+        "left": -4,
+        "right": 393,
+        "top": 207,
+        "bottom": 637
+      },
+      "rail": {
+        "clientWidth": 360,
+        "scrollWidth": 782,
+        "scrollable": true,
+        "snapType": "none",
+        "snapAlign": "none",
+        "mask": "none",
+        "scrollbarWidth": "none",
+        "scrollLeft": 0,
+        "canvas": false
+      },
+      "sections": [
+        {
+          "label": "Featured collections",
+          "height": 716
+        },
+        {
+          "label": "recent-arrivals-heading",
+          "height": 603
+        },
+        {
+          "label": "dark-edit-heading",
+          "height": 2161
+        },
+        {
+          "label": "campaign-banner-heading",
+          "height": 656
+        },
+        {
+          "label": "service-strip-heading",
+          "height": 326
+        },
+        {
+          "label": "newsletter-heading",
+          "height": 345
+        }
+      ]
+    },
+    "390-dark": {
+      "overflow": 0,
+      "wideElements": [],
+      "smallTargets": [
+        "main | a \"Skip to content\" 1x1",
+        "header | button \"Open menu\" 40x40",
+        "header | a \"EVORA home\" 110x22",
+        "header | a \"Search\" 18x18",
+        "header | a \"Login\" 18x18",
+        "header | a \"Cart\" 18x18",
+        "Featured collections | button \"Slide 1 of 3: Heritage collection\" 36x32",
+        "Featured collections | button \"Slide 2 of 3: Modern elegance\" 36x32",
+        "Featured collections | button \"Slide 3 of 3: New season\" 36x32",
+        "Featured collections | button \"Previous slide\" 36x36",
+        "Featured collections | button \"Next slide\" 36x36",
+        "Featured collections | button \"Pause slideshow\" 36x36",
+        "recent-arrivals-heading | a \"Shop new in\" 93x20",
+        "dark-edit-heading | a \"Shop the edit\" 129x22",
+        "dark-edit-heading | button \"Save Rider Leather Biker Jacket to wishl\" 36x36",
+        "dark-edit-heading | button \"Save Engineer Buckle Boots to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Single-Breasted Black Blazer to wis\" 36x36",
+        "dark-edit-heading | button \"Save Studio Zip Hoodie to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Cropped Moto Leather Jacket to wish\" 36x36",
+        "dark-edit-heading | button \"Save Leather Trench Coat to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Nylon Bomber Jacket to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Side-Zip Leather Ankle Boots to wis\" 36x36",
+        "dark-edit-heading | button \"Save Oversized Tailored Blazer to wishli\" 36x36",
+        "footer | a \"New arrivals\" 79x18",
+        "footer | a \"Men\" 28x18",
+        "footer | a \"Women\" 49x18",
+        "footer | a \"Accessories\" 77x18",
+        "footer | a \"Shop all\" 52x18",
+        "footer | a \"Sign in\" 44x18",
+        "footer | a \"Create account\" 98x18",
+        "footer | a \"Wishlist\" 51x18",
+        "footer | a \"Shipping & returns\" 118x18",
+        "footer | a \"FAQ\" 26x18",
+        "footer | a \"Privacy\" 51x15",
+        "footer | a \"Terms\" 41x15"
+      ],
+      "heroText": [
+        {
+          "text": "H",
+          "size": 49.2096,
+          "top": 228,
+          "bottom": 277
+        },
+        {
+          "text": "E",
+          "size": 49.2096,
+          "top": 228,
+          "bottom": 277
+        },
+        {
+          "text": "R",
+          "size": 49.2096,
+          "top": 228,
+          "bottom": 277
+        },
+        {
+          "text": "I",
+          "size": 49.2096,
+          "top": 228,
+          "bottom": 277
+        },
+        {
+          "text": "T",
+          "size": 49.2096,
+          "top": 228,
+          "bottom": 277
+        },
+        {
+          "text": "A",
+          "size": 49.2096,
+          "top": 228,
+          "bottom": 277
+        },
+        {
+          "text": "G",
+          "size": 49.2096,
+          "top": 228,
+          "bottom": 277
+        },
+        {
+          "text": "E",
+          "size": 49.2096,
+          "top": 228,
+          "bottom": 277
+        },
+        {
+          "text": "Menswear",
+          "size": 9,
+          "top": 85,
+          "bottom": 99
+        },
+        {
+          "text": "English heritage.",
+          "size": 13,
+          "top": 113,
+          "bottom": 134
+        },
+        {
+          "text": "Reimagined for today.",
+          "size": 13,
+          "top": 134,
+          "bottom": 155
+        },
+        {
+          "text": "Explore collection",
+          "size": 10,
+          "top": 721,
+          "bottom": 769
+        }
+      ],
+      "hero": {
+        "top": 65,
+        "height": 780,
+        "width": 390
+      },
+      "heroFigure": {
+        "left": -5,
+        "right": 426,
+        "top": 220,
+        "bottom": 688
+      },
+      "rail": {
+        "clientWidth": 390,
+        "scrollWidth": 782,
+        "scrollable": true,
+        "snapType": "none",
+        "snapAlign": "none",
+        "mask": "none",
+        "scrollbarWidth": "none",
+        "scrollLeft": 0,
+        "canvas": false
+      },
+      "sections": [
+        {
+          "label": "Featured collections",
+          "height": 780
+        },
+        {
+          "label": "recent-arrivals-heading",
+          "height": 555
+        },
+        {
+          "label": "dark-edit-heading",
+          "height": 2278
+        },
+        {
+          "label": "campaign-banner-heading",
+          "height": 656
+        },
+        {
+          "label": "service-strip-heading",
+          "height": 302
+        },
+        {
+          "label": "newsletter-heading",
+          "height": 311
+        }
+      ]
+    },
+    "768-dark": {
+      "overflow": 0,
+      "wideElements": [],
+      "smallTargets": [
+        "main | a \"Skip to content\" 1x1",
+        "header | button \"Open menu\" 40x40",
+        "header | a \"EVORA home\" 130x26",
+        "header | button \"Dark theme\" 18x18",
+        "header | a \"Search\" 18x18",
+        "header | a \"Login\" 18x18",
+        "header | a \"Wishlist\" 18x18",
+        "header | a \"Cart\" 18x18",
+        "Featured collections | button \"Slide 1 of 3: Heritage collection\" 36x32",
+        "Featured collections | button \"Slide 2 of 3: Modern elegance\" 36x32",
+        "Featured collections | button \"Slide 3 of 3: New season\" 36x32",
+        "Featured collections | button \"Previous slide\" 40x40",
+        "Featured collections | button \"Next slide\" 40x40",
+        "Featured collections | button \"Pause slideshow\" 40x40",
+        "recent-arrivals-heading | a \"Shop new in\" 93x20",
+        "dark-edit-heading | a \"Shop the edit\" 129x22",
+        "dark-edit-heading | button \"Save Rider Leather Biker Jacket to wishl\" 36x36",
+        "dark-edit-heading | button \"Save Engineer Buckle Boots to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Single-Breasted Black Blazer to wis\" 36x36",
+        "dark-edit-heading | button \"Save Studio Zip Hoodie to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Cropped Moto Leather Jacket to wish\" 36x36",
+        "dark-edit-heading | button \"Save Leather Trench Coat to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Nylon Bomber Jacket to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Side-Zip Leather Ankle Boots to wis\" 36x36",
+        "dark-edit-heading | button \"Save Oversized Tailored Blazer to wishli\" 36x36",
+        "footer | a \"New arrivals\" 79x18",
+        "footer | a \"Men\" 28x18",
+        "footer | a \"Women\" 49x18",
+        "footer | a \"Accessories\" 77x18",
+        "footer | a \"Shop all\" 52x18",
+        "footer | a \"Sign in\" 44x18",
+        "footer | a \"Create account\" 98x18",
+        "footer | a \"Wishlist\" 51x18",
+        "footer | a \"Shipping & returns\" 118x18",
+        "footer | a \"FAQ\" 26x18",
+        "footer | a \"Privacy\" 51x15",
+        "footer | a \"Terms\" 41x15"
+      ],
+      "heroText": [
+        {
+          "text": "H",
+          "size": 98.9691,
+          "top": 414,
+          "bottom": 513
+        },
+        {
+          "text": "E",
+          "size": 98.9691,
+          "top": 414,
+          "bottom": 513
+        },
+        {
+          "text": "R",
+          "size": 98.9691,
+          "top": 414,
+          "bottom": 513
+        },
+        {
+          "text": "I",
+          "size": 98.9691,
+          "top": 414,
+          "bottom": 513
+        },
+        {
+          "text": "T",
+          "size": 98.9691,
+          "top": 414,
+          "bottom": 513
+        },
+        {
+          "text": "A",
+          "size": 98.9691,
+          "top": 414,
+          "bottom": 513
+        },
+        {
+          "text": "G",
+          "size": 98.9691,
+          "top": 414,
+          "bottom": 513
+        },
+        {
+          "text": "E",
+          "size": 98.9691,
+          "top": 414,
+          "bottom": 513
+        },
+        {
+          "text": "Menswear",
+          "size": 10,
+          "top": 125,
+          "bottom": 140
+        },
+        {
+          "text": "Timeless style",
+          "size": 10,
+          "top": 125,
+          "bottom": 143
+        },
+        {
+          "text": "for modern men",
+          "size": 10,
+          "top": 143,
+          "bottom": 161
+        },
+        {
+          "text": "English heritage.",
+          "size": 14.4,
+          "top": 211,
+          "bottom": 234
+        },
+        {
+          "text": "Reimagined for today.",
+          "size": 14.4,
+          "top": 234,
+          "bottom": 257
+        },
+        {
+          "text": "Explore collection",
+          "size": 10,
+          "top": 893,
+          "bottom": 941
+        },
+        {
+          "text": "New collection",
+          "size": 12.8,
+          "top": 901,
+          "bottom": 921
+        },
+        {
+          "text": "2026",
+          "size": 12.8,
+          "top": 921,
+          "bottom": 941
+        }
+      ],
+      "hero": {
+        "top": 73,
+        "height": 952,
+        "width": 768
+      },
+      "heroFigure": {
+        "left": 138,
+        "right": 691,
+        "top": 262,
+        "bottom": 862
+      },
+      "rail": {
+        "clientWidth": 768,
+        "scrollWidth": 853,
+        "scrollable": true,
+        "snapType": "none",
+        "snapAlign": "none",
+        "mask": "none",
+        "scrollbarWidth": "none",
+        "scrollLeft": 0,
+        "canvas": false
+      },
+      "sections": [
+        {
+          "label": "Featured collections",
+          "height": 952
+        },
+        {
+          "label": "recent-arrivals-heading",
+          "height": 605
+        },
+        {
+          "label": "dark-edit-heading",
+          "height": 3648
+        },
+        {
+          "label": "campaign-banner-heading",
+          "height": 742
+        },
+        {
+          "label": "service-strip-heading",
+          "height": 237
+        },
+        {
+          "label": "newsletter-heading",
+          "height": 323
+        }
+      ]
+    },
+    "1024-dark": {
+      "overflow": 0,
+      "wideElements": [],
+      "smallTargets": [
+        "main | a \"Skip to content\" 1x1",
+        "header | button \"Open menu\" 40x40",
+        "header | a \"Men\" 30x25",
+        "header | a \"Women\" 52x25",
+        "header | a \"Accessories\" 97x25",
+        "header | a \"Shop all\" 68x25",
+        "header | a \"EVORA home\" 142x28",
+        "header | button \"Dark theme\" 18x18",
+        "header | a \"Search\" 18x18",
+        "header | a \"Login\" 18x18",
+        "header | a \"Wishlist\" 18x18",
+        "header | a \"Cart\" 18x18",
+        "Featured collections | button \"Slide 1 of 3: Heritage collection\" 36x32",
+        "Featured collections | button \"Slide 2 of 3: Modern elegance\" 36x32",
+        "Featured collections | button \"Slide 3 of 3: New season\" 36x32",
+        "Featured collections | button \"Previous slide\" 40x40",
+        "Featured collections | button \"Next slide\" 40x40",
+        "Featured collections | button \"Pause slideshow\" 40x40",
+        "recent-arrivals-heading | a \"Shop new in\" 93x20",
+        "dark-edit-heading | a \"Shop the edit\" 129x22",
+        "dark-edit-heading | button \"Save Rider Leather Biker Jacket to wishl\" 36x36",
+        "dark-edit-heading | button \"Save Engineer Buckle Boots to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Single-Breasted Black Blazer to wis\" 36x36",
+        "dark-edit-heading | button \"Save Studio Zip Hoodie to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Cropped Moto Leather Jacket to wish\" 36x36",
+        "dark-edit-heading | button \"Save Leather Trench Coat to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Nylon Bomber Jacket to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Side-Zip Leather Ankle Boots to wis\" 36x36",
+        "dark-edit-heading | button \"Save Oversized Tailored Blazer to wishli\" 36x36",
+        "footer | a \"New arrivals\" 79x18",
+        "footer | a \"Men\" 28x18",
+        "footer | a \"Women\" 49x18",
+        "footer | a \"Accessories\" 77x18",
+        "footer | a \"Shop all\" 52x18",
+        "footer | a \"Sign in\" 44x18",
+        "footer | a \"Create account\" 98x18",
+        "footer | a \"Wishlist\" 51x18",
+        "footer | a \"Shipping & returns\" 118x18",
+        "footer | a \"FAQ\" 26x18",
+        "footer | a \"Privacy\" 51x15",
+        "footer | a \"Terms\" 41x15"
+      ],
+      "heroText": [
+        {
+          "text": "H",
+          "size": 129.759,
+          "top": 293,
+          "bottom": 422
+        },
+        {
+          "text": "E",
+          "size": 129.759,
+          "top": 293,
+          "bottom": 422
+        },
+        {
+          "text": "R",
+          "size": 129.759,
+          "top": 293,
+          "bottom": 422
+        },
+        {
+          "text": "I",
+          "size": 129.759,
+          "top": 293,
+          "bottom": 422
+        },
+        {
+          "text": "T",
+          "size": 129.759,
+          "top": 293,
+          "bottom": 422
+        },
+        {
+          "text": "A",
+          "size": 129.759,
+          "top": 293,
+          "bottom": 422
+        },
+        {
+          "text": "G",
+          "size": 129.759,
+          "top": 293,
+          "bottom": 422
+        },
+        {
+          "text": "E",
+          "size": 129.759,
+          "top": 293,
+          "bottom": 422
+        },
+        {
+          "text": "Menswear",
+          "size": 10,
+          "top": 115,
+          "bottom": 130
+        },
+        {
+          "text": "Timeless style",
+          "size": 10,
+          "top": 115,
+          "bottom": 133
+        },
+        {
+          "text": "for modern men",
+          "size": 10,
+          "top": 133,
+          "bottom": 151
+        },
+        {
+          "text": "English heritage.",
+          "size": 14.4,
+          "top": 170,
+          "bottom": 193
+        },
+        {
+          "text": "Reimagined for today.",
+          "size": 14.4,
+          "top": 193,
+          "bottom": 216
+        },
+        {
+          "text": "Explore collection",
+          "size": 10,
+          "top": 604,
+          "bottom": 652
+        },
+        {
+          "text": "New collection",
+          "size": 12.8,
+          "top": 533,
+          "bottom": 553
+        },
+        {
+          "text": "2026",
+          "size": 12.8,
+          "top": 553,
+          "bottom": 572
+        }
+      ],
+      "hero": {
+        "top": 81,
+        "height": 614,
+        "width": 1024
+      },
+      "heroFigure": {
+        "left": 295,
+        "right": 811,
+        "top": 120,
+        "bottom": 679
+      },
+      "rail": {
+        "clientWidth": 1024,
+        "scrollWidth": 1024,
+        "scrollable": false,
+        "snapType": "none",
+        "snapAlign": "none",
+        "mask": "none",
+        "scrollbarWidth": "thin",
+        "scrollLeft": 0,
+        "canvas": true
+      },
+      "sections": [
+        {
+          "label": "Featured collections",
+          "height": 614
+        },
+        {
+          "label": "recent-arrivals-heading",
+          "height": 671
+        },
+        {
+          "label": "dark-edit-heading",
+          "height": 1477
+        },
+        {
+          "label": "campaign-banner-heading",
+          "height": 605
+        },
+        {
+          "label": "service-strip-heading",
+          "height": 226
+        },
+        {
+          "label": "newsletter-heading",
+          "height": 385
+        }
+      ]
+    },
+    "1280-dark": {
+      "overflow": 0,
+      "wideElements": [],
+      "smallTargets": [
+        "main | a \"Skip to content\" 1x1",
+        "header | button \"Open menu\" 40x40",
+        "header | a \"Men\" 30x25",
+        "header | a \"Women\" 52x25",
+        "header | a \"Accessories\" 97x25",
+        "header | a \"Shop all\" 68x25",
+        "header | a \"EVORA home\" 170x34",
+        "header | button \"Dark theme\" 18x18",
+        "header | a \"Search\" 76x18",
+        "header | a \"Login\" 65x18",
+        "header | a \"Wishlist\" 86x18",
+        "header | a \"Cart\" 59x18",
+        "Featured collections | button \"Slide 1 of 3: Heritage collection\" 36x32",
+        "Featured collections | button \"Slide 2 of 3: Modern elegance\" 36x32",
+        "Featured collections | button \"Slide 3 of 3: New season\" 36x32",
+        "Featured collections | button \"Previous slide\" 40x40",
+        "Featured collections | button \"Next slide\" 40x40",
+        "Featured collections | button \"Pause slideshow\" 40x40",
+        "recent-arrivals-heading | a \"Shop new in\" 93x20",
+        "dark-edit-heading | a \"Shop the edit\" 129x22",
+        "dark-edit-heading | button \"Save Rider Leather Biker Jacket to wishl\" 36x36",
+        "dark-edit-heading | button \"Save Engineer Buckle Boots to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Single-Breasted Black Blazer to wis\" 36x36",
+        "dark-edit-heading | button \"Save Studio Zip Hoodie to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Cropped Moto Leather Jacket to wish\" 36x36",
+        "dark-edit-heading | button \"Save Leather Trench Coat to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Nylon Bomber Jacket to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Side-Zip Leather Ankle Boots to wis\" 36x36",
+        "dark-edit-heading | button \"Save Oversized Tailored Blazer to wishli\" 36x36",
+        "footer | a \"New arrivals\" 79x18",
+        "footer | a \"Men\" 28x18",
+        "footer | a \"Women\" 49x18",
+        "footer | a \"Accessories\" 77x18",
+        "footer | a \"Shop all\" 52x18",
+        "footer | a \"Sign in\" 44x18",
+        "footer | a \"Create account\" 98x18",
+        "footer | a \"Wishlist\" 51x18",
+        "footer | a \"Shipping & returns\" 118x18",
+        "footer | a \"FAQ\" 26x18",
+        "footer | a \"Privacy\" 51x15",
+        "footer | a \"Terms\" 41x15"
+      ],
+      "heroText": [
+        {
+          "text": "H",
+          "size": 160.55,
+          "top": 325,
+          "bottom": 485
+        },
+        {
+          "text": "E",
+          "size": 160.55,
+          "top": 325,
+          "bottom": 485
+        },
+        {
+          "text": "R",
+          "size": 160.55,
+          "top": 325,
+          "bottom": 485
+        },
+        {
+          "text": "I",
+          "size": 160.55,
+          "top": 325,
+          "bottom": 485
+        },
+        {
+          "text": "T",
+          "size": 160.55,
+          "top": 325,
+          "bottom": 485
+        },
+        {
+          "text": "A",
+          "size": 160.55,
+          "top": 325,
+          "bottom": 485
+        },
+        {
+          "text": "G",
+          "size": 160.55,
+          "top": 325,
+          "bottom": 485
+        },
+        {
+          "text": "E",
+          "size": 160.55,
+          "top": 325,
+          "bottom": 485
+        },
+        {
+          "text": "Menswear",
+          "size": 10,
+          "top": 121,
+          "bottom": 136
+        },
+        {
+          "text": "Timeless style",
+          "size": 10,
+          "top": 121,
+          "bottom": 139
+        },
+        {
+          "text": "for modern men",
+          "size": 10,
+          "top": 139,
+          "bottom": 157
+        },
+        {
+          "text": "English heritage.",
+          "size": 14.72,
+          "top": 185,
+          "bottom": 209
+        },
+        {
+          "text": "Reimagined for today.",
+          "size": 14.72,
+          "top": 209,
+          "bottom": 232
+        },
+        {
+          "text": "Explore collection",
+          "size": 10,
+          "top": 703,
+          "bottom": 751
+        },
+        {
+          "text": "New collection",
+          "size": 12.8,
+          "top": 631,
+          "bottom": 651
+        },
+        {
+          "text": "2026",
+          "size": 12.8,
+          "top": 651,
+          "bottom": 671
+        }
+      ],
+      "hero": {
+        "top": 81,
+        "height": 720,
+        "width": 1280
+      },
+      "heroFigure": {
+        "left": 389,
+        "right": 993,
+        "top": 127,
+        "bottom": 782
+      },
+      "rail": {
+        "clientWidth": 1280,
+        "scrollWidth": 1280,
+        "scrollable": false,
+        "snapType": "none",
+        "snapAlign": "none",
+        "mask": "none",
+        "scrollbarWidth": "thin",
+        "scrollLeft": 0,
+        "canvas": true
+      },
+      "sections": [
+        {
+          "label": "Featured collections",
+          "height": 720
+        },
+        {
+          "label": "recent-arrivals-heading",
+          "height": 736
+        },
+        {
+          "label": "dark-edit-heading",
+          "height": 1724
+        },
+        {
+          "label": "campaign-banner-heading",
+          "height": 656
+        },
+        {
+          "label": "service-strip-heading",
+          "height": 238
+        },
+        {
+          "label": "newsletter-heading",
+          "height": 400
+        }
+      ]
+    },
+    "1440-dark": {
+      "overflow": 0,
+      "wideElements": [],
+      "smallTargets": [
+        "main | a \"Skip to content\" 1x1",
+        "header | button \"Open menu\" 40x40",
+        "header | a \"Men\" 30x25",
+        "header | a \"Women\" 52x25",
+        "header | a \"Accessories\" 97x25",
+        "header | a \"Shop all\" 68x25",
+        "header | a \"EVORA home\" 170x34",
+        "header | button \"Dark theme\" 18x18",
+        "header | a \"Search\" 76x18",
+        "header | a \"Login\" 65x18",
+        "header | a \"Wishlist\" 86x18",
+        "header | a \"Cart\" 59x18",
+        "Featured collections | button \"Slide 1 of 3: Heritage collection\" 36x32",
+        "Featured collections | button \"Slide 2 of 3: Modern elegance\" 36x32",
+        "Featured collections | button \"Slide 3 of 3: New season\" 36x32",
+        "Featured collections | button \"Previous slide\" 40x40",
+        "Featured collections | button \"Next slide\" 40x40",
+        "Featured collections | button \"Pause slideshow\" 40x40",
+        "recent-arrivals-heading | a \"Shop new in\" 93x20",
+        "dark-edit-heading | a \"Shop the edit\" 129x22",
+        "dark-edit-heading | button \"Save Rider Leather Biker Jacket to wishl\" 36x36",
+        "dark-edit-heading | button \"Save Engineer Buckle Boots to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Single-Breasted Black Blazer to wis\" 36x36",
+        "dark-edit-heading | button \"Save Studio Zip Hoodie to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Cropped Moto Leather Jacket to wish\" 36x36",
+        "dark-edit-heading | button \"Save Leather Trench Coat to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Nylon Bomber Jacket to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Side-Zip Leather Ankle Boots to wis\" 36x36",
+        "dark-edit-heading | button \"Save Oversized Tailored Blazer to wishli\" 36x36",
+        "footer | a \"New arrivals\" 79x18",
+        "footer | a \"Men\" 28x18",
+        "footer | a \"Women\" 49x18",
+        "footer | a \"Accessories\" 77x18",
+        "footer | a \"Shop all\" 52x18",
+        "footer | a \"Sign in\" 44x18",
+        "footer | a \"Create account\" 98x18",
+        "footer | a \"Wishlist\" 51x18",
+        "footer | a \"Shipping & returns\" 118x18",
+        "footer | a \"FAQ\" 26x18",
+        "footer | a \"Privacy\" 51x15",
+        "footer | a \"Terms\" 41x15"
+      ],
+      "heroText": [
+        {
+          "text": "H",
+          "size": 182.543,
+          "top": 359,
+          "bottom": 541
+        },
+        {
+          "text": "E",
+          "size": 182.543,
+          "top": 359,
+          "bottom": 541
+        },
+        {
+          "text": "R",
+          "size": 182.543,
+          "top": 359,
+          "bottom": 541
+        },
+        {
+          "text": "I",
+          "size": 182.543,
+          "top": 359,
+          "bottom": 541
+        },
+        {
+          "text": "T",
+          "size": 182.543,
+          "top": 359,
+          "bottom": 541
+        },
+        {
+          "text": "A",
+          "size": 182.543,
+          "top": 359,
+          "bottom": 541
+        },
+        {
+          "text": "G",
+          "size": 182.543,
+          "top": 359,
+          "bottom": 541
+        },
+        {
+          "text": "E",
+          "size": 182.543,
+          "top": 359,
+          "bottom": 541
+        },
+        {
+          "text": "Menswear",
+          "size": 10,
+          "top": 126,
+          "bottom": 141
+        },
+        {
+          "text": "Timeless style",
+          "size": 10,
+          "top": 126,
+          "bottom": 144
+        },
+        {
+          "text": "for modern men",
+          "size": 10,
+          "top": 144,
+          "bottom": 162
+        },
+        {
+          "text": "English heritage.",
+          "size": 16.56,
+          "top": 200,
+          "bottom": 226
+        },
+        {
+          "text": "Reimagined for today.",
+          "size": 16.56,
+          "top": 226,
+          "bottom": 253
+        },
+        {
+          "text": "Explore collection",
+          "size": 10,
+          "top": 796,
+          "bottom": 844
+        },
+        {
+          "text": "New collection",
+          "size": 14.4,
+          "top": 719,
+          "bottom": 741
+        },
+        {
+          "text": "2026",
+          "size": 14.4,
+          "top": 741,
+          "bottom": 764
+        }
+      ],
+      "hero": {
+        "top": 81,
+        "height": 820,
+        "width": 1440
+      },
+      "heroFigure": {
+        "left": 433,
+        "right": 1122,
+        "top": 134,
+        "bottom": 880
+      },
+      "rail": {
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "scrollable": false,
+        "snapType": "none",
+        "snapAlign": "none",
+        "mask": "none",
+        "scrollbarWidth": "thin",
+        "scrollLeft": 0,
+        "canvas": true
+      },
+      "sections": [
+        {
+          "label": "Featured collections",
+          "height": 820
+        },
+        {
+          "label": "recent-arrivals-heading",
+          "height": 777
+        },
+        {
+          "label": "dark-edit-heading",
+          "height": 1899
+        },
+        {
+          "label": "campaign-banner-heading",
+          "height": 688
+        },
+        {
+          "label": "service-strip-heading",
+          "height": 245
+        },
+        {
+          "label": "newsletter-heading",
+          "height": 409
+        }
+      ]
+    },
+    "1920-dark": {
+      "overflow": 0,
+      "wideElements": [],
+      "smallTargets": [
+        "main | a \"Skip to content\" 1x1",
+        "header | button \"Open menu\" 40x40",
+        "header | a \"Men\" 30x25",
+        "header | a \"Women\" 52x25",
+        "header | a \"Accessories\" 97x25",
+        "header | a \"Shop all\" 68x25",
+        "header | a \"EVORA home\" 170x34",
+        "header | button \"Dark theme\" 18x18",
+        "header | a \"Search\" 76x18",
+        "header | a \"Login\" 65x18",
+        "header | a \"Wishlist\" 86x18",
+        "header | a \"Cart\" 59x18",
+        "Featured collections | button \"Slide 1 of 3: Heritage collection\" 36x32",
+        "Featured collections | button \"Slide 2 of 3: Modern elegance\" 36x32",
+        "Featured collections | button \"Slide 3 of 3: New season\" 36x32",
+        "Featured collections | button \"Previous slide\" 40x40",
+        "Featured collections | button \"Next slide\" 40x40",
+        "Featured collections | button \"Pause slideshow\" 40x40",
+        "recent-arrivals-heading | a \"Shop new in\" 93x20",
+        "dark-edit-heading | a \"Shop the edit\" 129x22",
+        "dark-edit-heading | button \"Save Rider Leather Biker Jacket to wishl\" 36x36",
+        "dark-edit-heading | button \"Save Engineer Buckle Boots to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Single-Breasted Black Blazer to wis\" 36x36",
+        "dark-edit-heading | button \"Save Studio Zip Hoodie to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Cropped Moto Leather Jacket to wish\" 36x36",
+        "dark-edit-heading | button \"Save Leather Trench Coat to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Nylon Bomber Jacket to wishlist\" 36x36",
+        "dark-edit-heading | button \"Save Side-Zip Leather Ankle Boots to wis\" 36x36",
+        "dark-edit-heading | button \"Save Oversized Tailored Blazer to wishli\" 36x36",
+        "footer | a \"New arrivals\" 79x18",
+        "footer | a \"Men\" 28x18",
+        "footer | a \"Women\" 49x18",
+        "footer | a \"Accessories\" 77x18",
+        "footer | a \"Shop all\" 52x18",
+        "footer | a \"Sign in\" 44x18",
+        "footer | a \"Create account\" 98x18",
+        "footer | a \"Wishlist\" 51x18",
+        "footer | a \"Shipping & returns\" 118x18",
+        "footer | a \"FAQ\" 26x18",
+        "footer | a \"Privacy\" 51x15",
+        "footer | a \"Terms\" 41x15"
+      ],
+      "heroText": [
+        {
+          "text": "H",
+          "size": 215.533,
+          "top": 423,
+          "bottom": 639
+        },
+        {
+          "text": "E",
+          "size": 215.533,
+          "top": 423,
+          "bottom": 639
+        },
+        {
+          "text": "R",
+          "size": 215.533,
+          "top": 423,
+          "bottom": 639
+        },
+        {
+          "text": "I",
+          "size": 215.533,
+          "top": 423,
+          "bottom": 639
+        },
+        {
+          "text": "T",
+          "size": 215.533,
+          "top": 423,
+          "bottom": 639
+        },
+        {
+          "text": "A",
+          "size": 215.533,
+          "top": 423,
+          "bottom": 639
+        },
+        {
+          "text": "G",
+          "size": 215.533,
+          "top": 423,
+          "bottom": 639
+        },
+        {
+          "text": "E",
+          "size": 215.533,
+          "top": 423,
+          "bottom": 639
+        },
+        {
+          "text": "Menswear",
+          "size": 10,
+          "top": 136,
+          "bottom": 151
+        },
+        {
+          "text": "Timeless style",
+          "size": 10,
+          "top": 136,
+          "bottom": 154
+        },
+        {
+          "text": "for modern men",
+          "size": 10,
+          "top": 154,
+          "bottom": 172
+        },
+        {
+          "text": "English heritage.",
+          "size": 19.2,
+          "top": 226,
+          "bottom": 257
+        },
+        {
+          "text": "Reimagined for today.",
+          "size": 19.2,
+          "top": 257,
+          "bottom": 287
+        },
+        {
+          "text": "Explore collection",
+          "size": 10,
+          "top": 963,
+          "bottom": 1011
+        },
+        {
+          "text": "New collection",
+          "size": 16.8,
+          "top": 879,
+          "bottom": 905
+        },
+        {
+          "text": "2026",
+          "size": 16.8,
+          "top": 905,
+          "bottom": 931
+        }
+      ],
+      "hero": {
+        "top": 81,
+        "height": 1000,
+        "width": 1920
+      },
+      "heroFigure": {
+        "left": 607,
+        "right": 1447,
+        "top": 145,
+        "bottom": 1055
+      },
+      "rail": {
+        "clientWidth": 1680,
+        "scrollWidth": 1680,
+        "scrollable": false,
+        "snapType": "none",
+        "snapAlign": "none",
+        "mask": "none",
+        "scrollbarWidth": "thin",
+        "scrollLeft": 0,
+        "canvas": true
+      },
+      "sections": [
+        {
+          "label": "Featured collections",
+          "height": 1000
+        },
+        {
+          "label": "recent-arrivals-heading",
+          "height": 834
+        },
+        {
+          "label": "dark-edit-heading",
+          "height": 2153
+        },
+        {
+          "label": "campaign-banner-heading",
+          "height": 720
+        },
+        {
+          "label": "service-strip-heading",
+          "height": 252
+        },
+        {
+          "label": "newsletter-heading",
+          "height": 416
+        }
+      ]
+    }
+  },
+  "errors": []
+}

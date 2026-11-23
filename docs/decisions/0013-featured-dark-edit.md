@@ -31,6 +31,14 @@ existing catalog following it.
 5. `featuredRank` follows the importer's create-only rule: a rerun never rewrites it, so a merchandiser's
    later change survives. Public endpoints do not return it.
 
+6. **On the home page** (plan.md Phase 4, 2026-11-16) the section shows the first **nine** featured
+   products (`sort=featured`, `pageSize: 9`), still `/shop`'s own front: one lead tile two columns
+   by two rows at `lg`, and eight cards, which fill a four-column grid exactly. With fewer than
+   five products it falls back to the plain grid. It is a dark theme island (`dark` on the
+   section) with one shared photo grade (`saturate(85%) contrast(104%)` on every image inside), and
+   its cards use `ProductCard variant="editorial"`, which hides the brand when it is the store's own
+   (`EVORA`, every product here) and the swatch row for a single colour.
+
 ## Consequences
 - Every listing has a deterministic front: the 40 front-runners, then the catalog by recency.
 - Re-ordering the edit after import needs a database edit (or the future admin catalog API, M3

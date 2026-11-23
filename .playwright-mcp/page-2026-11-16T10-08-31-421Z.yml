@@ -1,0 +1,496 @@
+- generic [active] [ref=e1]:
+  - link "Skip to content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - button "Open menu" [ref=e6]
+        - navigation "Primary" [ref=e8]:
+          - link "Men" [ref=e9] [cursor=pointer]:
+            - /url: /collections/men
+          - link "Women" [ref=e10] [cursor=pointer]:
+            - /url: /collections/women
+          - link "Accessories" [ref=e11] [cursor=pointer]:
+            - /url: /shop?category=accessories
+          - link "Shop all" [ref=e12] [cursor=pointer]:
+            - /url: /shop
+      - link "EVORA home" [ref=e13] [cursor=pointer]:
+        - /url: /
+        - text: EVORA
+      - generic [ref=e14]:
+        - button "Dark theme" [ref=e15]
+        - link "Search" [ref=e25] [cursor=pointer]:
+          - /url: /search
+        - link "Login" [ref=e31] [cursor=pointer]:
+          - /url: /sign-in
+        - link "Wishlist" [ref=e37] [cursor=pointer]:
+          - /url: /wishlist
+        - link "Cart" [ref=e42] [cursor=pointer]:
+          - /url: /cart
+  - main [ref=e48]:
+    - generic [ref=e49]:
+      - heading "EVORA — Modern essentials" [level=1] [ref=e50]
+      - region "Featured collections" [ref=e53]:
+        - generic [ref=e54]:
+          - 'group "2 of 3: Modern elegance" [ref=e694]':
+            - generic [aria-hidden]:
+              - generic:
+                - paragraph:
+                  - generic: E
+                  - generic: V
+                  - generic: O
+                  - generic: R
+                  - generic: A
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - img "Woman in a long black wool coat and wide trousers, walking"
+            - list [ref=e695]:
+              - listitem [ref=e696]: Womenswear
+              - listitem [ref=e697]: Tailoring
+              - listitem [ref=e699]: Outerwear
+            - paragraph [ref=e701]:
+              - generic [ref=e702]: Quiet tailoring
+              - generic [ref=e703]: for modern women
+            - heading "Modern silhouettes. Timeless confidence." [level=2] [ref=e705]:
+              - generic [ref=e706]: Modern silhouettes.
+              - generic [ref=e708]: Timeless confidence.
+            - link "Discover the collection" [ref=e713] [cursor=pointer]:
+              - /url: /collections/women
+            - paragraph [ref=e714]:
+              - generic [ref=e715]: Modern
+              - generic [ref=e716]: elegance
+          - generic [ref=e81]:
+            - generic [ref=e82]:
+              - paragraph [aria-hidden] [ref=e83]:
+                - generic [ref=e84]: "02"
+                - generic [ref=e87]: "03"
+              - group "Choose a slide" [ref=e88]:
+                - 'button "Slide 1 of 3: Heritage collection" [ref=e89]'
+                - 'button "Slide 2 of 3: Modern elegance" [ref=e92]'
+                - 'button "Slide 3 of 3: New season" [ref=e94]'
+            - generic [ref=e96]:
+              - button "Previous slide" [ref=e97]
+              - button "Next slide" [ref=e100]
+              - button "Pause slideshow" [ref=e103]
+      - region "Recent Arrivals" [ref=e107]:
+        - generic [ref=e108]:
+          - generic [ref=e109]:
+            - generic [ref=e110]:
+              - paragraph [ref=e111]: Just landed
+              - heading "Recent Arrivals" [level=2] [ref=e113]
+            - link "Shop new in" [ref=e116] [cursor=pointer]:
+              - /url: /collections/new
+          - generic [ref=e642]:
+            - list [ref=e644]:
+              - listitem [ref=e645]:
+                - link "Jackets Utility Nylon Bomber ৳11,100":
+                  - /url: /products/utility-nylon-bomber-ar001
+                  - generic [ref=e646] [cursor=pointer]
+                  - generic:
+                    - generic: Jackets
+                    - generic: Utility Nylon Bomber
+                    - generic: ৳11,100
+              - listitem [ref=e651]:
+                - link "Jackets Rust Flight Bomber ৳13,450":
+                  - /url: /products/rust-flight-bomber-ar002
+                  - generic [ref=e652] [cursor=pointer]
+                  - generic:
+                    - generic: Jackets
+                    - generic: Rust Flight Bomber
+                    - generic: ৳13,450
+              - listitem [ref=e657]:
+                - link "Jackets Cord-Collar Denim Jacket ৳6,050":
+                  - /url: /products/cord-collar-denim-jacket-ar003
+                  - generic [ref=e658] [cursor=pointer]
+                  - generic:
+                    - generic: Jackets
+                    - generic: Cord-Collar Denim Jacket
+                    - generic: ৳6,050
+              - listitem [ref=e663]:
+                - link "Blazers Shawl-Collar Midnight Blazer ৳8,300":
+                  - /url: /products/shawl-collar-midnight-blazer-ar004
+                  - generic [ref=e664] [cursor=pointer]
+                  - generic:
+                    - generic: Blazers
+                    - generic: Shawl-Collar Midnight Blazer
+                    - generic: ৳8,300
+              - listitem [ref=e669]:
+                - link "Coats Boiled Wool Funnel Coat ৳13,650":
+                  - /url: /products/boiled-wool-funnel-coat-ar005
+                  - generic [ref=e670] [cursor=pointer]
+                  - generic:
+                    - generic: Coats
+                    - generic: Boiled Wool Funnel Coat
+                    - generic: ৳13,650
+              - listitem [ref=e675]:
+                - link "Jackets Felted Wool Chore Jacket ৳10,850":
+                  - /url: /products/felted-wool-chore-jacket-ar006
+                  - generic [ref=e676] [cursor=pointer]
+                  - generic:
+                    - generic: Jackets
+                    - generic: Felted Wool Chore Jacket
+                    - generic: ৳10,850
+              - listitem [ref=e681]:
+                - link "Shirts Workwear Twill Overshirt ৳4,300":
+                  - /url: /products/workwear-twill-overshirt-ar007
+                  - generic [ref=e682] [cursor=pointer]
+                  - generic:
+                    - generic: Shirts
+                    - generic: Workwear Twill Overshirt
+                    - generic: ৳4,300
+              - listitem [ref=e687]:
+                - link "Jackets Hooded Canvas Parka ৳5,550":
+                  - /url: /products/hooded-canvas-parka-ar008
+                  - generic [ref=e688] [cursor=pointer]
+                  - generic:
+                    - generic: Jackets
+                    - generic: Hooded Canvas Parka
+                    - generic: ৳5,550
+            - paragraph [aria-hidden] [ref=e693]: Hover a piece to turn it around
+      - region "Built for the After Hours" [ref=e175]:
+        - generic [ref=e176]:
+          - generic [ref=e177]:
+            - generic [ref=e179]:
+              - paragraph [ref=e180]: The Dark Edit
+              - heading "Built for the After Hours" [level=2] [ref=e181]
+            - link "Shop the edit" [ref=e185] [cursor=pointer]:
+              - /url: /shop
+          - list [ref=e719]:
+            - listitem [ref=e720]:
+              - generic [ref=e721]:
+                - 'link "Black leather biker jacket with silver zips laid flat on white linen EVORA Men Rider Leather Biker Jacket ৳13,250 Colours: Black" [ref=e722] [cursor=pointer]':
+                  - /url: /products/rider-leather-biker-jacket-de001
+                  - generic [ref=e723]:
+                    - img "Black leather biker jacket with silver zips laid flat on white linen" [ref=e724]
+                    - generic [aria-hidden] [ref=e725]: View product
+                  - generic [ref=e729]:
+                    - paragraph [ref=e730]:
+                      - generic [ref=e731]: EVORA
+                      - generic [ref=e732]: Men
+                    - heading "Rider Leather Biker Jacket" [level=3] [ref=e733]
+                    - generic [ref=e734]:
+                      - paragraph [ref=e735]:
+                        - generic [ref=e736]: ৳13,250
+                      - paragraph [ref=e737]:
+                        - generic [ref=e739]: "Colours: Black"
+                - button "Save Rider Leather Biker Jacket to wishlist" [ref=e740]
+            - listitem [ref=e743]:
+              - generic [ref=e744]:
+                - 'link "Pair of black leather engineer boots with buckle straps on a stone floor EVORA Men Engineer Buckle Boots ৳10,650 Colours: Black" [ref=e745] [cursor=pointer]':
+                  - /url: /products/engineer-buckle-boots-de002
+                  - generic [ref=e746]:
+                    - img "Pair of black leather engineer boots with buckle straps on a stone floor" [ref=e747]
+                    - generic [aria-hidden] [ref=e748]: View product
+                  - generic [ref=e752]:
+                    - paragraph [ref=e753]:
+                      - generic [ref=e754]: EVORA
+                      - generic [ref=e755]: Men
+                    - heading "Engineer Buckle Boots" [level=3] [ref=e756]
+                    - generic [ref=e757]:
+                      - paragraph [ref=e758]:
+                        - generic [ref=e759]: ৳10,650
+                      - paragraph [ref=e760]:
+                        - generic [ref=e762]: "Colours: Black"
+                - button "Save Engineer Buckle Boots to wishlist" [ref=e763]
+            - listitem [ref=e766]:
+              - generic [ref=e767]:
+                - 'link "Black single-breasted blazer on a hanger against weathered wood EVORA Men Single-Breasted Black Blazer ৳9,550 Colours: Black" [ref=e768] [cursor=pointer]':
+                  - /url: /products/single-breasted-black-blazer-de003
+                  - generic [ref=e769]:
+                    - img "Black single-breasted blazer on a hanger against weathered wood" [ref=e770]
+                    - generic [aria-hidden] [ref=e771]: View product
+                  - generic [ref=e775]:
+                    - paragraph [ref=e776]:
+                      - generic [ref=e777]: EVORA
+                      - generic [ref=e778]: Men
+                    - heading "Single-Breasted Black Blazer" [level=3] [ref=e779]
+                    - generic [ref=e780]:
+                      - paragraph [ref=e781]:
+                        - generic [ref=e782]: ৳9,550
+                      - paragraph [ref=e783]:
+                        - generic [ref=e785]: "Colours: Black"
+                - button "Save Single-Breasted Black Blazer to wishlist" [ref=e786]
+            - listitem [ref=e789]:
+              - generic [ref=e790]:
+                - 'link "Model in a black zip hoodie and black trousers against a white studio wall EVORA Unisex Studio Zip Hoodie ৳5,100 Colours: Black" [ref=e791] [cursor=pointer]':
+                  - /url: /products/studio-zip-hoodie-de004
+                  - generic [ref=e792]:
+                    - img "Model in a black zip hoodie and black trousers against a white studio wall" [ref=e793]
+                    - generic [aria-hidden] [ref=e794]: View product
+                  - generic [ref=e798]:
+                    - paragraph [ref=e799]:
+                      - generic [ref=e800]: EVORA
+                      - generic [ref=e801]: Unisex
+                    - heading "Studio Zip Hoodie" [level=3] [ref=e802]
+                    - generic [ref=e803]:
+                      - paragraph [ref=e804]:
+                        - generic [ref=e805]: ৳5,100
+                      - paragraph [ref=e806]:
+                        - generic [ref=e808]: "Colours: Black"
+                - button "Save Studio Zip Hoodie to wishlist" [ref=e809]
+            - listitem [ref=e812]:
+              - generic [ref=e813]:
+                - 'link "Woman in a cropped black leather moto jacket beside a black metal fence EVORA Women Cropped Moto Leather Jacket ৳6,700 Colours: Black" [ref=e814] [cursor=pointer]':
+                  - /url: /products/cropped-moto-leather-jacket-de005
+                  - generic [ref=e815]:
+                    - img "Woman in a cropped black leather moto jacket beside a black metal fence" [ref=e816]
+                    - generic [aria-hidden] [ref=e817]: View product
+                  - generic [ref=e821]:
+                    - paragraph [ref=e822]:
+                      - generic [ref=e823]: EVORA
+                      - generic [ref=e824]: Women
+                    - heading "Cropped Moto Leather Jacket" [level=3] [ref=e825]
+                    - generic [ref=e826]:
+                      - paragraph [ref=e827]:
+                        - generic [ref=e828]: ৳6,700
+                      - paragraph [ref=e829]:
+                        - generic [ref=e831]: "Colours: Black"
+                - button "Save Cropped Moto Leather Jacket to wishlist" [ref=e832]
+            - listitem [ref=e835]:
+              - generic [ref=e836]:
+                - 'link "Woman in a long black leather trench coat in a white columned corridor EVORA Women Leather Trench Coat ৳11,100 Colours: Black" [ref=e837] [cursor=pointer]':
+                  - /url: /products/leather-trench-coat-de006
+                  - generic [ref=e838]:
+                    - img "Woman in a long black leather trench coat in a white columned corridor" [ref=e839]
+                    - generic [aria-hidden] [ref=e840]: View product
+                  - generic [ref=e844]:
+                    - paragraph [ref=e845]:
+                      - generic [ref=e846]: EVORA
+                      - generic [ref=e847]: Women
+                    - heading "Leather Trench Coat" [level=3] [ref=e848]
+                    - generic [ref=e849]:
+                      - paragraph [ref=e850]:
+                        - generic [ref=e851]: ৳11,100
+                      - paragraph [ref=e852]:
+                        - generic [ref=e854]: "Colours: Black"
+                - button "Save Leather Trench Coat to wishlist" [ref=e855]
+            - listitem [ref=e858]:
+              - generic [ref=e859]:
+                - 'link "Man in a black bomber jacket in front of a graffiti wall EVORA Men Nylon Bomber Jacket ৳7,050 Colours: Black" [ref=e860] [cursor=pointer]':
+                  - /url: /products/nylon-bomber-jacket-de007
+                  - generic [ref=e861]:
+                    - img "Man in a black bomber jacket in front of a graffiti wall" [ref=e862]
+                    - generic [aria-hidden] [ref=e863]: View product
+                  - generic [ref=e867]:
+                    - paragraph [ref=e868]:
+                      - generic [ref=e869]: EVORA
+                      - generic [ref=e870]: Men
+                    - heading "Nylon Bomber Jacket" [level=3] [ref=e871]
+                    - generic [ref=e872]:
+                      - paragraph [ref=e873]:
+                        - generic [ref=e874]: ৳7,050
+                      - paragraph [ref=e875]:
+                        - generic [ref=e877]: "Colours: Black"
+                - button "Save Nylon Bomber Jacket to wishlist" [ref=e878]
+            - listitem [ref=e881]:
+              - generic [ref=e882]:
+                - 'link "Single black leather ankle boot with side zips on a white surface EVORA Unisex Side-Zip Leather Ankle Boots ৳13,200 Colours: Black" [ref=e883] [cursor=pointer]':
+                  - /url: /products/side-zip-leather-ankle-boots-de008
+                  - generic [ref=e884]:
+                    - img "Single black leather ankle boot with side zips on a white surface" [ref=e885]
+                    - generic [aria-hidden] [ref=e886]: View product
+                  - generic [ref=e890]:
+                    - paragraph [ref=e891]:
+                      - generic [ref=e892]: EVORA
+                      - generic [ref=e893]: Unisex
+                    - heading "Side-Zip Leather Ankle Boots" [level=3] [ref=e894]
+                    - generic [ref=e895]:
+                      - paragraph [ref=e896]:
+                        - generic [ref=e897]: ৳13,200
+                      - paragraph [ref=e898]:
+                        - generic [ref=e900]: "Colours: Black"
+                - button "Save Side-Zip Leather Ankle Boots to wishlist" [ref=e901]
+      - region "More Than Just Fashion" [ref=e239]:
+        - generic [ref=e241]:
+          - generic [ref=e243]:
+            - paragraph [ref=e244]: Why shop with us?
+            - heading "More Than Just Fashion" [level=2] [ref=e245]
+          - list [ref=e248]:
+            - listitem [ref=e249]:
+              - generic [ref=e253]:
+                - heading "Premium Quality" [level=3] [ref=e254]
+                - paragraph [ref=e255]: Only the finest materials and craftsmanship.
+            - listitem [ref=e256]:
+              - generic [ref=e259]:
+                - heading "Secure Payment" [level=3] [ref=e260]
+                - paragraph [ref=e261]: Shop with confidence using trusted payment methods.
+            - listitem [ref=e262]:
+              - generic [ref=e268]:
+                - heading "Fast & Reliable Shipping" [level=3] [ref=e269]
+                - paragraph [ref=e270]: Get your order delivered on time, every time.
+            - listitem [ref=e271]:
+              - generic [ref=e275]:
+                - heading "Easy Returns" [level=3] [ref=e276]
+                - paragraph [ref=e277]: Hassle-free returns within 30 days.
+      - region "Layered in Wool" [ref=e278]:
+        - generic [ref=e280]:
+          - generic [ref=e283]:
+            - generic [ref=e284]:
+              - paragraph [ref=e286]: The winter edit
+              - heading "Layered in Wool" [level=2] [ref=e287]:
+                - generic [ref=e288]: Layered
+                - generic [ref=e290]: in Wool
+              - paragraph [ref=e293]: Overcoats, blazers and jackets from the latest outerwear collection.
+              - link "Shop outerwear" [ref=e295] [cursor=pointer]:
+                - /url: /shop?category=outerwear
+            - paragraph [ref=e302]: Crafted style.Elevated looks.
+          - paragraph [ref=e303]: "Photo: Behrooz Rahimi / Unsplash"
+      - region "Real People. Real Style." [ref=e304]:
+        - generic [ref=e306]:
+          - generic [ref=e307]:
+            - generic [ref=e309]:
+              - paragraph [ref=e310]: What our customers say
+              - heading "Real People. Real Style." [level=2] [ref=e311]
+            - paragraph [ref=e315]: Sample reviews for preview
+          - list [ref=e316]:
+            - listitem [ref=e317]:
+              - figure "James Carter Rated 5 out of 5" [ref=e318]:
+                - generic [ref=e320]:
+                  - generic [aria-hidden] [ref=e321]: JC
+                  - generic [ref=e322]:
+                    - generic [ref=e323]: James Carter
+                    - generic [ref=e324]: Rated 5 out of 5
+                - blockquote [ref=e340]:
+                  - paragraph [ref=e341]: Absolutely love the quality and fit! EVORA never disappoints.
+                - paragraph [ref=e342]:
+                  - generic [ref=e343]:
+                    - generic [ref=e347]: "Purchased:"
+                    - generic [ref=e348]: Waxed Cotton Field Jacket
+            - listitem [ref=e349]:
+              - figure "Sophia Bennett Rated 5 out of 5" [ref=e350]:
+                - generic [ref=e352]:
+                  - generic [aria-hidden] [ref=e353]: SB
+                  - generic [ref=e354]:
+                    - generic [ref=e355]: Sophia Bennett
+                    - generic [ref=e356]: Rated 5 out of 5
+                - blockquote [ref=e372]:
+                  - paragraph [ref=e373]: The delivery was super fast and the packaging felt premium.
+                - paragraph [ref=e374]:
+                  - generic [ref=e375]:
+                    - generic [ref=e379]: "Purchased:"
+                    - generic [ref=e380]: Camel Wool Overcoat
+            - listitem [ref=e381]:
+              - figure "Daniel Kim Rated 5 out of 5" [ref=e382]:
+                - generic [ref=e384]:
+                  - generic [aria-hidden] [ref=e385]: DK
+                  - generic [ref=e386]:
+                    - generic [ref=e387]: Daniel Kim
+                    - generic [ref=e388]: Rated 5 out of 5
+                - blockquote [ref=e404]:
+                  - paragraph [ref=e405]: Clean design, great products, and excellent customer service.
+                - paragraph [ref=e406]:
+                  - generic [ref=e407]:
+                    - generic [ref=e411]: "Purchased:"
+                    - generic [ref=e412]: Textured Cotton Tee
+      - region "Join Our Newsletter" [ref=e413]:
+        - generic [ref=e419]:
+          - generic [ref=e420]:
+            - generic [ref=e421]:
+              - paragraph [ref=e422]: Stay in the loop
+              - heading "Join Our Newsletter" [level=2] [ref=e423]
+            - paragraph [ref=e426]: Be the first to know about new arrivals, exclusive offers and more.
+          - generic [ref=e429]:
+            - generic [ref=e430]: Email address
+            - textbox "Email address" [ref=e431]:
+              - /placeholder: Enter your email address
+            - button "Subscribe" [ref=e432]
+      - region "Common Questions" [ref=e435]:
+        - generic [ref=e437]:
+          - generic [ref=e439]:
+            - paragraph [ref=e440]: FAQ
+            - heading "Common Questions" [level=2] [ref=e441]
+          - generic [ref=e444]:
+            - generic [ref=e445]:
+              - heading [level=3] [ref=e446]:
+                - button "How long does shipping take?" [expanded] [ref=e447]
+              - region "How long does shipping take?" [ref=e452]:
+                - generic [ref=e454]:
+                  - paragraph [ref=e455]: Delivery times and fees depend on your address and the delivery option you choose. Both are shown at checkout, before you pay.
+                  - paragraph [ref=e456]: Placeholder — policy to be confirmed
+            - generic [ref=e457]:
+              - heading [level=3] [ref=e458]:
+                - button "Can I return or exchange an item?" [ref=e459]
+              - region "Can I return or exchange an item?":
+                - generic [ref=e464]:
+                  - paragraph [ref=e465]: Returns are accepted within 30 days of delivery.
+                  - paragraph [ref=e466]: Full eligibility terms, including exchanges and refunds for cash-on-delivery orders, are still being finalised and will be published before launch.
+                  - paragraph [ref=e467]: Placeholder — policy to be confirmed
+            - generic [ref=e468]:
+              - heading [level=3] [ref=e469]:
+                - button "What payment methods do you accept?" [ref=e470]
+              - region "What payment methods do you accept?":
+                - generic [ref=e475]:
+                  - paragraph [ref=e476]: "Cash on delivery, and online payment through SSLCOMMERZ, including bKash, cards and other mobile banking. Payment details go straight to the provider: we never see or store them."
+                  - paragraph [ref=e477]: Placeholder — policy to be confirmed
+            - generic [ref=e478]:
+              - heading [level=3] [ref=e479]:
+                - button "Do you offer international shipping?" [ref=e480]
+              - region "Do you offer international shipping?":
+                - generic [ref=e485]:
+                  - paragraph [ref=e486]: We're still confirming which countries we deliver to. The destinations we serve will be listed at checkout.
+                  - paragraph [ref=e487]: Placeholder — policy to be confirmed
+  - contentinfo [ref=e488]:
+    - generic [ref=e489]:
+      - generic [ref=e490]:
+        - generic [ref=e491]:
+          - paragraph [ref=e492]: Considered clothing and objects for a slower, more deliberate everyday.
+          - paragraph [ref=e493]: Designed to be worn, kept, and returned to.
+        - generic [ref=e494]:
+          - generic [ref=e495]:
+            - heading "Shop" [level=2] [ref=e496]
+            - list [ref=e497]:
+              - listitem [ref=e498]:
+                - link "New arrivals" [ref=e499] [cursor=pointer]:
+                  - /url: /collections/new
+              - listitem [ref=e500]:
+                - link "Men" [ref=e501] [cursor=pointer]:
+                  - /url: /collections/men
+              - listitem [ref=e502]:
+                - link "Women" [ref=e503] [cursor=pointer]:
+                  - /url: /collections/women
+              - listitem [ref=e504]:
+                - link "Accessories" [ref=e505] [cursor=pointer]:
+                  - /url: /shop?category=accessories
+              - listitem [ref=e506]:
+                - link "Shop all" [ref=e507] [cursor=pointer]:
+                  - /url: /shop
+          - generic [ref=e508]:
+            - heading "Account" [level=2] [ref=e509]
+            - list [ref=e510]:
+              - listitem [ref=e511]:
+                - link "Sign in" [ref=e512] [cursor=pointer]:
+                  - /url: /sign-in
+              - listitem [ref=e513]:
+                - link "Create account" [ref=e514] [cursor=pointer]:
+                  - /url: /sign-up
+              - listitem [ref=e515]:
+                - link "My account" [ref=e516] [cursor=pointer]:
+                  - /url: /account
+              - listitem [ref=e517]:
+                - link "Wishlist" [ref=e518] [cursor=pointer]:
+                  - /url: /wishlist
+          - generic [ref=e519]:
+            - heading "Help" [level=2] [ref=e520]
+            - list [ref=e521]:
+              - listitem [ref=e522]:
+                - link "Shipping & returns" [ref=e523] [cursor=pointer]:
+                  - /url: /shipping
+              - listitem [ref=e524]:
+                - link "FAQ" [ref=e525] [cursor=pointer]:
+                  - /url: /faq
+      - link "EVORA home" [ref=e527] [cursor=pointer]:
+        - /url: /
+        - text: EVORA
+      - generic [ref=e528]:
+        - paragraph [ref=e529]: © EVORA. All rights reserved.
+        - navigation "Legal" [ref=e530]:
+          - link "Privacy" [ref=e531] [cursor=pointer]:
+            - /url: /privacy
+          - link "Terms" [ref=e532] [cursor=pointer]:
+            - /url: /terms
+  - region "Notifications alt+T"
+  - button "Open Tanstack query devtools" [ref=e583] [cursor=pointer]
+  - button "Open Next.js Dev Tools" [ref=e637] [cursor=pointer]
+  - alert [ref=e641]

@@ -33,7 +33,7 @@ export function FaqAccordion({ faqs }: { faqs: readonly Faq[] }) {
         const panelId = `${baseId}-${faq.id}-panel`;
 
         return (
-          // Framer owns this wrapper's opacity and transform (the entrance); the panel's
+          // GSAP owns this wrapper's opacity and transform (the entrance); the panel's
           // own transitions are CSS on elements inside it.
           <RevealItem key={faq.id} className="border-t border-border">
             <h3>

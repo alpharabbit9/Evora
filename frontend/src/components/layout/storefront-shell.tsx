@@ -1,3 +1,5 @@
+import { AssistantWidget } from '@/components/assistant/assistant-widget';
+
 import { SiteFooter } from './site-footer';
 import { SiteHeader } from './site-header';
 
@@ -24,6 +26,7 @@ export function StorefrontShell({ children }: { children: React.ReactNode }) {
         {children}
       </main>
       <SiteFooter />
+      <AssistantWidget />
     </>
   );
 }

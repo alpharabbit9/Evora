@@ -1,6 +1,7 @@
 # ADR 0012 — Public Catalog Queries and Cart Ownership
 
-- **Status:** Accepted
+- **Status:** Accepted; decisions 5 and 6 superseded in part by [ADR 0014](0014-account-only-cart-and-protected-routes.md)
+  (the cart is signed-in only; no new guest carts, existing ones still merge)
 - **Date:** 2026-10-27
 - **Context documents:** [`fashion-catalog-integration-plan.md`](../fashion-catalog-integration-plan.md)
   (Phase 3), [ADR 0004](0004-inventory-policy.md), [ADR 0011](0011-catalog-import-provenance.md)

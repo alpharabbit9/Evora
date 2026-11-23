@@ -1,0 +1,25 @@
+# The production topology (ADR 0024): one public origin. /api goes to the Express API, everything
+# else to the Next.js server, so the session cookie the API sets is the storefront's cookie too.
+# A real edge terminates TLS here and sets HSTS; this rehearsal listens on plain HTTP on
+# localhost, which browsers treat as a secure context for Secure cookies.
+{
+	admin off
+	auto_https off
+}
+
+:8080 {
+	encode zstd gzip
+
+	handle /api/* {
+		reverse_proxy api:4000
+	}
+
+	handle {
+		reverse_proxy web:3000
+	}
+
+	log {
+		output stdout
+		format json
+	}
+}

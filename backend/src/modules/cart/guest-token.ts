@@ -1,4 +1,4 @@
-import { createHash, randomBytes } from 'node:crypto';
+import { createHash } from 'node:crypto';
 
 import type { CookieOptions, Request, Response } from 'express';
 
@@ -12,6 +12,10 @@ import { isProduction } from '../../config/env.js';
  * so a leaked database row cannot be replayed as a cookie, and page scripts never see the
  * token. A plain hash (not a slow KDF) is enough because the input is 32 random bytes, not a
  * human-chosen secret.
+ *
+ * Tokens are no longer issued: adding to a cart requires an account (ADR 0014). What is left
+ * here reads and clears the cookie on carts made before that, so the cart routes can fold
+ * them into the account on sign-in until the last of them expires.
  */
 export const GUEST_CART_COOKIE = 'commercecore.cart';
 
@@ -22,14 +26,15 @@ export const GUEST_CART_TTL_MS = 30 * 24 * 60 * 60 * 1000;
 const TOKEN_PATTERN = /^[A-Za-z0-9_-]{43}$/;
 
 /**
- * Same attributes as the session cookie (src/lib/auth.ts, ADR 0006): `Lax` in development,
- * where frontend and API are same-site, and `None; Secure` in production, where they are not.
- * CSRF on the cart routes is covered by `requireTrustedOrigin`, like every other write.
+ * Same attributes as the session cookie (src/lib/auth.ts): `Lax` everywhere, because the
+ * storefront and the API are always same-site (ADR 0024 refuses any other production shape),
+ * and `Secure` in production. Host-only: only the API reads it. CSRF on the cart routes is
+ * covered by `requireTrustedOrigin`, like every other write.
  */
 const COOKIE_OPTIONS: CookieOptions = {
   httpOnly: true,
   secure: isProduction,
-  sameSite: isProduction ? 'none' : 'lax',
+  sameSite: 'lax',
   path: '/api/v1/cart',
 };
 
@@ -46,13 +51,6 @@ export function readGuestTokenHash(req: Request): string | undefined {
   }
 
   return hashGuestToken(value);
-}
-
-/** Mints a token, sets it on the response, and returns its hash for the new cart row. */
-export function issueGuestToken(res: Response): string {
-  const token = randomBytes(32).toString('base64url');
-  res.cookie(GUEST_CART_COOKIE, token, { ...COOKIE_OPTIONS, maxAge: GUEST_CART_TTL_MS });
-  return hashGuestToken(token);
 }
 
 export function clearGuestToken(res: Response): void {

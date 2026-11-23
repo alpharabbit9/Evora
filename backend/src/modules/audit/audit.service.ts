@@ -20,6 +20,29 @@ import type { TransactionClient } from '../../lib/transaction.js';
 export const AuditAction = {
   CUSTOMER_STATUS_UPDATED: 'customer.status.updated',
   CUSTOMER_ROLE_UPDATED: 'customer.role.updated',
+  PRODUCT_CREATED: 'product.created',
+  PRODUCT_UPDATED: 'product.updated',
+  PRODUCT_ARCHIVED: 'product.archived',
+  VARIANT_CREATED: 'variant.created',
+  VARIANT_UPDATED: 'variant.updated',
+  IMAGE_CREATED: 'image.created',
+  IMAGE_UPDATED: 'image.updated',
+  IMAGE_DELETED: 'image.deleted',
+  CATEGORY_CREATED: 'category.created',
+  CATEGORY_UPDATED: 'category.updated',
+  STOCK_ADJUSTED: 'inventory.stock.adjusted',
+  ORDER_TRANSITIONED: 'order.transitioned',
+  ORDER_COD_COLLECTED: 'order.cod.collected',
+  REFUND_REQUESTED: 'refund.requested',
+  PAYMENT_HOLD_RESOLVED: 'payment.hold.resolved',
+  JOB_RETRIED: 'outbox.job.retried',
+  JOBS_BULK_RETRIED: 'outbox.jobs.bulk_retried',
+  COUPON_CREATED: 'coupon.created',
+  COUPON_UPDATED: 'coupon.updated',
+  SETTINGS_UPDATED: 'settings.updated',
+  ORDERS_EXPORTED: 'orders.exported',
+  /** Reading a customer's chat is itself recorded: it is personal text (ADR 0025). */
+  ASSISTANT_CONVERSATION_VIEWED: 'assistant.conversation.viewed',
 } as const;
 
 export type AuditActionName = (typeof AuditAction)[keyof typeof AuditAction];

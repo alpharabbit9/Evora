@@ -83,7 +83,7 @@ function assertActive(userId: string, status: unknown): void {
 
 /**
  * Resolves the session once per request. Returns `undefined` for an anonymous caller —
- * callers decide whether that is allowed (guest cart and public catalog say yes).
+ * callers decide whether that is allowed (the public catalog says yes).
  *
  * A failure to *reach* Better Auth or the database propagates as an error, so the error
  * middleware answers 500. An unauthenticated request and a broken session store are not

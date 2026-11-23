@@ -1,0 +1,96 @@
+[api] Loaded Prisma config from prisma.config.ts.
+[api] 
+
+[api] Prisma schema loaded from prisma\schema.prisma.
+
+[api] Datasource "db": PostgreSQL database "commercecore_e2e", schema "public" at "localhost:5432"
+
+[api] 
+[api] 18 migrations found in prisma/migrations
+[api] 
+
+[api] 
+
+[api] No pending migrations to apply.
+
+[api] Knowledge: 5 embedded, 0 unchanged, 0 removed
+[api] Products:  1 embedded, 0 unchanged, 0 removed
+
+[web] ⚠ Your version of Next.js is affected by a known security vulnerability. This command is continuing after the upgrade reminder.
+[web] Reference: https://registry.npmjs.org/-/npm/v1/security/advisories/bulk
+
+
+Running 37 tests using 1 worker
+
+[1/37] [chromium] › tests\accessibility.spec.ts:44:3 › accessibility › public pages
+[2/37] [chromium] › tests\accessibility.spec.ts:59:3 › accessibility › bag and checkout
+[3/37] [chromium] › tests\hero.spec.ts:138:9 › home-page hero › desktop (1440px) › with motion › every slide change shows the model within 1.5s, never an empty figure
+[4/37] [chromium] › tests\hero.spec.ts:153:9 › home-page hero › desktop (1440px) › with motion › the slide layers do not shift layout while they load and change
+[5/37] [chromium] › tests\hero.spec.ts:202:7 › home-page hero › desktop (1440px) › under reduced motion the model still appears on every slide
+[6/37] [chromium] › tests\hero.spec.ts:211:7 › home-page hero › desktop (1440px) › the model hides at most one letter of each slide word
+[7/37] [chromium] › tests\hero.spec.ts:138:9 › home-page hero › phone (390px) › with motion › every slide change shows the model within 1.5s, never an empty figure
+[8/37] [chromium] › tests\hero.spec.ts:153:9 › home-page hero › phone (390px) › with motion › the slide layers do not shift layout while they load and change
+[9/37] [chromium] › tests\hero.spec.ts:202:7 › home-page hero › phone (390px) › under reduced motion the model still appears on every slide
+[10/37] [chromium] › tests\hero.spec.ts:211:7 › home-page hero › phone (390px) › the model hides at most one letter of each slide word
+[11/37] [chromium] › tests\homepage-sections.spec.ts:22:3 › home page sections › the chapters run in order, with the Dark Edit as a dark island
+[12/37] [chromium] › tests\homepage-sections.spec.ts:69:5 › home page sections › no horizontal overflow at 390px
+[13/37] [chromium] › tests\homepage-sections.spec.ts:69:5 › home page sections › no horizontal overflow at 768px
+[14/37] [chromium] › tests\homepage-sections.spec.ts:69:5 › home page sections › no horizontal overflow at 1280px
+[15/37] [chromium] › tests\homepage-sections.spec.ts:69:5 › home page sections › no horizontal overflow at 1440px
+[16/37] [chromium] › tests\micro-interactions.spec.ts:74:5 › home page micro-interactions › with motion › CTAs and hero controls dip while pressed, and come back
+[17/37] [chromium] › tests\micro-interactions.spec.ts:103:5 › home page micro-interactions › with motion › the autoplay hairline fills, and holds while the hero is hovered
+[18/37] [chromium] › tests\micro-interactions.spec.ts:122:5 › home page micro-interactions › with motion › garments beside the mouse swing wider, the one under it does not
+  1) [chromium] › tests\micro-interactions.spec.ts:122:5 › home page micro-interactions › with motion › garments beside the mouse swing wider, the one under it does not 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: 0.0000275114
+
+      129 |         .toBeGreaterThan(0.9);
+      130 |       const beside = await nearValues(page);
+    > 131 |       expect(beside[0]).toBe(0);
+          |                         ^
+      132 |       expect(beside[2]).toBeGreaterThan(0.3);
+      133 |
+      134 |       // On garment 3 itself: it turns to face front and stays at 0; its neighbours rise.
+        at C:\Projects\Ecommerece Webapp\CommerceCore\e2e\tests\micro-interactions.spec.ts:131:25
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\micro-interactions-home-pa-029f7-r-the-one-under-it-does-not-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\micro-interactions-home-pa-029f7-r-the-one-under-it-does-not-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\micro-interactions-home-pa-029f7-r-the-one-under-it-does-not-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\micro-interactions-home-pa-029f7-r-the-one-under-it-does-not-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[19/37] [chromium] › tests\micro-interactions.spec.ts:158:5 › home page micro-interactions › with reduced motion › nothing dips, and the rail ignores the pointer
+[20/37] [chromium] › tests\motion.spec.ts:104:5 › home page motion › with motion › Dark Edit photos wipe up into their frames, then the clip is cleared
+[21/37] [chromium] › tests\motion.spec.ts:130:5 › home page motion › with motion › the service strip items never move
+[22/37] [chromium] › tests\motion.spec.ts:144:5 › home page motion › with motion › the footer wordmark letters rise once and settle in place
+[23/37] [chromium] › tests\motion.spec.ts:162:5 › home page motion › with motion › the hero drift and autoplay hold while the hero is off screen
+[24/37] [chromium] › tests\motion.spec.ts:183:5 › home page motion › with motion › the rail's garments slide in along the rod, and the sway pauses off screen
+[25/37] [chromium] › tests\motion.spec.ts:215:5 › home page motion › with reduced motion › the rail fades in without sliding, and never sways
+[26/37] [chromium] › tests\motion.spec.ts:231:5 › home page motion › with reduced motion › nothing is clipped or translated; the footer word fades
+[27/37] [chromium] › tests\navigation.spec.ts:13:3 › header navigation › the primary link for the page being viewed is marked current
+[28/37] [chromium] › tests\navigation.spec.ts:30:3 › header navigation › Escape closes the menu and returns focus to its button
+[29/37] [chromium] › tests\navigation.spec.ts:43:3 › header navigation › a click outside the header closes the menu
+[30/37] [chromium] › tests\navigation.spec.ts:56:3 › header navigation › the footer offers account links that match the session
+[31/37] [chromium] › tests\navigation.spec.ts:70:3 › header navigation › a closed menu is not in the tab order
+[32/37] [chromium] › tests\storefront.spec.ts:11:3 › storefront › the shop lists the published product
+[33/37] [chromium] › tests\storefront.spec.ts:16:3 › storefront › search finds it by name
+[34/37] [chromium] › tests\storefront.spec.ts:21:3 › storefront › a sold-out size cannot be chosen
+[35/37] [chromium] › tests\storefront.spec.ts:32:3 › storefront › an unknown product answers with a not-found page
+[36/37] [chromium] › tests\storefront.spec.ts:48:3 › storefront › the home page shows no unconfirmed content in a production build
+[37/37] [chromium] › tests\storefront.spec.ts:60:3 › storefront › a new customer sees an empty bag with a way back to the shop
+  1 failed
+    [chromium] › tests\micro-interactions.spec.ts:122:5 › home page micro-interactions › with motion › garments beside the mouse swing wider, the one under it does not 
+  36 passed (4.3m)
+EXIT=1

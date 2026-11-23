@@ -1,0 +1,117 @@
+[
+ {
+  "name": "default build, no query",
+  "atTop": {
+   "canvas": false
+  },
+  "onRail": {
+   "canvas": false,
+   "is3d": false,
+   "domPhotoVisibility": "visible",
+   "threeChunkLoaded": false
+  },
+  "errors": []
+ },
+ {
+  "name": "?rail=css",
+  "atTop": {
+   "canvas": false
+  },
+  "onRail": {
+   "canvas": false,
+   "is3d": false,
+   "domPhotoVisibility": "visible",
+   "threeChunkLoaded": false
+  },
+  "errors": []
+ },
+ {
+  "name": "?rail=3d",
+  "atTop": {
+   "canvas": true
+  },
+  "onRail": {
+   "canvas": true,
+   "is3d": true,
+   "domPhotoVisibility": "hidden",
+   "threeChunkLoaded": true
+  },
+  "errors": []
+ },
+ {
+  "name": "?rail=3d + reduced motion",
+  "atTop": {
+   "canvas": false
+  },
+  "onRail": {
+   "canvas": false,
+   "is3d": false,
+   "domPhotoVisibility": "visible",
+   "threeChunkLoaded": false
+  },
+  "errors": []
+ },
+ {
+  "name": "?rail=3d + touch phone (390)",
+  "atTop": {
+   "canvas": false
+  },
+  "onRail": {
+   "canvas": false,
+   "is3d": false,
+   "domPhotoVisibility": "visible",
+   "threeChunkLoaded": false
+  },
+  "errors": []
+ },
+ {
+  "name": "?rail=3d + WebGL context lost",
+  "atTop": {
+   "canvas": true
+  },
+  "onRail": {
+   "canvas": true,
+   "is3d": true,
+   "domPhotoVisibility": "hidden",
+   "threeChunkLoaded": true
+  },
+  "extra": {
+   "canvas": false,
+   "is3d": false,
+   "domPhotoVisibility": "visible",
+   "threeChunkLoaded": true
+  },
+  "errors": []
+ },
+ {
+  "name": "?rail=3d, 700px wide fine pointer, rail scrolled sideways",
+  "atTop": {
+   "canvas": true
+  },
+  "onRail": {
+   "canvas": true,
+   "is3d": true,
+   "domPhotoVisibility": "hidden",
+   "threeChunkLoaded": true
+  },
+  "extra": {
+   "railScrollable": 115,
+   "pageOverflow": 0
+  },
+  "errors": []
+ },
+ {
+  "name": "?rail=3d dark theme",
+  "atTop": {
+   "canvas": true
+  },
+  "onRail": {
+   "canvas": true,
+   "is3d": true,
+   "domPhotoVisibility": "hidden",
+   "threeChunkLoaded": true
+  },
+  "extra": "screenshots",
+  "errors": []
+ }
+]

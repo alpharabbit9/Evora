@@ -3,10 +3,13 @@
  * touches lives here; the slider, slide and motion code read it and never hard-code copy,
  * image paths or positions.
  *
- * To swap a model, replace the PNG under `public/images/Hero/` (or point `image.src` at a new
- * one), update `width`/`height` to the file's pixel size, and retune `figure` so the head and
- * shoes stay inside the hero. Cut-outs should be transparent PNGs with the figure roughly
- * centred and touching the bottom edge, as the current three are.
+ * To swap a model, add a cut-out under `public/images/Hero/` and point `image.src` at it,
+ * update `width`/`height` to the file's pixel size, and retune `figure` so the head and shoes
+ * stay inside the hero. Cut-outs are transparent images with the figure roughly centred and
+ * touching the bottom edge, as the current three are. Ship them as WebP with alpha, no more
+ * than about 1600px tall and under 300KB (the current ones were exported from the PNG
+ * masters beside them at quality 86, alpha quality 100), so the image optimiser's first,
+ * uncached request for each size stays cheap.
  */
 
 /** Mobile (< 768px), tablet (768–1023px) and desktop (≥ 1024px) values. */
@@ -85,18 +88,36 @@ export type HeroSlide = {
 export const HERO_AUTOPLAY_SECONDS = 8;
 
 /**
- * The brand word in Brigends Expanded, identical on every slide so it reads as a constant
- * anchor that re-reveals behind each new model.
+ * Each slide's oversized word: one word from its own story, in Brigends Expanded, spanning
+ * the gutters behind the model. (It was the brand name on every slide until Phase 3; with
+ * the header wordmark directly above, the name read twice within 400px.) The model may hide
+ * at most one whole letter, so the word still reads; `e2e/tests/hero.spec.ts` checks that
+ * against the model's alpha at phone and desktop widths. Retune `figure` or `y` if it fails.
  */
-const BRAND_HEADLINE: HeroHeadline = {
-  text: 'EVORA',
+const HEADLINE_SETTING = {
   font: 'display',
   tracking: -0.005,
-  measure: 5.029,
   span: 1,
   maxSize: { base: 20, md: 22, lg: 34 },
   y: { base: 35, md: 41, lg: 45 },
-};
+} as const satisfies Omit<HeroHeadline, 'text' | 'measure'>;
+
+/**
+ * `measure` comes from canvas `measureText` on Brigends Expanded, letter by letter (see
+ * `HeroHeadline`). `phoneY` overrides the word's height on phones, where letters are about a
+ * third as wide as the coat: there the word sits at head height instead, so only the head
+ * crosses it.
+ */
+function storyHeadline(text: string, measure: number, phoneY?: number): HeroHeadline {
+  const y = { ...HEADLINE_SETTING.y, ...(phoneY === undefined ? {} : { base: phoneY }) };
+  return { ...HEADLINE_SETTING, text, measure, y };
+}
+
+const STORY_HEADLINES = {
+  heritage: storyHeadline('HERITAGE', 7.315, 24),
+  tailored: storyHeadline('TAILORED', 7.357),
+  essential: storyHeadline('ESSENTIAL', 8.327, 24),
+} as const;
 
 export const HERO_SLIDES: readonly HeroSlide[] = [
   {
@@ -105,13 +126,13 @@ export const HERO_SLIDES: readonly HeroSlide[] = [
     eyebrow: ['Menswear', 'Heritage', 'Autumn / Winter'],
     statement: ['Timeless style', 'for modern men'],
     title: ['English heritage.', 'Reimagined for today.'],
-    headline: BRAND_HEADLINE,
+    headline: STORY_HEADLINES.heritage,
     primaryCta: { label: 'Shop now', href: '/collections/men' },
     secondaryCta: { label: 'Explore collection', href: '/collections/new' },
     collection: ['New collection', '2026'],
     accent: 'foreground',
     image: {
-      src: '/images/Hero/hero1.png',
+      src: '/images/Hero/hero1.webp',
       width: 1205,
       height: 1306,
       alt: 'Man in a charcoal herringbone three-piece suit, long wool overcoat and flat cap, walking',
@@ -130,12 +151,12 @@ export const HERO_SLIDES: readonly HeroSlide[] = [
     eyebrow: ['Womenswear', 'Tailoring', 'Outerwear'],
     statement: ['Quiet tailoring', 'for modern women'],
     title: ['Modern silhouettes.', 'Timeless confidence.'],
-    headline: BRAND_HEADLINE,
+    headline: STORY_HEADLINES.tailored,
     primaryCta: { label: 'Discover the collection', href: '/collections/women' },
     collection: ['Modern', 'elegance'],
     accent: 'foreground',
     image: {
-      src: '/images/Hero/hero2.png',
+      src: '/images/Hero/hero2.webp',
       width: 1536,
       height: 1024,
       alt: 'Woman in a long black wool coat and wide trousers, walking',
@@ -154,12 +175,12 @@ export const HERO_SLIDES: readonly HeroSlide[] = [
     eyebrow: ['New season', 'Essentials', 'Ready to wear'],
     statement: ['Considered pieces', 'for a deliberate everyday'],
     title: ['A new perspective', 'on everyday luxury.'],
-    headline: BRAND_HEADLINE,
+    headline: STORY_HEADLINES.essential,
     primaryCta: { label: 'View collection', href: '/collections/new' },
     collection: ['New season', '2026'],
     accent: 'foreground',
     image: {
-      src: '/images/Hero/hero3.png',
+      src: '/images/Hero/hero3.webp',
       width: 1024,
       height: 1536,
       alt: 'Man in a flat cap, white shirt and tie, herringbone three-piece suit and long overcoat, standing',

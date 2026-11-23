@@ -8,7 +8,6 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { forwardRef, Suspense, useCallback, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { toast } from 'sonner';
 import { z } from 'zod';
 
 import { Wordmark } from '@/components/layout/brand';
@@ -41,7 +40,6 @@ const NAV_LINKS = [
   { label: 'Home', href: '/' },
   { label: 'Men', href: '/collections/men' },
   { label: 'Women', href: '/collections/women' },
-  { label: 'Journal', href: '/journal' },
 ] as const;
 
 /*
@@ -254,7 +252,11 @@ function AuthShellInner() {
                       searchParams={searchParams}
                     />
                   ) : (
-                    <SignUpPanel onSwitchToSignIn={() => switchMode('signin')} router={router} />
+                    <SignUpPanel
+                      onSwitchToSignIn={() => switchMode('signin')}
+                      router={router}
+                      searchParams={searchParams}
+                    />
                   )}
                 </motion.div>
               </AnimatePresence>
@@ -412,9 +414,11 @@ function SwitchPrompt({
 function SignUpPanel({
   onSwitchToSignIn,
   router,
+  searchParams,
 }: {
   onSwitchToSignIn: () => void;
   router: ReturnType<typeof useRouter>;
+  searchParams: ReturnType<typeof useSearchParams>;
 }) {
   const [formError, setFormError] = useState<string | undefined>();
   const [showPassword, setShowPassword] = useState(false);
@@ -439,7 +443,8 @@ function SignUpPanel({
       setFormError(error.message ?? 'Could not create the account. Please try again.');
       return;
     }
-    router.push('/account');
+    // Back to wherever sign-up was asked for (a protected page, "Add to bag"), like sign-in.
+    router.push(safeRedirectPath(searchParams.get('next')));
     router.refresh();
   });
 
@@ -499,14 +504,6 @@ function SignUpPanel({
         <PrimaryButton pending={isSubmitting} pendingLabel="Creating account…">
           Create Account
         </PrimaryButton>
-
-        <Divider />
-
-        <SocialButton
-          icon={<GoogleIcon />}
-          label="Continue with Google"
-          onClick={() => toast('Google sign-in is not available yet.')}
-        />
 
         <SwitchPrompt
           question="Already have an account?"
@@ -592,6 +589,15 @@ function SignInPanel({
           {...register('password')}
         />
 
+        <div className="-mt-1 flex justify-end px-2">
+          <Link
+            href="/forgot-password"
+            className="rounded-sm text-[13px] text-[#F6EEE3]/65 underline decoration-[#F6EEE3]/25 underline-offset-4 transition-colors hover:text-[#F6EEE3] hover:decoration-[#F6EEE3]/60 focus-visible:outline-2 focus-visible:outline-[#D8B98B]"
+          >
+            Forgot password?
+          </Link>
+        </div>
+
         {formError ? (
           <p role="alert" className="px-2 text-[13px] text-red-300">
             {formError}
@@ -601,14 +607,6 @@ function SignInPanel({
         <PrimaryButton pending={isSubmitting} pendingLabel="Signing in…">
           Sign In
         </PrimaryButton>
-
-        <Divider />
-
-        <SocialButton
-          icon={<GoogleIcon />}
-          label="Continue with Google"
-          onClick={() => toast('Google sign-in is not available yet.')}
-        />
 
         <SwitchPrompt
           question="New to EVORA?"
@@ -685,63 +683,6 @@ const AuthInput = forwardRef<HTMLInputElement, AuthInputProps>(function AuthInpu
     </div>
   );
 });
-
-function Divider() {
-  return (
-    <div className="flex items-center gap-4 py-[clamp(0.25rem,1dvh,0.5rem)]">
-      <div className="h-px flex-1 bg-white/[0.16]" />
-      <span className="text-[11px] tracking-[0.2em] text-[#F6EEE3]/50">OR</span>
-      <div className="h-px flex-1 bg-white/[0.16]" />
-    </div>
-  );
-}
-
-function SocialButton({
-  icon,
-  label,
-  onClick,
-}: {
-  icon: React.ReactNode;
-  label: string;
-  onClick: () => void;
-}) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      className={cn(
-        'flex h-[54px] w-full items-center justify-center gap-3 rounded-full border border-white/[0.24] text-[15px] font-medium text-[#F6EEE3]/90 transition-colors hover:border-white/40 hover:bg-white/[0.04] hover:text-[#F6EEE3]',
-        focusRing,
-      )}
-    >
-      {icon}
-      {label}
-    </button>
-  );
-}
-
-function GoogleIcon() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-      <path
-        d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844a4.14 4.14 0 01-1.796 2.716v2.259h2.908c1.702-1.567 2.684-3.875 2.684-6.615z"
-        fill="#4285F4"
-      />
-      <path
-        d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 009 18z"
-        fill="#34A853"
-      />
-      <path
-        d="M3.964 10.71A5.41 5.41 0 013.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.997 8.997 0 000 9c0 1.452.348 2.827.957 4.042l3.007-2.332z"
-        fill="#FBBC05"
-      />
-      <path
-        d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 00.957 4.958L3.964 7.29C4.672 5.163 6.656 3.58 9 3.58z"
-        fill="#EA4335"
-      />
-    </svg>
-  );
-}
 
 export function AuthShell() {
   return (

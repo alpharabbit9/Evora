@@ -22,10 +22,12 @@ const EXPECTED_CHECKS = [
   'product_variants_stock_non_negative_check',
   'product_variants_price_minor_check',
   'product_images_alt_text_not_blank_check',
+  'product_images_one_cutout_per_product_key',
   'carts_single_owner_check',
   'carts_one_active_per_user_key',
   'carts_one_active_per_guest_key',
   'cart_items_quantity_range_check',
+  'cart_items_unit_price_seen_non_negative_check',
   'coupons_code_uppercase_check',
   'coupons_value_matches_type_check',
   'coupons_used_within_limit_check',
@@ -41,7 +43,27 @@ const EXPECTED_CHECKS = [
   'inventory_movements_delta_check',
   'inventory_movements_actor_check',
   'outbox_events_sent_timestamp_check',
+  'outbox_events_claim_token_check',
+  'outbox_events_last_error_length_check',
+  'store_settings_singleton_check',
+  'store_settings_store_name_check',
+  'store_settings_fees_check',
+  'store_settings_tax_rate_check',
+  'store_settings_version_check',
   'audit_logs_actor_check',
+  'knowledge_documents_slug_check',
+  'knowledge_documents_title_check',
+  'knowledge_documents_path_check',
+  'knowledge_chunks_ordinal_check',
+  'knowledge_chunks_content_length_check',
+  'knowledge_chunks_embedding_hnsw_idx',
+  'product_embeddings_embedding_hnsw_idx',
+  'assistant_conversations_owner_check',
+  'assistant_conversations_message_count_check',
+  'assistant_messages_content_length_check',
+  'assistant_messages_tokens_check',
+  'assistant_messages_latency_check',
+  'assistant_messages_error_code_length_check',
 ];
 
 beforeAll(async () => {
@@ -561,6 +583,20 @@ describe('identity and catalog invariants', () => {
     );
   });
 
+  it('allows any number of photos but at most one cut-out per product', async () => {
+    const product = await makeProduct();
+    const image = (kind: 'PHOTO' | 'CUTOUT') =>
+      testDb.productImage.create({
+        data: { productId: product.id, objectKey: `key-${randomUUID()}`, altText: 'A', kind },
+      });
+
+    await image('PHOTO');
+    await image('PHOTO');
+    await image('CUTOUT');
+
+    await expectRejection(() => image('CUTOUT'), 'product_images_one_cutout_per_product_key');
+  });
+
   it('allows at most one default address per user', async () => {
     const user = await makeUser();
     const address = {
@@ -604,6 +640,42 @@ describe('identity and catalog invariants', () => {
   });
 });
 
+describe('store settings', () => {
+  const valid = {
+    storeName: 'Store',
+    standardFeeDhakaMinor: 8_000,
+    standardFeeNationalMinor: 15_000,
+    expressFeeDhakaMinor: 15_000,
+    expressFeeNationalMinor: 25_000,
+  };
+
+  afterAll(async () => {
+    await testDb.storeSettings.deleteMany();
+  });
+
+  it('holds one row only', async () => {
+    await expectRejection(
+      () => testDb.storeSettings.create({ data: { id: 'second', ...valid } }),
+      'store_settings_singleton_check',
+    );
+  });
+
+  it('refuses a negative fee, a blank name and a tax rate above 50 %', async () => {
+    await expectRejection(
+      () => testDb.storeSettings.create({ data: { ...valid, standardFeeDhakaMinor: -1 } }),
+      'store_settings_fees_check',
+    );
+    await expectRejection(
+      () => testDb.storeSettings.create({ data: { ...valid, storeName: '  ' } }),
+      'store_settings_store_name_check',
+    );
+    await expectRejection(
+      () => testDb.storeSettings.create({ data: { ...valid, taxRateBps: 5_001 } }),
+      'store_settings_tax_rate_check',
+    );
+  });
+});
+
 describe('audit and outbox attribution', () => {
   it('rejects an audit entry with no actor and no system flag', async () => {
     await expectRejection(
@@ -627,6 +699,109 @@ describe('audit and outbox attribution', () => {
     await expectRejection(
       () => testDb.outboxEvent.update({ where: { id: job.id }, data: { status: 'SENT' } }),
       'outbox_events_sent_timestamp_check',
+    );
+  });
+
+  it('ties a claim token to PROCESSING, both ways', async () => {
+    const job = await testDb.outboxEvent.create({
+      data: { eventType: 'ORDER_RECEIPT', dedupeKey: `job-${randomUUID()}`, payload: {} },
+    });
+
+    await expectRejection(
+      () => testDb.outboxEvent.update({ where: { id: job.id }, data: { status: 'PROCESSING' } }),
+      'outbox_events_claim_token_check',
+    );
+    await expectRejection(
+      () => testDb.outboxEvent.update({ where: { id: job.id }, data: { claimToken: 'token' } }),
+      'outbox_events_claim_token_check',
+    );
+  });
+
+  it('refuses an overlong stored error', async () => {
+    await expectRejection(
+      () =>
+        testDb.outboxEvent.create({
+          data: {
+            eventType: 'ORDER_RECEIPT',
+            dedupeKey: `job-${randomUUID()}`,
+            payload: {},
+            lastError: 'x'.repeat(1001),
+          },
+        }),
+      'outbox_events_last_error_length_check',
+    );
+  });
+});
+
+describe('shopping assistant invariants (ADR 0025)', () => {
+  it('gives a conversation exactly one owner', async () => {
+    const user = await makeUser();
+
+    await expectRejection(
+      () =>
+        testDb.assistantConversation.create({
+          data: { userId: user.id, guestTokenHash: 'a'.repeat(64) },
+        }),
+      'assistant_conversations_owner_check',
+    );
+    await expectRejection(
+      () => testDb.assistantConversation.create({ data: {} }),
+      'assistant_conversations_owner_check',
+    );
+  });
+
+  it("bounds a message's length, and a customer's more tightly", async () => {
+    const conversation = await testDb.assistantConversation.create({
+      data: { guestTokenHash: randomUUID() },
+    });
+
+    await expectRejection(
+      () =>
+        testDb.assistantMessage.create({
+          data: { conversationId: conversation.id, role: 'USER', content: 'x'.repeat(1001) },
+        }),
+      'assistant_messages_content_length_check',
+    );
+    await expectRejection(
+      () =>
+        testDb.assistantMessage.create({
+          data: { conversationId: conversation.id, role: 'USER', content: '' },
+        }),
+      'assistant_messages_content_length_check',
+    );
+    await expect(
+      testDb.assistantMessage.create({
+        data: { conversationId: conversation.id, role: 'ASSISTANT', content: 'x'.repeat(5000) },
+      }),
+    ).resolves.toBeDefined();
+    await expectRejection(
+      () =>
+        testDb.assistantMessage.create({
+          data: {
+            conversationId: conversation.id,
+            role: 'ASSISTANT',
+            content: 'ok',
+            inputTokens: -1,
+          },
+        }),
+      'assistant_messages_tokens_check',
+    );
+  });
+
+  it('only links knowledge to a store path', async () => {
+    await expectRejection(
+      () =>
+        testDb.knowledgeDocument.create({
+          data: { slug: 'x', title: 'X', path: 'https://evil.example', contentHash: 'h' },
+        }),
+      'knowledge_documents_path_check',
+    );
+    await expectRejection(
+      () =>
+        testDb.knowledgeDocument.create({
+          data: { slug: 'y', title: 'Y', path: '//evil.example', contentHash: 'h' },
+        }),
+      'knowledge_documents_path_check',
     );
   });
 });

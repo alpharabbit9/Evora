@@ -1,0 +1,99 @@
+[api] Loaded Prisma config from prisma.config.ts.
+[api] 
+
+[api] Prisma schema loaded from prisma\schema.prisma.
+
+[api] Datasource "db": PostgreSQL database "commercecore_e2e", schema "public" at "localhost:5432"
+
+[api] 
+[api] 18 migrations found in prisma/migrations
+
+[api] 
+
+[api] 
+
+[api] No pending migrations to apply.
+
+[api] Knowledge: 5 embedded, 0 unchanged, 0 removed
+[api] Products:  1 embedded, 0 unchanged, 0 removed
+
+
+Running 33 tests using 1 worker
+
+[1/33] [chromium] › tests\accessibility.spec.ts:44:3 › accessibility › public pages
+[2/33] [chromium] › tests\accessibility.spec.ts:59:3 › accessibility › bag and checkout
+[3/33] [chromium] › tests\hero.spec.ts:138:9 › home-page hero › desktop (1440px) › with motion › every slide change shows the model within 1.5s, never an empty figure
+[4/33] [chromium] › tests\hero.spec.ts:153:9 › home-page hero › desktop (1440px) › with motion › the slide layers do not shift layout while they load and change
+[5/33] [chromium] › tests\hero.spec.ts:201:7 › home-page hero › desktop (1440px) › under reduced motion the model still appears on every slide
+[6/33] [chromium] › tests\hero.spec.ts:210:7 › home-page hero › desktop (1440px) › the model hides at most one letter of each slide word
+[7/33] [chromium] › tests\hero.spec.ts:138:9 › home-page hero › phone (390px) › with motion › every slide change shows the model within 1.5s, never an empty figure
+[8/33] [chromium] › tests\hero.spec.ts:153:9 › home-page hero › phone (390px) › with motion › the slide layers do not shift layout while they load and change
+[9/33] [chromium] › tests\hero.spec.ts:201:7 › home-page hero › phone (390px) › under reduced motion the model still appears on every slide
+[10/33] [chromium] › tests\hero.spec.ts:210:7 › home-page hero › phone (390px) › the model hides at most one letter of each slide word
+[11/33] [chromium] › tests\homepage-sections.spec.ts:22:3 › home page sections › the chapters run in order, with the Dark Edit as a dark island
+[12/33] [chromium] › tests\homepage-sections.spec.ts:69:5 › home page sections › no horizontal overflow at 390px
+[13/33] [chromium] › tests\homepage-sections.spec.ts:69:5 › home page sections › no horizontal overflow at 768px
+[14/33] [chromium] › tests\homepage-sections.spec.ts:69:5 › home page sections › no horizontal overflow at 1280px
+[15/33] [chromium] › tests\homepage-sections.spec.ts:69:5 › home page sections › no horizontal overflow at 1440px
+[16/33] [chromium] › tests\motion.spec.ts:104:5 › home page motion › with motion › Dark Edit photos wipe up into their frames, then the clip is cleared
+[17/33] [chromium] › tests\motion.spec.ts:130:5 › home page motion › with motion › the service strip items never move
+[18/33] [chromium] › tests\motion.spec.ts:144:5 › home page motion › with motion › the footer wordmark letters rise once and settle in place
+[19/33] [chromium] › tests\motion.spec.ts:162:5 › home page motion › with motion › the hero drift and autoplay hold while the hero is off screen
+[20/33] [chromium] › tests\motion.spec.ts:183:5 › home page motion › with motion › the rail's garments slide in along the rod, and the sway pauses off screen
+  1) [chromium] › tests\motion.spec.ts:183:5 › home page motion › with motion › the rail's garments slide in along the rod, and the sway pauses off screen 
+
+    Error: expect(locator).toHaveClass(expected) failed
+
+    Locator: locator('.arrivals-rail')
+    Expected pattern: /is-offscreen/
+    Received string:  "arrivals-rail -mx-4 sm:-mx-6 lg:-mx-10 xl:-mx-14 is-offscreen"
+    Timeout: 10000ms
+
+    Call log:
+      - Expect "toHaveClass" with timeout 10000ms
+      - waiting for locator('.arrivals-rail')
+        23 × locator resolved to <div class="arrivals-rail -mx-4 sm:-mx-6 lg:-mx-10 xl:-mx-14 is-offscreen">…</div>
+           - unexpected value "arrivals-rail -mx-4 sm:-mx-6 lg:-mx-10 xl:-mx-14 is-offscreen"
+
+
+      202 |       await scrollToBottom(page);
+      203 |       await expect.poll(() => swayStates(page)).toEqual(["paused"]);
+    > 204 |       await expect(page.locator(RAIL)).toHaveClass(/is-offscreen/);
+          |                                        ^
+      205 |     });
+      206 |   });
+      207 |
+        at C:\Projects\Ecommerece Webapp\CommerceCore\e2e\tests\motion.spec.ts:204:40
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\motion-home-page-motion-wi-0e5ae--the-sway-pauses-off-screen-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\motion-home-page-motion-wi-0e5ae--the-sway-pauses-off-screen-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\motion-home-page-motion-wi-0e5ae--the-sway-pauses-off-screen-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\motion-home-page-motion-wi-0e5ae--the-sway-pauses-off-screen-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[21/33] [chromium] › tests\motion.spec.ts:211:5 › home page motion › with reduced motion › the rail fades in without sliding, and never sways
+[22/33] [chromium] › tests\motion.spec.ts:227:5 › home page motion › with reduced motion › nothing is clipped or translated; the footer word fades
+[23/33] [chromium] › tests\navigation.spec.ts:13:3 › header navigation › the primary link for the page being viewed is marked current
+[24/33] [chromium] › tests\navigation.spec.ts:30:3 › header navigation › Escape closes the menu and returns focus to its button
+[25/33] [chromium] › tests\navigation.spec.ts:43:3 › header navigation › a click outside the header closes the menu
+[26/33] [chromium] › tests\navigation.spec.ts:56:3 › header navigation › the footer offers account links that match the session
+[27/33] [chromium] › tests\navigation.spec.ts:70:3 › header navigation › a closed menu is not in the tab order
+[28/33] [chromium] › tests\storefront.spec.ts:11:3 › storefront › the shop lists the published product
+[29/33] [chromium] › tests\storefront.spec.ts:16:3 › storefront › search finds it by name
+[30/33] [chromium] › tests\storefront.spec.ts:21:3 › storefront › a sold-out size cannot be chosen
+[31/33] [chromium] › tests\storefront.spec.ts:32:3 › storefront › an unknown product answers with a not-found page
+[32/33] [chromium] › tests\storefront.spec.ts:48:3 › storefront › the home page shows no unconfirmed content in a production build
+[33/33] [chromium] › tests\storefront.spec.ts:60:3 › storefront › a new customer sees an empty bag with a way back to the shop
+  1 failed
+    [chromium] › tests\motion.spec.ts:183:5 › home page motion › with motion › the rail's garments slide in along the rod, and the sway pauses off screen 
+  32 passed (6.1m)
+exit 1

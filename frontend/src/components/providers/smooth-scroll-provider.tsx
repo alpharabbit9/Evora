@@ -1,6 +1,9 @@
 'use client';
 
-import { ReactLenis } from 'lenis/react';
+import { type LenisRef, ReactLenis, useLenis } from 'lenis/react';
+import { useEffect, useRef } from 'react';
+
+import { gsap, ScrollTrigger } from '@/lib/motion/gsap';
 
 /**
  * Smooth scrolling for the document scroller.
@@ -9,16 +12,36 @@ import { ReactLenis } from 'lenis/react';
  * extra DOM and the layout's flex column, `position: sticky` headers, and `100dvh`
  * measurements keep behaving as they do without it.
  *
+ * Lenis and GSAP share one clock: GSAP's ticker drives Lenis' frame (`autoRaf: false`), and
+ * every Lenis scroll updates ScrollTrigger in that same frame. Without this the two run on
+ * separate `requestAnimationFrame` loops, and scrubbed animations lag the smoothed scroll by a
+ * frame and visibly stutter. Lag smoothing is off so a long frame never makes the scroll jump.
+ *
  * Accessibility is handled by Lenis' own `respectReducedMotion` (on by default): under
  * `prefers-reduced-motion: reduce` it forces `lerp: 1` so scrolling tracks the wheel 1:1
  * and programmatic scrolls jump instantly. Do not disable it — hijacked scrolling is the
  * motion WCAG 2.3.3 is about.
  */
 export function SmoothScrollProvider({ children }: { children: React.ReactNode }) {
+  const lenisRef = useRef<LenisRef>(null);
+
+  useEffect(() => {
+    const update = (time: number) => {
+      lenisRef.current?.lenis?.raf(time * 1000);
+    };
+    gsap.ticker.add(update);
+    gsap.ticker.lagSmoothing(0);
+    return () => {
+      gsap.ticker.remove(update);
+    };
+  }, []);
+
   return (
     <ReactLenis
       root
+      ref={lenisRef}
       options={{
+        autoRaf: false,
         // Dialogs, drawers, and the cart sheet lock the page by setting `overflow` on
         // <html>. Lenis would otherwise keep its own wheel handling alive underneath and
         // scroll the page behind the overlay; `autoToggle` stops and restarts it with
@@ -30,7 +53,16 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
         stopInertiaOnNavigate: true,
       }}
     >
+      <ScrollTriggerSync />
       {children}
     </ReactLenis>
   );
+}
+
+/** Feeds each Lenis scroll to ScrollTrigger, in the frame Lenis moved the page. */
+function ScrollTriggerSync() {
+  useLenis(() => {
+    ScrollTrigger.update();
+  });
+  return null;
 }

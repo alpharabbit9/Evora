@@ -1,6 +1,5 @@
 'use client';
 
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { Moon, Sun } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { useSyncExternalStore } from 'react';
@@ -56,38 +55,16 @@ function useThemeSwitch() {
 
 const iconProps = { className: 'size-[18px]', strokeWidth: 1.6, 'aria-hidden': true } as const;
 
-/** Sun in light mode, moon in dark; one spins out as the other spins in. */
-function ThemeIcon({ isDark }: { isDark: boolean | null }) {
-  const reduceMotion = useReducedMotion();
-
-  if (isDark === null) {
-    return (
-      <span className="grid size-[18px] place-items-center">
-        <Sun {...iconProps} className={cn(iconProps.className, 'dark:hidden')} />
-        <Moon {...iconProps} className={cn(iconProps.className, 'hidden dark:block')} />
-      </span>
-    );
-  }
-
-  const Icon = isDark ? Moon : Sun;
-  const hidden = reduceMotion
-    ? { opacity: 0 }
-    : { opacity: 0, rotate: isDark ? -90 : 90, scale: 0.4 };
-
+/**
+ * Sun in light mode, moon in dark; one spins out as the other spins in. Both are always
+ * rendered and the theme class on <html> picks one (`.theme-icon` in globals.css), so the icon
+ * is right from first paint, before hydration, and needs no JavaScript to animate.
+ */
+function ThemeIcon() {
   return (
-    <span className="grid size-[18px] place-items-center">
-      <AnimatePresence initial={false}>
-        <motion.span
-          key={isDark ? 'moon' : 'sun'}
-          className="col-start-1 row-start-1 grid place-items-center"
-          initial={hidden}
-          animate={{ opacity: 1, rotate: 0, scale: 1 }}
-          exit={hidden}
-          transition={{ duration: reduceMotion ? 0.15 : 0.5, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <Icon {...iconProps} />
-        </motion.span>
-      </AnimatePresence>
+    <span aria-hidden="true" className="grid size-[18px] place-items-center">
+      <Sun {...iconProps} className={cn(iconProps.className, 'theme-icon theme-icon-sun')} />
+      <Moon {...iconProps} className={cn(iconProps.className, 'theme-icon theme-icon-moon')} />
     </span>
   );
 }
@@ -105,7 +82,7 @@ export function ThemeToggle({ className }: { className?: string }) {
       className={cn('group inline-flex shrink-0 items-center', className)}
     >
       <span className="transition-transform duration-300 group-hover:-translate-y-0.5">
-        <ThemeIcon isDark={isDark} />
+        <ThemeIcon />
       </span>
     </button>
   );
@@ -126,7 +103,7 @@ export function ThemeMenuSwitch({ className }: { className?: string }) {
       )}
     >
       <span className="flex items-center gap-3">
-        <ThemeIcon isDark={isDark} />
+        <ThemeIcon />
         Dark theme
       </span>
       {/* Drawn from the `dark:` variant, so it is right before hydration too. */}

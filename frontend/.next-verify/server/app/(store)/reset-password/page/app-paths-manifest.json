@@ -1,0 +1,3 @@
+{
+  "/(store)/reset-password/page": "app/(store)/reset-password/page.js"
+}

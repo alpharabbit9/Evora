@@ -1,0 +1,139 @@
+{
+  "$comment": "Recent Arrivals — a SYNTHETIC, hand-written set of new products for the home page's hanging-rail section (ADR 0017). Names, descriptions, sizes and the EVORA house brand are invented; each product is written to match its photo. Photos are Unsplash photos under the Unsplash License, credited per item; `cutout` files are the same photos with the background removed by scripts/catalog-import/cutouts/make_cutouts.py. Prices and stock are synthetic. List order is arrival order: the first is the newest.",
+  "brand": "EVORA",
+  "sizeSets": {
+    "men": ["S", "M", "L", "XL", "XXL"],
+    "women": ["XS", "S", "M", "L", "XL"],
+    "unisex": ["XS", "S", "M", "L", "XL", "XXL"]
+  },
+  "products": [
+    {
+      "id": "AR001",
+      "name": "Utility Nylon Bomber",
+      "category": "jackets",
+      "gender": "MEN",
+      "colour": "Black",
+      "sizes": "men",
+      "description": "A lightweight bomber in matte black nylon with a ribbed stand collar, cuffs and hem, a two-way front zip and welt hand pockets.",
+      "photo": {
+        "id": "1702026672242-c79a52996dd4",
+        "page": "a-black-jacket-hanging-on-a-wall-next-to-a-white-chair-3S1feeK3ZJA",
+        "photographer": "nens love",
+        "profile": "nenslove",
+        "alt": "Black nylon bomber jacket with a ribbed collar on a hanger against a beige wall"
+      }
+    },
+    {
+      "id": "AR002",
+      "name": "Rust Flight Bomber",
+      "category": "jackets",
+      "gender": "UNISEX",
+      "colour": "Rust",
+      "sizes": "unisex",
+      "description": "The classic flight bomber in a soft rust shell: baseball collar, zipped utility pocket on the sleeve, slanted hand pockets and gathered ribbed cuffs and hem.",
+      "photo": {
+        "id": "1591047139829-d91aecb6caea",
+        "page": "brown-bomber-jacket-on-hanger-Fg15LdqpWrs",
+        "photographer": "Tobias Tullius",
+        "profile": "tobiastu",
+        "alt": "Rust-coloured bomber jacket with a sleeve pocket held up on a white hanger"
+      }
+    },
+    {
+      "id": "AR003",
+      "name": "Cord-Collar Denim Jacket",
+      "category": "jackets",
+      "gender": "MEN",
+      "colour": "Indigo",
+      "sizes": "men",
+      "description": "A trucker jacket in raw indigo denim with contrast topstitching, flap chest pockets, a pleated front and a tan corduroy collar.",
+      "photo": {
+        "id": "1611312449408-fcece27cdbb7",
+        "page": "blue-denim-button-up-jacket-QRN47la37gw",
+        "photographer": "Caio Coelho",
+        "profile": "smokthebikini",
+        "alt": "Raw indigo denim trucker jacket with a tan corduroy collar on a hanger"
+      }
+    },
+    {
+      "id": "AR004",
+      "name": "Shawl-Collar Midnight Blazer",
+      "category": "blazers",
+      "gender": "MEN",
+      "colour": "Navy",
+      "sizes": "men",
+      "description": "A one-button evening blazer in textured midnight navy with black satin shawl lapels, jetted pockets and a paisley lining.",
+      "photo": {
+        "id": "1667283831517-5b747b3c17c8",
+        "page": "a-suit-on-a-swinger-LkR6zTayf-o",
+        "photographer": "Vetrivel Viswanathar",
+        "profile": "vetrivikashviswanathar",
+        "alt": "Midnight-navy blazer with black satin shawl lapels and a pocket square on a hanger"
+      }
+    },
+    {
+      "id": "AR005",
+      "name": "Boiled Wool Funnel Coat",
+      "category": "coats",
+      "gender": "WOMEN",
+      "colour": "Mustard",
+      "sizes": "women",
+      "description": "A mid-length coat in dense boiled wool with a funnel neck, a concealed zip, curved seam pockets and dropped shoulders.",
+      "photo": {
+        "id": "1565532070333-43edd7d75c90",
+        "page": "hanged-yellow-coat-ibTHy8t7JvM",
+        "photographer": "Baby Natur",
+        "profile": "babynatur",
+        "alt": "Mustard boiled-wool coat with a funnel collar and seam pockets on a hanger"
+      }
+    },
+    {
+      "id": "AR006",
+      "name": "Felted Wool Chore Jacket",
+      "category": "jackets",
+      "gender": "MEN",
+      "colour": "Brown",
+      "sizes": "men",
+      "description": "A boxy chore jacket in felted brown wool with a blue lining, an asymmetric front and a single patch pocket. Gets better with every wear.",
+      "photo": {
+        "id": "1649937408746-4d2f603f91c8",
+        "page": "a-brown-jacket-hanging-on-a-wooden-wall-gJtwWqMiyUw",
+        "photographer": "Nikola Tasic",
+        "profile": "tasae34",
+        "alt": "Brown felted wool jacket with a blue lining hanging against dark wooden boards"
+      }
+    },
+    {
+      "id": "AR007",
+      "name": "Workwear Twill Overshirt",
+      "category": "shirts",
+      "gender": "UNISEX",
+      "colour": "Royal Blue",
+      "sizes": "unisex",
+      "description": "A heavy cotton-twill overshirt in royal blue with two flap chest pockets, a long back hem and a printed patch on the front.",
+      "photo": {
+        "id": "1587374835498-3039ff123c05",
+        "page": "blue-button-up-shirt-on-blue-clothes-hanger-On1qg8Odftc",
+        "photographer": "Valentin Lacoste",
+        "profile": "valentinlacoste",
+        "alt": "Royal-blue twill work overshirt with chest pockets and a printed patch on a clothes rail"
+      }
+    },
+    {
+      "id": "AR008",
+      "name": "Hooded Canvas Parka",
+      "category": "jackets",
+      "gender": "MEN",
+      "colour": "Orange",
+      "sizes": "men",
+      "description": "A cotton-canvas parka with a fleece-lined drawcord hood, a storm placket over the zip, a chest zip pocket and angled flap pockets.",
+      "photo": {
+        "id": "1624548140150-108c3287f551",
+        "page": "orange-zip-up-hoodie-jacket-J3-4aCOLOdg",
+        "photographer": "Bulbul Ahmed",
+        "profile": "bulbul252",
+        "alt": "Orange cotton-canvas parka with a fleece-lined hood"
+      }
+    }
+  ]
+}

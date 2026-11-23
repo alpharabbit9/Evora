@@ -1,0 +1,23 @@
+{
+  "name": "@commercecore/e2e",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Playwright end-to-end suite: the storefront and admin against a real API and a dedicated PostgreSQL database.",
+  "type": "module",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "report": "playwright show-report",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.10.2",
+    "@playwright/test": "1.62.0",
+    "@types/node": "26.6.5",
+    "dotenv": "18.0.8",
+    "typescript": "6.0.3"
+  },
+  "overrides": {
+    "playwright-core": "1.62.0"
+  }
+}

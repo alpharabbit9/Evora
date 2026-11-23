@@ -7,10 +7,12 @@ import { toast } from 'sonner';
 
 import { swatchFill } from '@/components/catalog/color-swatch';
 import { useAsyncAction } from '@/hooks/use-async-action';
-import { ApiErrorCode, isApiError } from '@/lib/api-error';
+import { ApiErrorCode, errorMessage, isApiError } from '@/lib/api-error';
+import { useSession } from '@/lib/auth-client';
 import { useAddToCart } from '@/lib/cart/use-cart';
 import type { Availability, ProductDetail, ProductVariant } from '@/lib/catalog/types';
 import { formatMoney, formatPriceRange } from '@/lib/money';
+import { signInPath } from '@/lib/safe-redirect';
 import { cn } from '@/lib/utils';
 
 import { SIZE_AND_FIT_TAB, showProductTab } from './product-tab-ids';
@@ -52,9 +54,15 @@ function percentOff(priceMinor: number, compareAtMinor: number | null): number |
  * match the selection. Until that resolves to a single variant, the button says what is
  * missing instead of adding the parent product. The server then decides whether that variant
  * can be sold, at what price and in what quantity — this component never sends a price.
+ *
+ * Adding needs an account (ADR 0014). A visitor the session read already knows is signed out
+ * goes straight to sign-in, and comes back here afterwards; anyone else's add is sent, and if
+ * the API answers 401 (a session that expired or was revoked) they are sent the same way.
+ * The session read decides only where to send the click — the API is what refuses.
  */
 export function ProductPurchase({ product }: { product: ProductDetail }) {
   const router = useRouter();
+  const session = useSession();
   const addToCart = useAddToCart();
   const colorGroupId = useId();
   const sizeGroupId = useId();
@@ -77,9 +85,16 @@ export function ProductPurchase({ product }: { product: ProductDetail }) {
 
   const soldOut = selected?.availability === 'out_of_stock';
 
+  const signInToAdd = () => {
+    toast('Sign in to add pieces to your bag.');
+    router.push(signInPath(`/products/${product.slug}`));
+  };
+
   const add = useAsyncAction(
     (variantId: string) => addToCart.mutateAsync({ variantId, quantity }),
     {
+      // Toasted below instead, so a 401 becomes a sign-in prompt rather than an error.
+      toastOnError: false,
       onSuccess: () => {
         toast.success('Added to your bag', {
           action: {
@@ -91,6 +106,13 @@ export function ProductPurchase({ product }: { product: ProductDetail }) {
         });
       },
       onError: (error) => {
+        if (isApiError(error) && error.code === ApiErrorCode.UNAUTHENTICATED) {
+          signInToAdd();
+          return;
+        }
+
+        toast.error(errorMessage(error));
+
         // Stock or publication changed since this page rendered: show the current truth.
         if (
           isApiError(error) &&
@@ -315,7 +337,12 @@ export function ProductPurchase({ product }: { product: ProductDetail }) {
             type="button"
             disabled={!selected || soldOut || add.isPending}
             onClick={() => {
-              if (selected) void add.run(selected.id);
+              if (!selected) return;
+              if (!session.isPending && !session.data) {
+                signInToAdd();
+                return;
+              }
+              void add.run(selected.id);
             }}
             className={cn(
               'flex h-12 flex-1 items-center justify-center gap-2.5 rounded-md bg-foreground px-6 text-sm font-semibold text-background transition-opacity',

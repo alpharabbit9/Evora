@@ -1,0 +1,49 @@
+[api] Loaded Prisma config from prisma.config.ts.
+[api] 
+
+[api] Prisma schema loaded from prisma\schema.prisma.
+
+[api] Datasource "db": PostgreSQL database "commercecore_e2e", schema "public" at "localhost:5432"
+
+[api] 
+[api] 18 migrations found in prisma/migrations
+[api] 
+
+[api] 
+
+[api] No pending migrations to apply.
+
+[api] Knowledge: 5 embedded, 0 unchanged, 0 removed
+[api] Products:  1 embedded, 0 unchanged, 0 removed
+
+
+Running 26 tests using 1 worker
+
+[1/26] [chromium] › tests\accessibility.spec.ts:44:3 › accessibility › public pages
+[2/26] [chromium] › tests\accessibility.spec.ts:59:3 › accessibility › bag and checkout
+[3/26] [chromium] › tests\hero.spec.ts:138:9 › home-page hero › desktop (1440px) › with motion › every slide change shows the model within 1.5s, never an empty figure
+[4/26] [chromium] › tests\hero.spec.ts:153:9 › home-page hero › desktop (1440px) › with motion › the slide layers do not shift layout while they load and change
+[5/26] [chromium] › tests\hero.spec.ts:201:7 › home-page hero › desktop (1440px) › under reduced motion the model still appears on every slide
+[6/26] [chromium] › tests\hero.spec.ts:210:7 › home-page hero › desktop (1440px) › the model hides at most one letter of each slide word
+[7/26] [chromium] › tests\hero.spec.ts:138:9 › home-page hero › phone (390px) › with motion › every slide change shows the model within 1.5s, never an empty figure
+[8/26] [chromium] › tests\hero.spec.ts:153:9 › home-page hero › phone (390px) › with motion › the slide layers do not shift layout while they load and change
+[9/26] [chromium] › tests\hero.spec.ts:201:7 › home-page hero › phone (390px) › under reduced motion the model still appears on every slide
+[10/26] [chromium] › tests\hero.spec.ts:210:7 › home-page hero › phone (390px) › the model hides at most one letter of each slide word
+[11/26] [chromium] › tests\homepage-sections.spec.ts:22:3 › home page sections › the chapters run in order, with the Dark Edit as a dark island
+[12/26] [chromium] › tests\homepage-sections.spec.ts:69:5 › home page sections › no horizontal overflow at 390px
+[13/26] [chromium] › tests\homepage-sections.spec.ts:69:5 › home page sections › no horizontal overflow at 768px
+[14/26] [chromium] › tests\homepage-sections.spec.ts:69:5 › home page sections › no horizontal overflow at 1280px
+[15/26] [chromium] › tests\homepage-sections.spec.ts:69:5 › home page sections › no horizontal overflow at 1440px
+[16/26] [chromium] › tests\navigation.spec.ts:13:3 › header navigation › the primary link for the page being viewed is marked current
+[17/26] [chromium] › tests\navigation.spec.ts:30:3 › header navigation › Escape closes the menu and returns focus to its button
+[18/26] [chromium] › tests\navigation.spec.ts:43:3 › header navigation › a click outside the header closes the menu
+[19/26] [chromium] › tests\navigation.spec.ts:56:3 › header navigation › the footer offers account links that match the session
+[20/26] [chromium] › tests\navigation.spec.ts:70:3 › header navigation › a closed menu is not in the tab order
+[21/26] [chromium] › tests\storefront.spec.ts:11:3 › storefront › the shop lists the published product
+[22/26] [chromium] › tests\storefront.spec.ts:16:3 › storefront › search finds it by name
+[23/26] [chromium] › tests\storefront.spec.ts:21:3 › storefront › a sold-out size cannot be chosen
+[24/26] [chromium] › tests\storefront.spec.ts:32:3 › storefront › an unknown product answers with a not-found page
+[25/26] [chromium] › tests\storefront.spec.ts:48:3 › storefront › the home page shows no unconfirmed content in a production build
+[26/26] [chromium] › tests\storefront.spec.ts:60:3 › storefront › a new customer sees an empty bag with a way back to the shop
+  26 passed (6.3m)
+exit 0

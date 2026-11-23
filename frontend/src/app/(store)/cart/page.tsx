@@ -1,6 +1,11 @@
 import type { Metadata } from 'next';
+import { Suspense } from 'react';
 
+import { SignedInOnly } from '@/components/auth/signed-in-only';
+import { CART_FRAME, CartSkeleton } from '@/components/cart/cart-skeleton';
 import { CartView } from '@/components/cart/cart-view';
+import { PageHeader } from '@/components/layout/page-header';
+import { PageTransition } from '@/components/layout/page-transition';
 
 export const metadata: Metadata = {
   title: 'Your bag',
@@ -8,18 +13,23 @@ export const metadata: Metadata = {
 };
 
 /**
- * The cart is personal, so it is read in the browser (with the session or guest cookie) and
+ * The bag belongs to an account (ADR 0014): `SignedInOnly` sends anyone without a valid
+ * session to sign-in, and the API refuses the cart to them anyway.
+ *
+ * The cart itself is personal, so it is read in the browser (with the session cookie) and
  * never rendered or cached on the server (architecture.md §10). The heading is static.
  */
 export default function CartPage() {
   return (
-    <div className="mx-auto w-full max-w-[1680px] px-4 pt-10 pb-24 sm:px-6 sm:pt-14 lg:px-10 xl:px-14">
-      <h1 className="font-heading text-[clamp(2.2rem,1.6rem+2.2vw,3.5rem)] leading-[1.04] font-normal tracking-[-0.015em]">
-        Your bag
-      </h1>
-      <div className="mt-10">
-        <CartView />
+    <PageTransition>
+      <div className={CART_FRAME}>
+        <PageHeader eyebrow="Bag" title="Your bag" />
+        <div className="mt-10">
+          <Suspense fallback={<CartSkeleton />}>
+            <SignedInOnly path="/cart">{() => <CartView />}</SignedInOnly>
+          </Suspense>
+        </div>
       </div>
-    </div>
+    </PageTransition>
   );
 }

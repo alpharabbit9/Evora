@@ -1,0 +1,43 @@
+{
+  "label": "debug",
+  "summary": {
+    "ttfb": 15.5,
+    "fcp": 2032,
+    "lcp": 2660,
+    "clsLoad": 0.38517618469015796,
+    "cls": 0.38517618469015796,
+    "tbt": 2782,
+    "inp": 536,
+    "jsKB": 450.185546875,
+    "totalKB": 1296.951171875,
+    "lcpEl": [
+      "img[alt=Man in a charcoal herringbone three-piece suit, long wool overcoat and flat cap, walking] image?url=%2Fimages%2FHero%2Fhero1.webp&w=828&q=75"
+    ]
+  },
+  "runs": [
+    {
+      "ttfb": 15.5,
+      "load": 6035.20000000298,
+      "lcp": 2660,
+      "lcpEl": "img[alt=Man in a charcoal herringbone three-piece suit, long wool overcoat and flat cap, walking] image?url=%2Fimages%2FHero%2Fhero1.webp&w=828&q=75",
+      "fcp": 2032,
+      "tbt": 2782,
+      "clsLoad": 0.38517618469015796,
+      "cls": 0.38517618469015796,
+      "shiftLog": [
+        {
+          "t": 2588.60000000149,
+          "v": 0.38517618469015796,
+          "phase": "load",
+          "src": [
+            "footer.mt-auto bg-charcoal text-ivory [506,0,317,0]"
+          ]
+        }
+      ],
+      "inp": 536,
+      "interactions": 5,
+      "jsKB": 450.185546875,
+      "totalKB": 1296.951171875
+    }
+  ]
+}

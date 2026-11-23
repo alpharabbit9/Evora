@@ -5,13 +5,19 @@ import Link from 'next/link';
 
 import { ProductImage } from '@/components/catalog/product-image';
 import { EmptyState } from '@/components/common/empty-state';
-import { LoadingRows } from '@/components/common/loading-state';
 import { QueryState } from '@/components/common/query-state';
 import { useAsyncAction } from '@/hooks/use-async-action';
 import { useCart, useRemoveCartItem, useUpdateCartItem } from '@/lib/cart/use-cart';
 import type { Cart, CartLine, CartLineStatus } from '@/lib/catalog/types';
 import { formatMoney } from '@/lib/money';
+import { ENTER } from '@/lib/motion/enter';
+import { useListPresence } from '@/lib/motion/list-presence';
 import { cn } from '@/lib/utils';
+
+import { CART_COLUMNS, CartSkeleton } from './cart-skeleton';
+
+/** Gap between one bag line's entrance and the next. */
+const LINE_STAGGER_MS = 60;
 
 /** Mirrors the API's per-line cap; the server enforces it. */
 const MAX_QUANTITY = 10;
@@ -36,11 +42,13 @@ export function CartView() {
   return (
     <QueryState
       query={cart}
-      pending={<LoadingRows rows={3} className="max-w-3xl" />}
+      pending={<CartSkeleton />}
       errorTitle="We couldn't load your bag"
       isEmpty={(data) => data.items.length === 0}
       empty={
         <EmptyState
+          // Fades in, so removing the last line hands over to it instead of snapping.
+          className={cn(ENTER, 'duration-500')}
           icon={<ShoppingBagIcon className="size-6" strokeWidth={1.25} />}
           title="Your bag is empty"
           description="Pieces you add from the collection will wait here."
@@ -60,20 +68,41 @@ export function CartView() {
   );
 }
 
+/**
+ * Entrance (CSS, `lib/motion/enter.ts`): when the bag first loads, its lines rise in one after
+ * another and the summary fades in beside them. Keyed lines are not remounted when the cart is
+ * re-read after a change, so the entrance plays once, not on every quantity step. Reduced
+ * motion: none.
+ *
+ * Exit (`useListPresence`): a removed line folds away (height and opacity) once the server has
+ * confirmed it, and the lines below close the gap with it. The wrapper inside each `li` is the
+ * exit's own element, so it never shares a property with the CSS entrance on the `li`.
+ */
 function CartContents({ cart }: { cart: Cart }) {
+  const lines = useListPresence(cart.items, (line) => line.id, { exit: 'collapse' });
+
   return (
-    <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_340px] lg:gap-16">
+    <div className={CART_COLUMNS}>
       <ul className="divide-y divide-border border-y border-border">
-        {cart.items.map((line) => (
-          <li key={line.id}>
-            <CartLineRow line={line} currency={cart.currency} />
+        {lines.entries.map((entry, index) => (
+          <li
+            key={entry.key}
+            className={cn(ENTER, 'duration-700 slide-in-from-bottom-3')}
+            style={{ animationDelay: `${String(Math.min(index, 8) * LINE_STAGGER_MS)}ms` }}
+          >
+            <div {...lines.bind(entry)}>
+              <CartLineRow line={entry.item} currency={cart.currency} />
+            </div>
           </li>
         ))}
       </ul>
 
       <aside
         aria-labelledby="bag-summary"
-        className="self-start border border-border p-6 lg:sticky lg:top-28"
+        className={cn(
+          ENTER,
+          'self-start border border-border p-6 delay-150 duration-700 lg:sticky lg:top-28',
+        )}
       >
         <h2
           id="bag-summary"
@@ -89,12 +118,24 @@ function CartContents({ cart }: { cart: Cart }) {
         </dl>
         {cart.hasIssues ? (
           <p className="mt-3 text-xs leading-5 text-destructive">
-            Some items can’t be bought as they are and aren’t included in the subtotal.
+            Some items can’t be bought as they are and aren’t included in the subtotal. Sort them
+            out to check out.
           </p>
         ) : null}
+        {cart.hasIssues ? null : (
+          <Link
+            href="/checkout"
+            className={cn(
+              'mt-5 flex h-12 items-center justify-center rounded-md bg-foreground px-6 text-sm font-semibold text-background transition-opacity hover:opacity-85',
+              focusRing,
+            )}
+          >
+            Checkout
+          </Link>
+        )}
         <p className="mt-5 border-t border-border pt-5 text-xs leading-5 text-muted-foreground">
-          Prices and stock are checked again on the server whenever your bag changes. Shipping is
-          calculated at checkout. Checkout is not open in this demo build yet.
+          Prices and stock are checked again on the server whenever your bag changes. Delivery is
+          calculated at checkout for your address.
         </p>
       </aside>
     </div>
@@ -151,7 +192,11 @@ function CartLineRow({ line, currency }: { line: CartLine; currency: string }) {
           <button
             type="button"
             aria-label={`Remove ${line.product.name}`}
-            disabled={busy}
+            // While the removal is in flight the button stays focusable (`aria-disabled`, not
+            // `disabled`), so focus is still here to hand on to the next line when this one
+            // folds away. `useAsyncAction` refuses a second run meanwhile.
+            disabled={setQuantity.isPending}
+            aria-disabled={removeLine.isPending || undefined}
             onClick={() => {
               void removeLine.run();
             }}
@@ -167,6 +212,17 @@ function CartLineRow({ line, currency }: { line: CartLine; currency: string }) {
         {problem ? (
           <p role="status" className="text-xs text-destructive">
             {problem}
+          </p>
+        ) : null}
+
+        {/* The bag always charges today's price; this only says it differs from the one the
+            customer saw. It clears once they change the line. */}
+        {line.previousUnitPriceMinor !== null && line.status !== 'unavailable' ? (
+          <p className="text-xs text-muted-foreground">
+            {line.unitPriceMinor > line.previousUnitPriceMinor ? 'Price went up' : 'Price dropped'}{' '}
+            since you added this, from <s>{formatMoney(line.previousUnitPriceMinor, currency)}</s>{' '}
+            to <span className="text-foreground">{formatMoney(line.unitPriceMinor, currency)}</span>{' '}
+            each.
           </p>
         ) : null}
 

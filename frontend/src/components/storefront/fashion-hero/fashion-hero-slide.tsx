@@ -47,6 +47,40 @@ const RESPONSIVE_VARS = [
 const HEADLINE_FONT_SIZE =
   'min(calc((100cqw - 2 * var(--hero-gutter)) * var(--headline-span) / var(--headline-measure)), calc(var(--headline-max) * 1cqh))';
 
+/** Longest the entrance waits for an incoming slide's model image before playing without it. */
+const FIGURE_WAIT_MS = 600;
+
+/**
+ * Calls `onReady` once `img` has loaded and been decoded, so its first paint is the full
+ * picture. A missing element or a failed load never calls it. Returns a cancel function.
+ */
+function whenDecoded(img: HTMLImageElement | null, onReady: () => void): () => void {
+  if (!img) return () => {};
+  let cancelled = false;
+  const decode = () => {
+    if (cancelled || img.naturalWidth === 0) return;
+    // `decode` rejects if the source changes mid-decode (a new srcset pick); the image is
+    // loaded either way, so carry on.
+    img
+      .decode()
+      .catch(() => {})
+      .finally(() => {
+        if (!cancelled) onReady();
+      });
+  };
+  if (img.complete) {
+    decode();
+    return () => {
+      cancelled = true;
+    };
+  }
+  img.addEventListener('load', decode, { once: true });
+  return () => {
+    cancelled = true;
+    img.removeEventListener('load', decode);
+  };
+}
+
 function slideVariables({ accent, figure, headline, light }: HeroSlide): React.CSSProperties {
   const variables: Record<string, string> = {
     '--hero-accent': accent === 'muted' ? 'var(--muted-foreground)' : 'var(--foreground)',
@@ -88,7 +122,6 @@ export function FashionHeroSlide({
   // down and replay the entrance of a slide that is already on screen.
   const [initial] = useState(() => ({ animateIn, reducedMotion, direction }));
 
-  const [imageLoaded, setImageLoaded] = useState(false);
   const [imageFailed, setImageFailed] = useState(false);
 
   // Layout effect: the entrance's starting state is applied before the browser paints, so
@@ -97,10 +130,44 @@ export function FashionHeroSlide({
     const root = rootRef.current;
     if (!root) return;
     const slideMotion = createSlideMotion(root, { reducedMotion: initial.reducedMotion });
-    if (initial.animateIn) slideMotion.enter(initial.direction);
-    else slideMotion.idle();
     motionRef.current = slideMotion;
+    // The idle drift is a loop: it stops while the hero is scrolled out of view.
+    const visibility = new IntersectionObserver(([entry]) => {
+      if (entry) slideMotion.setOnScreen(entry.isIntersecting);
+    });
+    visibility.observe(root);
+    if (!initial.animateIn) {
+      slideMotion.idle();
+      return () => {
+        visibility.disconnect();
+        motionRef.current = null;
+        slideMotion.revert();
+      };
+    }
+
+    // The entrance waits for the model to be decoded, so the walk-in plays on the model and
+    // not on an empty box. A slow image holds it back for at most FIGURE_WAIT_MS: then the
+    // word and copy go ahead, and the model walks in by itself when it arrives (or never, if
+    // it fails to load; the contact shadow stays hidden with it).
+    slideMotion.enter(initial.direction);
+    const img = root.querySelector<HTMLImageElement>('[data-hero="drift"] img');
+    let started = false;
+    const start = (withFigure: boolean) => {
+      if (started) return;
+      started = true;
+      slideMotion.play({ withFigure });
+    };
+    const timer = window.setTimeout(() => start(false), FIGURE_WAIT_MS);
+    const cancelReady = whenDecoded(img, () => {
+      window.clearTimeout(timer);
+      if (started) slideMotion.revealFigure();
+      else start(true);
+    });
+
     return () => {
+      visibility.disconnect();
+      window.clearTimeout(timer);
+      cancelReady();
       motionRef.current = null;
       slideMotion.revert();
     };
@@ -181,14 +248,17 @@ export function FashionHeroSlide({
       >
         <div className="size-full [translate:calc(var(--hero-px,0)*18px)_calc(var(--hero-py,0)*9px)]">
           <div data-hero="figure" className="relative size-full">
-            <span
-              aria-hidden="true"
-              className="absolute bottom-[0.4%] h-[3.5%] -translate-x-1/2 bg-[radial-gradient(closest-side,color-mix(in_oklch,var(--foreground)_24%,transparent),transparent)] dark:hidden"
-              style={{
-                left: `${String(slide.ground.x * 100)}%`,
-                width: `${String(slide.ground.width * 100)}%`,
-              }}
-            />
+            {/* The contact shadow belongs to the model: without it, it would be a stray smudge. */}
+            {imageFailed ? null : (
+              <span
+                aria-hidden="true"
+                className="absolute bottom-[0.4%] h-[3.5%] -translate-x-1/2 bg-[radial-gradient(closest-side,color-mix(in_oklch,var(--foreground)_24%,transparent),transparent)] dark:hidden"
+                style={{
+                  left: `${String(slide.ground.x * 100)}%`,
+                  width: `${String(slide.ground.width * 100)}%`,
+                }}
+              />
+            )}
             <div data-hero="drift" className="relative size-full">
               {imageFailed ? null : (
                 <Image
@@ -199,13 +269,11 @@ export function FashionHeroSlide({
                   // The first frame is the LCP image; later ones are fetched ahead of time by
                   // the slider and only need to start at once when mounted.
                   {...(animateIn ? { loading: 'eager' as const } : { preload: true })}
-                  onLoad={() => setImageLoaded(true)}
                   // A missing file leaves the composition intact: word and copy stay put.
                   onError={() => setImageFailed(true)}
-                  className={cn(
-                    'object-contain object-bottom transition-opacity duration-500',
-                    animateIn && !imageLoaded && 'opacity-0',
-                  )}
+                  // No fade of its own: `[data-hero=figure]` is the model's only visibility
+                  // owner (hero-motion.ts), and the entrance waits for this image.
+                  className="object-contain object-bottom"
                 />
               )}
             </div>
@@ -214,7 +282,7 @@ export function FashionHeroSlide({
       </div>
 
       {/* Copy. Above the model, in zones the figure placements keep clear. */}
-      <ul className="absolute top-5 left-(--hero-gutter) z-30 flex items-center gap-3 text-[9px] font-medium tracking-[0.3em] text-muted-foreground uppercase md:top-[5.5%] md:gap-5 md:text-[10px]">
+      <ul className="absolute top-5 left-(--hero-gutter) z-30 flex items-center gap-3 text-[10px] font-medium tracking-[0.3em] text-muted-foreground uppercase md:top-[5.5%] md:gap-5">
         {slide.eyebrow.map((item, index) => (
           <li
             key={item}
@@ -241,7 +309,7 @@ export function FashionHeroSlide({
       </p>
 
       <div className="absolute top-12 left-(--hero-gutter) z-30 md:top-[14.5%]">
-        <h2 className="text-[13px] leading-[1.6] font-normal tracking-[0.24em] uppercase md:text-[clamp(0.9rem,1.15vw,1.2rem)] md:tracking-[0.26em]">
+        <h2 className="text-sm leading-[1.6] font-normal tracking-[0.24em] uppercase md:text-[clamp(0.9rem,1.15vw,1.2rem)] md:tracking-[0.26em]">
           {slide.title.map((line, index) => (
             <Fragment key={line}>
               {/* Keeps the lines apart in the accessible name; collapses visually. */}
@@ -261,9 +329,9 @@ export function FashionHeroSlide({
         />
       </div>
 
-      {/* Bottom band. Phones and tablets: CTAs above a full-width controls row. Desktop: CTAs
-          and the collection label share one baseline, as in the campaign layout, and the
-          controls sit above the label, where the figure is narrower than its stride. */}
+      {/* Bottom band. Phones: CTAs above a full-width controls row. Tablet and desktop: the
+          CTAs (left) and the slide controls (right, in the slider) share one baseline, and
+          the collection label sits above the controls. */}
       <div className="absolute inset-x-(--hero-gutter) bottom-[4.75rem] z-30 flex flex-wrap gap-3 md:right-auto md:bottom-[5.25rem] md:gap-4 lg:bottom-[7%]">
         <div data-hero="cta" className="flex-1 md:flex-none">
           <HeroLink cta={slide.primaryCta} tone="primary" />
@@ -278,7 +346,7 @@ export function FashionHeroSlide({
       {slide.collection ? (
         <p
           data-hero="meta"
-          className="absolute right-(--hero-gutter) bottom-[5.25rem] z-30 hidden text-[clamp(0.8rem,1vw,1.05rem)] leading-[1.55] tracking-[0.3em] uppercase md:block lg:bottom-[7%]"
+          className="absolute right-(--hero-gutter) bottom-[5.25rem] z-30 hidden text-[clamp(0.8rem,1vw,1.05rem)] leading-[1.55] tracking-[0.3em] uppercase md:block lg:bottom-[calc(7%+5rem)]"
         >
           {slide.collection.map((line, index) => (
             <Fragment key={line}>
@@ -299,7 +367,9 @@ function HeroLink({ cta, tone }: { cta: HeroCta; tone: 'primary' | 'secondary' }
       href={cta.href}
       className={cn(
         buttonVariants({ variant: primary ? 'default' : 'outline' }),
-        'group/cta h-12 w-full gap-3 px-5 text-[10px] font-semibold tracking-[0.26em] uppercase duration-300 md:w-auto md:px-7 lg:px-5 xl:px-7',
+        // `press` (globals.css) owns the transitions and the dip on press, in place of the
+        // Button's own 1px nudge.
+        'press group/cta h-12 w-full gap-3 px-5 text-[10px] font-semibold tracking-[0.26em] uppercase active:not-aria-[haspopup]:translate-y-0 md:w-auto md:px-7 lg:px-5 xl:px-7',
         !primary &&
           'border-foreground/25 bg-transparent hover:border-foreground hover:bg-transparent dark:border-foreground/25 dark:bg-transparent dark:hover:border-foreground dark:hover:bg-transparent',
       )}

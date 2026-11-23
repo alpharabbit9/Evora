@@ -1,0 +1,22 @@
+{"ttfb":12.799999997019768,"load":5245.60000000149,"lcp":4796,"lcpEl":"img[alt=Man in a charcoal herringbone three-piece suit, long wool overcoat and flat cap, walking] image?url=%2Fimages%2FHero%2Fhero1.webp&w=828&q=75","fcp":2176,"tbt":5418,"cls":0.38517618469015796,"inp":528,"interactions":5,"jsKB":450.185546875,"totalKB":1296.9501953125}
+{"ttfb":19.399999998509884,"load":5158.5,"lcp":4836,"lcpEl":"img[alt=Man in a charcoal herringbone three-piece suit, long wool overcoat and flat cap, walking] image?url=%2Fimages%2FHero%2Fhero1.webp&w=828&q=75","fcp":2192,"tbt":5009,"cls":0.38517618469015796,"inp":544,"interactions":5,"jsKB":450.185546875,"totalKB":1342.443359375}
+{"ttfb":16.200000002980232,"load":8854.79999999702,"lcp":2724,"lcpEl":"img[alt=Man in a charcoal herringbone three-piece suit, long wool overcoat and flat cap, walking] image?url=%2Fimages%2FHero%2Fhero1.webp&w=828&q=75","fcp":2044,"tbt":6362,"cls":0.38517618469015796,"inp":744,"interactions":5,"jsKB":450.185546875,"totalKB":1342.4423828125}
+{"ttfb":11.5,"load":7450.10000000149,"lcp":2712,"lcpEl":"img[alt=Man in a charcoal herringbone three-piece suit, long wool overcoat and flat cap, walking] image?url=%2Fimages%2FHero%2Fhero1.webp&w=828&q=75","fcp":2044,"tbt":3995,"cls":0.38517618469015796,"inp":624,"interactions":5,"jsKB":450.185546875,"totalKB":1342.4443359375}
+{"ttfb":7.600000001490116,"load":7857.80000000447,"lcp":2660,"lcpEl":"img[alt=Man in a charcoal herringbone three-piece suit, long wool overcoat and flat cap, walking] image?url=%2Fimages%2FHero%2Fhero1.webp&w=828&q=75","fcp":2040,"tbt":4148,"cls":0.38517618469015796,"inp":680,"interactions":5,"jsKB":450.185546875,"totalKB":1297.873046875}
+median {
+  "ttfb": 12.799999997019768,
+  "fcp": 2044,
+  "lcp": 2724,
+  "cls": 0.38517618469015796,
+  "tbt": 5009,
+  "inp": 624,
+  "jsKB": 450.185546875,
+  "totalKB": 1342.4423828125,
+  "lcpEl": [
+    "img[alt=Man in a charcoal herringbone three-piece suit, long wool overcoat and flat cap, walking] image?url=%2Fimages%2FHero%2Fhero1.webp&w=828&q=75",
+    "img[alt=Man in a charcoal herringbone three-piece suit, long wool overcoat and flat cap, walking] image?url=%2Fimages%2FHero%2Fhero1.webp&w=828&q=75",
+    "img[alt=Man in a charcoal herringbone three-piece suit, long wool overcoat and flat cap, walking] image?url=%2Fimages%2FHero%2Fhero1.webp&w=828&q=75",
+    "img[alt=Man in a charcoal herringbone three-piece suit, long wool overcoat and flat cap, walking] image?url=%2Fimages%2FHero%2Fhero1.webp&w=828&q=75",
+    "img[alt=Man in a charcoal herringbone three-piece suit, long wool overcoat and flat cap, walking] image?url=%2Fimages%2FHero%2Fhero1.webp&w=828&q=75"
+  ]
+}

@@ -16,7 +16,7 @@ import { cn } from '@/lib/utils';
 
 import { FashionHeroSlide } from './fashion-hero-slide';
 import type { HeroDirection } from './hero-motion';
-import { HeroNavigation } from './hero-navigation';
+import { HeroNavigation, HeroProgress } from './hero-navigation';
 import { figureSizes, HERO_AUTOPLAY_SECONDS, HERO_SLIDES, type HeroSlide } from './slides';
 
 type SliderState = {
@@ -59,11 +59,13 @@ type FashionHeroSliderProps = {
  *
  * Responsibilities are split by engine. Framer Motion owns presence (the outgoing and
  * incoming frames overlap, so there is never an empty frame), the autoplay clock and the
- * controls; GSAP owns the choreography inside each frame (`hero-motion.ts`) and the pointer
- * parallax, which it writes to two CSS variables on the section.
+ * progress hairline it fills; GSAP owns the choreography inside each frame (`hero-motion.ts`)
+ * and the pointer parallax, which it writes to two CSS variables on the section. CSS owns the
+ * controls' press dip and the indicators (plan.md Phase 7).
  *
  * Autoplay pauses while a mouse is over the hero, while keyboard focus is inside it (WAI-ARIA
- * carousel pattern), while the tab is hidden, and when the person presses pause (WCAG 2.2.2).
+ * carousel pattern), while the tab is hidden, while the hero is scrolled out of view (no slide
+ * changes nobody can see), and when the person presses pause (WCAG 2.2.2).
  */
 export function FashionHeroSlider({
   slides = HERO_SLIDES,
@@ -75,6 +77,7 @@ export function FashionHeroSlider({
   const [hovering, setHovering] = useState(false);
   const [keyboardInside, setKeyboardInside] = useState(false);
   const [pageHidden, setPageHidden] = useState(false);
+  const [offScreen, setOffScreen] = useState(false);
   const [warmNext, setWarmNext] = useState(false);
   const reducedMotion = useReducedMotion() ?? false;
 
@@ -84,12 +87,12 @@ export function FashionHeroSlider({
   const progress = useMotionValue(0);
   const slidesId = useId();
 
-  const paused = userPaused || hovering || keyboardInside || pageHidden;
+  const paused = userPaused || hovering || keyboardInside || pageHidden || offScreen;
   const slide = slides[state.index];
 
   const step = (delta: HeroDirection) => dispatch({ type: 'step', delta, count });
 
-  // The autoplay clock. One tween per slide visit: it fills the active indicator and, on
+  // The autoplay clock. One tween per slide visit: it fills the progress hairline and, on
   // completion, advances. Any change of slide (auto, button, swipe) restarts it from zero.
   useEffect(() => {
     if (count < 2) return;
@@ -118,6 +121,16 @@ export function FashionHeroSlider({
     const onVisibilityChange = () => setPageHidden(document.visibilityState === 'hidden');
     document.addEventListener('visibilitychange', onVisibilityChange);
     return () => document.removeEventListener('visibilitychange', onVisibilityChange);
+  }, []);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+    const visibility = new IntersectionObserver(([entry]) => {
+      if (entry) setOffScreen(!entry.isIntersecting);
+    });
+    visibility.observe(section);
+    return () => visibility.disconnect();
   }, []);
 
   // Fetch the following slide's model once the page has finished loading, so it is decoded
@@ -173,6 +186,8 @@ export function FashionHeroSlider({
         ref={sectionRef}
         aria-roledescription="carousel"
         aria-label="Featured collections"
+        // Once the hero is behind the header, the header hides on scroll-down (plan.md 2.6).
+        data-header-autohide=""
         className={cn(
           'relative isolate w-full shrink-0 overflow-clip bg-background text-foreground',
           // Fills the viewport under the sticky header (64 / 72 / 80px). Desktop is also held
@@ -212,7 +227,13 @@ export function FashionHeroSlider({
           swipeRef.current = null;
         }}
       >
-        <div className="[container-type:size] relative mx-auto h-full w-full max-w-[1680px] touch-pan-y [--hero-gutter:1rem] sm:[--hero-gutter:1.5rem] lg:[--hero-gutter:2.5rem] xl:[--hero-gutter:3.5rem]">
+        {/* `--launcher-clearance`: how far the controls move left to clear the assistant
+            launcher in the screen's corner (`--launcher-reach`, globals.css), less the gutter
+            and any margin beyond the 1680px cap (`100cqw` resolves where it is used, inside
+            this container). 0 when the assistant is off. Used as a `translate`, never as
+            layout: the launcher mounts after load, and moving the row by padding was a
+            layout shift. */}
+        <div className="[container-type:size] relative mx-auto h-full w-full max-w-[1680px] touch-pan-y [--hero-gutter:1rem] [--launcher-clearance:max(0px,calc(var(--launcher-reach,0px)-var(--hero-gutter)-(100vw-100cqw)/2))] sm:[--hero-gutter:1.5rem] lg:[--hero-gutter:2.5rem] xl:[--hero-gutter:3.5rem]">
           {/* Announces a new slide only when the person is in control of it; while autoplay
               runs, changes stay silent. */}
           <div id={slidesId} aria-live={paused ? 'polite' : 'off'} className="absolute inset-0">
@@ -233,14 +254,26 @@ export function FashionHeroSlider({
               slides={slides}
               index={state.index}
               direction={state.direction}
-              progress={progress}
               playing={!userPaused}
               controlsId={slidesId}
               onPrevious={() => step(-1)}
               onNext={() => step(1)}
               onSelect={(index) => dispatch({ type: 'jump', index })}
               onTogglePlay={() => setUserPaused((value) => !value)}
-              className="absolute inset-x-(--hero-gutter) bottom-4 z-40 md:bottom-6 lg:bottom-[calc(7%+4.5rem)] lg:left-auto"
+              // Desktop: the row is as tall as the CTAs and shares their baseline, so the
+              // bottom band reads as one line (actions left, controls right).
+              // From `lg` the whole right-aligned row moves left to clear the assistant
+              // launcher; below it only the control group does (HeroNavigation).
+              className="absolute inset-x-(--hero-gutter) bottom-4 z-40 transition-[translate] duration-500 ease-(--ease-out) motion-reduce:transition-none md:bottom-6 lg:bottom-[7%] lg:left-auto lg:h-12 lg:-translate-x-(--launcher-clearance)"
+            />
+          ) : null}
+
+          {count > 1 ? (
+            // On the content gutters, a few pixels up: the hero ends exactly at the fold, so a
+            // line on its very edge would sit on (or just under) the screen's last pixel row.
+            <HeroProgress
+              progress={progress}
+              className="absolute inset-x-(--hero-gutter) bottom-2 z-40 md:bottom-3 lg:bottom-4"
             />
           ) : null}
 

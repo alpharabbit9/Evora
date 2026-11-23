@@ -1,0 +1,286 @@
+{
+  "initialJsGzipCssMode": 446598,
+  "extraChunksIn3d": {
+    "/_next/static/chunks/3yoci0st31w8i.js": {
+      "raw": 928965,
+      "gzip": 245290
+    }
+  },
+  "extraTotal": {
+    "raw": 928965,
+    "gzip": 245290
+  },
+  "runs": [
+    {
+      "mode": "css",
+      "throttle": 1,
+      "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x000046A3) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "is3d": false,
+      "idle": {
+        "fps": 59.8,
+        "p95ms": 16.8,
+        "maxms": 16.8,
+        "over25ms": 0
+      },
+      "idleDraws": 0,
+      "sweep": {
+        "fps": 59.8,
+        "p95ms": 16.7,
+        "maxms": 33.3,
+        "over25ms": 1
+      },
+      "events": {
+        "count": 34,
+        "maxByType": {
+          "pointerdown": 24,
+          "pointerup": 24,
+          "click": 24,
+          "keydown": 32,
+          "keyup": 32
+        }
+      },
+      "offscreenDraws": 0,
+      "backScrollTop": 180,
+      "backOffscreenClass": false,
+      "backOnScreenDraws1s": 0,
+      "longTasks": [
+        112,
+        122,
+        99,
+        283,
+        50
+      ],
+      "pageOverflow": 0,
+      "errors": [],
+      "scripts": 27
+    },
+    {
+      "mode": "3d",
+      "throttle": 1,
+      "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x000046A3) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "msTo3d": 103,
+      "is3d": true,
+      "idle": {
+        "fps": 59.8,
+        "p95ms": 16.7,
+        "maxms": 16.8,
+        "over25ms": 0
+      },
+      "idleDraws": 3872,
+      "sweep": {
+        "fps": 59.9,
+        "p95ms": 16.7,
+        "maxms": 16.8,
+        "over25ms": 0
+      },
+      "events": {
+        "count": 34,
+        "maxByType": {
+          "pointerdown": 24,
+          "pointerup": 24,
+          "click": 24,
+          "keydown": 24,
+          "keyup": 24
+        }
+      },
+      "offscreenDraws": 0,
+      "backScrollTop": 180,
+      "backOffscreenClass": false,
+      "backOnScreenDraws1s": 960,
+      "longTasks": [
+        174,
+        82,
+        51
+      ],
+      "pageOverflow": 0,
+      "errors": [],
+      "scripts": 28
+    },
+    {
+      "mode": "css",
+      "throttle": 4,
+      "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x000046A3) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "is3d": false,
+      "idle": {
+        "fps": 59.2,
+        "p95ms": 16.7,
+        "maxms": 50,
+        "over25ms": 2
+      },
+      "idleDraws": 0,
+      "sweep": {
+        "fps": 44.2,
+        "p95ms": 50,
+        "maxms": 216.6,
+        "over25ms": 35
+      },
+      "events": {
+        "count": 38,
+        "maxByType": {
+          "pointerdown": 264,
+          "pointerup": 264,
+          "click": 264,
+          "keydown": 280,
+          "keyup": 80
+        }
+      },
+      "offscreenDraws": 0,
+      "backScrollTop": 180,
+      "backOffscreenClass": false,
+      "backOnScreenDraws1s": 0,
+      "longTasks": [
+        291,
+        189,
+        353,
+        109,
+        96,
+        185,
+        933,
+        55,
+        208,
+        70,
+        105,
+        69,
+        63,
+        96,
+        78,
+        60,
+        90,
+        98,
+        62,
+        129,
+        53,
+        52,
+        218,
+        70,
+        51,
+        58,
+        192,
+        104,
+        76,
+        55,
+        114,
+        76,
+        81,
+        103,
+        114,
+        210,
+        221,
+        110,
+        84,
+        93,
+        119,
+        109,
+        89,
+        110,
+        173,
+        51
+      ],
+      "pageOverflow": 0,
+      "errors": [],
+      "scripts": 27
+    },
+    {
+      "mode": "3d",
+      "throttle": 4,
+      "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x000046A3) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "msTo3d": 3328,
+      "is3d": true,
+      "idle": {
+        "fps": 60,
+        "p95ms": 16.8,
+        "maxms": 16.8,
+        "over25ms": 0
+      },
+      "idleDraws": 3872,
+      "sweep": {
+        "fps": 35.6,
+        "p95ms": 66.6,
+        "maxms": 200,
+        "over25ms": 66
+      },
+      "events": {
+        "count": 38,
+        "maxByType": {
+          "pointerdown": 208,
+          "pointerup": 208,
+          "click": 208,
+          "keydown": 184,
+          "keyup": 48
+        }
+      },
+      "offscreenDraws": 48,
+      "backScrollTop": 180,
+      "backOffscreenClass": false,
+      "backOnScreenDraws1s": 992,
+      "longTasks": [
+        211,
+        444,
+        56,
+        70,
+        512,
+        96,
+        185,
+        58,
+        224,
+        1085,
+        57,
+        226,
+        60,
+        65,
+        509,
+        63,
+        316,
+        53,
+        54,
+        63,
+        54,
+        51,
+        60,
+        50,
+        58,
+        67,
+        55,
+        54,
+        52,
+        74,
+        116,
+        220,
+        189,
+        100,
+        168,
+        63,
+        61,
+        65,
+        101,
+        99,
+        54,
+        52,
+        76,
+        57,
+        60,
+        121,
+        118,
+        84,
+        87,
+        68,
+        156,
+        55,
+        67,
+        74,
+        74,
+        61,
+        59,
+        69,
+        114,
+        130,
+        53,
+        119,
+        128
+      ],
+      "pageOverflow": 0,
+      "errors": [],
+      "scripts": 28
+    }
+  ]
+}

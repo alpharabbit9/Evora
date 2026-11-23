@@ -1,6 +1,7 @@
 import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react';
 import Link from 'next/link';
 
+import { IN_PLACE_NAVIGATION } from '@/components/layout/page-transition';
 import { cn } from '@/lib/utils';
 
 const focusRing =
@@ -54,6 +55,7 @@ export function CatalogPagination({
     ) : (
       <Link
         href={hrefFor(target)}
+        transitionTypes={[IN_PLACE_NAVIGATION]}
         aria-label={label}
         className={cn('grid size-9 place-items-center hover:bg-secondary', focusRing)}
       >
@@ -79,6 +81,7 @@ export function CatalogPagination({
             <li key={entry} className="max-sm:[&:not(:has([aria-current]))]:hidden">
               <Link
                 href={hrefFor(entry)}
+                transitionTypes={[IN_PLACE_NAVIGATION]}
                 aria-current={entry === page ? 'page' : undefined}
                 aria-label={`Page ${String(entry)}`}
                 className={cn(

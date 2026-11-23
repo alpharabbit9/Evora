@@ -13,33 +13,40 @@ import { Suspense, cache } from 'react';
 
 import { DemoNotice } from '@/components/catalog/catalog-header';
 import { ProductImage } from '@/components/catalog/product-image';
+import { PageTransition } from '@/components/layout/page-transition';
 import { ProductGallery } from '@/components/product/product-gallery';
 import { ProductInfoTabs } from '@/components/product/product-info-tabs';
+import {
+  PRODUCT_COLUMNS as COLUMNS,
+  PRODUCT_CONTAINER as CONTAINER,
+} from '@/components/product/product-layout';
 import { ProductPurchase } from '@/components/product/product-purchase';
+import { ProductSkeleton } from '@/components/product/product-skeleton';
 import { DETAILS_TAB, SHIPPING_TAB, SIZE_AND_FIT_TAB } from '@/components/product/product-tab-ids';
 import { RelatedProducts, RelatedProductsSkeleton } from '@/components/product/related-products';
+import { ScrollParallax } from '@/components/storefront/scroll-motion';
 import { BENEFITS } from '@/components/storefront/why-shop-with-us/benefits';
-import { Skeleton } from '@/components/ui/skeleton';
 import { ApiErrorCode, isApiError } from '@/lib/api-error';
 import { fetchProduct } from '@/lib/catalog/api';
+import { visiblePolicyContent } from '@/lib/content-gates';
+import { ENTER, ENTER_MASK } from '@/lib/motion/enter';
+import { cn } from '@/lib/utils';
 import type { ProductDetail } from '@/lib/catalog/types';
 
 const SLUG = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const GENDER_LABEL = { men: 'Men', women: 'Women', unisex: 'Unisex' } as const;
 const CUT_COPY = { men: 'Cut for men', women: 'Cut for women', unisex: 'Unisex fit' } as const;
 
-const CONTAINER = 'mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-10 xl:px-14';
-const COLUMNS =
-  'grid gap-8 md:grid-cols-2 md:gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-12 xl:gap-16';
 const DETAIL_SIZES = '(min-width: 1024px) 44vw, 100vw';
 
 /**
  * The store promises shown beside "Add to bag" and in the Shipping tab — the same copy as the
- * home page's "Why shop with us?" band, so the two cannot disagree. See `benefits.ts` for
- * which of these still wait on a decided policy.
+ * home page's service strip, so the two cannot disagree. See `benefits.ts` for
+ * which of these still wait on a decided policy: a production build leaves those out
+ * (ADR 0026), so the row below sizes its columns to however many remain.
  */
 const SERVICE_PROMISES = ['shipping', 'returns', 'payment'].flatMap((id) =>
-  BENEFITS.filter((benefit) => benefit.id === id),
+  visiblePolicyContent(BENEFITS).filter((benefit) => benefit.id === id),
 );
 
 /**
@@ -83,11 +90,13 @@ export async function generateMetadata({
 
 export default function ProductPage({ params }: PageProps<'/products/[slug]'>) {
   return (
-    <Suspense fallback={<ProductSkeleton />}>
-      {params.then(({ slug }) => (
-        <ProductContent slug={slug} />
-      ))}
-    </Suspense>
+    <PageTransition>
+      <Suspense fallback={<ProductSkeleton />}>
+        {params.then(({ slug }) => (
+          <ProductContent slug={slug} />
+        ))}
+      </Suspense>
+    </PageTransition>
   );
 }
 
@@ -95,6 +104,14 @@ export default function ProductPage({ params }: PageProps<'/products/[slug]'>) {
  * Gallery and purchase panel side by side from `lg` (stacked below it), then the information
  * tabs beside a detail photo, then related products, which stream in on their own so a slow
  * listing read never holds back the product itself.
+ *
+ * Motion (pages-plan.md P4, ADR 0010):
+ * - Entrance, CSS (`lib/motion/enter.ts`), as the product streams in: the gallery settles from
+ *   98% as it fades in; the name rises out of its mask; the purchase panel and the service row
+ *   follow. Nothing waits on hydration; reduced motion shows everything at once.
+ * - The detail photo drifts against the scroll (`ScrollParallax`, GSAP; still under reduced
+ *   motion). It owns the wrapper's transform; the crop's scale stays on the image inside.
+ * - Related products: see `RelatedProducts`.
  */
 async function ProductContent({ slug }: { slug: string }) {
   const product = await loadProduct(slug);
@@ -139,11 +156,18 @@ async function ProductContent({ slug }: { slug: string }) {
       </nav>
 
       <div className={`mt-6 ${COLUMNS}`}>
-        <ProductGallery images={product.images} name={product.name} />
+        <div className={cn(ENTER, 'duration-[1200ms] zoom-in-98')}>
+          <ProductGallery images={product.images} name={product.name} />
+        </div>
 
         <div className="flex flex-col gap-6 self-start md:sticky md:top-28">
           <header className="flex flex-col items-start gap-3">
-            <p className="flex flex-wrap items-center gap-2">
+            <p
+              className={cn(
+                ENTER,
+                'flex flex-wrap items-center gap-2 delay-100 slide-in-from-bottom-2',
+              )}
+            >
               <span className="rounded-full bg-muted px-3 py-1 text-[11px] font-medium text-foreground">
                 {category.name}
               </span>
@@ -153,21 +177,43 @@ async function ProductContent({ slug }: { slug: string }) {
                 </span>
               ) : null}
             </p>
-            <h1 className="font-heading text-[clamp(1.85rem,1.4rem+1.6vw,2.75rem)] leading-[1.08] font-normal tracking-[-0.01em] text-balance">
-              {product.name}
+            <h1
+              className={cn(
+                ENTER_MASK,
+                'font-heading text-[clamp(1.85rem,1.4rem+1.6vw,2.75rem)] leading-[1.08] font-normal tracking-[-0.01em] text-balance',
+              )}
+            >
+              <span className={cn(ENTER, 'block delay-150 slide-in-from-bottom-full')}>
+                {product.name}
+              </span>
             </h1>
             {product.description ? (
-              <p className="line-clamp-3 max-w-prose text-sm leading-6 text-muted-foreground">
+              <p
+                className={cn(
+                  ENTER,
+                  'line-clamp-3 max-w-prose text-sm leading-6 text-muted-foreground delay-300 slide-in-from-bottom-3',
+                )}
+              >
                 {product.description}
               </p>
             ) : null}
           </header>
 
-          <div className="border-t border-border pt-6">
+          <div
+            className={cn(
+              ENTER,
+              'border-t border-border pt-6 delay-[400ms] slide-in-from-bottom-3',
+            )}
+          >
             <ProductPurchase product={product} />
           </div>
 
-          <ul className="grid grid-cols-3 gap-3 border-t border-border pt-5">
+          <ul
+            className={cn(
+              ENTER,
+              'grid auto-cols-fr grid-flow-col gap-3 border-t border-border pt-5 delay-500',
+            )}
+          >
             {SERVICE_PROMISES.map(({ id, title, description, icon: Icon }) => (
               <li
                 key={id}
@@ -184,7 +230,7 @@ async function ProductContent({ slug }: { slug: string }) {
             ))}
           </ul>
 
-          <DemoNotice className="text-xs leading-5 text-muted-foreground" />
+          <DemoNotice className={cn(ENTER, 'text-xs leading-5 text-muted-foreground delay-500')} />
         </div>
       </div>
 
@@ -207,11 +253,13 @@ async function ProductContent({ slug }: { slug: string }) {
 
         {detailImage ? (
           <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-muted lg:aspect-[16/11]">
-            <ProductImage
-              image={detailIsCrop ? { ...detailImage, alt: '' } : detailImage}
-              sizes={DETAIL_SIZES}
-              {...(detailIsCrop ? { className: 'scale-[1.6] object-[50%_40%]' } : {})}
-            />
+            <ScrollParallax travel={5} decorative={detailIsCrop}>
+              <ProductImage
+                image={detailIsCrop ? { ...detailImage, alt: '' } : detailImage}
+                sizes={DETAIL_SIZES}
+                {...(detailIsCrop ? { className: 'scale-[1.6] object-[50%_40%]' } : {})}
+              />
+            </ScrollParallax>
           </div>
         ) : null}
       </section>
@@ -322,27 +370,6 @@ function ShippingPanel() {
       <p className="max-w-prose text-sm leading-6 text-foreground/85">
         Delivery options and fees are calculated at checkout for your address, before you pay.
       </p>
-    </div>
-  );
-}
-
-function ProductSkeleton() {
-  return (
-    <div role="status" aria-live="polite" className={`${CONTAINER} pt-6 pb-24`}>
-      <Skeleton className="h-3 w-48" />
-      <div className={`mt-6 ${COLUMNS}`}>
-        <Skeleton className="aspect-[4/5] w-full rounded-2xl" />
-        <div className="flex flex-col gap-4">
-          <Skeleton className="h-6 w-24 rounded-full" />
-          <Skeleton className="h-10 w-4/5" />
-          <Skeleton className="h-12 w-full" />
-          <Skeleton className="mt-4 h-8 w-32" />
-          <Skeleton className="h-10 w-40" />
-          <Skeleton className="h-11 w-3/4" />
-          <Skeleton className="h-12 w-full" />
-        </div>
-      </div>
-      <span className="sr-only">Loading product</span>
     </div>
   );
 }

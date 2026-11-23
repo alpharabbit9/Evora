@@ -15,6 +15,7 @@ export const ErrorCode = {
   PAYMENT_PENDING: 'PAYMENT_PENDING',
   RATE_LIMITED: 'RATE_LIMITED',
   INTERNAL_ERROR: 'INTERNAL_ERROR',
+  PROVIDER_UNAVAILABLE: 'PROVIDER_UNAVAILABLE',
 } as const;
 
 export type ErrorCodeName = (typeof ErrorCode)[keyof typeof ErrorCode];
@@ -31,6 +32,7 @@ const statusByCode: Record<ErrorCodeName, number> = {
   PAYMENT_PENDING: 409,
   RATE_LIMITED: 429,
   INTERNAL_ERROR: 500,
+  PROVIDER_UNAVAILABLE: 503,
 };
 
 export interface ErrorDetail {
@@ -154,6 +156,17 @@ export function paymentPending(
   options?: ErrorOptions,
 ): AppError {
   return new AppError(ErrorCode.PAYMENT_PENDING, message, options);
+}
+
+/**
+ * An upstream provider gave no answer. The operation left nothing broken and can be repeated, so
+ * this is a 503 (API_SPEC.md §2) rather than the generic 500.
+ */
+export function providerUnavailable(
+  message = 'We could not reach the payment service. Please try again in a moment.',
+  options?: ErrorOptions,
+): AppError {
+  return new AppError(ErrorCode.PROVIDER_UNAVAILABLE, message, options);
 }
 
 export function rateLimited(

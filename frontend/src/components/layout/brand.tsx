@@ -13,7 +13,7 @@ type WordmarkProps = Omit<React.ComponentProps<typeof Link>, 'href'> & {
  * Pass the size with its line height (`text-[2rem]/none`): `cn` (tailwind-merge) drops the
  * `leading-none` below whenever a later class sets the font size.
  */
-export function Wordmark({ className, href = '/', ...props }: WordmarkProps) {
+export function Wordmark({ className, href = '/', children, ...props }: WordmarkProps) {
   return (
     <Link
       href={href}
@@ -24,7 +24,9 @@ export function Wordmark({ className, href = '/', ...props }: WordmarkProps) {
       )}
       {...props}
     >
-      EVORA
+      {/* `children` lets a caller set the same letters in its own markup (the footer splits
+          them for its reveal). They must still spell the word, letters only. */}
+      {children ?? 'EVORA'}
     </Link>
   );
 }

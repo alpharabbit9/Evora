@@ -37,3 +37,29 @@ if (!/test/i.test(new URL(testUrl).pathname)) {
 }
 
 process.env.DATABASE_URL = testUrl;
+
+/**
+ * The suite must never reach a real gateway, whatever a developer's .env says. These point the real
+ * SSLCOMMERZ adapter at `scripts/payments/fake-sslcommerz.ts`, on a port only `payments.test.ts`
+ * opens. Other files never call the gateway, because placing an order makes no network call.
+ */
+process.env.SSLCOMMERZ_BASE_URL = 'http://127.0.0.1:4599';
+process.env.SSLCOMMERZ_STORE_ID = 'test-store';
+process.env.SSLCOMMERZ_STORE_PASSWORD = 'test-store-password';
+delete process.env.PAYMENT_CALLBACK_BASE_URL;
+
+/**
+ * Nor a real Groq or OpenAI (ADR 0025): a developer's keys in .env would otherwise be spent by the
+ * worker tests' index sweep. `assistant.test.ts` installs providers pointed at
+ * `scripts/assistant/fake-llm.ts` itself.
+ */
+for (const key of [
+  'GROQ_API_KEY',
+  'GROQ_CHAT_MODEL',
+  'GROQ_BASE_URL',
+  'OPENAI_API_KEY',
+  'OPENAI_CHAT_MODEL',
+  'OPENAI_BASE_URL',
+]) {
+  delete process.env[key];
+}

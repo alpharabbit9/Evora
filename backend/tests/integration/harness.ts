@@ -44,6 +44,10 @@ const GENEROUS_LIMITS: RateLimitConfig = {
   credential: { windowMs: 60_000, limit: 10_000 },
   session: { windowMs: 60_000, limit: 10_000 },
   write: { windowMs: 60_000, limit: 10_000 },
+  checkout: { windowMs: 60_000, limit: 10_000 },
+  paymentReturn: { windowMs: 60_000, limit: 10_000 },
+  suggestions: { windowMs: 60_000, limit: 10_000 },
+  assistant: { windowMs: 60_000, limit: 10_000 },
 };
 
 export function createTestApp(overrides?: Partial<RateLimitConfig>): Express {
@@ -168,8 +172,8 @@ export async function signUpAs(
 }
 
 /**
- * Minimal persisted order for the ownership tests. Written with Prisma because checkout is
- * M6; the totals satisfy the `orders_total_consistent_check` CHECK
+ * Minimal persisted order for the ownership tests, written with Prisma so they depend on
+ * neither checkout nor catalog fixtures; the totals satisfy the `orders_total_consistent_check` CHECK
  * (total = subtotal - discount + shipping + tax).
  *
  * `userId: null` makes a guest order, which needs a `guestAccessTokenHash` to satisfy

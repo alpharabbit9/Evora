@@ -89,8 +89,19 @@ export const productListQuery = z
 
 export type ProductListQuery = z.output<typeof productListQuery>;
 
+/** At least two characters: one letter matches nearly everything and costs a full search. */
+export const searchSuggestionsQuery = z.strictObject({ q: z.string().trim().min(2).max(100) });
+
 export const productFacetsQuery = z.strictObject(scopeFilters);
 
 export type ProductFacetsQuery = z.output<typeof productFacetsQuery>;
 
 export const productSlugParams = z.object({ slug });
+
+/** `GET /products/arrivals` (ADR 0017): how many garments the rail hangs. */
+export const MAX_ARRIVALS = 12;
+export const productArrivalsQuery = z.strictObject({
+  limit: z.coerce.number().int().min(1).max(MAX_ARRIVALS).default(8),
+});
+
+export type ProductArrivalsQuery = z.output<typeof productArrivalsQuery>;

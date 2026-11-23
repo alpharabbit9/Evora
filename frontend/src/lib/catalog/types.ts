@@ -1,6 +1,6 @@
 /**
- * Response shapes of the public catalog and cart endpoints (backend `modules/catalog`,
- * `modules/cart`; API_SPEC.md §4–5).
+ * Response shapes of the public catalog, cart and wishlist endpoints (backend
+ * `modules/catalog`, `modules/cart`, `modules/wishlist`; API_SPEC.md §3–5).
  *
  * Money is integer minor units (poisha) in `currency`, never a float (ADR 0008). Prices,
  * totals and availability shown from these are display copies of the server's numbers; the
@@ -41,6 +41,14 @@ export interface ProductCard {
   readonly colors: readonly string[];
   readonly inStock: boolean;
   readonly image: ImageView | null;
+}
+
+/**
+ * `GET /products/arrivals` (ADR 0017): a listing card plus the garment's cut-out — the photo
+ * with its background removed, transparent PNG/WebP — which only the arrivals rail draws.
+ */
+export interface ArrivalProduct extends ProductCard {
+  readonly cutout: ImageView;
 }
 
 export interface ProductVariant {
@@ -92,6 +100,8 @@ export interface CartLine {
   readonly status: CartLineStatus;
   readonly unitPriceMinor: number;
   readonly lineTotalMinor: number;
+  /** The unit price last shown for this line, when the price has changed since; else `null`. */
+  readonly previousUnitPriceMinor: number | null;
   readonly variant: {
     readonly id: string;
     readonly sku: string;
@@ -113,4 +123,34 @@ export interface Cart {
   readonly itemCount: number;
   readonly subtotalMinor: number;
   readonly hasIssues: boolean;
+}
+
+/** `GET /search/suggestions`: the first products `/search` would list, and matching shelves. */
+export interface SearchSuggestions {
+  readonly products: readonly {
+    readonly slug: string;
+    readonly name: string;
+    readonly brand: string | null;
+    readonly currency: string;
+    readonly priceMinor: number;
+    readonly maxPriceMinor: number;
+    readonly image: ImageView | null;
+  }[];
+  readonly categories: readonly {
+    readonly slug: string;
+    readonly name: string;
+    readonly parentName: string | null;
+  }[];
+  readonly totalProducts: number;
+}
+
+/** `GET /me/wishlist` (backend `modules/wishlist`, ADR 0016). Newest first. */
+export interface WishlistItem {
+  readonly savedAt: string;
+  readonly product: ProductCard;
+}
+
+export interface Wishlist {
+  readonly items: readonly WishlistItem[];
+  readonly count: number;
 }

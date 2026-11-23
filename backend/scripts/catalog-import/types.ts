@@ -60,6 +60,10 @@ export interface NormalizedProduct {
   readonly sourceUrl: string | null;
   /** Set only once the binary is safely in object storage. */
   readonly image: ProductImageInput | null;
+  /** More gallery photos after `image` (a side view, a detail), in order; stored like `image`. */
+  readonly gallery?: readonly ProductImageInput[];
+  /** Transparent garment cut-out for the arrivals rail (ADR 0017); stored like `image`. */
+  readonly cutout?: ProductImageInput | null;
   /** Storefront front-runner position (1 = first); written on create only. Absent: not featured. */
   readonly featuredRank?: number;
 }

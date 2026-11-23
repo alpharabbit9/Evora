@@ -1,0 +1,30 @@
+[api] Loaded Prisma config from prisma.config.ts.
+[api] 
+[api] Prisma schema loaded from prisma\schema.prisma.
+[api] Datasource "db": PostgreSQL database "commercecore_e2e", schema "public" at "localhost:5432"
+[api] 
+[api] 18 migrations found in prisma/migrations
+[api] 
+[api] 
+[api] No pending migrations to apply.
+[api] Knowledge: 5 embedded, 0 unchanged, 0 removed
+[api] Products:  1 embedded, 0 unchanged, 0 removed
+[web] ⚠ Your version of Next.js is affected by a known security vulnerability. This command is continuing after the upgrade reminder.
+[web] Reference: https://registry.npmjs.org/-/npm/v1/security/advisories/bulk
+
+Running 12 tests using 1 worker
+
+  ok  1 [chromium] › tests\accessibility.spec.ts:61:3 › accessibility › public pages (15.8s)
+  ok  2 [chromium] › tests\accessibility.spec.ts:76:3 › accessibility › bag and checkout (10.3s)
+  ok  3 [chromium] › tests\accessibility.spec.ts:104:3 › accessibility in the dark theme › public pages (12.1s)
+  ok  4 [chromium] › tests\accessibility.spec.ts:120:5 › accessibility with motion on › the home page, light theme (9.7s)
+  ok  5 [chromium] › tests\accessibility.spec.ts:120:5 › accessibility with motion on › the home page, dark theme (9.8s)
+  ok  6 [chromium] › tests\accessibility.spec.ts:141:5 › keyboard › every stop on the home page is visible and shows focus (reduce motion) (9.7s)
+  ok  7 [chromium] › tests\accessibility.spec.ts:141:5 › keyboard › every stop on the home page is visible and shows focus (no-preference motion) (34.1s)
+  ok  8 [chromium] › tests\micro-interactions.spec.ts:88:5 › home page micro-interactions › with motion › CTAs and hero controls dip while pressed, and come back (8.2s)
+  ok  9 [chromium] › tests\micro-interactions.spec.ts:117:5 › home page micro-interactions › with motion › the autoplay hairline fills, and holds while the hero is hovered (5.5s)
+  ok 10 [chromium] › tests\micro-interactions.spec.ts:136:5 › home page micro-interactions › with motion › garments beside the mouse swing wider, the one under it does not (11.3s)
+  ok 11 [chromium] › tests\micro-interactions.spec.ts:173:5 › home page micro-interactions › with reduced motion › nothing dips, and the rail ignores the pointer (6.2s)
+  ok 12 [chromium] › tests\micro-interactions.spec.ts:194:3 › the theme control's icon › shows the sun in light, the moon in dark, and spins between them (5.7s)
+
+  12 passed (3.4m)

@@ -29,6 +29,31 @@ export function LoadingState({
 }
 
 /**
+ * A neutral page — eyebrow, heading, intro, a large block — for a store route that has no
+ * skeleton of its own yet (`app/(store)/loading.tsx`). Routes with a known layout use theirs.
+ */
+export function PageSkeleton({ className, ...props }: React.ComponentProps<'div'>) {
+  return (
+    <div
+      data-slot="page-skeleton"
+      role="status"
+      aria-live="polite"
+      className={cn(
+        'mx-auto flex w-full max-w-[1680px] flex-col px-4 pt-10 pb-24 sm:px-6 sm:pt-14 lg:px-10 xl:px-14',
+        className,
+      )}
+      {...props}
+    >
+      <Skeleton className="h-3 w-28" />
+      <Skeleton className="mt-5 h-[clamp(2.2rem,1.6rem+2.2vw,3.5rem)] w-72 max-w-full" />
+      <Skeleton className="mt-4 h-4 w-full max-w-xl" />
+      <Skeleton className="mt-10 aspect-[16/7] w-full rounded-2xl" />
+      <span className="sr-only">Loading</span>
+    </div>
+  );
+}
+
+/**
  * Placeholder rows for a list that is loading for the first time. Prefer this over a
  * spinner where the final layout is known, so the page does not jump when data lands.
  */

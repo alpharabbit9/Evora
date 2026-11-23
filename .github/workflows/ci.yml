@@ -1,0 +1,170 @@
+# Every check the implementation plan's definition of done asks for, on every push and pull
+# request: types, lint, unit, PostgreSQL constraint and HTTP integration tests, both builds, and
+# the Playwright journeys against the whole stack. Nothing here deploys or holds a real secret:
+# BETTER_AUTH_SECRET is generated per run and the databases live and die with the job.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  NODE_VERSION: '24'
+  # Shared by every job that talks to PostgreSQL; each job gets its own service container.
+  PG_URL: postgresql://commercecore:commercecore@localhost:5432
+
+jobs:
+  backend:
+    name: Backend
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    services:
+      postgres:
+        image: pgvector/pgvector:0.8.6-pg17 # PostgreSQL 17 with pgvector (ADR 0025)
+        env:
+          POSTGRES_USER: commercecore
+          POSTGRES_PASSWORD: commercecore
+          POSTGRES_DB: commercecore_test
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U commercecore" --health-interval 5s --health-timeout 5s
+          --health-retries 10
+    defaults:
+      run:
+        working-directory: backend
+    env:
+      NODE_ENV: test
+      DATABASE_URL: postgresql://commercecore:commercecore@localhost:5432/commercecore?schema=public
+      DATABASE_URL_TEST: postgresql://commercecore:commercecore@localhost:5432/commercecore_test?schema=public
+      BETTER_AUTH_URL: http://localhost:4000
+      FRONTEND_ORIGIN: http://localhost:3000
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: backend/package-lock.json
+      - name: Generate a throwaway auth secret
+        run: echo "BETTER_AUTH_SECRET=$(openssl rand -base64 32)" >> "$GITHUB_ENV"
+      - run: npm ci
+      - run: npx prisma generate
+      - name: Migrate the test database
+        run: DATABASE_URL="$DATABASE_URL_TEST" npx prisma migrate deploy
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm run format
+      - run: npm test
+      - run: npm run test:db
+      - run: npm run test:integration
+      - run: npm run build
+      - name: Audit production dependencies
+        run: npm audit --omit=dev --audit-level=high
+
+  frontend:
+    name: Frontend
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: frontend
+    env:
+      NEXT_PUBLIC_API_URL: http://localhost:4000
+      NEXT_TELEMETRY_DISABLED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm run build
+      - name: Audit production dependencies
+        run: npm audit --omit=dev --audit-level=high
+
+  images:
+    name: Container images
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    # Builds what deploys (ADR 0024) so a Dockerfile, or a lockfile that only works on one OS,
+    # fails here rather than at release time. Nothing is pushed.
+    steps:
+      - uses: actions/checkout@v4
+      - name: API and worker
+        run: docker build --target runtime -t commercecore-api:ci backend
+      - name: Migrate job
+        run: docker build --target migrate -t commercecore-migrate:ci backend
+      - name: Storefront
+        run: >-
+          docker build -t commercecore-web:ci
+          --build-arg NEXT_PUBLIC_API_URL=https://staging.example.com frontend
+      - name: The API image refuses a cross-site topology at boot
+        run: |
+          set +e
+          out=$(docker run --rm -e NODE_ENV=production -e DATABASE_URL=postgresql://x:y@db:5432/x \
+            -e BETTER_AUTH_SECRET="$(openssl rand -base64 32)" \
+            -e BETTER_AUTH_URL=https://api.one.example -e FRONTEND_ORIGIN=https://shop.two.example \
+            -e STORAGE_DRIVER=s3 -e S3_BUCKET=b -e S3_ACCESS_KEY_ID=k -e S3_SECRET_ACCESS_KEY=s \
+            -e MEDIA_PUBLIC_URL=https://cdn.example.com -e EMAIL_DRIVER=smtp -e SMTP_HOST=smtp.example.com \
+            -e EMAIL_FROM=shop@two.example commercecore-api:ci 2>&1)
+          code=$?
+          echo "$out" | grep -q "different hosts" && [ "$code" -ne 0 ]
+
+  e2e:
+    name: End-to-end (Playwright)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    needs: [backend, frontend]
+    services:
+      postgres:
+        image: pgvector/pgvector:0.8.6-pg17 # PostgreSQL 17 with pgvector (ADR 0025)
+        env:
+          POSTGRES_USER: commercecore
+          POSTGRES_PASSWORD: commercecore
+          POSTGRES_DB: commercecore_e2e
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U commercecore" --health-interval 5s --health-timeout 5s
+          --health-retries 10
+    env:
+      CI: 'true'
+      DATABASE_URL_E2E: postgresql://commercecore:commercecore@localhost:5432/commercecore_e2e?schema=public
+      NEXT_TELEMETRY_DISABLED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: Generate a throwaway auth secret
+        run: echo "BETTER_AUTH_SECRET=$(openssl rand -base64 32)" >> "$GITHUB_ENV"
+      - run: npm ci
+        working-directory: backend
+      - run: npx prisma generate
+        working-directory: backend
+      - run: npm ci
+        working-directory: frontend
+      - run: npm ci
+        working-directory: e2e
+      - run: npx playwright install --with-deps chromium
+        working-directory: e2e
+      - run: npx playwright test
+        working-directory: e2e
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report
+          path: |
+            e2e/playwright-report
+            e2e/test-results
+          retention-days: 7

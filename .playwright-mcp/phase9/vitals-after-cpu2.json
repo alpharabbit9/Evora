@@ -1,0 +1,188 @@
+{
+  "label": "after-cpu2",
+  "summary": {
+    "ttfb": 6.600000008940697,
+    "fcp": 2116,
+    "lcp": 2228,
+    "clsLoad": 0,
+    "cls": 0,
+    "tbt": 1033,
+    "inp": 280,
+    "jsKB": 450.5439453125,
+    "totalKB": 1314.1748046875,
+    "lcpEl": [
+      "img[alt=Man in a charcoal herringbone three-piece suit, long wool overcoat and flat cap, walking] image?url=%2Fimages%2FHero%2Fhero1.webp&w=828&q=75",
+      "img[alt=Man in a charcoal herringbone three-piece suit, long wool overcoat and flat cap, walking] image?url=%2Fimages%2FHero%2Fhero1.webp&w=828&q=75",
+      "img[alt=Man in a charcoal herringbone three-piece suit, long wool overcoat and flat cap, walking] image?url=%2Fimages%2FHero%2Fhero1.webp&w=828&q=75",
+      "img[alt=Man in a charcoal herringbone three-piece suit, long wool overcoat and flat cap, walking] image?url=%2Fimages%2FHero%2Fhero1.webp&w=828&q=75",
+      "img[alt=Man in a charcoal herringbone three-piece suit, long wool overcoat and flat cap, walking] image?url=%2Fimages%2FHero%2Fhero1.webp&w=828&q=75"
+    ]
+  },
+  "runs": [
+    {
+      "ttfb": 8.100000008940697,
+      "load": 6070.9000000059605,
+      "lcp": 2224,
+      "lcpEl": "img[alt=Man in a charcoal herringbone three-piece suit, long wool overcoat and flat cap, walking] image?url=%2Fimages%2FHero%2Fhero1.webp&w=828&q=75",
+      "fcp": 2160,
+      "tbt": 978,
+      "clsLoad": 0,
+      "cls": 0,
+      "shiftLog": [],
+      "inp": 264,
+      "interactions": 5,
+      "perTap": [
+        [
+          "button[aria-label=\"Next slide\"]",
+          "pointerdown 208 [delay 34 js 2 paint 172], pointerup 208 [delay 39 js 1 paint 168], click 208 [delay 52 js 101 paint 55]"
+        ],
+        [
+          "button[aria-label=\"Pause slideshow\"]",
+          "pointerdown 72 [delay 32 js 4 paint 36], pointerup 72 [delay 37 js 1 paint 34], click 112 [delay 72 js 12 paint 28]"
+        ],
+        [
+          "header button[aria-expanded]",
+          "pointerdown 48 [delay 28 js 2 paint 18], pointerup 120 [delay 42 js 0 paint 78], click 120 [delay 64 js 37 paint 19]"
+        ],
+        [
+          ".arrivals-rail .arrival a",
+          "pointerdown 264 [delay 52 js 4 paint 208], pointerup 264 [delay 59 js 0 paint 205], click 264 [delay 78 js 80 paint 106]"
+        ]
+      ],
+      "jsKB": 450.5439453125,
+      "totalKB": 1314.1748046875
+    },
+    {
+      "ttfb": 6.200000002980232,
+      "load": 5812.4000000059605,
+      "lcp": 2244,
+      "lcpEl": "img[alt=Man in a charcoal herringbone three-piece suit, long wool overcoat and flat cap, walking] image?url=%2Fimages%2FHero%2Fhero1.webp&w=828&q=75",
+      "fcp": 2084,
+      "tbt": 971,
+      "clsLoad": 0,
+      "cls": 0,
+      "shiftLog": [],
+      "inp": 240,
+      "interactions": 5,
+      "perTap": [
+        [
+          "button[aria-label=\"Next slide\"]",
+          "pointerdown 56 [delay 28 js 4 paint 24], pointerup 56 [delay 34 js 2 paint 20], click 192 [delay 60 js 100 paint 33]"
+        ],
+        [
+          "button[aria-label=\"Pause slideshow\"]",
+          "pointerdown 80 [delay 45 js 2 paint 33], pointerup 80 [delay 48 js 1 paint 32], click 112 [delay 81 js 12 paint 19]"
+        ],
+        [
+          "header button[aria-expanded]",
+          "pointerdown 120 [delay 38 js 2 paint 80], pointerup 120 [delay 41 js 0 paint 79], click 120 [delay 60 js 39 paint 21]"
+        ],
+        [
+          ".arrivals-rail .arrival a",
+          "pointerdown 240 [delay 43 js 2 paint 194], pointerup 240 [delay 49 js 0 paint 191], click 240 [delay 68 js 59 paint 114]"
+        ]
+      ],
+      "jsKB": 450.5439453125,
+      "totalKB": 1314.1748046875
+    },
+    {
+      "ttfb": 7.600000008940697,
+      "load": 6110.600000008941,
+      "lcp": 2228,
+      "lcpEl": "img[alt=Man in a charcoal herringbone three-piece suit, long wool overcoat and flat cap, walking] image?url=%2Fimages%2FHero%2Fhero1.webp&w=828&q=75",
+      "fcp": 2072,
+      "tbt": 1291,
+      "clsLoad": 0,
+      "cls": 0,
+      "shiftLog": [],
+      "inp": 280,
+      "interactions": 5,
+      "perTap": [
+        [
+          "button[aria-label=\"Next slide\"]",
+          "pointerdown 56 [delay 35 js 5 paint 16], pointerup 56 [delay 42 js 1 paint 13], click 280 [delay 70 js 146 paint 64]"
+        ],
+        [
+          "button[aria-label=\"Pause slideshow\"]",
+          "pointerdown 72 [delay 46 js 1 paint 25], pointerup 72 [delay 48 js 0 paint 24], click 112 [delay 78 js 10 paint 24]"
+        ],
+        [
+          "header button[aria-expanded]",
+          "pointerdown 88 [delay 27 js 2 paint 59], pointerup 88 [delay 31 js 0 paint 57], click 88 [delay 45 js 33 paint 10]"
+        ],
+        [
+          ".arrivals-rail .arrival a",
+          "pointerdown 264 [delay 63 js 3 paint 199], pointerup 264 [delay 67 js 0 paint 197], click 264 [delay 80 js 76 paint 109]"
+        ]
+      ],
+      "jsKB": 450.5439453125,
+      "totalKB": 1314.0712890625
+    },
+    {
+      "ttfb": 5.9000000059604645,
+      "load": 6096.5,
+      "lcp": 2224,
+      "lcpEl": "img[alt=Man in a charcoal herringbone three-piece suit, long wool overcoat and flat cap, walking] image?url=%2Fimages%2FHero%2Fhero1.webp&w=828&q=75",
+      "fcp": 2116,
+      "tbt": 1110,
+      "clsLoad": 0,
+      "cls": 0,
+      "shiftLog": [],
+      "inp": 296,
+      "interactions": 5,
+      "perTap": [
+        [
+          "button[aria-label=\"Next slide\"]",
+          "pointerdown 216 [delay 30 js 3 paint 183], pointerup 216 [delay 36 js 1 paint 179], click 216 [delay 57 js 111 paint 48]"
+        ],
+        [
+          "button[aria-label=\"Pause slideshow\"]",
+          "pointerdown 80 [delay 47 js 4 paint 29], pointerup 80 [delay 52 js 1 paint 27], click 112 [delay 82 js 12 paint 18]"
+        ],
+        [
+          "header button[aria-expanded]",
+          "pointerdown 112 [delay 32 js 3 paint 77], pointerup 112 [delay 37 js 0 paint 75], click 112 [delay 56 js 38 paint 18]"
+        ],
+        [
+          ".arrivals-rail .arrival a",
+          "pointerdown 296 [delay 61 js 2 paint 233], pointerup 296 [delay 65 js 0 paint 231], click 296 [delay 82 js 68 paint 146]"
+        ]
+      ],
+      "jsKB": 450.5439453125,
+      "totalKB": 1314.177734375
+    },
+    {
+      "ttfb": 6.600000008940697,
+      "load": 6084.9000000059605,
+      "lcp": 2264,
+      "lcpEl": "img[alt=Man in a charcoal herringbone three-piece suit, long wool overcoat and flat cap, walking] image?url=%2Fimages%2FHero%2Fhero1.webp&w=828&q=75",
+      "fcp": 2140,
+      "tbt": 1033,
+      "clsLoad": 0,
+      "cls": 0,
+      "shiftLog": [],
+      "inp": 296,
+      "interactions": 5,
+      "perTap": [
+        [
+          "button[aria-label=\"Next slide\"]",
+          "pointerdown 64 [delay 45 js 4 paint 15], pointerup 64 [delay 53 js 1 paint 10], click 296 [delay 83 js 147 paint 66]"
+        ],
+        [
+          "button[aria-label=\"Pause slideshow\"]",
+          "pointerdown 64 [delay 45 js 2 paint 17], pointerup 64 [delay 48 js 0 paint 16], click 120 [delay 84 js 12 paint 24]"
+        ],
+        [
+          "header button[aria-expanded]",
+          "pointerdown 128 [delay 42 js 2 paint 84], pointerup 128 [delay 45 js 0 paint 83], click 128 [delay 66 js 41 paint 21]"
+        ],
+        [
+          ".arrivals-rail .arrival a",
+          "pointerdown 288 [delay 58 js 3 paint 227], pointerup 288 [delay 63 js 0 paint 225], click 288 [delay 80 js 65 paint 144]"
+        ]
+      ],
+      "jsKB": 450.5439453125,
+      "totalKB": 1314.1748046875
+    }
+  ]
+}

@@ -42,8 +42,13 @@ export interface ProductSpec {
   readonly gender?: ProductGender | null;
   readonly status?: ProductStatus;
   readonly publishedAt?: Date | null;
-  /** Number of images; 0 makes a product that fails the publication rule. */
+  /** Number of PHOTO images; 0 makes a product that fails the publication rule. */
   readonly images?: number;
+  /**
+   * Also give it a CUTOUT image (ADR 0017), written so that a read which forgets to filter by
+   * kind would pick it first.
+   */
+  readonly cutout?: boolean;
   readonly variants?: readonly VariantSpec[];
   readonly provenance?: boolean;
   readonly featuredRank?: number;
@@ -107,6 +112,23 @@ export async function makeProduct(spec: ProductSpec) {
         },
       }),
     );
+  }
+
+  // Created before the photos: same sort order, older, so it would win an unfiltered read.
+  if (spec.cutout) {
+    await prisma.productImage.create({
+      data: {
+        productId: product.id,
+        kind: 'CUTOUT',
+        objectKey: `catalog/test/${suffix}/cutout.webp`,
+        altText: `${name} cut-out`,
+        sortOrder: 0,
+        widthPx: 900,
+        heightPx: 1200,
+        byteSize: 1000,
+        contentType: 'image/webp',
+      },
+    });
   }
 
   for (let index = 0; index < (spec.images ?? 1); index += 1) {
